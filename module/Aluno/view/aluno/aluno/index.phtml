@@ -1,0 +1,30 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'My albums';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('aluno', array('action'=>'add'));?>">Add new aluno</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>nome</th>
+    <th>email</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($alunos as $aluno) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($aluno->getNomealuno());?></td>
+    <td><?php echo $this->escapeHtml($aluno->getEmailaluno());?></td>
+    <td>
+        <a href="<?php echo $this->url('aluno',
+            array('action'=>'edit', 'id' => $aluno->getIdaluno()));?>">Edit</a>
+        <a href="<?php echo $this->url('aluno',
+            array('action'=>'delete', 'id' => $aluno->getIdaluno()));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

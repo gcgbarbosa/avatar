@@ -1,0 +1,50 @@
+<?php
+foreach($message as $k=>$m):
+    $key = key($m);
+    $message = current($m);
+?>
+    <div class="alert alert-<?php echo $key ?>">
+        <button type="button" class="close" data-dimiss="alert">&times;</button>
+        <strong><?php echo $key == success ? 'Sucesso!' : 'Erro!'?> </strong><?php echo $message?>
+    </div>
+<?php endforeach; ?>
+
+
+<div class="jumbotron">
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+            </div>
+            <!-- List group -->
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+            </div>
+            <!-- List group -->
+        </div>
+    </div>
+</div>
