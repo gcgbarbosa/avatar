@@ -15,20 +15,38 @@ $form->setAttribute('action', $this->url('aluno', array('action' => 'add')));
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo $this->formCollection($form);
 ?>
 
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('nomealuno'))."\n"?>
+	<?php echo $this->formText($form->get('nomealuno')) ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('emailaluno'))."\n" ?>
+	<?php echo $this->formText($form->get('emailaluno')) ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('telefonealuno'))."\n" ?>
+	<?php echo $this->formText($form->get('telefonealuno')) ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('matriculaaluno'))."\n" ?>
+	<?php echo $this->formText($form->get('matriculaaluno')) ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('bolsista'))."\n" ?>
+	<?php echo $this->formText($form->get('bolsista')) ?>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('datanasc'))."\n" ?>
+	<?php echo $this->formText($form->get('datanasc')) ?>
+</div>
 
 <?php echo $this->formSubmit($form->get('submit')) ?>
 
 
 
-<?php
-//echo $this->formHidden($form->get('id'));
-//echo $this->formRow($form->get('title'));
-//echo $this->formRow($form->get('artist'));
-//echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
-?>
+<?php echo $this->form()->closeTag(); ?>
+
 </div>
 </div>
