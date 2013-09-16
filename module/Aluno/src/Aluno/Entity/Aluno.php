@@ -3,10 +3,6 @@
 namespace Aluno\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\Factory as InputFactory;
-use Zend\InputFilter\InputFilterAwareInterface;
-use Zend\InputFilter\InputFilterInterface; 
 
 /**
  * Aluno
@@ -14,10 +10,8 @@ use Zend\InputFilter\InputFilterInterface;
  * @ORM\Table(name="aluno")
  * @ORM\Entity
  */
-class Aluno implements InputFilterAwareInterface 
+class Aluno
 {
-    private $inputFilter;
-
     /**
      * @var integer
      *
@@ -69,7 +63,29 @@ class Aluno implements InputFilterAwareInterface
      */
     private $datanasc;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Projeto\Entity\Projeto", inversedBy="alunoaluno")
+     * @ORM\JoinTable(name="aluno_has_projeto",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="aluno_idaluno", referencedColumnName="idaluno", nullable=true)
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Projeto_idProjeto", referencedColumnName="idProjeto", nullable=true)
+     *   }
+     * )
+     */
+    private $projetoprojeto;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projetoprojeto = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get idaluno
      *
@@ -218,75 +234,36 @@ class Aluno implements InputFilterAwareInterface
         return $this->datanasc;
     }
 
+    /**
+     * Add projetoprojeto
+     *
+     * @param \Projeto\Entity\Projeto $projetoprojeto
+     * @return Aluno
+     */
+    public function addProjetoprojeto(\Projeto\Entity\Projeto $projetoprojeto)
+    {
+        $this->projetoprojeto[] = $projetoprojeto;
     
-    public function setInputFilter(InputFilterInterface $inputFilter)
-    {
-        throw new \Exception("Not used!");
-    }
-
-    public function getInputFilter()
-    {
-        if (! $this->inputFilter) {
-            $inputFilter = new InputFilter();
-
-            $factory = new InputFactory();
-            /*
-            $inputFilter->add($factory->createInput(array(
-                'name'       => 'idaluno',
-                'required'   => true,
-                'filters' => array(
-                    array('name'    => 'Int'),
-                ),
-            )));
-
-            $inputFilter->add($factory->createInput(array(
-                'name'     => 'nomealuno',
-                'required' => true,
-                'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name'    => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 100,
-                        ),
-                    ),
-                ),
-            )));
-            */
-
-            $this->inputFilter = $inputFilter;        
-        }
-
-        return $this->inputFilter;
+        return $this;
     }
 
     /**
-     * Convert the object to an array.
+     * Remove projetoprojeto
      *
-     * @return array
+     * @param \Projeto\Entity\Projeto $projetoprojeto
      */
-    public function getArrayCopy() 
+    public function removeProjetoprojeto(\Projeto\Entity\Projeto $projetoprojeto)
     {
-        return get_object_vars($this);
+        $this->projetoprojeto->removeElement($projetoprojeto);
     }
 
     /**
-     * Populate from an array.
+     * Get projetoprojeto
      *
-     * @param array $data
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function populate($data = array()) 
+    public function getProjetoprojeto()
     {
-        foreach ($data as $property => $value) {
-            if (! property_exists($this, $property)) {
-                continue;
-            }
-            $this->$property = $value;
-        }
+        return $this->projetoprojeto;
     }
 }

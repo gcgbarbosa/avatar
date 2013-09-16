@@ -63,7 +63,29 @@ class Aluno
      */
     private $datanasc;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Entity\Projeto", inversedBy="alunoaluno")
+     * @ORM\JoinTable(name="aluno_has_projeto",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="aluno_idaluno", referencedColumnName="idaluno", nullable=true)
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Projeto_idProjeto", referencedColumnName="idProjeto", nullable=true)
+     *   }
+     * )
+     */
+    private $projetoprojeto;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projetoprojeto = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get idaluno
      *
@@ -210,5 +232,38 @@ class Aluno
     public function getDatanasc()
     {
         return $this->datanasc;
+    }
+
+    /**
+     * Add projetoprojeto
+     *
+     * @param \Application\Entity\Projeto $projetoprojeto
+     * @return Aluno
+     */
+    public function addProjetoprojeto(\Application\Entity\Projeto $projetoprojeto)
+    {
+        $this->projetoprojeto[] = $projetoprojeto;
+    
+        return $this;
+    }
+
+    /**
+     * Remove projetoprojeto
+     *
+     * @param \Application\Entity\Projeto $projetoprojeto
+     */
+    public function removeProjetoprojeto(\Application\Entity\Projeto $projetoprojeto)
+    {
+        $this->projetoprojeto->removeElement($projetoprojeto);
+    }
+
+    /**
+     * Get projetoprojeto
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProjetoprojeto()
+    {
+        return $this->projetoprojeto;
     }
 }

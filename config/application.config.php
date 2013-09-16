@@ -10,6 +10,9 @@ return array(
         'CsnAuthorization',
         'Aluno',
         'Professor',
+        'Projeto',
+        'Funcionario',
+        'Equipamento',
     ),
 
     // These are various options for the listeners attached to the ModuleManager

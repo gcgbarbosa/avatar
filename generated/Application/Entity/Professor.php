@@ -114,9 +114,9 @@ class Professor
     private $projetoprojeto;
 
     /**
-     * @var \Application\Entity\Departamento
+     * @var \Professor\Entity\Departamento
      *
-     * @ORM\ManyToOne(targetEntity="Application\Entity\Departamento")
+     * @ORM\ManyToOne(targetEntity="Professor\Entity\Departamento")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="departamento_idDepartamento", referencedColumnName="idDepartamento")
      * })

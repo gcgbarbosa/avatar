@@ -1,8 +1,6 @@
 <?php
-namespace Album;
+namespace Equipamento;
 
-use Album\Model\Album;
-use Album\Model\AlbumTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 

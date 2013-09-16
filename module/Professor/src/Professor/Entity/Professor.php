@@ -98,7 +98,39 @@ class Professor
      */
     private $datanasc;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Projeto\Entity\Projeto", inversedBy="professorprofessor")
+     * @ORM\JoinTable(name="professor_has_projeto",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="professor_idProfessor", referencedColumnName="idProfessor", nullable=true)
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Projeto_idProjeto", referencedColumnName="idProjeto", nullable=true)
+     *   }
+     * )
+     */
+    private $projetoprojeto;
 
+    /**
+     * @var \Professor\Entity\Departamento
+     *
+     * @ORM\ManyToOne(targetEntity="Professor\Entity\Departamento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="departamento_idDepartamento", referencedColumnName="idDepartamento", nullable=true)
+     * })
+     */
+    private $departamentodepartamento;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projetoprojeto = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get idprofessor
      *
@@ -360,5 +392,61 @@ class Professor
     public function getDatanasc()
     {
         return $this->datanasc;
+    }
+
+    /**
+     * Add projetoprojeto
+     *
+     * @param \Projeto\Entity\Projeto $projetoprojeto
+     * @return Professor
+     */
+    public function addProjetoprojeto(\Projeto\Entity\Projeto $projetoprojeto)
+    {
+        $this->projetoprojeto[] = $projetoprojeto;
+    
+        return $this;
+    }
+
+    /**
+     * Remove projetoprojeto
+     *
+     * @param \Projeto\Entity\Projeto $projetoprojeto
+     */
+    public function removeProjetoprojeto(\Projeto\Entity\Projeto $projetoprojeto)
+    {
+        $this->projetoprojeto->removeElement($projetoprojeto);
+    }
+
+    /**
+     * Get projetoprojeto
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProjetoprojeto()
+    {
+        return $this->projetoprojeto;
+    }
+
+    /**
+     * Set departamentodepartamento
+     *
+     * @param \Professor\Entity\Departamento $departamentodepartamento
+     * @return Professor
+     */
+    public function setDepartamentodepartamento(\Professor\Entity\Departamento $departamentodepartamento = null)
+    {
+        $this->departamentodepartamento = $departamentodepartamento;
+    
+        return $this;
+    }
+
+    /**
+     * Get departamentodepartamento
+     *
+     * @return \Professor\Entity\Departamento 
+     */
+    public function getDepartamentodepartamento()
+    {
+        return $this->departamentodepartamento;
     }
 }
