@@ -10,6 +10,8 @@ class AlunoForm extends Form
         parent::__construct('aluno');
         
         $this->setAttribute('method', 'post');
+        $this->setAttribute('role', 'form');
+        $this->setAttribute('class', 'form-horizontal');
         
         $this->add(array(
             'name' => 'id',
@@ -19,9 +21,10 @@ class AlunoForm extends Form
         ));
         
         $this->add(array(
-            'name' => 'nomeAluno',
+            'name' => 'nomealuno',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Nome: ',
@@ -29,9 +32,10 @@ class AlunoForm extends Form
         ));
         
         $this->add(array(
-            'name' => 'emailAluno',
+            'name' => 'emailaluno',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'E-mail: ',
@@ -39,9 +43,10 @@ class AlunoForm extends Form
         ));
 
         $this->add(array(
-            'name' => 'telefoneAluno',
+            'name' => 'telefonealuno',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Telofone: ',
@@ -49,9 +54,10 @@ class AlunoForm extends Form
         ));
 
         $this->add(array(
-            'name' => 'matriculaAluno',
+            'name' => 'matriculaaluno',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Matricula: ',
@@ -62,6 +68,7 @@ class AlunoForm extends Form
             'name' => 'bolsista',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Bolsista: ',
@@ -69,9 +76,10 @@ class AlunoForm extends Form
         ));
 
         $this->add(array(
-            'name' => 'dataNasc',
+            'name' => 'datanasc',
             'attributes' => array(
-                'type'  => 'text',
+                'type'  => 'Zend\Form\Element\DateTime',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Data de Nascimento: ',
@@ -81,6 +89,7 @@ class AlunoForm extends Form
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(
+                'class' => 'btn btn-default',
                 'type'  => 'submit',
                 'value' => 'Go',
                 'id' => 'submitbutton',

@@ -69,6 +69,10 @@ return array(
 				),
 				'Aluno\Controller\Aluno' => array(
 					'index'   => 'guest',
+					'index' => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
 					
 					
 				),

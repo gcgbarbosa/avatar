@@ -3,6 +3,10 @@
 namespace Aluno\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Factory as InputFactory;
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface; 
 
 /**
  * Aluno
@@ -10,8 +14,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="aluno")
  * @ORM\Entity
  */
-class Aluno
+class Aluno implements InputFilterAwareInterface 
 {
+    private $inputFilter;
+
     /**
      * @var integer
      *
@@ -210,5 +216,77 @@ class Aluno
     public function getDatanasc()
     {
         return $this->datanasc;
+    }
+
+    
+    public function setInputFilter(InputFilterInterface $inputFilter)
+    {
+        throw new \Exception("Not used!");
+    }
+
+    public function getInputFilter()
+    {
+        if (! $this->inputFilter) {
+            $inputFilter = new InputFilter();
+
+            $factory = new InputFactory();
+            /*
+            $inputFilter->add($factory->createInput(array(
+                'name'       => 'idaluno',
+                'required'   => true,
+                'filters' => array(
+                    array('name'    => 'Int'),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'nomealuno',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 100,
+                        ),
+                    ),
+                ),
+            )));
+            */
+
+            $this->inputFilter = $inputFilter;        
+        }
+
+        return $this->inputFilter;
+    }
+
+    /**
+     * Convert the object to an array.
+     *
+     * @return array
+     */
+    public function getArrayCopy() 
+    {
+        return get_object_vars($this);
+    }
+
+    /**
+     * Populate from an array.
+     *
+     * @param array $data
+     */
+    public function populate($data = array()) 
+    {
+        foreach ($data as $property => $value) {
+            if (! property_exists($this, $property)) {
+                continue;
+            }
+            $this->$property = $value;
+        }
     }
 }

@@ -49,19 +49,23 @@ class AlunoController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $album = new Aluno();
+
+            $aluno = new Aluno();
             
-            $form->setInputFilter($album->getInputFilter());
+            $form->setInputFilter($aluno->getInputFilter());
             $form->setData($request->getPost());
             
-            if ($form->isValid()) { 
-                $album->populate($form->getData()); 
-                
-                $this->getEntityManager()->persist($album);
+            if ($form->isValid()) {
+
+                $aluno->populate($form->getData());
+
+                $aluno->setDatanasc(new \DateTime());
+                //var_dump($request->getPost());exit;
+                $this->getEntityManager()->persist($aluno);
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album'); 
+                return $this->redirect()->toRoute('aluno'); 
             }
         }
 
