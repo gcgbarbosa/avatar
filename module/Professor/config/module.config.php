@@ -6,7 +6,8 @@ return array(
     // Controllers in this module
     'controllers' => array(
         'invokables' => array(
-            'Professor\Controller\Professor' => 'Professor\Controller\ProfessorController'
+            'Professor\Controller\Professor' => 'Professor\Controller\ProfessorController',
+            'Professor\Controller\Departamento' => 'Professor\Controller\DepartamentoController'
         ),
     ),
 
@@ -26,6 +27,22 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
+
+            ),
+            'departamento' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/departamento[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Professor\Controller\Departamento',
+                        'action'     => 'index',
+                    ),
+                ),
+                
             ),
         ),
     ),    

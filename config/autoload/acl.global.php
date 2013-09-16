@@ -69,7 +69,6 @@ return array(
 				),
 				'Aluno\Controller\Aluno' => array(
 					'index'   => 'guest',
-					'index' => 'guest',
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
@@ -78,8 +77,13 @@ return array(
 				),
 				'Professor\Controller\Professor' => array(
 					'index'   => 'guest',
-					
-					
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+				),
+
+				'Professor\Controller\Departamento' => array(
+					'index'   => 'guest',
 				),
             )
         )

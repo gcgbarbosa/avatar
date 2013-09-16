@@ -1,12 +1,12 @@
 <?php
 // module/Album/view/album/album/index.phtml:
 
-$title = 'My albums';
+$title = 'Professores';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <p>
-    <a href="<?php echo $this->url('professor', array('action'=>'add'));?>">Add new professor</a>
+    <a href="<?php echo $this->url('professor', array('action'=>'add'));?>">Adicionar Professor</a>
 </p>
 
 <table class="table">
@@ -22,6 +22,7 @@ $this->headTitle($title);
     <td>
         <a href="<?php echo $this->url('professor',
             array('action'=>'edit', 'id' => $professor->getIdProfessor()));?>">Edit</a>
+
         <a href="<?php echo $this->url('professor',
             array('action'=>'delete', 'id' => $professor->getIdProfessor()));?>">Delete</a>
     </td>

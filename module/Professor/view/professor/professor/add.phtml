@@ -1,7 +1,9 @@
+<div class="row">
+<div class="col-md-12">
 <?php
 // module/Album/view/album/album/add.phtml:
 
-$title = 'Add new album';
+$title = 'Adicionar novo professor';
 $this->headTitle($title);
 ?>
 
@@ -9,12 +11,24 @@ $this->headTitle($title);
 
 <?php
 $form = $this->form;
-$form->setAttribute('action', $this->url('album', array('action' => 'add')));
+$form->setAttribute('action', $this->url('prfessor', array('action' => 'add')));
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('title'));
-echo $this->formRow($form->get('artist'));
-echo $this->formSubmit($form->get('submit'));
+echo $this->formCollection($form);
+?>
+
+
+<?php echo $this->formSubmit($form->get('submit')) ?>
+
+
+
+<?php
+//echo $this->formHidden($form->get('id'));
+//echo $this->formRow($form->get('title'));
+//echo $this->formRow($form->get('artist'));
+//echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();
+?>
+</div>
+</div>
