@@ -6,7 +6,7 @@ $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <p>
-    <a href="<?php echo $this->url('album', array('action'=>'add'));?>">Add new album</a>
+    <a href="<?php echo $this->url('professor', array('action'=>'add'));?>">Add new professor</a>
 </p>
 
 <table class="table">
@@ -15,15 +15,15 @@ $this->headTitle($title);
     <th>Artist</th>
     <th>&nbsp;</th>
 </tr>
-<?php foreach ($albums as $album) : ?>
+<?php foreach ($professores as $professor) : ?>
 <tr>
-    <td><?php echo $this->escapeHtml($album->title);?></td>
-    <td><?php echo $this->escapeHtml($album->artist);?></td>
+    <td><?php echo $this->escapeHtml($professor->getNomeProfessor());?></td>
+    <td><?php echo $this->escapeHtml($professor->getEmailProfessor());?></td>
     <td>
-        <a href="<?php echo $this->url('album',
-            array('action'=>'edit', 'id' => $album->id));?>">Edit</a>
-        <a href="<?php echo $this->url('album',
-            array('action'=>'delete', 'id' => $album->id));?>">Delete</a>
+        <a href="<?php echo $this->url('professor',
+            array('action'=>'edit', 'id' => $professor->getIdProfessor()));?>">Edit</a>
+        <a href="<?php echo $this->url('professor',
+            array('action'=>'delete', 'id' => $professor->getIdProfessor()));?>">Delete</a>
     </td>
 </tr>
 <?php endforeach; ?>

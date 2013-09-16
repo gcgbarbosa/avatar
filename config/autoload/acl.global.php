@@ -72,6 +72,11 @@ return array(
 					
 					
 				),
+				'Professor\Controller\Professor' => array(
+					'index'   => 'guest',
+					
+					
+				),
             )
         )
     )

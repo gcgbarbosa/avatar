@@ -37,7 +37,7 @@ class ProfessorController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'albums' => $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll() 
+            'professores' => $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll() 
         ));
     }
 

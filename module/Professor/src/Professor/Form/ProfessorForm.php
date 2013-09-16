@@ -7,7 +7,7 @@ class ProfessorForm extends Form
 {
     public function __construct($name = null)
     {
-        parent::__construct('album');
+        parent::__construct('professor');
         
         $this->setAttribute('method', 'post');
         
@@ -19,7 +19,7 @@ class ProfessorForm extends Form
         ));
         
         $this->add(array(
-            'name' => 'title',
+            'name' => 'matriculaProfessor',
             'attributes' => array(
                 'type'  => 'text',
             ),
@@ -29,7 +29,107 @@ class ProfessorForm extends Form
         ));
         
         $this->add(array(
-            'name' => 'artist',
+            'name' => 'nomeProfessor',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Artist',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'emailProfessor',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Artist',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'telefoneProfessor',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Artist',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'departamento_idDepartamento',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Artist',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'areaDeAtuacao',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Artist',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'formacao',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Artist',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'titulacao',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Artist',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'classe',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Artist',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'regimeDeTrabalho',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Artist',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'tipoVinculo',
+            'attributes' => array(
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Artist',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'dataNasc',
             'attributes' => array(
                 'type'  => 'text',
             ),

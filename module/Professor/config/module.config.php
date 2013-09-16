@@ -13,10 +13,10 @@ return array(
     // Routes for this module
     'router' => array(
         'routes' => array(
-            'album' => array(
+            'professor' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/album[/:action][/:id]',
+                    'route'    => '/professor[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -33,7 +33,7 @@ return array(
     // View setup for this module
     'view_manager' => array(
         'template_path_stack' => array(
-            'album' => __DIR__ . '/../view',
+            'professor' => __DIR__ . '/../view',
         ),
     ),
 
