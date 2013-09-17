@@ -1,6 +1,8 @@
 <?php
 namespace Projeto;
 
+use Projeto\Model\Projeto;
+use Projeto\Model\ProjetoTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 

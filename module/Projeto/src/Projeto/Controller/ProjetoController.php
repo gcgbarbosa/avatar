@@ -37,7 +37,7 @@ class ProjetoController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'albums' => $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findAll() 
+            'projetos' => $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findAll() 
         ));
     }
 
@@ -49,19 +49,21 @@ class ProjetoController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $album = new Projeto();
+
+            $projeto = new Projeto();
             
-            $form->setInputFilter($album->getInputFilter());
+            //$form->setInputFilter($projeto->getInputFilter());
             $form->setData($request->getPost());
             
-            if ($form->isValid()) { 
-                $album->populate($form->getData()); 
+            if ($form->isValid()) {
+             
+                //$projeto->populate($form->getData()); 
                 
-                $this->getEntityManager()->persist($album);
+                $this->getEntityManager()->persist($projeto);
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album'); 
+                return $this->redirect()->toRoute('projeto'); 
             }
         }
 
@@ -73,14 +75,14 @@ class ProjetoController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('album', array('action'=>'add'));
+            return $this->redirect()->toRoute('projeto', array('action'=>'add'));
         } 
         
         $album = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
 
         $form = new ProjetoForm();
         $form->setBindOnValidate(false);
-        $form->bind($album);
+        $form->bind($projeto);
         $form->get('submit')->setAttribute('label', 'Edit');
         
         $request = $this->getRequest();
@@ -94,7 +96,7 @@ class ProjetoController extends AbstractActionController
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album');
+                return $this->redirect()->toRoute('projeto');
             }
         }
 
@@ -109,7 +111,7 @@ class ProjetoController extends AbstractActionController
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('projeto');
         }
 
         $request = $this->getRequest();
@@ -121,18 +123,18 @@ class ProjetoController extends AbstractActionController
                 $id = (int) $request->getPost('id');
                 $album = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
                 
-                if ($album) {
-                    $this->getEntityManager()->remove($album);
+                if ($projeto) {
+                    $this->getEntityManager()->remove($projeto);
                     $this->getEntityManager()->flush();
                 }
             }
 
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('projeto');
         }
 
         return array(
             'id' => $id,
-            'album' => $this->getEntityManager()->find('Projeto\Entity\Projeto', $id)
+            'projeto' => $this->getEntityManager()->find('Projeto\Entity\Projeto', $id)
         );
     }
 }
