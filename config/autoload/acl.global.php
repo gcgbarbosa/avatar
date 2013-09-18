@@ -88,6 +88,13 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 				),
+
+				'Projeto\Controller\Projeto' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+				),
             )
         )
     )
