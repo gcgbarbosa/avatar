@@ -37,7 +37,7 @@ class FuncionarioController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'albums' => $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findAll() 
+            'funcionarios' => $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findAll() 
         ));
     }
 
@@ -49,19 +49,19 @@ class FuncionarioController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $album = new Funcionario();
+            $funcionario = new Funcionario();
             
-            $form->setInputFilter($album->getInputFilter());
+            $form->setInputFilter($funcionario->getInputFilter());
             $form->setData($request->getPost());
             
             if ($form->isValid()) { 
-                $album->populate($form->getData()); 
+                $funcionario->populate($form->getData()); 
                 
-                $this->getEntityManager()->persist($album);
+                $this->getEntityManager()->persist($funcionario);
                 $this->getEntityManager()->flush();
 
-                // Redirect to list of albums
-                return $this->redirect()->toRoute('album'); 
+                // Redirect to list of funcionarios
+                return $this->redirect()->toRoute('funcionario'); 
             }
         }
 
@@ -73,14 +73,14 @@ class FuncionarioController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('album', array('action'=>'add'));
+            return $this->redirect()->toRoute('funcionario', array('action'=>'add'));
         } 
         
-        $album = $this->getEntityManager()->find('Funcionario\Entity\Funcionario', $id);
+        $funcionario = $this->getEntityManager()->find('Funcionario\Entity\Funcionario', $id);
 
         $form = new FuncionarioForm();
         $form->setBindOnValidate(false);
-        $form->bind($album);
+        $form->bind($funcionario);
         $form->get('submit')->setAttribute('label', 'Edit');
         
         $request = $this->getRequest();
@@ -93,8 +93,8 @@ class FuncionarioController extends AbstractActionController
                 $form->bindValues();
                 $this->getEntityManager()->flush();
 
-                // Redirect to list of albums
-                return $this->redirect()->toRoute('album');
+                // Redirect to list of funcionarios
+                return $this->redirect()->toRoute('funcionario');
             }
         }
 
@@ -109,30 +109,30 @@ class FuncionarioController extends AbstractActionController
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('funcionario');
         }
 
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $del = $request->getPost('del', 'No');
+            $del = $request->getPost('del', 'Não');
             
-            if ($del == 'Yes') {
+            if ($del == 'Sim') {
                 $id = (int) $request->getPost('id');
-                $album = $this->getEntityManager()->find('Funcionario\Entity\Funcionario', $id);
+                $funcionario = $this->getEntityManager()->find('Funcionario\Entity\Funcionario', $id);
                 
-                if ($album) {
-                    $this->getEntityManager()->remove($album);
+                if ($funcionario) {
+                    $this->getEntityManager()->remove($funcionario);
                     $this->getEntityManager()->flush();
                 }
             }
 
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('funcionario');
         }
 
         return array(
             'id' => $id,
-            'album' => $this->getEntityManager()->find('Funcionario\Entity\Funcionario', $id)
+            'funcionario' => $this->getEntityManager()->find('Funcionario\Entity\Funcionario', $id)
         );
     }
 }
