@@ -280,7 +280,9 @@ class Aluno implements InputFilterAwareInterface
      */
     public function getArrayCopy() 
     {
-        return get_object_vars($this);
+        $obj_vars = get_object_vars($this);
+        $obj_vars['datanasc'] = $obj_vars['datanasc']->format('d/m/Y');
+        return $obj_vars;
     }
 
     /**

@@ -1,7 +1,11 @@
 <?php
+
+use Zend\Form\Element;
+
+$element = new Element\DateTime('my-datetime');
 // module/Album/view/album/album/edit.phtml:
 
-$title = 'Edit album';
+$title = 'Editar aluno';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
@@ -9,7 +13,7 @@ $this->headTitle($title);
 <?php
 $form = $this->form;
 $form->setAttribute('action', $this->url(
-    'album',
+    'aluno',
     array(
         'action' => 'edit',
         'id'     => $this->id,
@@ -18,8 +22,32 @@ $form->setAttribute('action', $this->url(
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('title'));
-echo $this->formRow($form->get('artist'));
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
+?>
+	<?php echo $this->formHidden($form->get('idaluno')) ?>
+	<div class="form-group">
+		<?php echo $this->formLabel($form->get('nomealuno'))."\n"?>
+		<?php echo $this->formText($form->get('nomealuno')) ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formLabel($form->get('emailaluno'))."\n" ?>
+		<?php echo $this->formText($form->get('emailaluno')) ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formLabel($form->get('telefonealuno'))."\n" ?>
+		<?php echo $this->formText($form->get('telefonealuno')) ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formLabel($form->get('matriculaaluno'))."\n" ?>
+		<?php echo $this->formText($form->get('matriculaaluno')) ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formLabel($form->get('bolsista'))."\n" ?>
+		<?php echo $this->formText($form->get('bolsista')) ?>
+	</div>
+	<div class="form-group">
+		<?php echo $this->formLabel($form->get('datanasc'))."\n" ?>
+		<?php echo $this->formDateTime($form->get('datanasc')); ?>
+	</div>
+
+	<?php echo $this->formSubmit($form->get('submit')) ?>
+<?php echo $this->form()->closeTag(); ?>

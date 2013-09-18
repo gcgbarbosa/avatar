@@ -77,15 +77,20 @@ class AlunoController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('album', array('action'=>'add'));
+            return $this->redirect()->toRoute('aluno', array('action'=>'add'));
         } 
         
-        $album = $this->getEntityManager()->find('Aluno\Entity\Aluno', $id);
+        $aluno = $this->getEntityManager()->find('Aluno\Entity\Aluno', $id);
+        $aluno->setDatanasc(new \DateTime());
 
         $form = new AlunoForm();
+        
         $form->setBindOnValidate(false);
-        $form->bind($album);
+
+        $form->bind($aluno);
+
         $form->get('submit')->setAttribute('label', 'Edit');
+
         
         $request = $this->getRequest();
         
@@ -95,10 +100,11 @@ class AlunoController extends AbstractActionController
             
             if ($form->isValid()) {
                 $form->bindValues();
+                $form->getData()->setDatanasc(new \DateTime());
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album');
+                return $this->redirect()->toRoute('aluno');
             }
         }
 

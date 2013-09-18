@@ -14,7 +14,7 @@ class AlunoForm extends Form
         $this->setAttribute('class', 'form-horizontal');
         
         $this->add(array(
-            'name' => 'id',
+            'name' => 'idaluno',
             'attributes' => array(
                 'type'  => 'hidden',
             ),
