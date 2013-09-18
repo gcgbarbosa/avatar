@@ -57,7 +57,7 @@ class ProjetoController extends AbstractActionController
             
             if ($form->isValid()) {
              
-                //$projeto->populate($form->getData()); 
+                $projeto->populate($form->getData()); 
                 
                 $this->getEntityManager()->persist($projeto);
                 $this->getEntityManager()->flush();
@@ -78,7 +78,7 @@ class ProjetoController extends AbstractActionController
             return $this->redirect()->toRoute('projeto', array('action'=>'add'));
         } 
         
-        $album = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
+        $projeto = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
 
         $form = new ProjetoForm();
         $form->setBindOnValidate(false);
@@ -121,7 +121,7 @@ class ProjetoController extends AbstractActionController
             
             if ($del == 'Yes') {
                 $id = (int) $request->getPost('id');
-                $album = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
+                $projeto = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
                 
                 if ($projeto) {
                     $this->getEntityManager()->remove($projeto);

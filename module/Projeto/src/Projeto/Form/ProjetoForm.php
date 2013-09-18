@@ -27,51 +27,51 @@ class ProjetoForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Título',
+                'label' => 'Título: ',
             ),
         ));
         
         $this->add(array(
-            'name' => 'objetivoGeral',
+            'name' => 'objetivogeral',
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Objetivo Geral',
+                'label' => 'Objetivo Geral: ',
             ),
         ));
 
         $this->add(array(
-            'name' => 'professor_idCoordenador',
+            'name' => 'professorprofessor',
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Id do Professor',
+                'label' => 'Id do Professor: ',
             ),
         ));
 
         $this->add(array(
-            'name' => 'objetivoEspec',
+            'name' => 'objetivoespec',
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Objetivo Específico',
+                'label' => 'Objetivo Específico: ',
             ),
         ));
 
         $this->add(array(
-            'name' => 'resultadosEsperados',
+            'name' => 'resultadosesperados',
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Resultados Esperados',
+                'label' => 'Resultados Esperados: ',
             ),
         ));
 
@@ -82,18 +82,18 @@ class ProjetoForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Financiamento',
+                'label' => 'Financiamento: ',
             ),
         ));
 
         $this->add(array(
-            'name' => 'fonteFinanciamento',
+            'name' => 'fontefinaciamento',
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Fonte de Financiamento',
+                'label' => 'Fonte de Financiamento: ',
             ),
         ));
         
