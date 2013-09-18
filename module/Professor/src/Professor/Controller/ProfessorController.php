@@ -43,25 +43,30 @@ class ProfessorController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new ProfessorForm();
+        $form = new ProfessorForm($this->getEntityManager());
         $form->get('submit')->setAttribute('label', 'Add');
 
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $album = new Professor();
+            $professor = new Professor();
             
-            $form->setInputFilter($album->getInputFilter());
+            $form->setInputFilter($professor->getInputFilter());
             $form->setData($request->getPost());
             
             if ($form->isValid()) { 
-                $album->populate($form->getData()); 
+                $professor->populate($form->getData()); 
                 
-                $this->getEntityManager()->persist($album);
+                $professor->setDatanasc(new \DateTime());
+
+                //var_dump($album->getDepartamentodepartamento()->getIddepartamento());exit;
+               
+                
+                $this->getEntityManager()->persist($professor);
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album'); 
+                return $this->redirect()->toRoute('professor'); 
             }
         }
 
@@ -73,14 +78,14 @@ class ProfessorController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('album', array('action'=>'add'));
+            return $this->redirect()->toRoute('professor', array('action'=>'add'));
         } 
         
-        $album = $this->getEntityManager()->find('Professor\Entity\Professor', $id);
+        $professor = $this->getEntityManager()->find('Professor\Entity\Professor', $id);
 
-        $form = new ProfessorForm();
+        $form = new ProfessorForm($this->getEntityManager());
         $form->setBindOnValidate(false);
-        $form->bind($album);
+        $form->bind($professor);
         $form->get('submit')->setAttribute('label', 'Edit');
         
         $request = $this->getRequest();
@@ -94,7 +99,7 @@ class ProfessorController extends AbstractActionController
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album');
+                return $this->redirect()->toRoute('professor');
             }
         }
 
@@ -109,7 +114,7 @@ class ProfessorController extends AbstractActionController
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('professor');
         }
 
         $request = $this->getRequest();
@@ -119,20 +124,20 @@ class ProfessorController extends AbstractActionController
             
             if ($del == 'Yes') {
                 $id = (int) $request->getPost('id');
-                $album = $this->getEntityManager()->find('Professor\Entity\Professor', $id);
+                $professor = $this->getEntityManager()->find('Professor\Entity\Professor', $id);
                 
-                if ($album) {
-                    $this->getEntityManager()->remove($album);
+                if ($professor) {
+                    $this->getEntityManager()->remove($professor);
                     $this->getEntityManager()->flush();
                 }
             }
 
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('professor');
         }
 
         return array(
             'id' => $id,
-            'album' => $this->getEntityManager()->find('Professor\Entity\Professor', $id)
+            'professor' => $this->getEntityManager()->find('Professor\Entity\Professor', $id)
         );
     }
 }

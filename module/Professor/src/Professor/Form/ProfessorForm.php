@@ -5,11 +5,13 @@ use Zend\Form\Form;
 
 class ProfessorForm extends Form
 {
-    public function __construct($name = null)
+    public function __construct($em)
     {
         parent::__construct('professor');
         
         $this->setAttribute('method', 'post');
+        $this->setAttribute('role', 'form');
+        $this->setAttribute('class', 'form-horizontal');
         
         $this->add(array(
             'name' => 'id',
@@ -19,62 +21,70 @@ class ProfessorForm extends Form
         ));
         
         $this->add(array(
-            'name' => 'matriculaProfessor',
+            'name' => 'matriculaprofessor',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Title',
+                'label' => 'Matricula do professor: ',
             ),
         ));
         
         $this->add(array(
-            'name' => 'nomeProfessor',
+            'name' => 'nomeprofessor',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Nome do professor: ',
             ),
         ));
 
         $this->add(array(
-            'name' => 'emailProfessor',
+            'name' => 'emailprofessor',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'E-mail: ',
             ),
         ));
 
         $this->add(array(
-            'name' => 'telefoneProfessor',
+            'name' => 'telefoneprofessor',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Telefone: ',
             ),
         ));
 
         $this->add(array(
-            'name' => 'departamento_idDepartamento',
-            'attributes' => array(
-                'type'  => 'text',
-            ),
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'departamentodepartamento',
             'options' => array(
-                'label' => 'Artist',
+                'label'          => 'Nome departamento: ',
+                'object_manager' => $em,
+                'target_class'   => 'Professor\Entity\Departamento',
+                'property'       => 'nomedepartamento',
+                'empty_option'   => '--- Departamento ---',
             ),
         ));
 
+
         $this->add(array(
-            'name' => 'areaDeAtuacao',
+            'name' => 'areadeatuacao',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Area de atuação: ',
             ),
         ));
 
@@ -82,9 +92,10 @@ class ProfessorForm extends Form
             'name' => 'formacao',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Formação: ',
             ),
         ));
 
@@ -92,9 +103,10 @@ class ProfessorForm extends Form
             'name' => 'titulacao',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Titualação: ',
             ),
         ));
 
@@ -102,39 +114,43 @@ class ProfessorForm extends Form
             'name' => 'classe',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Classe: ',
             ),
         ));
 
         $this->add(array(
-            'name' => 'regimeDeTrabalho',
+            'name' => 'regimedetrabalho',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Regime de Trablho: ',
             ),
         ));
 
         $this->add(array(
-            'name' => 'tipoVinculo',
+            'name' => 'tipovinculo',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Tipo de vinculo: ',
             ),
         ));
 
         $this->add(array(
-            'name' => 'dataNasc',
+            'name' => 'datanasc',
             'attributes' => array(
-                'type'  => 'text',
+                'type'  => 'Zend\Form\Element\DateTime',
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Data de nascimento: ',
             ),
         ));
         
@@ -142,7 +158,7 @@ class ProfessorForm extends Form
             'name' => 'submit',
             'attributes' => array(
                 'type'  => 'submit',
-                'value' => 'Go',
+                'value' => 'Salvar',
                 'id' => 'submitbutton',
             ),
         ));

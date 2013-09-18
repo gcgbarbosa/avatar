@@ -84,6 +84,9 @@ return array(
 
 				'Professor\Controller\Departamento' => array(
 					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
 				),
             )
         )
