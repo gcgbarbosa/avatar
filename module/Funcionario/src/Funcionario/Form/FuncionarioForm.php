@@ -7,42 +7,67 @@ class FuncionarioForm extends Form
 {
     public function __construct($name = null)
     {
-        parent::__construct('album');
+        parent::__construct('funcionario');
         
         $this->setAttribute('method', 'post');
+        $this->setAttribute('role', 'form');
+        $this->setAttribute('class', 'form-horizontal');
         
         $this->add(array(
-            'name' => 'id',
+            'name' => 'idfuncionario',
             'attributes' => array(
                 'type'  => 'hidden',
             ),
         ));
         
         $this->add(array(
-            'name' => 'title',
+            'name' => 'nomefuncionario',
             'attributes' => array(
+                'class' => 'form-control',
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Title',
+                'label' => 'Nome: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
         
         $this->add(array(
-            'name' => 'artist',
+            'name' => 'emailfuncionario',
             'attributes' => array(
+                'class' => 'form-control',
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Email: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'telefonefuncionario',
+            'attributes' => array(
+                'class' => 'form-control',
+                'type'  => 'text',
+            ),
+            'options' => array(
+                'label' => 'Telefone: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
         
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(
+                'class' => 'btn btn-default',
                 'type'  => 'submit',
-                'value' => 'Go',
+                'value' => 'Salvar',
                 'id' => 'submitbutton',
             ),
         ));

@@ -3,6 +3,10 @@
 namespace Funcionario\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Factory as InputFactory;
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface; 
 
 /**
  * Funcionario
@@ -10,8 +14,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="funcionario")
  * @ORM\Entity
  */
-class Funcionario
+class Funcionario implements InputFilterAwareInterface 
 {
+    protected $inputFilter;
+
     /**
      * @var integer
      *
@@ -121,4 +127,59 @@ class Funcionario
     {
         return $this->telefonefuncionario;
     }
+
+    /**
+     * Get projetoprojeto
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProjetoprojeto()
+    {
+        return $this->projetoprojeto;
+    }
+
+    /**
+     * Convert the object to an array.
+     *
+     * @return array
+     */
+    public function getArrayCopy() 
+    {
+        $obj_vars = get_object_vars($this);
+        return $obj_vars;
+    }
+
+    /**
+     * Populate from an array.
+     *
+     * @param array $data
+     */
+    public function populate($data = array()) 
+    {
+        foreach ($data as $property => $value) {
+            if (! property_exists($this, $property)) {
+                continue;
+            }
+            $this->$property = $value;
+        }
+    }
+
+    public function setInputFilter(InputFilterInterface $inputFilter)
+    {
+        throw new \Exception("Not used!");
+    }
+
+    public function getInputFilter()
+    {
+        if (! $this->inputFilter) {
+            $inputFilter = new InputFilter();
+
+            $factory = new InputFactory();
+
+
+            $this->inputFilter = $inputFilter;        
+        }
+
+        return $this->inputFilter;
+    } 
 }

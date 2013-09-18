@@ -95,6 +95,13 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 				),
+
+				'Funcionario\Controller\Funcionario' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+				),
             )
         )
     )
