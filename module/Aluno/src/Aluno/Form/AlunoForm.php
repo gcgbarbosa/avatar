@@ -28,6 +28,9 @@ class AlunoForm extends Form
             ),
             'options' => array(
                 'label' => 'Nome: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
         
@@ -39,6 +42,9 @@ class AlunoForm extends Form
             ),
             'options' => array(
                 'label' => 'E-mail: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
 
@@ -50,6 +56,9 @@ class AlunoForm extends Form
             ),
             'options' => array(
                 'label' => 'Telofone: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
 
@@ -61,6 +70,9 @@ class AlunoForm extends Form
             ),
             'options' => array(
                 'label' => 'Matricula: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
 
@@ -72,6 +84,9 @@ class AlunoForm extends Form
             ),
             'options' => array(
                 'label' => 'Bolsista: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
 
@@ -83,6 +98,9 @@ class AlunoForm extends Form
             ),
             'options' => array(
                 'label' => 'Data de Nascimento: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
         
@@ -91,7 +109,7 @@ class AlunoForm extends Form
             'attributes' => array(
                 'class' => 'btn btn-default',
                 'type'  => 'submit',
-                'value' => 'Go',
+                'value' => 'Salvar',
                 'id' => 'submitbutton',
             ),
         ));

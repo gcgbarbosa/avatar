@@ -119,30 +119,30 @@ class AlunoController extends AbstractActionController
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('aluno');
         }
 
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $del = $request->getPost('del', 'No');
+            $del = $request->getPost('del', 'Não');
             
-            if ($del == 'Yes') {
+            if ($del == 'Sim') {
                 $id = (int) $request->getPost('id');
-                $album = $this->getEntityManager()->find('Aluno\Entity\Aluno', $id);
+                $aluno = $this->getEntityManager()->find('Aluno\Entity\Aluno', $id);
                 
-                if ($album) {
-                    $this->getEntityManager()->remove($album);
+                if ($aluno) {
+                    $this->getEntityManager()->remove($aluno);
                     $this->getEntityManager()->flush();
                 }
             }
 
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('aluno');
         }
 
         return array(
             'id' => $id,
-            'album' => $this->getEntityManager()->find('Aluno\Entity\Aluno', $id)
+            'aluno' => $this->getEntityManager()->find('Aluno\Entity\Aluno', $id)
         );
     }
 }
