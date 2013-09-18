@@ -5,7 +5,7 @@ use Zend\Form\Form;
 
 class ProjetoForm extends Form
 {
-    public function __construct($em)
+    public function __construct($name = null)
     {
         parent::__construct('projeto');
         
@@ -24,10 +24,14 @@ class ProjetoForm extends Form
             'name' => 'titulo',
             'attributes' => array(
                 'type'  => 'text',
+
                 'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Título: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
         
@@ -39,18 +43,24 @@ class ProjetoForm extends Form
             ),
             'options' => array(
                 'label' => 'Objetivo Geral: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
 
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
-            'name' => 'professor',
+            'name' => 'professorcoordenador',
             'options' => array(
-                'label'          => 'Nome departamento: ',
-                'object_manager' => $em,
+                'label'          => 'Professor Responsável: ',
+                'object_manager' => $name,
                 'target_class'   => 'Professor\Entity\Professor',
                 'property'       => 'nomeprofessor',
                 'empty_option'   => '--- Professor ---',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
 
@@ -62,6 +72,9 @@ class ProjetoForm extends Form
             ),
             'options' => array(
                 'label' => 'Objetivo Específico: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
 
@@ -73,17 +86,23 @@ class ProjetoForm extends Form
             ),
             'options' => array(
                 'label' => 'Resultados Esperados: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
 
         $this->add(array(
-            'name' => 'financiamento',
+            'name' => 'finaciamento',
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Financiamento: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
 
@@ -95,6 +114,9 @@ class ProjetoForm extends Form
             ),
             'options' => array(
                 'label' => 'Fonte de Financiamento: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
         

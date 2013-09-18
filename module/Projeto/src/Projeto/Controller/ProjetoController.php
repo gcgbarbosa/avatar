@@ -51,6 +51,8 @@ class ProjetoController extends AbstractActionController
         if ($request->isPost()) {
 
             $projeto = new Projeto();
+
+
             
             //$form->setInputFilter($projeto->getInputFilter());
             $form->setData($request->getPost());
@@ -59,10 +61,11 @@ class ProjetoController extends AbstractActionController
              
                 $projeto->populate($form->getData()); 
                 
+                $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $projeto->getProfessorcoordenador()));
+                $projeto->setProfessorcoordenador($professor);
+                //var_dump($professor);exit;
                 $this->getEntityManager()->persist($projeto);
                 $this->getEntityManager()->flush();
-
-                // Redirect to list of albums
                 return $this->redirect()->toRoute('projeto'); 
             }
         }
@@ -117,9 +120,9 @@ class ProjetoController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $del = $request->getPost('del', 'No');
+            $del = $request->getPost('del', 'Não');
             
-            if ($del == 'Yes') {
+            if ($del == 'Sim') {
                 $id = (int) $request->getPost('id');
                 $projeto = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
                 
