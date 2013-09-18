@@ -43,7 +43,7 @@ class ProjetoController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new ProjetoForm();
+        $form = new ProjetoForm($this->getEntityManager());
         $form->get('submit')->setAttribute('label', 'Add');
 
         $request = $this->getRequest();
@@ -80,7 +80,7 @@ class ProjetoController extends AbstractActionController
         
         $projeto = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
 
-        $form = new ProjetoForm();
+        $form = new ProjetoForm($this->getEntityManager());
         $form->setBindOnValidate(false);
         $form->bind($projeto);
         $form->get('submit')->setAttribute('label', 'Edit');

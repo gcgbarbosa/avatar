@@ -5,7 +5,7 @@ use Zend\Form\Form;
 
 class ProjetoForm extends Form
 {
-    public function __construct($name = null)
+    public function __construct($em)
     {
         parent::__construct('projeto');
         
@@ -43,13 +43,14 @@ class ProjetoForm extends Form
         ));
 
         $this->add(array(
-            'name' => 'professorprofessor',
-            'attributes' => array(
-                'type'  => 'text',
-                'class' => 'form-control',
-            ),
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'professor',
             'options' => array(
-                'label' => 'Id do Professor: ',
+                'label'          => 'Nome departamento: ',
+                'object_manager' => $em,
+                'target_class'   => 'Professor\Entity\Professor',
+                'property'       => 'nomeprofessor',
+                'empty_option'   => '--- Professor ---',
             ),
         ));
 
