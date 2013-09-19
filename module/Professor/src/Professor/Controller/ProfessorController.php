@@ -59,9 +59,10 @@ class ProfessorController extends AbstractActionController
                 
                 $professor->setDatanasc(new \DateTime());
 
+                $departamento = $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findOneBy(array('iddepartamento' => $professor->getDepartamentodepartamento()));
+                $professor->setDepartamentodepartamento($departamento);
                 //var_dump($album->getDepartamentodepartamento()->getIddepartamento());exit;
-               
-                
+
                 $this->getEntityManager()->persist($professor);
                 $this->getEntityManager()->flush();
 
