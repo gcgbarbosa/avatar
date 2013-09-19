@@ -94,9 +94,14 @@ class ProfessorController extends AbstractActionController
         if ($request->isPost()) {
         
             $form->setData($request->getPost());
-            
+        
             if ($form->isValid()) {
                 $form->bindValues();
+                
+                $departamento = $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findOneBy(array('iddepartamento' => $form->getData()->getDepartamentodepartamento()));
+                $form->getData()->setDepartamentodepartamento($departamento);
+                $form->getData()->setDatanasc(new \DateTime());
+
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums

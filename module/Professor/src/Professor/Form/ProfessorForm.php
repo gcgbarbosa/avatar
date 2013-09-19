@@ -14,7 +14,7 @@ class ProfessorForm extends Form
         $this->setAttribute('class', 'form-horizontal');
         
         $this->add(array(
-            'name' => 'id',
+            'name' => 'idprofessor',
             'attributes' => array(
                 'type'  => 'hidden',
             ),

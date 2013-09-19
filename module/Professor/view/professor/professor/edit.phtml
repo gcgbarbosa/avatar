@@ -1,25 +1,111 @@
-<?php
-// module/Album/view/album/album/edit.phtml:
+<div class="panel panel-info">
+	<?php
+	// module/Album/view/album/album/edit.phtml:
+	$title = 'Editar professor';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+		<h1><?php echo $this->escapeHtml($title); ?></h1>
+	</div>
+	<div class="panel-body">
+		<?php
+		$form = $this->form;
+		$form->setAttribute('action', $this->url(
+		    'professor',
+		    array(
+		        'action' => 'edit',
+		        'id'     => $this->id,
+		    )
+		));
+		$form->prepare();
 
-$title = 'Edit album';
-$this->headTitle($title);
-?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
+		echo $this->form()->openTag($form);
+		?>
+			<?php echo $this->formHidden($form->get('idprofessor')) ?>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('matriculaprofessor'))."\n"?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('matriculaprofessor')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('nomeprofessor'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('nomeprofessor')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('emailprofessor'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('emailprofessor')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('telefoneprofessor'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('telefoneprofessor')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('departamentodepartamento'))."\n" ?>
+				<div class="col-lg-4">
+					<?php echo $this->formSelect($form->get('departamentodepartamento')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('areadeatuacao'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('areadeatuacao')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('formacao'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('formacao')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('titulacao'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('titulacao')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('classe'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('classe')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('regimedetrabalho'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('regimedetrabalho')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('tipovinculo'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('tipovinculo')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('datanasc'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('datanasc')) ?>
+				</div>
+			</div>
 
-<?php
-$form = $this->form;
-$form->setAttribute('action', $this->url(
-    'album',
-    array(
-        'action' => 'edit',
-        'id'     => $this->id,
-    )
-));
-$form->prepare();
-
-echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('title'));
-echo $this->formRow($form->get('artist'));
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
+			<div class="form-group">
+		    	<div class="col-lg-offset-2 col-lg-10">
+					<?php echo $this->formSubmit($form->get('submit')) ?>
+				</div>
+			</div>
+		<?php echo $this->form()->closeTag(); ?>
+	</div>
+</div>
+<script>
+jQuery(function($){
+   $("#datanasc").mask("99/99/9999");
+   $("#telefoneprofessor").mask("(99) 9999-9999");
+});
+</script>

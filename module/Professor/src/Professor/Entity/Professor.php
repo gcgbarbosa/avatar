@@ -462,7 +462,10 @@ class Professor implements InputFilterAwareInterface
      */
     public function getArrayCopy() 
     {
-        return get_object_vars($this);
+        $obj_vars = get_object_vars($this);
+        $obj_vars['datanasc'] = $obj_vars['datanasc']->format('d/m/Y');
+        $obj_vars['departamentodepartamento'] = $obj_vars['departamentodepartamento']->getIddepartamento();
+        return $obj_vars;
     }
 
     /**
