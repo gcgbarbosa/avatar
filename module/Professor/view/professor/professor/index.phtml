@@ -10,11 +10,7 @@ $this->headTitle($title);
 </p>
 
 <table class="table">
-<tr>
-    <th>Title</th>
-    <th>Artist</th>
-    <th>&nbsp;</th>
-</tr>
+
 <?php foreach ($professores as $professor) : ?>
 <tr>
     <td><?php echo $this->escapeHtml($professor->getNomeProfessor());?></td>
