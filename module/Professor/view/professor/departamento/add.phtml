@@ -1,14 +1,14 @@
-<div class="row">
-<div class="col-md-12">
+<div class="panel panel-success">
 <?php
 // module/Album/view/album/album/add.phtml:
 
 $title = 'Adicionar novo departamento';
 $this->headTitle($title);
 ?>
-
-<h1><?php echo $this->escapeHtml($title); ?></h1>
-
+<div class="panel-heading">
+	<h1><?php echo $this->escapeHtml($title); ?></h1>
+</div>
+<div class="panel-body">
 <?php
 $form = $this->form;
 $form->setAttribute('action', $this->url('departamento', array('action' => 'add')));
@@ -19,16 +19,23 @@ echo $this->form()->openTag($form);
 
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('nomedepartamento'))."\n"?>
-	<?php echo $this->formText($form->get('nomedepartamento')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('nomedepartamento')) ?>
+	</div>
 </div>
+
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('descricaodepartamento'))."\n" ?>
-	<?php echo $this->formText($form->get('descricaodepartamento')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('descricaodepartamento')) ?>
+	</div>
 </div>
 
-<?php echo $this->formSubmit($form->get('submit')) ?>
-
-
+<div class="form-group">
+	<div class="col-lg-offset-2 col-lg-10">
+		<?php echo $this->formSubmit($form->get('submit')) ?>
+	</div>
+</div>
 
 <?php echo $this->form()->closeTag(); ?>
 

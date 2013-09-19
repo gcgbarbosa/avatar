@@ -1,27 +1,37 @@
-<?php
-// module/Album/view/album/album/index.phtml:
+<div class="panel panel-default">
+	<?php
+	// module/Album/view/album/album/index.phtml:
 
-$title = 'Departamentos';
-$this->headTitle($title);
-?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
-<p>
-    <a href="<?php echo $this->url('departamento', array('action'=>'add'));?>">Adicionar Departamento</a>
-</p>
+	$title = 'Departamentos';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+	    <h1><?php echo $this->escapeHtml($title); ?></h1>
+	</div>
+	<div class="panel-body">
+		<p>
+		    <a class="btn btn-success" href="<?php echo $this->url('departamento', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar Departamento</a>
+		</p>
 
-<table class="table">
+		<table class="table">
+		<thead>
+		    <th>Nome</th>
+		    <th>Descrição</th>
+		    <th>&nbsp;</th>
+		</thead>
+		<?php foreach ($departamentos as $departamento) : ?>
+		<tr>
+		    <td><?php echo $this->escapeHtml($departamento->getNomeDepartamento());?></td>
+		    <td><?php echo $this->escapeHtml($departamento->getDescricaoDepartamento());?></td>
+		    <td>
+		        <a class="btn btn-info" href="<?php echo $this->url('departamento',
+		            array('action'=>'edit', 'id' => $departamento->getIdDepartamento()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
 
-<?php foreach ($departamentos as $departamento) : ?>
-<tr>
-    <td><?php echo $this->escapeHtml($departamento->getNomeDepartamento());?></td>
-    <td><?php echo $this->escapeHtml($departamento->getDescricaoDepartamento());?></td>
-    <td>
-        <a href="<?php echo $this->url('departamento',
-            array('action'=>'edit', 'id' => $departamento->getIdDepartamento()));?>">Edit</a>
-
-        <a href="<?php echo $this->url('departamento',
-            array('action'=>'delete', 'id' => $departamento->getIdDepartamento()));?>">Delete</a>
-    </td>
-</tr>
-<?php endforeach; ?>
-</table>
+		        <a class="btn btn-danger" href="<?php echo $this->url('departamento',
+		            array('action'=>'delete', 'id' => $departamento->getIdDepartamento()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
+		    </td>
+		</tr>
+		<?php endforeach; ?>
+		</table>
+	</div>
+</div>

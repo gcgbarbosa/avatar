@@ -60,6 +60,11 @@ class AlunoController extends AbstractActionController
                 $aluno->populate($form->getData());
 
                 $aluno->setDatanasc(new \DateTime());
+
+                if($aluno->getBolsista() == "true")
+                    $aluno->setBolsista(true);
+                else if($aluno->getBolsista() == "false")
+                    $aluno->setBolsista(false);
                 //var_dump($request->getPost());exit;
                 $this->getEntityManager()->persist($aluno);
                 $this->getEntityManager()->flush();
@@ -100,6 +105,12 @@ class AlunoController extends AbstractActionController
             
             if ($form->isValid()) {
                 $form->bindValues();
+
+                if($form->getData()->getBolsista() == "true")
+                    $form->getData()->setBolsista(true);
+                else if($form->getData()->getBolsista() == "false")
+                    $form->getData()->setBolsista(false);
+
                 $form->getData()->setDatanasc(new \DateTime());
                 $this->getEntityManager()->flush();
 

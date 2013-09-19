@@ -10,11 +10,11 @@ $this->headTitle($title);
 </p>
 
 <table class="table">
-<tr>
+<thead>
     <th>Title</th>
     <th>Artist</th>
     <th>&nbsp;</th>
-</tr>
+</thead>
 <?php foreach ($albums as $album) : ?>
 <tr>
     <td><?php echo $this->escapeHtml($album->title);?></td>

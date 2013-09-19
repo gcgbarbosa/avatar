@@ -53,6 +53,7 @@ class AlunoForm extends Form
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
+                'id' => 'telefonealuno',
             ),
             'options' => array(
                 'label' => 'Telofone: ',
@@ -77,6 +78,7 @@ class AlunoForm extends Form
         ));
 
         $this->add(array(
+            'type' => 'Zend\Form\Element\Radio',
             'name' => 'bolsista',
             'attributes' => array(
                 'type'  => 'text',
@@ -87,7 +89,14 @@ class AlunoForm extends Form
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
+                'value_options' => array(
+                    'true' => 'Sim',
+                    'false' => 'Não',
+                ),
             ),
+            'attributes' => array(
+                //'value' => '1' //set checked to '1'
+            )
         ));
 
         $this->add(array(
@@ -95,6 +104,7 @@ class AlunoForm extends Form
             'attributes' => array(
                 'type'  => 'Zend\Form\Element\DateTime',
                 'class' => 'form-control',
+                'id' => 'datanasc'
             ),
             'options' => array(
                 'label' => 'Data de Nascimento: ',

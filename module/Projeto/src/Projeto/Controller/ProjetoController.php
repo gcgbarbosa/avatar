@@ -59,10 +59,15 @@ class ProjetoController extends AbstractActionController
             
             if ($form->isValid()) {
              
-                $projeto->populate($form->getData()); 
+                $projeto->populate($form->getData());
                 
                 $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $projeto->getProfessorcoordenador()));
                 $projeto->setProfessorcoordenador($professor);
+
+                if($projeto->getFinaciamento() == "true")
+                    $projeto->setFinaciamento(true);
+                else if($projeto->getFinaciamento() == "false")
+                    $projeto->setFinaciamento(false);
                 //var_dump($professor);exit;
                 $this->getEntityManager()->persist($projeto);
                 $this->getEntityManager()->flush();
@@ -91,13 +96,20 @@ class ProjetoController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-        
+            
             $form->setData($request->getPost());
             
             if ($form->isValid()) {
                 $form->bindValues();
+                
                 $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $projeto->getProfessorcoordenador()));
                 $projeto->setProfessorcoordenador($professor);
+
+                if($projeto->getFinaciamento() == "true")
+                    $projeto->setFinaciamento(true);
+                else if($projeto->getFinaciamento() == "false")
+                    $projeto->setFinaciamento(false);
+
                 $this->getEntityManager()->persist($projeto);
                 
                 $this->getEntityManager()->flush();

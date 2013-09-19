@@ -51,6 +51,9 @@ class ProjetoForm extends Form
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'professorcoordenador',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
             'options' => array(
                 'label'          => 'Professor Responsável: ',
                 'object_manager' => $name,
@@ -92,6 +95,7 @@ class ProjetoForm extends Form
         ));
 
         $this->add(array(
+            'type' => 'Zend\Form\Element\Radio',
             'name' => 'finaciamento',
             'attributes' => array(
                 'type'  => 'text',
@@ -102,7 +106,14 @@ class ProjetoForm extends Form
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
+                'value_options' => array(
+                    'true' => 'Sim',
+                    'false' => 'Não',
+                ),
             ),
+            'attributes' => array(
+                //'value' => '1' //set checked to '1'
+            )
         ));
 
         $this->add(array(

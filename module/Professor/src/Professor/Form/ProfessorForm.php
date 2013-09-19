@@ -27,6 +27,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'Matricula do professor: ',
             ),
         ));
@@ -38,6 +41,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'Nome do professor: ',
             ),
         ));
@@ -49,6 +55,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'E-mail: ',
             ),
         ));
@@ -60,6 +69,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'Telefone: ',
             ),
         ));
@@ -67,7 +79,13 @@ class ProfessorForm extends Form
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'name' => 'departamentodepartamento',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label'          => 'Nome departamento: ',
                 'object_manager' => $em,
                 'target_class'   => 'Professor\Entity\Departamento',
@@ -84,6 +102,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'Area de atuação: ',
             ),
         ));
@@ -95,6 +116,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'Formação: ',
             ),
         ));
@@ -106,6 +130,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'Titualação: ',
             ),
         ));
@@ -117,6 +144,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'Classe: ',
             ),
         ));
@@ -128,6 +158,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'Regime de Trablho: ',
             ),
         ));
@@ -139,6 +172,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'Tipo de vinculo: ',
             ),
         ));
@@ -150,6 +186,9 @@ class ProfessorForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
                 'label' => 'Data de nascimento: ',
             ),
         ));
@@ -157,6 +196,7 @@ class ProfessorForm extends Form
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(
+                'class' => 'btn btn-default',
                 'type'  => 'submit',
                 'value' => 'Salvar',
                 'id' => 'submitbutton',

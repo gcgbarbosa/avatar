@@ -10,6 +10,8 @@ class DepartamentoForm extends Form
         parent::__construct('departamento');
         
         $this->setAttribute('method', 'post');
+        $this->setAttribute('role', 'form');
+        $this->setAttribute('class', 'form-horizontal');
         
         $this->add(array(
             'name' => 'id',
@@ -25,7 +27,10 @@ class DepartamentoForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Nome do departamento: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+                'label' => 'Nome: ',
             ),
         ));
         
@@ -36,7 +41,10 @@ class DepartamentoForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Descrição do departamento: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+                'label' => 'Descrição: ',
             ),
         ));
 
@@ -44,6 +52,7 @@ class DepartamentoForm extends Form
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(
+                'class' => 'btn btn-default',
                 'type'  => 'submit',
                 'value' => 'Salvar',
                 'id' => 'submitbutton',

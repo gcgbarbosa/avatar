@@ -346,7 +346,10 @@ class Projeto implements InputFilterAwareInterface
      */
     public function getArrayCopy() 
     {
-        return get_object_vars($this);
+        $obj_vars = get_object_vars($this);
+        $obj_vars['finaciamento'] = $obj_vars['finaciamento'] == true ? "true" : "false";
+        $obj_vars['professorcoordenador'] = $obj_vars['professorcoordenador']->getIdProfessor();
+        return $obj_vars;
     }
 
     /**

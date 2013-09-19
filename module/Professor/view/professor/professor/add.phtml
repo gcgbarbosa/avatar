@@ -1,14 +1,14 @@
-<div class="row">
-<div class="col-md-12">
+<div class="panel panel-success">
 <?php
 // module/Album/view/album/album/add.phtml:
 
 $title = 'Adicionar novo professor';
 $this->headTitle($title);
 ?>
-
-<h1><?php echo $this->escapeHtml($title); ?></h1>
-
+<div class="panel-heading">
+	<h1><?php echo $this->escapeHtml($title); ?></h1>
+</div>
+<div class="panel-body">
 <?php
 $form = $this->form;
 $form->setAttribute('action', $this->url('professor', array('action' => 'add')));
@@ -19,55 +19,81 @@ echo $this->form()->openTag($form);
 
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('matriculaprofessor'))."\n"?>
-	<?php echo $this->formText($form->get('matriculaprofessor')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('matriculaprofessor')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('nomeprofessor'))."\n" ?>
-	<?php echo $this->formText($form->get('nomeprofessor')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('nomeprofessor')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('emailprofessor'))."\n" ?>
-	<?php echo $this->formText($form->get('emailprofessor')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('emailprofessor')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('telefoneprofessor'))."\n" ?>
-	<?php echo $this->formText($form->get('telefoneprofessor')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('telefoneprofessor')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('areadeatuacao'))."\n" ?>
-	<?php echo $this->formText($form->get('areadeatuacao')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('areadeatuacao')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('formacao'))."\n" ?>
-	<?php echo $this->formText($form->get('formacao')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('formacao')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('titulacao'))."\n" ?>
-	<?php echo $this->formText($form->get('titulacao')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('titulacao')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('classe'))."\n" ?>
-	<?php echo $this->formText($form->get('classe')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('classe')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('regimedetrabalho'))."\n" ?>
-	<?php echo $this->formText($form->get('regimedetrabalho')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('regimedetrabalho')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('tipovinculo'))."\n" ?>
-	<?php echo $this->formText($form->get('tipovinculo')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('tipovinculo')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('datanasc'))."\n" ?>
-	<?php echo $this->formText($form->get('datanasc')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('datanasc')) ?>
+	</div>
 </div>
 <div class="form-group">
 	<?php echo $this->formLabel($form->get('departamentodepartamento'))."\n" ?>
-	<?php echo $this->formSelect($form->get('departamentodepartamento')) ?>
+	<div class="col-lg-10">
+		<?php echo $this->formSelect($form->get('departamentodepartamento')) ?>
+	</div>
 </div>
-<?php echo $this->formSubmit($form->get('submit')) ?>
-
-
+<div class="form-group">
+	<div class="col-lg-offset-2 col-lg-10">
+		<?php echo $this->formSubmit($form->get('submit')) ?>
+	</div>
+</div>
 
 <?php echo $this->form()->closeTag(); ?>
 

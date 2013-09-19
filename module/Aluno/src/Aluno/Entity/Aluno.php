@@ -282,6 +282,7 @@ class Aluno implements InputFilterAwareInterface
     {
         $obj_vars = get_object_vars($this);
         $obj_vars['datanasc'] = $obj_vars['datanasc']->format('d/m/Y');
+        $obj_vars['bolsista'] = $obj_vars['bolsista'] == true ? "true" : "false";
         return $obj_vars;
     }
 
