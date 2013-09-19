@@ -78,7 +78,7 @@ class DepartamentoController extends AbstractActionController
         
         $departamento = $this->getEntityManager()->find('Professor\Entity\Departamento', $id);
 
-        $form = new ProfessorForm();
+        $form = new DepartamentoForm();
         $form->setBindOnValidate(false);
         $form->bind($departamento);
         $form->get('submit')->setAttribute('label', 'Edit');
@@ -115,9 +115,9 @@ class DepartamentoController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $del = $request->getPost('del', 'No');
+            $del = $request->getPost('del', 'Não');
             
-            if ($del == 'Yes') {
+            if ($del == 'Sim') {
                 $id = (int) $request->getPost('id');
                 $departamento = $this->getEntityManager()->find('Professor\Entity\Departamento', $id);
                 

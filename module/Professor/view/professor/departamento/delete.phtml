@@ -1,25 +1,30 @@
-<?php
-// module/Album/view/album/album/delete.phtml:
+<div class="panel panel-danger">
+	<?php
+	// module/Album/view/album/album/delete.phtml:
 
-$title = 'Delete album';
-$this->headTitle($title);
-?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
-
-<p>Are you sure that you want to delete
-    '<?php echo $this->escapeHtml($album->title); ?>' by
-    '<?php echo $this->escapeHtml($album->artist); ?>'?
-</p>
-<?php
-$url = $this->url('album', array(
-    'action' => 'delete',
-    'id'     => $this->id,
-));
-?>
-<form action="<?php echo $url; ?>" method="post">
-<div>
-    <input type="hidden" name="id" value="<?php echo (int) $album->id; ?>" />
-    <input type="submit" name="del" value="Yes" />
-    <input type="submit" name="del" value="No" />
+	$title = 'Deletar departamento';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+			<h1><?php echo $this->escapeHtml($title); ?></h1>
+		</div>
+	<div class="panel-body">
+		<h2>Tem certeza que deseja deletar o departamento 
+		    '<?php echo $this->escapeHtml($departamento->getnomedepartamento()); ?>' matricula
+		    '<?php echo $this->escapeHtml($departamento->getdescricaodepartamento()); ?>'?
+		</h2>
+		<?php
+		$url = $this->url('departamento', array(
+		    'action' => 'delete',
+		    'id'     => $this->id,
+		));
+		?>
+		<form action="<?php echo $url; ?>" method="post">
+		<div>
+		    <input type="hidden" name="id" value="<?php echo (int) $departamento->getIddepartamento(); ?>" />
+		    <input class="btn btn-default" type="submit" name="del" value="Sim" />
+		    <input class="btn btn-default" type="submit" name="del" value="Não" />
+		</div>
+		</form>
+	</div>
 </div>
-</form>

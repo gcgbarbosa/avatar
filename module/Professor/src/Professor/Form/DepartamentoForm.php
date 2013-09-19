@@ -14,7 +14,7 @@ class DepartamentoForm extends Form
         $this->setAttribute('class', 'form-horizontal');
         
         $this->add(array(
-            'name' => 'id',
+            'name' => 'iddepartamento',
             'attributes' => array(
                 'type'  => 'hidden',
             ),
