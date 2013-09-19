@@ -57,7 +57,11 @@ class ProfessorController extends AbstractActionController
             if ($form->isValid()) { 
                 $professor->populate($form->getData()); 
                 
-                $professor->setDatanasc(new \DateTime());
+                //SET DATA NASC
+                $data = explode("/", $professor->getDataNasc());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $professor->setDatanasc(new \DateTime($data));
+                //END SET DATA NASC
 
                 $departamento = $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findOneBy(array('iddepartamento' => $professor->getDepartamentodepartamento()));
                 $professor->setDepartamentodepartamento($departamento);
@@ -100,7 +104,11 @@ class ProfessorController extends AbstractActionController
                 
                 $departamento = $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findOneBy(array('iddepartamento' => $form->getData()->getDepartamentodepartamento()));
                 $form->getData()->setDepartamentodepartamento($departamento);
-                $form->getData()->setDatanasc(new \DateTime());
+                //SET DATA NASC
+                $data = explode("/", $form->getData()->getDataNasc());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $form->getData()->setDatanasc(new \DateTime($data));
+                //END SET DATA NASC
 
                 $this->getEntityManager()->flush();
 
@@ -126,9 +134,9 @@ class ProfessorController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $del = $request->getPost('del', 'No');
+            $del = $request->getPost('del', 'Não');
             
-            if ($del == 'Yes') {
+            if ($del == 'Sim') {
                 $id = (int) $request->getPost('id');
                 $professor = $this->getEntityManager()->find('Professor\Entity\Professor', $id);
                 

@@ -56,19 +56,20 @@ class AlunoController extends AbstractActionController
             $form->setData($request->getPost());
             
             if ($form->isValid()) {
-
                 $aluno->populate($form->getData());
-
-                $aluno->setDatanasc(new \DateTime());
-
+                //SET DATA NASC
+                $data = explode("/", $aluno->getDataNasc());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $aluno->setDatanasc(new \DateTime($data));
+                //END SET DATA NASC
+                //SET BOLSISTA
                 if($aluno->getBolsista() == "true")
                     $aluno->setBolsista(true);
                 else if($aluno->getBolsista() == "false")
                     $aluno->setBolsista(false);
-                //var_dump($request->getPost());exit;
+                //END SET BOLSISTA
                 $this->getEntityManager()->persist($aluno);
                 $this->getEntityManager()->flush();
-
                 // Redirect to list of albums
                 return $this->redirect()->toRoute('aluno'); 
             }
@@ -111,8 +112,11 @@ class AlunoController extends AbstractActionController
                 else if($form->getData()->getBolsista() == "false")
                     $form->getData()->setBolsista(false);
 
-                $form->getData()->setDatanasc(new \DateTime());
-                $this->getEntityManager()->flush();
+                //SET DATA NASC
+                $data = explode("/", $form->getData()->getDataNasc());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $form->getData()->setDatanasc(new \DateTime($data));
+                //END SET DATA NASC
 
                 // Redirect to list of albums
                 return $this->redirect()->toRoute('aluno');
