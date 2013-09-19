@@ -54,7 +54,7 @@ class ProjetoController extends AbstractActionController
 
 
             
-            //$form->setInputFilter($projeto->getInputFilter());
+            $form->setInputFilter($projeto->getInputFilter());
             $form->setData($request->getPost());
             
             if ($form->isValid()) {
@@ -96,6 +96,10 @@ class ProjetoController extends AbstractActionController
             
             if ($form->isValid()) {
                 $form->bindValues();
+                $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $projeto->getProfessorcoordenador()));
+                $projeto->setProfessorcoordenador($professor);
+                $this->getEntityManager()->persist($projeto);
+                
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums

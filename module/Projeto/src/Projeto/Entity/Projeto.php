@@ -16,6 +16,8 @@ use Zend\InputFilter\InputFilterInterface;
  */
 class Projeto implements InputFilterAwareInterface 
 {
+
+    protected $inputFilter;
     /**
      * @var integer
      *

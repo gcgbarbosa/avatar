@@ -24,7 +24,6 @@ class ProjetoForm extends Form
             'name' => 'titulo',
             'attributes' => array(
                 'type'  => 'text',
-
                 'class' => 'form-control',
             ),
             'options' => array(
@@ -125,7 +124,7 @@ class ProjetoForm extends Form
             'attributes' => array(
                 'class' => 'btn btn-default',
                 'type'  => 'submit',
-                'value' => 'Go',
+                'value' => 'Salvar',
                 'id' => 'submitbutton',
             ),
         ));
