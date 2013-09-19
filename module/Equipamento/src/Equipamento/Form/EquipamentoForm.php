@@ -10,6 +10,8 @@ class EquipamentoForm extends Form
         parent::__construct('album');
         
         $this->setAttribute('method', 'post');
+        $this->setAttribute('role', 'form');
+        $this->setAttribute('class', 'form-horizontal');
         
         $this->add(array(
             'name' => 'id',
@@ -22,9 +24,13 @@ class EquipamentoForm extends Form
             'name' => 'title',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Title',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
         
@@ -32,15 +38,20 @@ class EquipamentoForm extends Form
             'name' => 'artist',
             'attributes' => array(
                 'type'  => 'text',
+                'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Artist',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
             ),
         ));
         
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(
+                'class' => 'btn btn-default',
                 'type'  => 'submit',
                 'value' => 'Go',
                 'id' => 'submitbutton',

@@ -37,7 +37,7 @@ class EquipamentoController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'albums' => $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll() 
+            'equipamentos' => $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll() 
         ));
     }
 
@@ -49,19 +49,19 @@ class EquipamentoController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $album = new Equipamento();
+            $equipamento = new Equipamento();
             
-            $form->setInputFilter($album->getInputFilter());
+            $form->setInputFilter($equipamento->getInputFilter());
             $form->setData($request->getPost());
             
             if ($form->isValid()) { 
-                $album->populate($form->getData()); 
+                $equipamento->populate($form->getData()); 
                 
-                $this->getEntityManager()->persist($album);
+                $this->getEntityManager()->persist($equipamento);
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album'); 
+                return $this->redirect()->toRoute('equipamento'); 
             }
         }
 
@@ -73,14 +73,14 @@ class EquipamentoController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('album', array('action'=>'add'));
+            return $this->redirect()->toRoute('equipamento', array('action'=>'add'));
         } 
         
-        $album = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
+        $equipamento = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
 
         $form = new EquipamentoForm();
         $form->setBindOnValidate(false);
-        $form->bind($album);
+        $form->bind($equipamento);
         $form->get('submit')->setAttribute('label', 'Edit');
         
         $request = $this->getRequest();
@@ -94,7 +94,7 @@ class EquipamentoController extends AbstractActionController
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('album');
+                return $this->redirect()->toRoute('equipamento');
             }
         }
 
@@ -109,7 +109,7 @@ class EquipamentoController extends AbstractActionController
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('equipamento');
         }
 
         $request = $this->getRequest();
@@ -119,20 +119,20 @@ class EquipamentoController extends AbstractActionController
             
             if ($del == 'Yes') {
                 $id = (int) $request->getPost('id');
-                $album = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
+                $equipamento = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
                 
-                if ($album) {
-                    $this->getEntityManager()->remove($album);
+                if ($equipamento) {
+                    $this->getEntityManager()->remove($equipamento);
                     $this->getEntityManager()->flush();
                 }
             }
 
-            return $this->redirect()->toRoute('album');
+            return $this->redirect()->toRoute('equipamento');
         }
 
         return array(
             'id' => $id,
-            'album' => $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id)
+            'equipamento' => $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id)
         );
     }
 }

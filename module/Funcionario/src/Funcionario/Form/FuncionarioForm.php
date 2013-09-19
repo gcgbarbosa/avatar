@@ -52,6 +52,7 @@ class FuncionarioForm extends Form
             'name' => 'telefonefuncionario',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'telefonefuncionario',
                 'type'  => 'text',
             ),
             'options' => array(

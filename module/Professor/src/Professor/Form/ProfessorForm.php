@@ -67,6 +67,7 @@ class ProfessorForm extends Form
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
+                'id' => 'telefoneprofessor',
             ),
             'options' => array(
                 'label_attributes' => array(
@@ -184,6 +185,7 @@ class ProfessorForm extends Form
             'attributes' => array(
                 'type'  => 'Zend\Form\Element\DateTime',
                 'class' => 'form-control',
+                'id' => 'datanasc',
             ),
             'options' => array(
                 'label_attributes' => array(
