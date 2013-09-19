@@ -1,0 +1,27 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'Departamentos';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('departamento', array('action'=>'add'));?>">Adicionar Departamento</a>
+</p>
+
+<table class="table">
+
+<?php foreach ($departamentos as $departamento) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($departamento->getNomeDepartamento());?></td>
+    <td><?php echo $this->escapeHtml($departamento->getDescricaoDepartamento());?></td>
+    <td>
+        <a href="<?php echo $this->url('departamento',
+            array('action'=>'edit', 'id' => $departamento->getIdDepartamento()));?>">Edit</a>
+
+        <a href="<?php echo $this->url('departamento',
+            array('action'=>'delete', 'id' => $departamento->getIdDepartamento()));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
