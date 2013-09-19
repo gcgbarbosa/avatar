@@ -1,0 +1,68 @@
+<div class="panel panel-success">
+	<?php
+	// module/Album/view/album/album/add.phtml:
+	$title = 'Adicionar Projeto';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+		<h1><?php echo $this->escapeHtml($title); ?></h1>
+	</div>
+	<div class="panel-body">
+		<?php
+		$form = $this->form;
+		$form->setAttribute('action', $this->url('projeto', array('action' => 'add')));
+		$form->prepare();
+
+		echo $this->form()->openTag($form);
+		?>
+		<?php echo $this->formHidden($form->get('id')) ?>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('titulo'))."\n"?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('titulo')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('objetivogeral'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('objetivogeral')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('professorcoordenador'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formSelect($form->get('professorcoordenador')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('objetivoespec'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('objetivoespec')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('resultadosesperados'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('resultadosesperados')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('finaciamento'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('finaciamento')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('fontefinaciamento'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('fontefinaciamento')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+	    	<div class="col-lg-offset-2 col-lg-10">
+				<?php echo $this->formSubmit($form->get('submit')) ?>
+			</div>
+		</div>
+		<?php echo $this->form()->closeTag(); ?>
+	</div>
+</div>
