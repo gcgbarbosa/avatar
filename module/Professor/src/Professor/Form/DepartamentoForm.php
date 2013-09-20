@@ -58,5 +58,14 @@ class DepartamentoForm extends Form
                 'id' => 'submitbutton',
             ),
         ));
+        $this->add(array(
+            'name' => 'view',
+            'attributes' => array(
+                'class' => 'btn btn-default',
+                'type'  => 'view',
+                'value' => 'Voltar',
+                'id' => 'viewbutton',
+            ),
+        ));
     }
 }

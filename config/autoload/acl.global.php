@@ -87,6 +87,7 @@ return array(
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
+					'view'=> 'guest',
 				),
 
 				'Projeto\Controller\Projeto' => array(
