@@ -83,7 +83,7 @@ class FuncionarioController extends AbstractActionController
         } 
         
         $funcionario = $this->getEntityManager()->find('Funcionario\Entity\Funcionario', $id);
-        $funcionario->setDatanasc(new \DateTime());
+        //$funcionario->setDatanasc(new \DateTime());
 
         $form = new FuncionarioForm();
         $form->setBindOnValidate(false);

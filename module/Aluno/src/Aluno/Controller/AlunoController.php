@@ -87,7 +87,7 @@ class AlunoController extends AbstractActionController
         } 
         
         $aluno = $this->getEntityManager()->find('Aluno\Entity\Aluno', $id);
-        $aluno->setDatanasc(new \DateTime());
+        //$aluno->setDatanasc(new \DateTime());
 
         $form = new AlunoForm();
         
