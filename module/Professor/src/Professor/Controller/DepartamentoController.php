@@ -4,7 +4,7 @@ namespace Professor\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel; 
-use Professor\Form\DepartamentoForm;
+use Professor\Form\DepartamentoForm2;
 use Doctrine\ORM\EntityManager;
 use Professor\Entity\Departamento;
 
@@ -112,7 +112,7 @@ class DepartamentoController extends AbstractActionController
         
         $departamento = $this->getEntityManager()->find('Professor\Entity\Departamento', $id);
 
-        $form = new DepartamentoForm();
+        $form = new DepartamentoForm2();
         $form->setBindOnValidate(false);
         $form->bind($departamento);
         $form->get('view')->setAttribute('label', 'View');
