@@ -62,6 +62,21 @@ class FuncionarioForm extends Form
                 ),
             ),
         ));
+
+        $this->add(array(
+            'name' => 'datanasc',
+            'attributes' => array(
+                'type'  => 'Zend\Form\Element\DateTime',
+                'class' => 'form-control',
+                'id' => 'datanasc'
+            ),
+            'options' => array(
+                'label' => 'Data de Nascimento: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
         
         $this->add(array(
             'name' => 'submit',

@@ -35,6 +35,12 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<?php echo $this->formLabel($form->get('datanasc'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('datanasc')) ?>
+			</div>
+		</div>
+		<div class="form-group">
 	    	<div class="col-lg-offset-2 col-lg-10">
 				<?php echo $this->formSubmit($form->get('submit')) ?>
 			</div>
@@ -44,6 +50,7 @@
 </div>
 <script>
 jQuery(function($){
+   $("#datanasc").mask("99/99/9999");
    $("#telefonefuncionario").mask("(99) 9999-9999");
 });
 </script>

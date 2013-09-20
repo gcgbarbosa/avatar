@@ -50,6 +50,13 @@ class Funcionario implements InputFilterAwareInterface
 
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dataNasc", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $datanasc;
+
+    /**
      * Get idfuncionario
      *
      * @return integer 
@@ -127,7 +134,28 @@ class Funcionario implements InputFilterAwareInterface
     {
         return $this->telefonefuncionario;
     }
+    /**
+     * Set datanasc
+     *
+     * @param \DateTime $datanasc
+     * @return Funcionario
+     */
+    public function setDatanasc($datanasc)
+    {
+        $this->datanasc = $datanasc;
+    
+        return $this;
+    }
 
+    /**
+     * Get datanasc
+     *
+     * @return \DateTime 
+     */
+    public function getDatanasc()
+    {
+        return $this->datanasc;
+    }
     /**
      * Get projetoprojeto
      *
@@ -146,6 +174,7 @@ class Funcionario implements InputFilterAwareInterface
     public function getArrayCopy() 
     {
         $obj_vars = get_object_vars($this);
+        $obj_vars['datanasc'] = $obj_vars['datanasc']->format('d/m/Y');
         return $obj_vars;
     }
 

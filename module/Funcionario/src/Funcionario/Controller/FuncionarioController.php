@@ -56,6 +56,12 @@ class FuncionarioController extends AbstractActionController
             
             if ($form->isValid()) { 
                 $funcionario->populate($form->getData()); 
+                //SET DATA NASC
+                $data = explode("/", $funcionario->getDataNasc());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $funcionario->setDatanasc(new \DateTime($data));
+                //END SET DATA NASC
+                //SET BOLSISTA
                 
                 $this->getEntityManager()->persist($funcionario);
                 $this->getEntityManager()->flush();
@@ -77,6 +83,7 @@ class FuncionarioController extends AbstractActionController
         } 
         
         $funcionario = $this->getEntityManager()->find('Funcionario\Entity\Funcionario', $id);
+        $funcionario->setDatanasc(new \DateTime());
 
         $form = new FuncionarioForm();
         $form->setBindOnValidate(false);
@@ -91,6 +98,11 @@ class FuncionarioController extends AbstractActionController
             
             if ($form->isValid()) {
                 $form->bindValues();
+                 //SET DATA NASC
+                $data = explode("/", $form->getData()->getDataNasc());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $form->getData()->setDatanasc(new \DateTime($data));
+                //END SET DATA NASC
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of funcionarios
