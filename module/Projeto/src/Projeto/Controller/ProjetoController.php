@@ -167,6 +167,24 @@ class ProjetoController extends AbstractActionController
 
         $projeto = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
 
+        $professores = $projeto->getProfessorprofessor()->toArray();
+        $a_professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+        foreach($a_professores as $k=>$a_p){
+            foreach($professores as $p){
+                if($a_p == $p)
+                    unset($a_professores[$k]);
+            }
+        }
+
+        $alunos = $projeto->getAlunoaluno()->toArray();
+        $a_alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
+        foreach($a_alunos as $k=>$a_a){
+            foreach($alunos as $a){
+                if($a_a == $a)
+                    unset($a_alunos[$k]);
+            }
+        }
+
         $request = $this->getRequest();
         
         if ($request->isPost()) {
@@ -206,8 +224,8 @@ class ProjetoController extends AbstractActionController
         return array(
             'id' => $id,
             'projeto' => $projeto,
-            'professores' => $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll(),
-            'alunos' => $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll(),
+            'professores' => $a_professores,//$this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll(),
+            'alunos' => $a_alunos,//$this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll(),
         );
     }
 }
