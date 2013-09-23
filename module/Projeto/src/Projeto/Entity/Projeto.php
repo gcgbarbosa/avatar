@@ -72,14 +72,14 @@ class Projeto implements InputFilterAwareInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Aluno\Entity\Aluno", mappedBy="projetoprojeto")
+     * @ORM\ManyToMany(targetEntity="Aluno\Entity\Aluno", mappedBy="alunoprojeto")
      */
     private $alunoaluno;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Professor\Entity\Professor", mappedBy="projetoprojeto")
+     * @ORM\ManyToMany(targetEntity="Professor\Entity\Professor", mappedBy="professorprojeto")
      */
     private $professorprofessor;
 

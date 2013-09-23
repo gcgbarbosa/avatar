@@ -27,6 +27,8 @@
                     array('action'=>'edit', 'id' => $projeto->getIdprojeto()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
                 <a class="btn btn-danger" href="<?php echo $this->url('projeto',
                     array('action'=>'delete', 'id' => $projeto->getIdprojeto()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
+                <a class="btn btn-primary" href="<?php echo $this->url('projeto',
+                    array('action'=>'view', 'id' => $projeto->getIdprojeto()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
             </td>
         </tr>
         <?php endforeach; ?>

@@ -156,4 +156,58 @@ class ProjetoController extends AbstractActionController
             'projeto' => $this->getEntityManager()->find('Projeto\Entity\Projeto', $id)
         );
     }
+
+    public function viewAction()
+    {
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('projeto');
+        }
+
+        $projeto = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
+
+        $request = $this->getRequest();
+        
+        if ($request->isPost()) {
+            $post = $request->getPost();
+
+            //var_dump($post);exit;
+
+            if(isset($post->professor_a)){
+                $professor = $this->getEntityManager()->find('Professor\Entity\Professor', $post->professor_a);
+                $professor->addProjetoprojeto($projeto);
+                $this->getEntityManager()->persist($professor);
+                $this->getEntityManager()->flush();
+            }
+
+            if(isset($post->aluno_a)){
+                $aluno = $this->getEntityManager()->find('Aluno\Entity\Aluno', $post->aluno_a);
+                $aluno->addProjetoprojeto($projeto);
+                $this->getEntityManager()->persist($aluno);
+                $this->getEntityManager()->flush();
+            }
+
+            if(isset($post->professor_r)){
+                $professor = $this->getEntityManager()->find('Professor\Entity\Professor', $post->professor_r);
+                $professor->removeProjetoprojeto($projeto);
+                $this->getEntityManager()->persist($professor);
+                $this->getEntityManager()->flush();
+            }
+
+            if(isset($post->aluno_r)){
+                $aluno = $this->getEntityManager()->find('Aluno\Entity\Aluno', $post->aluno_r);
+                $aluno->removeProjetoprojeto($projeto);
+                $this->getEntityManager()->persist($aluno);
+                $this->getEntityManager()->flush();
+            }           
+        }
+
+        return array(
+            'id' => $id,
+            'projeto' => $projeto,
+            'professores' => $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll(),
+            'alunos' => $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll(),
+        );
+    }
 }

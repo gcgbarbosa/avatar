@@ -117,7 +117,7 @@ class Professor implements InputFilterAwareInterface
      *   }
      * )
      */
-    private $projetoprojeto;
+    private $professorprojeto;
 
     /**
      * @var \Professor\Entity\Departamento
@@ -134,7 +134,7 @@ class Professor implements InputFilterAwareInterface
      */
     public function __construct()
     {
-        $this->projetoprojeto = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->professorprojeto = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -401,36 +401,36 @@ class Professor implements InputFilterAwareInterface
     }
 
     /**
-     * Add projetoprojeto
+     * Add professorprojeto
      *
-     * @param \Projeto\Entity\Projeto $projetoprojeto
+     * @param \Projeto\Entity\Projeto $professorprojeto
      * @return Professor
      */
-    public function addProjetoprojeto(\Projeto\Entity\Projeto $projetoprojeto)
+    public function addProjetoprojeto(\Projeto\Entity\Projeto $professorprojeto)
     {
-        $this->projetoprojeto[] = $projetoprojeto;
+        $this->professorprojeto[] = $professorprojeto;
     
         return $this;
     }
 
     /**
-     * Remove projetoprojeto
+     * Remove professorprojeto
      *
-     * @param \Projeto\Entity\Projeto $projetoprojeto
+     * @param \Projeto\Entity\Projeto $professorprojeto
      */
-    public function removeProjetoprojeto(\Projeto\Entity\Projeto $projetoprojeto)
+    public function removeProjetoprojeto(\Projeto\Entity\Projeto $professorprojeto)
     {
-        $this->projetoprojeto->removeElement($projetoprojeto);
+        $this->professorprojeto->removeElement($professorprojeto);
     }
 
     /**
-     * Get projetoprojeto
+     * Get professorprojeto
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
     public function getProjetoprojeto()
     {
-        return $this->projetoprojeto;
+        return $this->professorprojeto;
     }
 
     /**

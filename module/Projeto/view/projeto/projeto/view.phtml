@@ -1,0 +1,198 @@
+<div class="row">
+    
+    <div class="col-md-6">
+		<div class="panel panel-primary">
+			<?php
+			// module/Album/view/album/album/delete.phtml:
+
+			$title = 'Projeto '. $projeto->getTitulo();
+			$this->headTitle($title);
+			?>
+			<div class="panel-heading">
+					<h1><?php echo $this->escapeHtml($title); ?></h1>
+				</div>
+			<div class="panel-body">
+				<table class="table">
+			    	<tr>
+			    		<td><strong>Titulo</strong></td>
+			    		<td><?php echo $projeto->getTitulo(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Objetivo Geral</strong></td>
+			    		<td><?php echo $projeto->getObjetivogeral(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Objetivo Especifico</strong></td>
+			    		<td><?php echo $projeto->getObjetivoespec(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Resultados Esperados</strong></td>
+			    		<td><?php echo $projeto->getResultadosesperados(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Financiamento</strong></td>
+			    		<td><?php echo $projeto->getFinaciamento() ? 'Sim' : 'Não'; ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Fonte de Financiamento</strong></td>
+			    		<td><?php echo $projeto->getFontefinaciamento(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Coordenador</strong></td>
+			    		<td><?php echo $projeto->getProfessorcoordenador()->getNomeprofessor(); ?></td>
+			    	</tr>
+			  	</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Professores</h1>
+            </div>
+            <ul class="list-group">
+            	<?php
+            	$professores_p = $projeto->getProfessorprofessor()->toArray();
+            	
+            	foreach($professores_p as $p) : ?>
+					<li class="list-group-item"><?php echo $p->getNomeprofessor() ?>
+					<button type="button" class="close" data-toggle="modal" href="#rprofessor<?php echo $p->getIdprofessor()?>">&times;</button>
+					</li>
+				<?php endforeach ?>
+            	<li class="list-group-item"><a data-toggle="modal" href="#professores" class="btn btn-primary">Adicionar Professor</a></li>
+            </ul>
+            <!-- List group -->
+        </div>
+    </div>
+
+	<div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Alunos</h1>
+            </div>
+
+            <ul class="list-group">
+            	<?php
+            	$alunos_p = $projeto->getAlunoaluno()->toArray();
+            	
+            	foreach($alunos_p as $a) : ?>
+					<li class="list-group-item">
+						<?php echo $a->getNomealuno() ?>
+						<button type="button" class="close" data-toggle="modal" href="#raluno<?php echo $a->getIdaluno()?>">&times;</button>
+					</li>
+				<?php endforeach ?>
+
+            	<li class="list-group-item"><a data-toggle="modal" href="#alunos" class="btn btn-primary">Adicionar Aluno</a></li>
+            </ul>
+        </div>
+    </div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="professores" tabindex="-1" role="dialog" aria-labelledby="professores-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/projeto/view/<?php echo $id?>" method="post" name="professor" class="form-horizontal" id="professor">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Adicionar professor</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label class="col-lg-2 control-label" for="professor">Professor: </label>
+							<div class="col-lg-10">
+								<select name="professor_a" class="form-control" required aria-required="true">
+									<option>Selecione</option>
+									<?php foreach($professores as $p) : ?>
+										<option value="<?php echo $p->getIdprofessor()?>"><?php echo $p->getNomeprofessor()?></option>
+									<?php endforeach?>
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Adicionar</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="alunos" tabindex="-1" role="dialog" aria-labelledby="alunos-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/projeto/view/<?php echo $id?>" method="post" name="professor" class="form-horizontal" id="professor">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Adicionar aluno</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label class="col-lg-2 control-label" for="aluno">Aluno: </label>
+							<div class="col-lg-10">
+								<select name="aluno_a" class="form-control" required aria-required="true">
+									<option value="">Selecione</option>
+									<?php foreach($alunos as $a) : ?>
+										<option value="<?php echo $a->getIdaluno()?>"><?php echo $a->getNomealuno()?></option>
+									<?php endforeach?>
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Adicionar</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<?php foreach($alunos_p as $a) : ?>
+	<!-- Modal -->
+	<div class="modal fade" id="raluno<?php echo $a->getIdaluno()?>" tabindex="-1" role="dialog" aria-labelledby="alunos-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/projeto/view/<?php echo $id?>" method="post" name="aluno" class="form-horizontal" id="aluno">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Remover o aluno '<?php echo $a->getNomealuno();?>' do projeto '<?php echo $projeto->getTitulo()?>'?</h4>
+					</div>
+					<div class="modal-body">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Sim</button>
+					</div>
+					<input type="hidden" name="aluno_r" value="<?php echo $a->getIdAluno();?>"></input>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<?php endforeach ?>
+
+	<?php foreach($professores_p as $p) : ?>
+	<!-- Modal -->
+	<div class="modal fade" id="rprofessor<?php echo $p->getIdProfessor()?>" tabindex="-1" role="dialog" aria-labelledby="alunos-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/projeto/view/<?php echo $id?>" method="post" name="professor" class="form-horizontal" id="professor">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Remover o professor '<?php echo $p->getNomeprofessor();?>' do projeto '<?php echo $projeto->getTitulo()?>'?</h4>
+					</div>
+					<div class="modal-body">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Sim</button>
+					</div>
+					<input type="hidden" name="professor_r" value="<?php echo $p->getIdprofessor();?>"></input>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<?php endforeach ?>
+
+</div>

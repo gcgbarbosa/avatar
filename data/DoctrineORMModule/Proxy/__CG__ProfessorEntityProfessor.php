@@ -183,16 +183,16 @@ class Professor extends \Professor\Entity\Professor implements \Doctrine\ORM\Pro
         return parent::getDatanasc();
     }
 
-    public function addProjetoprojeto(\Projeto\Entity\Projeto $projetoprojeto)
+    public function addProjetoprojeto(\Projeto\Entity\Projeto $professorprojeto)
     {
         $this->__load();
-        return parent::addProjetoprojeto($projetoprojeto);
+        return parent::addProjetoprojeto($professorprojeto);
     }
 
-    public function removeProjetoprojeto(\Projeto\Entity\Projeto $projetoprojeto)
+    public function removeProjetoprojeto(\Projeto\Entity\Projeto $professorprojeto)
     {
         $this->__load();
-        return parent::removeProjetoprojeto($projetoprojeto);
+        return parent::removeProjetoprojeto($professorprojeto);
     }
 
     public function getProjetoprojeto()
@@ -241,7 +241,7 @@ class Professor extends \Professor\Entity\Professor implements \Doctrine\ORM\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idprofessor', 'matriculaprofessor', 'nomeprofessor', 'emailprofessor', 'telefoneprofessor', 'areadeatuacao', 'formacao', 'titulacao', 'classe', 'regimedetrabalho', 'tipovinculo', 'datanasc', 'projetoprojeto', 'departamentodepartamento');
+        return array('__isInitialized__', 'idprofessor', 'matriculaprofessor', 'nomeprofessor', 'emailprofessor', 'telefoneprofessor', 'areadeatuacao', 'formacao', 'titulacao', 'classe', 'regimedetrabalho', 'tipovinculo', 'datanasc', 'professorprojeto', 'departamentodepartamento');
     }
 
     public function __clone()

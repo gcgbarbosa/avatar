@@ -82,14 +82,14 @@ class Aluno implements InputFilterAwareInterface
      *   }
      * )
      */
-    private $projetoprojeto;
+    private $alunoprojeto;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->projetoprojeto = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->alunoprojeto = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -241,36 +241,36 @@ class Aluno implements InputFilterAwareInterface
     }
 
     /**
-     * Add projetoprojeto
+     * Add alunoprojeto
      *
-     * @param \Projeto\Entity\Projeto $projetoprojeto
+     * @param \Projeto\Entity\Projeto $alunoprojeto
      * @return Aluno
      */
-    public function addProjetoprojeto(\Projeto\Entity\Projeto $projetoprojeto)
+    public function addProjetoprojeto(\Projeto\Entity\Projeto $alunoprojeto)
     {
-        $this->projetoprojeto[] = $projetoprojeto;
+        $this->alunoprojeto[] = $alunoprojeto;
     
         return $this;
     }
 
     /**
-     * Remove projetoprojeto
+     * Remove alunoprojeto
      *
-     * @param \Projeto\Entity\Projeto $projetoprojeto
+     * @param \Projeto\Entity\Projeto $alunoprojeto
      */
-    public function removeProjetoprojeto(\Projeto\Entity\Projeto $projetoprojeto)
+    public function removeProjetoprojeto(\Projeto\Entity\Projeto $alunoprojeto)
     {
-        $this->projetoprojeto->removeElement($projetoprojeto);
+        $this->alunoprojeto->removeElement($alunoprojeto);
     }
 
     /**
-     * Get projetoprojeto
+     * Get alunoprojeto
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
     public function getProjetoprojeto()
     {
-        return $this->projetoprojeto;
+        return $this->alunoprojeto;
     }
 
     /**
