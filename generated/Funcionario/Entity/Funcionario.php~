@@ -121,34 +121,4 @@ class Funcionario
     {
         return $this->telefonefuncionario;
     }
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dataNasc", type="datetime", precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $datanasc;
-
-
-    /**
-     * Set datanasc
-     *
-     * @param \DateTime $datanasc
-     * @return Funcionario
-     */
-    public function setDatanasc($datanasc)
-    {
-        $this->datanasc = $datanasc;
-    
-        return $this;
-    }
-
-    /**
-     * Get datanasc
-     *
-     * @return \DateTime 
-     */
-    public function getDatanasc()
-    {
-        return $this->datanasc;
-    }
 }

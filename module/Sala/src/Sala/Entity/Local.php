@@ -1,6 +1,6 @@
 <?php
 
-namespace Equipamento\Entity;
+namespace Sala\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Zend\InputFilter\InputFilter;

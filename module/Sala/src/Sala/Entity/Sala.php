@@ -1,6 +1,6 @@
 <?php
 
-namespace Equipamento\Entity;
+namespace Sala\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Zend\InputFilter\InputFilter;
@@ -34,9 +34,9 @@ class Sala implements InputFilterAwareInterface
     private $nome;
 
     /**
-     * @var \Equipamento\Entity\Local
+     * @var \Sala\Entity\Local
      *
-     * @ORM\ManyToOne(targetEntity="Equipamento\Entity\Local")
+     * @ORM\ManyToOne(targetEntity="Sala\Entity\Local")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="local_idlocal", referencedColumnName="idlocal", nullable=true)
      * })
@@ -80,10 +80,10 @@ class Sala implements InputFilterAwareInterface
     /**
      * Set locallocal
      *
-     * @param \Equipamento\Entity\Local $locallocal
+     * @param \Sala\Entity\Local $locallocal
      * @return Sala
      */
-    public function setLocallocal(\Equipamento\Entity\Local $locallocal = null)
+    public function setLocallocal(\Sala\Entity\Local $locallocal = null)
     {
         $this->locallocal = $locallocal;
     
@@ -93,7 +93,7 @@ class Sala implements InputFilterAwareInterface
     /**
      * Get locallocal
      *
-     * @return \Equipamento\Entity\Local 
+     * @return \Sala\Entity\Local 
      */
     public function getLocallocal()
     {

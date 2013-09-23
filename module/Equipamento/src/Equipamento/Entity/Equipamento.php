@@ -51,9 +51,9 @@ class Equipamento implements InputFilterAwareInterface
     private $tipoequipamentotipoequipamento;
 
     /**
-     * @var \Equipamento\Entity\Sala
+     * @var \Sala\Entity\Sala
      *
-     * @ORM\ManyToOne(targetEntity="Equipamento\Entity\Sala")
+     * @ORM\ManyToOne(targetEntity="Sala\Entity\Sala")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="sala_idsala", referencedColumnName="idsala", nullable=true)
      * })
@@ -153,10 +153,10 @@ class Equipamento implements InputFilterAwareInterface
     /**
      * Set salasala
      *
-     * @param \Equipamento\Entity\Sala $salasala
+     * @param \Sala\Entity\Sala $salasala
      * @return Equipamento
      */
-    public function setSalasala(\Equipamento\Entity\Sala $salasala = null)
+    public function setSalasala(\Sala\Entity\Sala $salasala = null)
     {
         $this->salasala = $salasala;
     
@@ -166,7 +166,7 @@ class Equipamento implements InputFilterAwareInterface
     /**
      * Get salasala
      *
-     * @return \Equipamento\Entity\Sala 
+     * @return \Sala\Entity\Sala 
      */
     public function getSalasala()
     {
