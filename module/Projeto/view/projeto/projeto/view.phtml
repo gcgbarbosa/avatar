@@ -56,11 +56,13 @@
             	$professores_p = $projeto->getProfessorprofessor()->toArray();
             	
             	foreach($professores_p as $p) : ?>
-					<li class="list-group-item"><?php echo $p->getNomeprofessor() ?>
-					<button type="button" class="close" data-toggle="modal" href="#rprofessor<?php echo $p->getIdprofessor()?>">&times;</button>
+					<li class="list-group-item">
+						<span class="glyphicon glyphicon-user"></span> 
+						<?php echo $p->getNomeprofessor() ?>
+						<button type="button" class="close" data-toggle="modal" href="#rprofessor<?php echo $p->getIdprofessor()?>">&times;</button>
 					</li>
 				<?php endforeach ?>
-            	<li class="list-group-item"><a data-toggle="modal" href="#professores" class="btn btn-primary">Adicionar Professor</a></li>
+            	<li class="list-group-item"><a data-toggle="modal" href="#professores" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Adicionar Professor</a></li>
             </ul>
             <!-- List group -->
         </div>
@@ -78,12 +80,13 @@
             	
             	foreach($alunos_p as $a) : ?>
 					<li class="list-group-item">
+						<span class="glyphicon glyphicon-user"></span> 
 						<?php echo $a->getNomealuno() ?>
 						<button type="button" class="close" data-toggle="modal" href="#raluno<?php echo $a->getIdaluno()?>">&times;</button>
 					</li>
 				<?php endforeach ?>
 
-            	<li class="list-group-item"><a data-toggle="modal" href="#alunos" class="btn btn-primary">Adicionar Aluno</a></li>
+            	<li class="list-group-item"><a data-toggle="modal" href="#alunos" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Adicionar Aluno</a></li>
             </ul>
         </div>
     </div>
