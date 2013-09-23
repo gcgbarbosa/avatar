@@ -4,7 +4,7 @@ namespace Professor\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel; 
-use Professor\Form\DepartamentoForm2;
+use Professor\Form\DepartamentoForm;
 use Doctrine\ORM\EntityManager;
 use Professor\Entity\Departamento;
 
@@ -98,32 +98,6 @@ class DepartamentoController extends AbstractActionController
             }
         }
 
-        return array(
-            'id' => $id,
-            'form' => $form,
-        );
-    }
-
-    public function viewAction()
-    {
-        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
-        
-    
-        
-        $departamento = $this->getEntityManager()->find('Professor\Entity\Departamento', $id);
-
-        $form = new DepartamentoForm2();
-        $form->setBindOnValidate(false);
-        $form->bind($departamento);
-        $form->get('view')->setAttribute('label', 'View');
-        
-        $request = $this->getRequest();
-         if ($request->isPost()) {
-                return $this->redirect()->toRoute('departamento');
-            
-        }
-
-       
         return array(
             'id' => $id,
             'form' => $form,
