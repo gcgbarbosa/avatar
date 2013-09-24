@@ -13,6 +13,7 @@ return array(
         'Projeto',
         'Funcionario',
         'Equipamento',
+        'Sala',
     ),
 
     // These are various options for the listeners attached to the ModuleManager
