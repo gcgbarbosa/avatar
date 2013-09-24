@@ -105,6 +105,11 @@ return array(
 					'delete'=> 'guest',
 				),
 
+				'Funcionario\Controller\Frequencia' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+				),
+
 				'Equipamento\Controller\Equipamento' => array(
 					'index'   => 'guest',
 					'add'	=> 'guest',

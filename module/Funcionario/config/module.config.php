@@ -6,7 +6,8 @@ return array(
     // Controllers in this module
     'controllers' => array(
         'invokables' => array(
-            'Funcionario\Controller\Funcionario' => 'Funcionario\Controller\FuncionarioController'
+            'Funcionario\Controller\Funcionario' => 'Funcionario\Controller\FuncionarioController',
+            'Funcionario\Controller\Frequencia' => 'Funcionario\Controller\FrequenciaController'
         ),
     ),
 
@@ -27,8 +28,23 @@ return array(
                     ),
                 ),
             ),
+            'frequencia' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/frequencia[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Funcionario\Controller\Frequencia',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
         ),
-    ),    
+    ),   
+
 
     // View setup for this module
     'view_manager' => array(
