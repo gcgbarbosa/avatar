@@ -104,6 +104,21 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 				),
+
+				'Equipamento\Controller\Equipamento' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+				),
+				
+				'Equipamento\Controller\TipoEquipamento' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+					'view'=> 'guest',
+				),
             )
         )
     )
