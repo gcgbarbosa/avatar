@@ -1,25 +1,71 @@
-<?php
-// module/Album/view/album/album/edit.phtml:
+<div class="panel panel-info">
+	<?php
+	// module/Album/view/album/album/edit.phtml:
+	$title = 'Editar Equipamento';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+		<h1><?php echo $this->escapeHtml($title); ?></h1>
+	</div>
+	<div class="panel-body">
+		<?php
+		$form = $this->form;
+		$form->setAttribute('action', $this->url(
+		    'equipamento',
+		    array(
+		        'action' => 'edit',
+		        'id'     => $this->id,
+		    )
+		));
+		$form->prepare();
 
-$title = 'Edit album';
-$this->headTitle($title);
-?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
+		echo $this->form()->openTag($form);
+		?>
+			<?php echo $this->formHidden($form->get('idequipamento')) ?>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('ntombo'))."\n"?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('ntombo')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('observacao'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('observacao')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('projetoprojeto'))."\n" ?>
+				<div class="col-lg-4">
+					<?php echo $this->formSelect($form->get('projetoprojeto')) ?>
+				</div>
+			</div>
 
-<?php
-$form = $this->form;
-$form->setAttribute('action', $this->url(
-    'album',
-    array(
-        'action' => 'edit',
-        'id'     => $this->id,
-    )
-));
-$form->prepare();
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('tipoequipamentotipoequipamento'))."\n" ?>
+				<div class="col-lg-4">
+					<?php echo $this->formSelect($form->get('tipoequipamentotipoequipamento')) ?>
+				</div>
+			</div>
 
-echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('title'));
-echo $this->formRow($form->get('artist'));
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('salasala'))."\n" ?>
+				<div class="col-lg-4">
+					<?php echo $this->formSelect($form->get('salasala')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+		    	<div class="col-lg-offset-2 col-lg-10">
+					<?php echo $this->formSubmit($form->get('submit')) ?>
+				</div>
+			</div>
+		<?php echo $this->form()->closeTag(); ?>
+	</div>
+</div>
+<script>
+jQuery(function($){
+   $("#datanasc").mask("99/99/9999");
+   $("#telefoneprofessor").mask("(99) 9999-9999");
+});
+</script>
+

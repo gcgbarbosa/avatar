@@ -1,44 +1,70 @@
+<div class="panel panel-success">
 <?php
 // module/Album/view/album/album/add.phtml:
 
-$title = 'Add new album';
+$title = 'Adicionar Equipamento';
 $this->headTitle($title);
 ?>
-
-<h1><?php echo $this->escapeHtml($title); ?></h1>
-
+<div class="panel-heading">
+	<h1><?php echo $this->escapeHtml($title); ?></h1>
+</div>
+<div class="panel-body">
 <?php
 $form = $this->form;
-$form->setAttribute('action', $this->url('album', array('action' => 'add')));
+$form->setAttribute('action', $this->url('equipamento', array('action' => 'add')));
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('title'));
-echo $this->formRow($form->get('artist'));
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
-<<<<<<< HEAD
-=======
-<?php
-// module/Album/view/album/album/add.phtml:
-
-$title = 'Add new album';
-$this->headTitle($title);
 ?>
 
-<h1><?php echo $this->escapeHtml($title); ?></h1>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('ntombo'))."\n"?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('ntombo')) ?>
+	</div>
+</div>
 
-<?php
-$form = $this->form;
-$form->setAttribute('action', $this->url('album', array('action' => 'add')));
-$form->prepare();
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('observacao'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('observacao')) ?>
+	</div>
+</div>
 
-echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('title'));
-echo $this->formRow($form->get('artist'));
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
-=======
->>>>>>> 1abdf408bec88ed7c168df278a08fe578e812f6b
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('tipoequipamentotipoequipamento'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formSelect($form->get('tipoequipamentotipoequipamento')) ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('salasala'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formSelect($form->get('salasala')) ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('projetoprojeto'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formSelect($form->get('projetoprojeto')) ?>
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="col-lg-offset-2 col-lg-10">
+		<?php echo $this->formSubmit($form->get('submit')) ?>
+	</div>
+</div>
+
+<?php echo $this->form()->closeTag(); ?>
+
+</div>
+</div>
+<script>
+jQuery(function($){
+   //$("#datanasc").mask("99/99/9999");
+  // $("#telefoneprofessor").mask("(99) 9999-9999");
+});
+</script>

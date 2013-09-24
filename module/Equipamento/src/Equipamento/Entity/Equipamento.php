@@ -203,7 +203,11 @@ class Equipamento implements InputFilterAwareInterface
      */
     public function getArrayCopy() 
     {
-        return get_object_vars($this);
+        $obj_vars = get_object_vars($this);
+        $obj_vars['tipoequipamentotipoequipamento'] = $obj_vars['tipoequipamentotipoequipamento']->getIdtipoequipamento();
+        $obj_vars['salasala'] = $obj_vars['salasala']->getIdsala();
+        $obj_vars['projetoprojeto'] = $obj_vars['projetoprojeto']->getIdprojeto();
+        return $obj_vars;
     }
 
     /**

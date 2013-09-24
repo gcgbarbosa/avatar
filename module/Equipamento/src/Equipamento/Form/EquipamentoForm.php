@@ -27,7 +27,7 @@ class EquipamentoForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Title',
+                'label' => 'N° Tombo: ',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
@@ -41,7 +41,7 @@ class EquipamentoForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label' => 'Observação: ',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
@@ -83,6 +83,24 @@ class EquipamentoForm extends Form
             ),
         ));
         
+        $this->add(array(
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'salasala',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+                'label'          => 'Sala: ',
+                'object_manager' => $em,
+                'target_class'   => 'Sala\Entity\Sala',
+                'property'       => 'nome',
+                'empty_option'   => '--- Escolha a Sala ---',
+            ),
+        ));
+
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(

@@ -42,7 +42,7 @@ class EquipamentoController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new EquipamentoForm();
+        $form = new EquipamentoForm($this->getEntityManager());
         $form->get('submit')->setAttribute('label', 'Add');
 
         $request = $this->getRequest();
@@ -56,6 +56,16 @@ class EquipamentoController extends AbstractActionController
             if ($form->isValid()) { 
                 $equipamento->populate($form->getData()); 
                 
+                $tipoequipamento = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findOneBy(array('idtipoequipamento' => $equipamento->getTipoequipamentotipoequipamento()));
+                $equipamento->setTipoequipamentotipoequipamento($tipoequipamento);
+
+                $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $equipamento->getSalasala()));
+                $equipamento->setSalasala($sala);
+
+                $projeto = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findOneBy(array('idprojeto' => $equipamento->getProjetoprojeto()));
+                $equipamento->setProjetoprojeto($projeto);
+
+
                 $this->getEntityManager()->persist($equipamento);
                 $this->getEntityManager()->flush();
 
@@ -77,7 +87,7 @@ class EquipamentoController extends AbstractActionController
         
         $equipamento = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
 
-        $form = new EquipamentoForm();
+        $form = new EquipamentoForm($this->getEntityManager());
         $form->setBindOnValidate(false);
         $form->bind($equipamento);
         $form->get('submit')->setAttribute('label', 'Edit');
@@ -90,6 +100,16 @@ class EquipamentoController extends AbstractActionController
             
             if ($form->isValid()) {
                 $form->bindValues();
+
+                $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $form->getData()->getSalasala()));
+                $form->getData()->setSalasala($sala);
+
+                $tipoequipamento = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findOneBy(array('idtipoequipamento' => $form->getData()->getTipoequipamentotipoequipamento()));
+                $form->getData()->setTipoequipamentotipoequipamento($tipoequipamento);
+
+                $projeto = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findOneBy(array('idprojeto' => $form->getData()->getProjetoprojeto()));
+                $form->getData()->setProjetoprojeto($projeto);
+
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
