@@ -1,5 +1,4 @@
 <?php
-
 namespace Sala\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
