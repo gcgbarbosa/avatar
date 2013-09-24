@@ -6,7 +6,8 @@ return array(
     // Controllers in this module
     'controllers' => array(
         'invokables' => array(
-            'Equipamento\Controller\Equipamento' => 'Equipamento\Controller\EquipamentoController'
+            'Equipamento\Controller\Equipamento' => 'Equipamento\Controller\EquipamentoController',
+            'Equipamento\Controller\TipoEquipamento' => 'Equipamento\Controller\TipoEquipamentoController'
         ),
     ),
 
@@ -26,9 +27,25 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
+
+            ),
+            'tipoequipamento' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/tipo-equipamento[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Equipamento\Controller\TipoEquipamento',
+                        'action'     => 'index',
+                    ),
+                ),
+                
             ),
         ),
-    ),    
+    ),     
 
     // View setup for this module
     'view_manager' => array(

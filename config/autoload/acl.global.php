@@ -105,6 +105,7 @@ return array(
 					'delete'=> 'guest',
 				),
 
+
 				'Equipamento\Controller\Equipamento' => array(
 					'index'   => 'guest',
 					'add'	=> 'guest',
@@ -117,8 +118,9 @@ return array(
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
-					'view'=> 'guest',
+				//	'view'=> 'guest',
 				),
+
             )
         )
     )
