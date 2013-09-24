@@ -218,7 +218,8 @@ class ProjetoController extends AbstractActionController
                 $aluno->removeProjetoprojeto($projeto);
                 $this->getEntityManager()->persist($aluno);
                 $this->getEntityManager()->flush();
-            }           
+            }
+            return $this->redirect()->toUrl("/projeto/view/{$id}");    
         }
 
         return array(
