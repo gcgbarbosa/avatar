@@ -103,43 +103,7 @@ class TipoEquipamentoController extends AbstractActionController
             'form' => $form,
         );
     }
-/*
-    public function editAction()
-    {
-        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
-        
-        if (!$id) {
-            return $this->redirect()->toRoute('tipoequipamento', array('action'=>'add'));
-        } 
-        
-        $equipamento = $this->getEntityManager()->find('Equipamento\Entity\TipoEquipamento', $id);
 
-        $form = new TipoEquipamentoForm();
-        $form->setBindOnValidate(false);
-        $form->bind($tipoequipamento);
-        $form->get('submit')->setAttribute('label', 'Edit');
-        
-        $request = $this->getRequest();
-        
-        if ($request->isPost()) {
-        
-            $form->setData($request->getPost());
-            
-            if ($form->isValid()) {
-                $form->bindValues();
-                $this->getEntityManager()->flush();
-
-                // Redirect to list of albums
-                return $this->redirect()->toRoute('tipoequipamento');
-            }
-        }
-
-        return array(
-            'id' => $id,
-            'form' => $form,
-        );
-    }
-*/
     public function deleteAction()
     {
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
@@ -151,9 +115,9 @@ class TipoEquipamentoController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $del = $request->getPost('del', 'No');
+            $del = $request->getPost('del', 'Não');
             
-            if ($del == 'Yes') {
+            if ($del == 'Sim') {
                 $id = (int) $request->getPost('id');
                 $tipoequipamento = $this->getEntityManager()->find('Equipamento\Entity\TipoEquipamento', $id);
                 
