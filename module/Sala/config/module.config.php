@@ -6,7 +6,8 @@ return array(
     // Controllers in this module
     'controllers' => array(
         'invokables' => array(
-            'Sala\Controller\Sala' => 'Sala\Controller\SalaController'
+            'Sala\Controller\Sala' => 'Sala\Controller\SalaController',
+            'Sala\Controller\Local' => 'Sala\Controller\LocalController'
         ),
     ),
 
@@ -23,6 +24,20 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Sala\Controller\Sala',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'local' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/local[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Sala\Controller\Local',
                         'action'     => 'index',
                     ),
                 ),

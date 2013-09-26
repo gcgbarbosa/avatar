@@ -43,7 +43,7 @@ class SalaController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new SalaForm();
+        $form = new SalaForm($this->getEntityManager());
         $form->get('submit')->setAttribute('label', 'Add');
 
         $request = $this->getRequest();
@@ -55,7 +55,10 @@ class SalaController extends AbstractActionController
             $form->setData($request->getPost());
             
             if ($form->isValid()) { 
-                $sala->populate($form->getData()); 
+                $sala->populate($form->getData());
+
+                $local = $this->getEntityManager()->getRepository('Sala\Entity\Local')->findOneBy(array('idlocal' => $sala->getLocallocal()));
+                $sala->setLocallocal($local);
                 
                 $this->getEntityManager()->persist($sala);
                 $this->getEntityManager()->flush();
@@ -78,7 +81,7 @@ class SalaController extends AbstractActionController
         
         $sala = $this->getEntityManager()->find('Sala\Entity\Sala', $id);
 
-        $form = new SalaForm();
+        $form = new SalaForm($this->getEntityManager());
         $form->setBindOnValidate(false);
         $form->bind($sala);
         $form->get('submit')->setAttribute('label', 'Edit');
@@ -91,6 +94,12 @@ class SalaController extends AbstractActionController
             
             if ($form->isValid()) {
                 $form->bindValues();
+
+                $local = $this->getEntityManager()->getRepository('Sala\Entity\Local')->findOneBy(array('idlocal' => $sala->getLocallocal()));
+                $sala->setLocallocal($local);
+                
+                $this->getEntityManager()->persist($sala);
+
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
@@ -115,9 +124,9 @@ class SalaController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $del = $request->getPost('del', 'No');
+            $del = $request->getPost('del', 'Não');
             
-            if ($del == 'Yes') {
+            if ($del == 'Sim') {
                 $id = (int) $request->getPost('id');
                 $sala = $this->getEntityManager()->find('Sala\Entity\Sala', $id);
                 

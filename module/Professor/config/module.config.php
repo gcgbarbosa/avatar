@@ -27,7 +27,6 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
-
             ),
             'departamento' => array(
                 'type'    => 'segment',
@@ -42,7 +41,6 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
-                
             ),
         ),
     ),    

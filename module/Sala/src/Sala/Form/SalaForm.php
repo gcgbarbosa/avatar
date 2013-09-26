@@ -1,33 +1,33 @@
 <?php
-namespace Equipamento\Form;
+namespace Sala\Form;
 
 use Zend\Form\Form;
 
-class EquipamentoForm extends Form
+class SalaForm extends Form
 {
     public function __construct($name = null)
     {
-        parent::__construct('album');
+        parent::__construct('sala');
         
         $this->setAttribute('method', 'post');
         $this->setAttribute('role', 'form');
         $this->setAttribute('class', 'form-horizontal');
         
         $this->add(array(
-            'name' => 'id',
+            'name' => 'idsala',
             'attributes' => array(
                 'type'  => 'hidden',
             ),
         ));
         
         $this->add(array(
-            'name' => 'title',
+            'name' => 'nome',
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Title',
+                'label' => 'Nome da Sala: ',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
@@ -35,13 +35,17 @@ class EquipamentoForm extends Form
         ));
         
         $this->add(array(
-            'name' => 'artist',
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'locallocal',
             'attributes' => array(
-                'type'  => 'text',
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Artist',
+                'label'          => 'Local: ',
+                'object_manager' => $name,
+                'target_class'   => 'Sala\Entity\Local',
+                'property'       => 'nomelocal',
+                'empty_option'   => '--- Local ---',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
@@ -53,7 +57,7 @@ class EquipamentoForm extends Form
             'attributes' => array(
                 'class' => 'btn btn-default',
                 'type'  => 'submit',
-                'value' => 'Go',
+                'value' => 'Salvar',
                 'id' => 'submitbutton',
             ),
         ));

@@ -125,7 +125,34 @@ return array(
 				//	'view'=> 'guest',
 				),
 
-            )
+				'Sala\Controller\Sala' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+				),
+
+				'Sala\Controller\Local' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+				),
+
+				'Sala\Controller\Ocorrencia' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+				),
+
+				'Sala\Controller\ReservaSala' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+				),
+			)
         )
     )
 );

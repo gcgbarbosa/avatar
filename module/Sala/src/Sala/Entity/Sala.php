@@ -42,7 +42,6 @@ class Sala implements InputFilterAwareInterface
      */
     private $locallocal;
 
-
     /**
      * Get idsala
      *
