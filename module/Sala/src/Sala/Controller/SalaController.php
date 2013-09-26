@@ -1,5 +1,4 @@
 <?php
-
 namespace Sala\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -55,11 +54,11 @@ class SalaController extends AbstractActionController
             $form->setData($request->getPost());
             
             if ($form->isValid()) { 
-                $sala->populate($form->getData());
-
+                $sala->populate($form->getData()); 
+                
                 $local = $this->getEntityManager()->getRepository('Sala\Entity\Local')->findOneBy(array('idlocal' => $sala->getLocallocal()));
                 $sala->setLocallocal($local);
-                
+
                 $this->getEntityManager()->persist($sala);
                 $this->getEntityManager()->flush();
 
@@ -95,10 +94,8 @@ class SalaController extends AbstractActionController
             if ($form->isValid()) {
                 $form->bindValues();
 
-                $local = $this->getEntityManager()->getRepository('Sala\Entity\Local')->findOneBy(array('idlocal' => $sala->getLocallocal()));
-                $sala->setLocallocal($local);
-                
-                $this->getEntityManager()->persist($sala);
+                $local = $this->getEntityManager()->getRepository('Sala\Entity\Local')->findOneBy(array('idlocal' => $form->getData()->getLocallocal()));
+                $form->getData()->setLocallocal($local);
 
                 $this->getEntityManager()->flush();
 

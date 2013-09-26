@@ -5,7 +5,7 @@ use Zend\Form\Form;
 
 class SalaForm extends Form
 {
-    public function __construct($name = null)
+    public function __construct($em)
     {
         parent::__construct('sala');
         
@@ -27,7 +27,7 @@ class SalaForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Nome da Sala: ',
+                'label' => 'Nome: ',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
@@ -41,14 +41,14 @@ class SalaForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label'          => 'Local: ',
-                'object_manager' => $name,
-                'target_class'   => 'Sala\Entity\Local',
-                'property'       => 'nomelocal',
-                'empty_option'   => '--- Local ---',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
+                'label'          => 'Setor: ',
+                'object_manager' => $em,
+                'target_class'   => 'Sala\Entity\local',
+                'property'       => 'nomelocal',
+                'empty_option'   => '--- Setor ---',
             ),
         ));
         

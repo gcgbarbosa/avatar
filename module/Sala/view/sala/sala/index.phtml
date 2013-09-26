@@ -23,7 +23,7 @@
             <td><?php echo $this->escapeHtml($sala->getNome());?></td>
             <td><?php echo $this->escapeHtml($sala->getLocallocal()->getNomelocal());?></td>
             <td>
-                <a class="btn btn-info" href="<?php echo $this->url('sala',
+                 <a class="btn btn-info" href="<?php echo $this->url('sala',
                     array('action'=>'edit', 'id' => $sala->getIdsala()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
                 <a class="btn btn-danger" href="<?php echo $this->url('sala',
                     array('action'=>'delete', 'id' => $sala->getIdsala()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>

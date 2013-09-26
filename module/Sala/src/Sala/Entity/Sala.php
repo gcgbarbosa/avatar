@@ -105,8 +105,11 @@ class Sala implements InputFilterAwareInterface
      */
     public function getArrayCopy() 
     {
-        return get_object_vars($this);
+        $obj_vars = get_object_vars($this);
+        $obj_vars['locallocal'] = $obj_vars['locallocal']->getIdLocal();
+        return $obj_vars;
     }
+
 
     /**
      * Populate from an array.
