@@ -23,7 +23,8 @@
             <td><?php echo $this->escapeHtml($local->getNomelocal());?></td>
             
             <td>
-                
+                <a class="btn btn-info" href="<?php echo $this->url('local',
+                    array('action'=>'edit', 'id' => $local->getIdlocal()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
 
                 <a class="btn btn-danger" href="<?php echo $this->url('local',
                     array('action'=>'delete', 'id' => $local->getIdlocal()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
