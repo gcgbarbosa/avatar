@@ -1,0 +1,35 @@
+<div class="panel panel-success">
+	<?php
+	// module/Album/view/album/album/add.phtml:
+	$title = 'Adicionar Local';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+		<h1><?php echo $this->escapeHtml($title); ?></h1>
+	</div>
+	<div class="panel-body">
+		<?php
+		$form = $this->form;
+		$form->setAttribute('action', $this->url('local', array('action' => 'add')));
+		$form->prepare();
+
+		echo $this->form()->openTag($form);
+		?>
+		
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('nomelocal'))."\n"?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('nomelocal')) ?>
+			</div>
+		</div>
+		
+		<div class="form-group">
+	    	<div class="col-lg-offset-2 col-lg-10">
+				<?php echo $this->formSubmit($form->get('submit')) ?>
+			</div>
+		</div>
+		<?php echo $this->form()->closeTag(); ?>
+	</div>
+</div>
+
+
