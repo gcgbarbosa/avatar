@@ -134,9 +134,9 @@ class EquipamentoController extends AbstractActionController
         $request = $this->getRequest();
         
         if ($request->isPost()) {
-            $del = $request->getPost('del', 'No');
+            $del = $request->getPost('del', 'Não');
             
-            if ($del == 'Yes') {
+            if ($del == 'Sim') {
                 $id = (int) $request->getPost('id');
                 $equipamento = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
                 
