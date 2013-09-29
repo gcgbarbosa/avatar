@@ -7,7 +7,9 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Sala\Controller\Sala' => 'Sala\Controller\SalaController',
-            'Sala\Controller\Local' => 'Sala\Controller\LocalController'
+            'Sala\Controller\Local' => 'Sala\Controller\LocalController',
+            'Sala\Controller\ReservaSala' => 'Sala\Controller\ReservaSalaController',
+            'Sala\Controller\Ocorrencia' => 'Sala\Controller\OcorrenciaController'
         ),
     ),
 
@@ -38,6 +40,34 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Sala\Controller\Local',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'ocorrencia' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/ocorrencia[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Sala\Controller\Ocorrencia',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'reservasala' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/reserva-sala[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Sala\Controller\ReservaSala',
                         'action'     => 'index',
                     ),
                 ),
