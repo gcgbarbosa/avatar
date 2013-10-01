@@ -29,6 +29,8 @@
 
 		        <a class="btn btn-danger" href="<?php echo $this->url('professor',
 		            array('action'=>'delete', 'id' => $professor->getIdProfessor()));?>"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+		        <a class="btn btn-primary" href="<?php echo $this->url('professor',
+                    array('action'=>'view', 'id' => $professor->getIdprofessor()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
 		    </td>
 		</tr>
 		<?php endforeach; ?>

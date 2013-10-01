@@ -41,6 +41,21 @@ class ProfessorController extends AbstractActionController
         ));
     }
 
+
+    public function viewAction()
+    {
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('professor');
+        }
+
+        $professor = $this->getEntityManager()->find('Professor\Entity\Professor', $id);
+
+        return new ViewModel(array(
+            'professor' => $professor,
+        ));
+    }
     public function addAction()
     {
         $form = new ProfessorForm($this->getEntityManager());
