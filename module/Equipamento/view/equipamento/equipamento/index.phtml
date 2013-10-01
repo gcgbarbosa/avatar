@@ -1,4 +1,5 @@
 <div class="panel panel-default">
+
     <?php
     // module/Album/view/album/album/index.phtml:
 
@@ -7,11 +8,22 @@
     ?>
     <div class="panel-heading">
         <h1><?php echo $this->escapeHtml($title); ?></h1>
+
     </div>
     <div class="panel-body">
-        <p>
+            <form method="get">
+            <div class="input-group pull-right col-lg-4">
+                <input type="text" class="form-control" id="input-buscar" placeholder="Numero do tombo">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="btn-buscar" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div><!-- /input-group -->
+            </form>
             <a class="btn btn-success" href="<?php echo $this->url('equipamento', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar Equipamento</a>
-        </p>
+
+
+        
+                
 
         <table class="table">
         <thead>
@@ -35,3 +47,16 @@
         </table>
     </div>
 </div>
+
+<script>
+jQuery(function($){
+    $('#btn-buscar').click(function(){
+        id = $('#input-buscar').val();
+        url = '/equipamento';
+        if(id != '' && !isNaN(id) ){
+            url += '/' + id;
+        }
+        $(window.location).attr('href', url);
+    });
+});
+</script>

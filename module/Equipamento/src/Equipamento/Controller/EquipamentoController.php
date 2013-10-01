@@ -35,9 +35,24 @@ class EquipamentoController extends AbstractActionController
 
     public function indexAction()
     {
+        $tombo = (int)$this->getEvent()->getRouteMatch()->getParam('tombo');
+        
+        if (!$tombo) 
+            $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
+        else  
+            $equipamentos = $this->findEquipamentoByTombo($tombo);
+
         return new ViewModel(array(
-            'equipamentos' => $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll() 
+            'equipamentos' => $equipamentos, 
         ));
+    }
+
+    public function findEquipamentoByTombo($tombo)
+    {
+        $query = $this->getEntityManager()->createQuery("SELECT u FROM
+        Equipamento\Entity\Equipamento u WHERE u.ntombo = :tombo");
+        $query->setParameters(array('tombo' => $tombo));
+        return $query->getResult();
     }
 
     public function addAction()

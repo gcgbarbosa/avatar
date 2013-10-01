@@ -17,10 +17,10 @@ return array(
             'equipamento' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/equipamento[/:action][/:id]',
+                    'route'    => '/equipamento[/:action][/:tombo]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id'     => '[0-9]+',
+                        'tombo'     => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'Equipamento\Controller\Equipamento',

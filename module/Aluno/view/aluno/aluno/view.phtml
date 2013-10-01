@@ -51,9 +51,12 @@
             	<?php
             	$projetos = $aluno->getProjetoprojeto()->toArray();
             	
+            	if(!$projetos)
+            		echo "<li class=\"list-group-item\">Nenhum</li>";
+
             	foreach($projetos as $p) : ?>
 					<li class="list-group-item">
-						<span class="glyphicon glyphicon-user"></span> 
+						<span class="glyphicon glyphicon-briefcase"></span> 
 						<?php echo $p->getTitulo() ?>
 					</li>
 				<?php endforeach ?>
