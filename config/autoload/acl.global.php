@@ -72,6 +72,7 @@ return array(
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
+					'view' => 'guest',
 					
 					
 				),

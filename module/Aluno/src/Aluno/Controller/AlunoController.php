@@ -41,6 +41,21 @@ class AlunoController extends AbstractActionController
         ));
     }
 
+    public function viewAction()
+    {
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('aluno');
+        }
+
+        $aluno = $this->getEntityManager()->find('Aluno\Entity\Aluno', $id);
+
+        return new ViewModel(array(
+            'aluno' => $aluno,
+        ));
+    }
+
     public function addAction()
     {
         $form = new AlunoForm();
