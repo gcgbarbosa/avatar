@@ -41,6 +41,27 @@ class DepartamentoController extends AbstractActionController
         ));
     }
 
+    public function viewAction()
+    {
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('departamento');
+        }
+
+        $departamento = $this->getEntityManager()->find('Professor\Entity\Departamento', $id);
+
+        $professores = $departamento->getProfessordepartamento()->toArray();
+        $a_professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+        
+        return array(
+            'id' => $id,
+            'departamento' => $departamento,
+            'professores' => $a_professores,//$this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll(),
+            
+        );
+    }
+
     public function addAction()
     {
         $form = new DepartamentoForm();
