@@ -40,6 +40,15 @@ class Departamento implements InputFilterAwareInterface
      */
     private $descricaodepartamento;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Professor\Entity\Professor", mappedBy="departamentodepartamento", cascade={"persist"})
+     */
+    protected $professordepartamento;
+
+    public function __construct()
+    {
+        $this->professordepartamento = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get iddepartamento
@@ -96,6 +105,17 @@ class Departamento implements InputFilterAwareInterface
     {
         return $this->descricaodepartamento;
     }
+
+    /**
+     * Get professordepartamento
+     *
+     * @return string 
+     */
+    public function getProfessorDepartamento()
+    {
+        return $this->professordepartamento;
+    }
+
     /**
      * Convert the object to an array.
      *
