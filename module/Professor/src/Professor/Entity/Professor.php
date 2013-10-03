@@ -129,12 +129,20 @@ class Professor implements InputFilterAwareInterface
      */
     private $departamentodepartamento;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Projeto\Entity\Projeto", mappedBy="professorcoordenador", cascade={"persist"})
+     */
+    protected $professorCoordProjeto;
+
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->professorprojeto = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->professorCoordProjeto = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -160,6 +168,16 @@ class Professor implements InputFilterAwareInterface
         return $this;
     }
 
+
+    /**
+     * Get professorCoordProjeto
+     *
+     * @return string 
+     */
+        public function getProfessorCoordProjeto()
+        {
+            return $this->professorCoordProjeto;
+        }
     /**
      * Get matriculaprofessor
      *

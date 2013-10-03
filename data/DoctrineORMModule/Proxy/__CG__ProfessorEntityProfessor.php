@@ -57,6 +57,12 @@ class Professor extends \Professor\Entity\Professor implements \Doctrine\ORM\Pro
         return parent::setMatriculaprofessor($matriculaprofessor);
     }
 
+    public function getProfessorCoordProjeto()
+    {
+        $this->__load();
+        return parent::getProfessorCoordProjeto();
+    }
+
     public function getMatriculaprofessor()
     {
         $this->__load();
@@ -241,7 +247,7 @@ class Professor extends \Professor\Entity\Professor implements \Doctrine\ORM\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idprofessor', 'matriculaprofessor', 'nomeprofessor', 'emailprofessor', 'telefoneprofessor', 'areadeatuacao', 'formacao', 'titulacao', 'classe', 'regimedetrabalho', 'tipovinculo', 'datanasc', 'professorprojeto', 'departamentodepartamento');
+        return array('__isInitialized__', 'idprofessor', 'matriculaprofessor', 'nomeprofessor', 'emailprofessor', 'telefoneprofessor', 'areadeatuacao', 'formacao', 'titulacao', 'classe', 'regimedetrabalho', 'tipovinculo', 'datanasc', 'professorprojeto', 'departamentodepartamento', 'professorCoordProjeto');
     }
 
     public function __clone()
