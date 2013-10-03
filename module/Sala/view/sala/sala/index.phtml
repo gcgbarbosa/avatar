@@ -27,6 +27,8 @@
                     array('action'=>'edit', 'id' => $sala->getIdsala()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
                 <a class="btn btn-danger" href="<?php echo $this->url('sala',
                     array('action'=>'delete', 'id' => $sala->getIdsala()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
+                <a class="btn btn-primary" href="<?php echo $this->url('sala',
+                    array('action'=>'view', 'id' => $sala->getIdsala()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
             </td>
         </tr>
         <?php endforeach; ?>

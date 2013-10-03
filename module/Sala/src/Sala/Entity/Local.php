@@ -33,19 +33,9 @@ class Local implements InputFilterAwareInterface
     private $nomelocal;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Sala\Entity\Sala", inversedBy="localsala")
-     * @ORM\JoinTable(name="local_has_sala",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="local_idlocal", referencedColumnName="idlocal", nullable=true)
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="sala_idsala", referencedColumnName="idsala", nullable=true)
-     *   }
-     * )
+     * @ORM\OneToMany(targetEntity="Sala\Entity\Sala", mappedBy="locallocal", cascade={"persist"})
      */
-    private $localsala;
+    protected $localsala;
 
     /**
      * Constructor

@@ -44,6 +44,52 @@ class Sala implements InputFilterAwareInterface
     private $locallocal;
 
     /**
+     * @ORM\OneToMany(targetEntity="Equipamento\Entity\Equipamento", mappedBy="salasala", cascade={"persist"})
+     */
+    protected $salaequipamento;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->salaequipamento = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add salaequipamento
+     *
+     * @param \Equipamento\Entity\Equipamento $salaequipamento
+     * @return Professor
+     */
+    public function addSalaequipamento(\Equipamento\Entity\Equipamento $salaequipamento)
+    {
+        $this->salaequipamento[] = $salaequipamento;
+    
+        return $this;
+    }
+
+    /**
+     * Remove salaequipamento
+     *
+     * @param \Equipamento\Entity\Equipamento $salaequipamento
+     */
+    public function removeSalaequipamento(\Equipamento\Entity\Equipamento $salaequipamento)
+    {
+        $this->salaequipamento->removeElement($salaequipamento);
+    }
+
+    /**
+     * Get salaequipamento
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSalaequipamento()
+    {
+        return $this->salaequipamento;
+    }
+
+    /**
      * Get idsala
      *
      * @return integer 

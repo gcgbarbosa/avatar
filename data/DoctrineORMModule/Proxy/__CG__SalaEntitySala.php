@@ -42,6 +42,24 @@ class Sala extends \Sala\Entity\Sala implements \Doctrine\ORM\Proxy\Proxy
     }
 
     
+    public function addSalaequipamento(\Equipamento\Entity\Equipamento $salaequipamento)
+    {
+        $this->__load();
+        return parent::addSalaequipamento($salaequipamento);
+    }
+
+    public function removeSalaequipamento(\Equipamento\Entity\Equipamento $salaequipamento)
+    {
+        $this->__load();
+        return parent::removeSalaequipamento($salaequipamento);
+    }
+
+    public function getSalaequipamento()
+    {
+        $this->__load();
+        return parent::getSalaequipamento();
+    }
+
     public function getIdsala()
     {
         if ($this->__isInitialized__ === false) {
@@ -103,7 +121,7 @@ class Sala extends \Sala\Entity\Sala implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idsala', 'nome', 'locallocal');
+        return array('__isInitialized__', 'idsala', 'nome', 'locallocal', 'salaequipamento');
     }
 
     public function __clone()

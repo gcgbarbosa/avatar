@@ -132,6 +132,7 @@ return array(
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
+					'view'=> 'guest',
 				),
 
 				'Sala\Controller\Local' => array(
@@ -139,6 +140,7 @@ return array(
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
+					'view'=> 'guest',
 				),
 
 				'Sala\Controller\Ocorrencia' => array(

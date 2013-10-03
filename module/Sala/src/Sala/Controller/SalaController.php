@@ -40,6 +40,21 @@ class SalaController extends AbstractActionController
         ));
     }
 
+    public function viewAction()
+    {
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('sala');
+        }
+
+        $sala = $this->getEntityManager()->find('Sala\Entity\Sala', $id);
+
+        return new ViewModel(array(
+            'sala' => $sala,
+        ));
+    }
+
     public function addAction()
     {
         $form = new SalaForm($this->getEntityManager());
