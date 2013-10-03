@@ -75,6 +75,12 @@ class Departamento extends \Professor\Entity\Departamento implements \Doctrine\O
         return parent::getDescricaodepartamento();
     }
 
+    public function getProfessorDepartamento()
+    {
+        $this->__load();
+        return parent::getProfessorDepartamento();
+    }
+
     public function getArrayCopy()
     {
         $this->__load();
@@ -103,7 +109,7 @@ class Departamento extends \Professor\Entity\Departamento implements \Doctrine\O
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'iddepartamento', 'nomedepartamento', 'descricaodepartamento');
+        return array('__isInitialized__', 'iddepartamento', 'nomedepartamento', 'descricaodepartamento', 'professordepartamento');
     }
 
     public function __clone()
