@@ -1,0 +1,52 @@
+<div class="row">
+    
+    <div class="col-md-6">
+		<div class="panel panel-primary">
+			<?php
+			// module/Album/view/album/album/delete.phtml:
+
+			$title = 'Departamento '. $departamento->getNomedepartamento();
+			$this->headTitle($title);
+			?>
+			<div class="panel-heading">
+					<h1><?php echo $this->escapeHtml($title); ?></h1>
+				</div>
+			<div class="panel-body">
+				<table class="table">
+			    	<tr>
+			    		<td><strong>Nome: </strong></td>
+			    		<td><?php echo $departamento->getNomedepartamento(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Descrição: </strong></td>
+			    		<td><?php echo $departamento->getDescricaodepartamento(); ?></td>
+			    	</tr>
+			    	
+			  	</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Professores</h1>
+            </div>
+            <ul class="list-group">
+            	<?php
+            	$professores_p = $departamento->getProfessordepartamento()->toArray();
+            	
+            	foreach($professores_p as $p) : ?>
+					<li class="list-group-item">
+						<span class="glyphicon glyphicon-user"></span> 
+						<?php echo $p->getNomeprofessor() ?>
+					</li>
+				<?php endforeach ?>
+            	
+            </ul>
+            <!-- List group -->
+        </div>
+    </div>
+
+	
+</div>
