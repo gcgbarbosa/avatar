@@ -63,6 +63,24 @@ class Local extends \Sala\Entity\Local implements \Doctrine\ORM\Proxy\Proxy
         return parent::getNomelocal();
     }
 
+    public function addSalasala(\Sala\Entity\Sala $localsala)
+    {
+        $this->__load();
+        return parent::addSalasala($localsala);
+    }
+
+    public function removeSalasala(\Sala\Entity\Sala $localsala)
+    {
+        $this->__load();
+        return parent::removeSalasala($localsala);
+    }
+
+    public function getSalasala()
+    {
+        $this->__load();
+        return parent::getSalasala();
+    }
+
     public function getArrayCopy()
     {
         $this->__load();
@@ -91,7 +109,7 @@ class Local extends \Sala\Entity\Local implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idlocal', 'nomelocal');
+        return array('__isInitialized__', 'idlocal', 'nomelocal', 'localsala');
     }
 
     public function __clone()

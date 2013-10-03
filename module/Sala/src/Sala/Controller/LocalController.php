@@ -41,6 +41,21 @@ class LocalController extends AbstractActionController
         ));
     }
 
+    public function viewAction()
+    {
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('local');
+        }
+
+        $local = $this->getEntityManager()->find('Sala\Entity\Local', $id);
+
+        return new ViewModel(array(
+            'local' => $local,
+        ));
+    }
+
     public function addAction()
     {
         $form = new LocalForm();

@@ -32,6 +32,29 @@ class Local implements InputFilterAwareInterface
      */
     private $nomelocal;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Sala\Entity\Sala", inversedBy="localsala")
+     * @ORM\JoinTable(name="local_has_sala",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="local_idlocal", referencedColumnName="idlocal", nullable=true)
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="sala_idsala", referencedColumnName="idsala", nullable=true)
+     *   }
+     * )
+     */
+    private $localsala;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->localsala = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 
     /**
      * Get idlocal
@@ -64,6 +87,39 @@ class Local implements InputFilterAwareInterface
     public function getNomelocal()
     {
         return $this->nomelocal;
+    }
+
+    /**
+     * Add localsala
+     *
+     * @param \Sala\Entity\Sala $localsala
+     * @return Professor
+     */
+    public function addSalasala(\Sala\Entity\Sala $localsala)
+    {
+        $this->localsala[] = $localsala;
+    
+        return $this;
+    }
+
+    /**
+     * Remove localsala
+     *
+     * @param \Sala\Entity\Sala $localsala
+     */
+    public function removeSalasala(\Sala\Entity\Sala $localsala)
+    {
+        $this->localsala->removeElement($localsala);
+    }
+
+    /**
+     * Get localsala
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSalasala()
+    {
+        return $this->localsala;
     }
 
     /**
