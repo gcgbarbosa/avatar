@@ -36,13 +36,12 @@
             	$equipamentos = $sala->getSalaequipamento()->toArray();    //deixei igual para rodar.        	
             	if(!$equipamentos)
             		echo "<li class=\"list-group-item\">Nenhum equipamento</li>";
-
             	foreach($equipamentos as $p) : ?>
 					<li class="list-group-item">
 						<tr>
 							<span class="glyphicon glyphicon-briefcase"></span> 
-							<td><?php echo $p->getTipoequipamentotipoequipamento()->getNometipoequipamento() ?></td>
-							<td><?php echo $p->getNtombo() ?></td>
+							<td>Tipo <?php echo $p->getTipoequipamentotipoequipamento()->getNometipoequipamento() ?></td> -
+							<td>Tombo <?php echo $p->getNtombo() ?></td>
 						</tr>
 					</li>
 				<?php endforeach ?>
