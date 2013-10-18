@@ -153,7 +153,7 @@ class Departamento implements InputFilterAwareInterface
 
             $factory = new InputFactory();
 
-
+            /*
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'iddepartamento',
                 'required' => true,
@@ -162,17 +162,17 @@ class Departamento implements InputFilterAwareInterface
                     array('name' => 'StringTrim'),
                 ),
                 'validators' => array(
-                    /*array(
+                    array(
                         'name'    => 'Int',
                         'options' => array(
                             'encoding' => 'UTF-8',
                             'min'      => 1,
                             'max'      => 9,
                         ),
-                    ), */
+                    ), 
                 ),
             )));
-
+            */
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'nomedepartamento',
                 'required' => true,
