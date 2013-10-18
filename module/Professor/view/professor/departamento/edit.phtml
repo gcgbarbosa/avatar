@@ -26,12 +26,14 @@
 				<?php echo $this->formLabel($form->get('nomedepartamento'))."\n"?>
 				<div class="col-lg-10">
 					<?php echo $this->formText($form->get('nomedepartamento')) ?>
+					<?php echo $this->formElementErrors($form->get('nomedepartamento')) ?>
 				</div>
 			</div>
 			<div class="form-group">
 				<?php echo $this->formLabel($form->get('descricaodepartamento'))."\n" ?>
 				<div class="col-lg-10">
 					<?php echo $this->formText($form->get('descricaodepartamento')) ?>
+					<?php echo $this->formElementErrors($form->get('descricaodepartamento')) ?>
 				</div>
 			</div>
 			<div class="form-group">
