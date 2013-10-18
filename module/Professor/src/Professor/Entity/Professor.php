@@ -513,7 +513,7 @@ class Professor implements InputFilterAwareInterface
 
             $factory = new InputFactory();
 
-            /*
+            
 
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'matriculaprofessor',
@@ -523,14 +523,14 @@ class Professor implements InputFilterAwareInterface
                     array('name' => 'StringTrim'),
                 ),
                 'validators' => array(
-                    array(
+                    /*array(
                         'name'    => 'Int',
                         'options' => array(
                             'encoding' => 'UTF-8',
                             'min'      => 1,
                             'max'      => 9,
                         ),
-                    ),
+                    ), */
                 ),
             )));
 
@@ -561,7 +561,7 @@ class Professor implements InputFilterAwareInterface
                     array('name' => 'StringTrim'),
                 ),
                 'validators' => array(
-                    array(
+                    /*array(
                         'name' => 'record_exists',
                         'options' => array(
                             'allow' => Hostname::ALLOW_DNS,
@@ -569,7 +569,7 @@ class Professor implements InputFilterAwareInterface
                             'domain' => TRUE, 
                             'mx' => FALSE
                         ),
-                    ),
+                    ),*/
                 ),
             )));
 
@@ -717,8 +717,8 @@ class Professor implements InputFilterAwareInterface
                     array(
                         'name' => 'date',
                         'options' => array(
-                            'locale' => 'en', 
-                            'format' => 'Y'),
+                            'locale' => 'pt_BR', 
+                            'format' => 'd/m/Y'),
                         ),
                     ),
             )));
@@ -727,11 +727,11 @@ class Professor implements InputFilterAwareInterface
                 'name'     => 'departamentodepartamento',
                 'required' => true,
                 'filters'  => array(
-                    array('name' => 'Int'),
+                    //array('name' => 'Int'),
                 ),
             )));
 
-            */
+            
 
             $this->inputFilter = $inputFilter;        
         }
