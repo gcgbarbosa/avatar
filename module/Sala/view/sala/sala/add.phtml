@@ -20,12 +20,14 @@
 			<?php echo $this->formLabel($form->get('nome'))."\n"?>
 			<div class="col-lg-10">
 				<?php echo $this->formText($form->get('nome')) ?>
+				<?php echo $this->formElementErrors($form->get('nome')) ?>
 			</div>
 		</div>
 		<div class="form-group">
 			<?php echo $this->formLabel($form->get('locallocal'))."\n" ?>
 			<div class="col-lg-10">
 				<?php echo $this->formSelect($form->get('locallocal')) ?>
+				<?php echo $this->formElementErrors($form->get('locallocal')) ?>
 			</div>
 		</div>
 		<div class="form-group">

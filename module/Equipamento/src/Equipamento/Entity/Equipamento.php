@@ -239,6 +239,69 @@ class Equipamento implements InputFilterAwareInterface
             $factory = new InputFactory();
 
 
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'ntombo',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 255,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'observacao',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 255,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'tipoequipamentotipoequipamento',
+                'required' => true,
+                'filters'  => array(
+                    //array('name' => 'Int'),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'salasala',
+                'required' => true,
+                'filters'  => array(
+                    //array('name' => 'Int'),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'projetoprojeto',
+                'required' => true,
+                'filters'  => array(
+                    //array('name' => 'Int'),
+                ),
+            )));
+
+
             $this->inputFilter = $inputFilter;        
         }
 

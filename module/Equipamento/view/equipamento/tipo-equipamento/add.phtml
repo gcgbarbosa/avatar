@@ -21,6 +21,7 @@ echo $this->form()->openTag($form);
 	<?php echo $this->formLabel($form->get('nometipoequipamento'))."\n"?>
 	<div class="col-lg-10">
 		<?php echo $this->formText($form->get('nometipoequipamento')) ?>
+		<?php echo $this->formElementErrors($form->get('nometipoequipamento')) ?>
 	</div>
 </div>
 
@@ -28,6 +29,7 @@ echo $this->form()->openTag($form);
 	<?php echo $this->formLabel($form->get('descricaotipoequipamento'))."\n" ?>
 	<div class="col-lg-10">
 		<?php echo $this->formText($form->get('descricaotipoequipamento')) ?>
+		<?php echo $this->formElementErrors($form->get('descricaotipoequipamento')) ?>
 	</div>
 </div>
 

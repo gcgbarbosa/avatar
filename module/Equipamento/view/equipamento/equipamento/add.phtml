@@ -21,6 +21,7 @@ echo $this->form()->openTag($form);
 	<?php echo $this->formLabel($form->get('ntombo'))."\n"?>
 	<div class="col-lg-10">
 		<?php echo $this->formText($form->get('ntombo')) ?>
+		<?php echo $this->formElementErrors($form->get('ntombo')) ?>
 	</div>
 </div>
 
@@ -28,6 +29,7 @@ echo $this->form()->openTag($form);
 	<?php echo $this->formLabel($form->get('observacao'))."\n" ?>
 	<div class="col-lg-10">
 		<?php echo $this->formText($form->get('observacao')) ?>
+		<?php echo $this->formElementErrors($form->get('observacao')) ?>
 	</div>
 </div>
 
@@ -35,6 +37,7 @@ echo $this->form()->openTag($form);
 	<?php echo $this->formLabel($form->get('tipoequipamentotipoequipamento'))."\n" ?>
 	<div class="col-lg-10">
 		<?php echo $this->formSelect($form->get('tipoequipamentotipoequipamento')) ?>
+		<?php echo $this->formElementErrors($form->get('tipoequipamentotipoequipamento')) ?>
 	</div>
 </div>
 
@@ -42,6 +45,7 @@ echo $this->form()->openTag($form);
 	<?php echo $this->formLabel($form->get('salasala'))."\n" ?>
 	<div class="col-lg-10">
 		<?php echo $this->formSelect($form->get('salasala')) ?>
+		<?php echo $this->formElementErrors($form->get('salasala')) ?>
 	</div>
 </div>
 
@@ -49,6 +53,7 @@ echo $this->form()->openTag($form);
 	<?php echo $this->formLabel($form->get('projetoprojeto'))."\n" ?>
 	<div class="col-lg-10">
 		<?php echo $this->formSelect($form->get('projetoprojeto')) ?>
+		<?php echo $this->formElementErrors($form->get('projetoprojeto')) ?>
 	</div>
 </div>
 
