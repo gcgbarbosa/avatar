@@ -206,6 +206,82 @@ class Funcionario implements InputFilterAwareInterface
             $factory = new InputFactory();
 
 
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'nomefuncionario',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 255,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'emailfuncionario',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    /*array(
+                        'name' => 'record_exists',
+                        'options' => array(
+                            'allow' => Hostname::ALLOW_DNS,
+                            'deep' => FALSE, 
+                            'domain' => TRUE, 
+                            'mx' => FALSE
+                        ),
+                    ),*/
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'telefonefuncionario',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 14,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'datanasc',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'date',
+                        'options' => array(
+                            'locale' => 'pt_BR', 
+                            'format' => 'd/m/Y'),
+                        ),
+                    ),
+            )));
+
+
             $this->inputFilter = $inputFilter;        
         }
 
