@@ -26,42 +26,49 @@
 				<?php echo $this->formLabel($form->get('titulo'))."\n"?>
 				<div class="col-lg-10">
 					<?php echo $this->formText($form->get('titulo')) ?>
+					<?php echo $this->formElementErrors($form->get('titulo')) ?>
 				</div>
 			</div>
 			<div class="form-group">
 				<?php echo $this->formLabel($form->get('objetivogeral'))."\n" ?>
 				<div class="col-lg-10">
 					<?php echo $this->formText($form->get('objetivogeral')) ?>
+					<?php echo $this->formElementErrors($form->get('objetivogeral')) ?>
 				</div>
 			</div>
 			<div class="form-group">
 				<?php echo $this->formLabel($form->get('professorcoordenador'))."\n" ?>
 				<div class="col-lg-10">
 					<?php echo $this->formSelect($form->get('professorcoordenador')) ?>
+					<?php echo $this->formElementErrors($form->get('professorcoordenador')) ?>
 				</div>
 			</div>
 			<div class="form-group">
 				<?php echo $this->formLabel($form->get('objetivoespec'))."\n" ?>
 				<div class="col-lg-10">
 					<?php echo $this->formText($form->get('objetivoespec')) ?>
+					<?php echo $this->formElementErrors($form->get('objetivoespec')) ?>
 				</div>
 			</div>
 			<div class="form-group">
 				<?php echo $this->formLabel($form->get('resultadosesperados'))."\n" ?>
 				<div class="col-lg-10">
 					<?php echo $this->formText($form->get('resultadosesperados')) ?>
+					<?php echo $this->formElementErrors($form->get('resultadosesperados')) ?>
 				</div>
 			</div>
 			<div class="form-group">
 				<?php echo $this->formLabel($form->get('finaciamento'))."\n" ?>
 				<div class="col-lg-4">
 					<?php echo $this->formRadio($form->get('finaciamento')) ?>
+					<?php echo $this->formElementErrors($form->get('finaciamento')) ?>
 				</div>
 			</div>
 			<div class="form-group">
 				<?php echo $this->formLabel($form->get('fontefinaciamento'))."\n" ?>
 				<div class="col-lg-10">
 					<?php echo $this->formText($form->get('fontefinaciamento')) ?>
+					<?php echo $this->formElementErrors($form->get('fontefinaciamento')) ?>
 				</div>
 			</div>
 			<div class="form-group">

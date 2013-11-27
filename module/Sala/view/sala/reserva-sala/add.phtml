@@ -1,0 +1,70 @@
+<div class="panel panel-success">
+	<?php
+	// module/Album/view/album/album/add.phtml:
+	$title = 'Reservar Sala';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+		<h1><?php echo $this->escapeHtml($title); ?></h1>
+	</div>
+	<div class="panel-body">
+		<?php
+		$form = $this->form;
+		$form->setAttribute('action', $this->url('reservasala', array('action' => 'add')));
+		$form->prepare();
+
+		echo $this->form()->openTag($form);
+		?>
+		
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('objetivo'))."\n"?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('objetivo')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('datainicio'))."\n"?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('datainicio')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('datafim'))."\n"?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('datafim')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('salasala'))."\n"?>
+			<div class="col-lg-10">
+				<?php echo $this->formSelect($form->get('salasala')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('professorprofessor'))."\n"?>
+			<div class="col-lg-10">
+				<?php echo $this->formSelect($form->get('professorprofessor')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('funcionariofuncionario'))."\n"?>
+			<div class="col-lg-10">
+				<?php echo $this->formSelect($form->get('funcionariofuncionario')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+	    	<div class="col-lg-offset-2 col-lg-10">
+				<?php echo $this->formSubmit($form->get('submit')) ?>
+			</div>
+		</div>
+		<?php echo $this->form()->closeTag(); ?>
+	</div>
+</div>
+<script>
+jQuery(function($){
+   $("#datainicio").mask("99/99/9999");
+   $("#datafim").mask("99/99/9999");
+});
+</script>
+
+
