@@ -26,6 +26,7 @@
 				<?php echo $this->formLabel($form->get('ntombo'))."\n"?>
 				<div class="col-lg-10">
 					<?php echo $this->formText($form->get('ntombo')) ?>
+					<?php echo $this->formElementErrors($form->get('ntombo')) ?>
 				</div>
 			</div>
 			<div class="form-group">
@@ -38,6 +39,7 @@
 				<?php echo $this->formLabel($form->get('projetoprojeto'))."\n" ?>
 				<div class="col-lg-4">
 					<?php echo $this->formSelect($form->get('projetoprojeto')) ?>
+					<?php echo $this->formElementErrors($form->get('projetoprojeto')) ?>
 				</div>
 			</div>
 
@@ -45,6 +47,7 @@
 				<?php echo $this->formLabel($form->get('tipoequipamentotipoequipamento'))."\n" ?>
 				<div class="col-lg-4">
 					<?php echo $this->formSelect($form->get('tipoequipamentotipoequipamento')) ?>
+					<?php echo $this->formElementErrors($form->get('tipoequipamentotipoequipamento')) ?>
 				</div>
 			</div>
 
@@ -52,6 +55,7 @@
 				<?php echo $this->formLabel($form->get('salasala'))."\n" ?>
 				<div class="col-lg-4">
 					<?php echo $this->formSelect($form->get('salasala')) ?>
+					<?php echo $this->formElementErrors($form->get('salasala')) ?>
 				</div>
 			</div>
 			<div class="form-group">
