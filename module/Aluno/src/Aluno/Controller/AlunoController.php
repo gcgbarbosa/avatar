@@ -92,11 +92,8 @@ class AlunoController extends AbstractActionController
         //$aluno->setDatanasc(new \DateTime());
 
         $form = new AlunoForm();
-        
         $form->setBindOnValidate(false);
-
         $form->bind($aluno);
-
         $form->get('submit')->setAttribute('label', 'Edit');
 
         
@@ -108,18 +105,19 @@ class AlunoController extends AbstractActionController
             
             if ($form->isValid()) {
                 $form->bindValues();
-
-              //  if($form->getData()->getBolsista() == "true")
-             //       $form->getData()->setBolsista(true);
-              //  else if($form->getData()->getBolsista() == "false")
-              //      $form->getData()->setBolsista(false);
+               // $this->getEntityManager()->flush();
+                if($form->getData()->getBolsista() == "true")
+                    $form->getData()->setBolsista(true);
+                else if($form->getData()->getBolsista() == "false")
+                   $form->getData()->setBolsista(false);
 
                 //SET DATA NASC
-               // $data = explode("/", $form->getData()->getDataNasc());
-              //  $data = $data['0']."-".$data['1']."-". $data['2'];
-              //  $form->getData()->setDatanasc(new \DateTime($data));
+                $data = explode("/", $form->getData()->getDataNasc());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $form->getData()->setDatanasc(new \DateTime($data));
                 //END SET DATA NASC
-
+                $this->getEntityManager()->persist($aluno);
+                $this->getEntityManager()->flush();
                 // Redirect to list of albums
                 return $this->redirect()->toRoute('aluno');
             }
