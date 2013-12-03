@@ -23,7 +23,16 @@
 			    	</tr>
 			    	<tr>
 			    		<td><strong>Tipo De Equipamento</strong></td>
-			    		<td><?php echo $equipamento->getTipoequipamentotipoequipamento()->getNometipoequipamento(); ?></td>
+			    		<td><?php echo $equipamento->getTipoequipamentotipoequipamento()->getNometipoequipamento(); ?>
+			    			<td>
+			    	</tr>
+			 		<tr>
+			    		<td><strong>Sala</strong></td>
+			    		<td><?php echo $equipamento->getSalasala()->getNome(); ?></td>
+			    	</tr>
+			 		<tr>
+			    		<td><strong>Projeto</strong></td>
+			    		<td><?php echo $equipamento->getProjetoprojeto()->getTitulo(); ?></td>
 			    	</tr>
 			  	</table>
 			</div>
