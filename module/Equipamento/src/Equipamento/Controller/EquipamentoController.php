@@ -40,13 +40,28 @@ class EquipamentoController extends AbstractActionController
         if (!$id) 
             $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
         else  
-            $equipamentos = $this->findEquipamentoByTombo($id);
+            //$equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
+           $equipamentos = $this->findEquipamentoByTombo($id);
 
         return new ViewModel(array(
             'equipamentos' => $equipamentos, 
         ));
     }
 
+    public function viewAction()
+    {
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('equipamento');
+        }
+
+        $equipamento = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
+
+        return new ViewModel(array(
+            'equipamento' => $equipamento,
+        ));
+    }
     public function findEquipamentoByTombo($tombo)
     {
         $query = $this->getEntityManager()->createQuery("SELECT u FROM
