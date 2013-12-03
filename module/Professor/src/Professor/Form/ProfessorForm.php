@@ -30,7 +30,7 @@ class ProfessorForm extends Form
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
-                'label' => 'Matricula do professor: ',
+                'label' => 'Matrícula do professor: ',
             ),
         ));
         
@@ -134,7 +134,7 @@ class ProfessorForm extends Form
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
-                'label' => 'Titualação: ',
+                'label' => 'Titulação: ',
             ),
         ));
 
@@ -162,7 +162,7 @@ class ProfessorForm extends Form
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
-                'label' => 'Regime de Trablho: ',
+                'label' => 'Regime de Trabalho: ',
             ),
         ));
 
@@ -176,7 +176,7 @@ class ProfessorForm extends Form
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
-                'label' => 'Tipo de vinculo: ',
+                'label' => 'Tipo de Vínculo: ',
             ),
         ));
 
@@ -191,7 +191,7 @@ class ProfessorForm extends Form
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
-                'label' => 'Data de nascimento: ',
+                'label' => 'Data de Nascimento: ',
             ),
         ));
         

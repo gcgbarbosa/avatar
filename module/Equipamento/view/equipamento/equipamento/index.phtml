@@ -41,6 +41,8 @@
 
                 <a class="btn btn-danger" href="<?php echo $this->url('equipamento',
                     array('action'=>'delete', 'id' => $equipamento->getIdequipamento()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
+                <a class="btn btn-primary" href="<?php echo $this->url('equipamento',
+                    array('action'=>'view', 'id' => $equipamento->getIdequipamento()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
             </td>
         </tr>
         <?php endforeach; ?>

@@ -41,7 +41,7 @@ class FuncionarioForm extends Form
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Email: ',
+                'label' => 'E-mail: ',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),

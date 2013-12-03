@@ -70,7 +70,7 @@ class AlunoForm extends Form
                 'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Matricula: ',
+                'label' => 'Matrícula: ',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
