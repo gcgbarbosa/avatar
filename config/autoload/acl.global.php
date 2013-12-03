@@ -105,6 +105,7 @@ return array(
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
+					'view'=> 'guest',
 				),
 
 				'Funcionario\Controller\Frequencia' => array(
@@ -117,6 +118,7 @@ return array(
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
+					'view'=> 'guest',
 				),
 				
 				'Equipamento\Controller\TipoEquipamento' => array(
@@ -124,7 +126,7 @@ return array(
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
-				//	'view'=> 'guest',
+					'view'=> 'guest',
 				),
 
 				'Sala\Controller\Sala' => array(

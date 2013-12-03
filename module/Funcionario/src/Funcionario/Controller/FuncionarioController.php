@@ -41,6 +41,21 @@ class FuncionarioController extends AbstractActionController
         ));
     }
 
+    public function viewAction()
+    {
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('funcionario');
+        }
+
+        $funcionario = $this->getEntityManager()->find('Funcionario\Entity\Funcionario', $id);
+
+        return new ViewModel(array(
+            'funcionario' => $funcionario,
+        ));
+    }
+
     public function addAction()
     {
         $form = new FuncionarioForm();
