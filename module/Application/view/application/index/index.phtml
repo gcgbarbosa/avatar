@@ -15,8 +15,7 @@ foreach($message as $k=>$m):
     </h3>
     <form method="GET" action="<?php echo $this->url('home') . 'busca.php' ?>">
     <fieldset>
-   <label for="consulta">Buscar:</label>
-   <input type="text" id="consulta" name="consulta" maxlength="255" />
+   <input type="text" id="consulta" name="consulta" maxlength="255" placeholder="Buscar" />
    <input type="submit" value="OK" />
    </fieldset>
    </form>
