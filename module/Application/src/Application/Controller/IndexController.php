@@ -45,4 +45,13 @@ class IndexController extends AbstractActionController
 
         ));
     }
+
+    public function findEquipamentoByTombo($name)
+    {
+        $query = $this->getEntityManager()->createQuery("SELECT u FROM
+        Aluno\Entity\Aluno u WHERE u.nomealuno = :name");
+        $query->setParameters(array('name' => $name));
+        return $query->getResult();
+    }
+
 }

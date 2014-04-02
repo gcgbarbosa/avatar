@@ -1,5 +1,4 @@
 <?php
-
 namespace Aluno\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -43,7 +42,7 @@ class AlunoController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new AlunoForm();
+        $form = new AlunoForm($this->getEntityManager());
         $form->get('submit')->setAttribute('label', 'Add');
 
         $request = $this->getRequest();
@@ -57,6 +56,9 @@ class AlunoController extends AbstractActionController
             
             if ($form->isValid()) {
                 $aluno->populate($form->getData());
+
+                $curso = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findOneBy(array('idcurso' => $aluno->getCursoAluno()));
+                $aluno->setCursoAluno($curso);
     
                 //SET DATA NASC
                 $data = explode("/", $aluno->getDataNasc());
@@ -91,7 +93,7 @@ class AlunoController extends AbstractActionController
         $aluno = $this->getEntityManager()->find('Aluno\Entity\Aluno', $id);
         //$aluno->setDatanasc(new \DateTime());
 
-        $form = new AlunoForm();
+        $form = new AlunoForm($this->getEntityManager());
         $form->setBindOnValidate(false);
         $form->bind($aluno);
         $form->get('submit')->setAttribute('label', 'Edit');
@@ -105,6 +107,10 @@ class AlunoController extends AbstractActionController
             
             if ($form->isValid()) {
                 $form->bindValues();
+
+                $curso = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findOneBy(array('idcurso' => $aluno->getCursoAluno()));
+                $aluno->setCursoAluno($curso);
+
                // $this->getEntityManager()->flush();
                 if($form->getData()->getBolsista() == "true")
                     $form->getData()->setBolsista(true);

@@ -5,7 +5,7 @@ use Zend\Form\Form;
 
 class AlunoForm extends Form
 {
-    public function __construct($name = null)
+    public function __construct($em)
     {
         parent::__construct('aluno');
         
@@ -74,6 +74,24 @@ class AlunoForm extends Form
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
+            ),
+        ));
+
+        $this->add(array(
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'cursoAluno',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+                'label'          => 'Curso: ',
+                'object_manager' => $em,
+                'target_class'   => 'Curso\Entity\Curso',
+                'property'       => 'nomeCurso',
+                'empty_option'   => '--- Curso ---',
             ),
         ));
 

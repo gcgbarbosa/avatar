@@ -52,6 +52,7 @@ return array(
 					'index'   => 'guest',
 					'postar'  => 'guest',
 					'comentar'  => 'guest',
+					'buscar'  => 'guest',
 				),
 
 				'Application\Controller\Postar' => array(
@@ -158,6 +159,15 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 				),
+
+				'Curso\Controller\Curso' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+					'view'=> 'guest',
+				),
+
 			)
         )
     )

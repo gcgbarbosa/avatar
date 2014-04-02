@@ -1,0 +1,32 @@
+<div class="row">
+    
+    <div class="col-md-7">
+		<div class="panel panel-primary">
+			<?php
+			// module/Album/view/album/album/delete.phtml:
+
+			$title = 'Curso '. $curso->getNomeCurso();
+			$this->headTitle($title);
+			?>
+			<div class="panel-heading">
+					<h1><?php echo $this->escapeHtml($title); ?></h1>
+				</div>
+			<div class="panel-body">
+				<table class="table">
+			    	<tr>
+			    		<td><strong>Id</strong></td>
+			    		<td><?php echo $curso->getIdcurso(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Curso</strong></td>
+			    		<td><?php echo $curso->getNomeCurso(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Departamento</strong></td>
+			    		<td><?php echo $curso->getDepartamentoCurso()->getNomedepartamento(); ?></td>
+			    	</tr>
+			    </table>
+			</div>
+		</div>
+	</div>
+</div>

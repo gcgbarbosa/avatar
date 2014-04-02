@@ -9,17 +9,20 @@ foreach($message as $k=>$m):
     </div>
 <?php endforeach; ?>
 
-
 <div class="jumbotron">
-    <p><strong>Avatar - Gerenciamento do Centro de Pesquisa e Desenvolvimento de Software</strong></p>
-    Desenvolvedores:
-    <ul>
-        <li>Chico Brandão (ProgUESB)</li>
-        <li>George Barbosa (ohackgb)</li>
-        <li>Juracy Bertoldo (juracyjr)</li>
-        <li>Francisco Yokoyama (SadaoYokoyama)</li>
-    </ul>
+    <h3>
+        Bem vindo ao Avatar, Sistema de Gerenciamento de Recursos do CPDS.
+    </h3>
+    <form method="GET" action="<?php echo $this->url('home') . 'busca.php' ?>">
+    <fieldset>
+   <label for="consulta">Buscar:</label>
+   <input type="text" id="consulta" name="consulta" maxlength="255" />
+   <input type="submit" value="OK" />
+   </fieldset>
+   </form>
 </div>
+
+
 
 <div class="row">
     <div class="col-md-3">

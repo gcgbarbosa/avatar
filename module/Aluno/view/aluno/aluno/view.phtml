@@ -4,7 +4,7 @@
 		<div class="panel panel-primary">
 			<?php
 			// module/Album/view/album/album/delete.phtml:
-
+				
 			$title = 'Aluno '. $aluno->getNomealuno();
 			$this->headTitle($title);
 			?>
@@ -28,6 +28,10 @@
 			    	<tr>
 			    		<td><strong>Matrícula</strong></td>
 			    		<td><?php echo $aluno->getMatriculaaluno(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Curso</strong></td>
+			    		<td><?php echo $aluno->getCursoAluno()->getNomeCurso(); ?></td>
 			    	</tr>
 			    	<tr>
 			    		<td><strong>Bolsista</strong></td>

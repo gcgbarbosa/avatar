@@ -56,6 +56,16 @@ class Aluno implements InputFilterAwareInterface
     private $matriculaaluno;
 
     /**
+     * @var \Curso\Entity\Curso
+     *
+     * @ORM\ManyToOne(targetEntity="Curso\Entity\Curso")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cursoAluno", referencedColumnName="idcurso", nullable=true)
+     * })
+     */
+    private $cursoAluno;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="bolsista", type="boolean", precision=0, scale=0, nullable=false, unique=false)
@@ -110,7 +120,7 @@ class Aluno implements InputFilterAwareInterface
      */
     public function setNomealuno($nomealuno)
     {
-        $this->nomealuno = $nomealuno;
+        $this->nomealuno = utf8_decode($nomealuno);
     
         return $this;
     }
@@ -192,6 +202,29 @@ class Aluno implements InputFilterAwareInterface
     public function getMatriculaaluno()
     {
         return $this->matriculaaluno;
+    }
+
+    /**
+     * Set cursoAluno
+     *
+     * @param \Curso\Entity\Curso $cursoAluno
+     * @return Aluno
+     */
+    public function setCursoAluno(\Curso\Entity\Curso $cursoAluno = null)
+    {
+        $this->cursoAluno = $cursoAluno;
+    
+        return $this;
+    }
+
+    /**
+     * Get cursoAluno
+     *
+     * @return \Curso\Entity\Curso 
+     */
+    public function getCursoAluno()
+    {
+        return $this->cursoAluno;
     }
 
     /**
@@ -283,6 +316,7 @@ class Aluno implements InputFilterAwareInterface
         $obj_vars = get_object_vars($this);
         $obj_vars['datanasc'] = $obj_vars['datanasc']->format('d/m/Y');
         $obj_vars['bolsista'] = $obj_vars['bolsista'] == true ? "true" : "false";
+        $obj_vars['cursoAluno'] = $obj_vars['cursoAluno']->getIdcurso();
         return $obj_vars;
     }
 

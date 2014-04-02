@@ -20,8 +20,8 @@
         </tr>
         <?php foreach ($projetos as $projeto) : ?>
         <tr>
-            <td><?php echo $this->escapeHtml($projeto->getTitulo());?></td>
-            <td><?php echo $this->escapeHtml($projeto->getObjetivogeral());?></td>
+            <td><?php echo substr($this->escapeHtml($projeto->getTitulo()), 0, 20);?></td>
+            <td><?php echo substr($this->escapeHtml($projeto->getObjetivogeral()), 0, 75);?></td>
             <td>
                 <a class="btn btn-info" href="<?php echo $this->url('projeto',
                     array('action'=>'edit', 'id' => $projeto->getIdprojeto()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
