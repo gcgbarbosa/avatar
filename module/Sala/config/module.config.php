@@ -78,7 +78,8 @@ return array(
     // View setup for this module
     'view_manager' => array(
         'template_path_stack' => array(
-            'sala' => __DIR__ . '/../view',
+            'sala/local/index' => __DIR__ . '/../view',
+            'sala/sala/index' => __DIR__ . '/../view',
         ),
     ),
 

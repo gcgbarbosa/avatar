@@ -29,4 +29,29 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="col-md-5">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Alunos deste curso</h1>
+            </div>
+            <ul class="list-group">
+            	<?php
+            	$alunos = $curso->getCursocurso()->toArray();    //deixei igual para rodar.        	
+            	if(!$alunos)
+            		echo "<li class=\"list-group-item\">Nenhum aluno</li>";
+
+            	foreach($alunos as $a) : ?>
+					<li class="list-group-item">
+						<span class="glyphicon glyphicon-briefcase"></span> 
+						<?php echo $a->getNomealuno() ?>
+					</li>
+				<?php endforeach ?>
+            </ul>
+            <!-- List group -->
+        </div>
+    </div>
+
 </div>
+
+

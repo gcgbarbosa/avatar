@@ -62,6 +62,7 @@ class EquipamentoController extends AbstractActionController
             'equipamento' => $equipamento,
         ));
     }
+
     public function findEquipamentoByTombo($tombo)
     {
         $query = $this->getEntityManager()->createQuery("SELECT u FROM

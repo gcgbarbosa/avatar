@@ -44,6 +44,52 @@ class Curso implements InputFilterAwareInterface
     private $departamentoCurso;
 
     /**
+     * @ORM\OneToMany(targetEntity="Aluno\Entity\Aluno", mappedBy="cursoAluno", cascade={"persist"})
+     */
+    protected $cursocurso;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cursocurso = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add cursocurso
+     *
+     * @param \Aluno\Entity\Aluno $cursocurso
+     * @return Professor
+     */
+    public function addCursocurso(\Aluno\Entity\Aluno $cursocurso)
+    {
+        $this->cursocurso[] = $cursocurso;
+    
+        return $this;
+    }
+
+    /**
+     * Remove cursocurso
+     *
+     * @param \Aluno\Entity\Aluno $cursocurso
+     */
+    public function removeCursocurso(\Aluno\Entity\Aluno $cursocurso)
+    {
+        $this->cursocurso->removeElement($cursocurso);
+    }
+
+    /**
+     * Get cursocurso
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCursocurso()
+    {
+        return $this->cursocurso;
+    }
+
+    /**
      * Get idcurso
      *
      * @return integer 
