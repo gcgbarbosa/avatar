@@ -66,7 +66,7 @@ class EquipamentoController extends AbstractActionController
     public function findEquipamentoByTombo($tombo)
     {
         $query = $this->getEntityManager()->createQuery("SELECT u FROM
-        Equipamento\Entity\Equipamento u WHERE u.ntombo = :tombo");
+        Equipamento\Entity\Equipamento u WHERE u.ntombo LIKE :tombo");
         $query->setParameters(array('tombo' => $tombo));
         return $query->getResult();
     }

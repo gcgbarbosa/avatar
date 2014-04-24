@@ -70,6 +70,25 @@ class Equipamento implements InputFilterAwareInterface
      */
     private $projetoprojeto;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Equipamento\Entity\Tombo", mappedBy="equipamentoequipamento", cascade={"persist"})
+     */
+    protected $tomboequipamento;
+
+    public function __construct()
+    {
+        $this->tomboequipamento = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get professordepartamento
+     *
+     * @return string 
+     */
+    public function getTomboequipamento()
+    {
+        return $this->tomboequipamento;
+    }
 
     /**
      * Get idequipamento

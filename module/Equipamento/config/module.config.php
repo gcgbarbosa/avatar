@@ -7,7 +7,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Equipamento\Controller\Equipamento' => 'Equipamento\Controller\EquipamentoController',
-            'Equipamento\Controller\TipoEquipamento' => 'Equipamento\Controller\TipoEquipamentoController'
+            'Equipamento\Controller\TipoEquipamento' => 'Equipamento\Controller\TipoEquipamentoController',
+            'Equipamento\Controller\Tombo' => 'Equipamento\Controller\TomboController'
         ),
     ),
 
@@ -39,6 +40,21 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Equipamento\Controller\TipoEquipamento',
+                        'action'     => 'index',
+                    ),
+                ),
+                
+            ),
+            'tombo' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/tombo[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Equipamento\Controller\Tombo',
                         'action'     => 'index',
                     ),
                 ),

@@ -80,6 +80,8 @@ return array(
         'template_path_stack' => array(
             'sala/local/index' => __DIR__ . '/../view',
             'sala/sala/index' => __DIR__ . '/../view',
+            'sala/reserva-sala/index' => __DIR__ . '/../view',
+            'sala/ocorrencia/index' => __DIR__ . '/../view',
         ),
     ),
 
@@ -98,6 +100,5 @@ return array(
             ),
         ),
     ),
-
 );
 

@@ -42,6 +42,24 @@ class Curso extends \Curso\Entity\Curso implements \Doctrine\ORM\Proxy\Proxy
     }
 
     
+    public function addCursocurso(\Aluno\Entity\Aluno $cursocurso)
+    {
+        $this->__load();
+        return parent::addCursocurso($cursocurso);
+    }
+
+    public function removeCursocurso(\Aluno\Entity\Aluno $cursocurso)
+    {
+        $this->__load();
+        return parent::removeCursocurso($cursocurso);
+    }
+
+    public function getCursocurso()
+    {
+        $this->__load();
+        return parent::getCursocurso();
+    }
+
     public function getIdcurso()
     {
         if ($this->__isInitialized__ === false) {
@@ -103,7 +121,7 @@ class Curso extends \Curso\Entity\Curso implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idcurso', 'nomeCurso', 'departamentoCurso');
+        return array('__isInitialized__', 'idcurso', 'nomeCurso', 'departamentoCurso', 'cursocurso');
     }
 
     public function __clone()
