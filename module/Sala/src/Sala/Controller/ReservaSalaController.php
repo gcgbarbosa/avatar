@@ -46,7 +46,7 @@ class ReservaSalaController extends AbstractActionController
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('reserva-sala');
+            return $this->redirect()->toRoute('reservasala');
         }
 
         $reservaSala = $this->getEntityManager()->find('Sala\Entity\ReservaSala', $id);
@@ -58,7 +58,7 @@ class ReservaSalaController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new ReservaSalaForm();
+        $form = new ReservaSalaForm($this->getEntityManager());
         $form->get('submit')->setAttribute('label', 'Add');
 
         $request = $this->getRequest();
@@ -70,13 +70,28 @@ class ReservaSalaController extends AbstractActionController
             $form->setData($request->getPost());
             
             if ($form->isValid()) { 
-                $reservaSala->populate($form->getData()); 
+                $reservaSala->populate($form->getData());
+
+                $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $reservaSala->getSalaReserva()));
+                $reservaSala->setSalaReserva($sala);
+
+                $funcionario = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findOneBy(array('idfuncionario' => $reservaSala->getFuncionarioReserva()));
+                $reservaSala->setFuncionarioReserva($funcionario);
+
+                $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $reservaSala->getProfessorReserva()));
+                $reservaSala->setProfessorReserva($professor);
+
+                //SET DATA 
+                $data = explode("/", $reservaSala->getDataReserva());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $reservaSala->setDataReserva(new \DateTime($data));
+                //END SET DATA 
                 
                 $this->getEntityManager()->persist($reservaSala);
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('reservaSala'); 
+                return $this->redirect()->toRoute('reservasala'); 
             }
         }
 
@@ -88,12 +103,11 @@ class ReservaSalaController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('reservaSala', array('action'=>'add'));
+            return $this->redirect()->toRoute('reservasala', array('action'=>'add'));
         } 
         
         $reservaSala = $this->getEntityManager()->find('Sala\Entity\ReservaSala', $id);
-
-        $form = new ReservaSalaForm();
+        $form = new ReservaSalaForm($this->getEntityManager());
         $form->setBindOnValidate(false);
         $form->bind($reservaSala);
         $form->get('submit')->setAttribute('label', 'Edit');
@@ -106,10 +120,27 @@ class ReservaSalaController extends AbstractActionController
             
             if ($form->isValid()) {
                 $form->bindValues();
+
+                $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $reservaSala->getSalaReserva()));
+                $reservaSala->setSalaReserva($sala);
+
+                $funcionario = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findOneBy(array('idfuncionario' => $reservaSala->getFuncionarioReserva()));
+                $reservaSala->setFuncionarioReserva($funcionario);
+
+                $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $reservaSala->getProfessorReserva()));
+                $reservaSala->setProfessorReserva($professor);
+
+                //SET DATA 
+                $data = explode("/", $reservaSala->getDataReserva());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $reservaSala->setDataReserva(new \DateTime($data));
+                //END SET DATA 
+
+                $this->getEntityManager()->persist($reservaSala);
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums
-                return $this->redirect()->toRoute('reservaSala');
+                return $this->redirect()->toRoute('reservasala');
             }
         }
 
@@ -124,7 +155,7 @@ class ReservaSalaController extends AbstractActionController
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('reservaSala');
+            return $this->redirect()->toRoute('reservasala');
         }
 
         $request = $this->getRequest();
@@ -142,7 +173,7 @@ class ReservaSalaController extends AbstractActionController
                 }
             }
 
-            return $this->redirect()->toRoute('reservaSala');
+            return $this->redirect()->toRoute('reservasala');
         }
 
         return array(

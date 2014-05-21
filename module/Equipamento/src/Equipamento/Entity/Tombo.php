@@ -41,29 +41,41 @@ class Tombo implements InputFilterAwareInterface
      *   @ORM\JoinColumn(name="id_equipamento", referencedColumnName="idEquipamento", nullable=true)
      * })
      */
-    private $equipamentoequipamento;
+    private $tomboequipamento;
 
     /**
-     * Set equipamentoequipamento
+     * Set tomboequipamento
      *
-     * @param \Equipamento\Entity\Equipamento $equipamentoequipamento
+     * @param \Equipamento\Entity\Equipamento $tomboequipamento
      * @return Tombo
      */
-    public function setEquipamentoequipamento(\Equipamento\Entity\Equipamento $equipamentoequipamento = null)
+    public function setTomboequipamento(\Equipamento\Entity\Equipamento $tomboequipamento = null)
     {
-        $this->equipamentoequipamento = $equipamentoequipamento;
+        $this->tomboequipamento = $tomboequipamento;
     
         return $this;
     }
 
     /**
-     * Get equipamentoequipamento
+     * Get tomboequipamento
      *
      * @return \Equipamento\Entity\Equipamento 
      */
-    public function getEquipamentoequipamento()
+    public function getTomboequipamento()
     {
-        return $this->equipamentoequipamento;
+        return $this->tomboequipamento;
+    }
+
+    /**
+     * Convert the object to an array.
+     *
+     * @return array
+     */
+    public function getArrayCopy() 
+    {
+        $obj_vars = get_object_vars($this);
+        $obj_vars['tomboequipamento'] = $obj_vars['tomboequipamento']->getIdProfessor();
+        return $obj_vars;
     }
 
     /**
@@ -97,18 +109,6 @@ class Tombo implements InputFilterAwareInterface
     public function getNumeroTombo()
     {
         return $this->numeroTombo;
-    }
-
-    /**
-     * Convert the object to an array.
-     *
-     * @return array
-     */
-    public function getArrayCopy() 
-    {
-        $obj_vars = get_object_vars($this);
-        $obj_vars['equipamentoequipamento'] = $obj_vars['equipamentoequipamento']->getIdequipamento();
-        return $obj_vars;
     }
 
     /**
@@ -156,14 +156,6 @@ class Tombo implements InputFilterAwareInterface
                             'max'      => 7,
                         ),
                     ),
-                ),
-            )));
-
-            $inputFilter->add($factory->createInput(array(
-                'name'     => 'equipamentoequipamento',
-                'required' => true,
-                'filters'  => array(
-                    //array('name' => 'Int'),
                 ),
             )));
 

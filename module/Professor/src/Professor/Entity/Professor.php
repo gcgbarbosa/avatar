@@ -174,10 +174,11 @@ class Professor implements InputFilterAwareInterface
      *
      * @return string 
      */
-        public function getProfessorCoordProjeto()
-        {
-            return $this->professorCoordProjeto;
-        }
+    public function getProfessorCoordProjeto()
+    {
+        return $this->professorCoordProjeto;
+    }
+    
     /**
      * Get matriculaprofessor
      *

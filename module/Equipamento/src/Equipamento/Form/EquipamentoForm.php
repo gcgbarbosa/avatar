@@ -25,6 +25,7 @@ class EquipamentoForm extends Form
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
+                'id'    => 'ntombo'
             ),
             'options' => array(
                 'label' => 'N° Tombo: ',

@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Ocorrências';
+    $this->headTitle($title);
+    ?>
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <p>
+            <a class="btn btn-success" href="<?php echo $this->url('ocorrencia', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar nova Ocorrência</a>
+        </p>
+
+        <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Sala da Reserva</th>
+            <th>Observação</th>
+            <th>Funcionário</th>
+            <th>&nbsp;</th>
+        </tr>
+        <?php foreach ($ocorrencias as $ocorrencia) : ?>
+        <tr>
+            <th><?php echo $this->escapeHtml($ocorrencia->getIdOcorrencia());?></th>
+            <td><?php echo $this->escapeHtml($ocorrencia->getReservaSalaOcorrencia()->getSalaReserva()->getNome());?></td>
+            <td><?php echo $this->escapeHtml($ocorrencia->getObservacao());?></td>
+            <td><?php echo $this->escapeHtml($ocorrencia->getFuncionarioOcorrencia()->getNomefuncionario());?></td>
+            <td>
+                 <a class="btn btn-info" href="<?php echo $this->url('ocorrencia',
+                    array('action'=>'edit', 'id' => $ocorrencia->getIdOcorrencia()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                <a class="btn btn-danger" href="<?php echo $this->url('ocorrencia',
+                    array('action'=>'delete', 'id' => $ocorrencia->getIdOcorrencia()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
+                <a class="btn btn-primary" href="<?php echo $this->url('ocorrencia',
+                    array('action'=>'view', 'id' => $ocorrencia->getIdOcorrencia()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </table>
+    </div>
+</div>
+

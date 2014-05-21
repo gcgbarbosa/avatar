@@ -2,26 +2,26 @@
 	<?php
 	// module/Album/view/album/album/delete.phtml:
 
-	$title = 'Deletar Frequência';
+	$title = 'Deletar Ocorrência';
 	$this->headTitle($title);
 	?>
 	<div class="panel-heading">
 			<h1><?php echo $this->escapeHtml($title); ?></h1>
 		</div>
 	<div class="panel-body">
-		<h2>Tem certeza que deseja deletar a frequência do dia 
-		    '<?php echo $this->escapeHtml($frequencia->getDataFrequencia()); ?>' do funcionário
-		    '<?php echo $this->escapeHtml($frequencia->getFuncionariofuncionario()->getNomefuncionario()); ?>'?
+		<h2>Tem certeza que deseja deletar a ocorrência 
+		    '<?php echo $this->escapeHtml($ocorrencia->getObservacao()); ?>' da sala 
+		    '<?php echo $this->escapeHtml($ocorrencia->getReservaSalaOcorrencia()->getSalaReserva()->getNome()); ?>'?
 		</h2>
 		<?php
-		$url = $this->url('frequencia', array(
+		$url = $this->url('ocorrencia', array(
 		    'action' => 'delete',
 		    'id'     => $this->id,
 		));
 		?>
 		<form action="<?php echo $url; ?>" method="post">
 		<div>
-		    <input type="hidden" name="id" value="<?php echo (int) $frequencia->getIdfrequencia(); ?>" />
+		    <input type="hidden" name="id" value="<?php echo (int) $ocorrencia->getIdOcorrencia(); ?>" />
 		    <input class="btn btn-default" type="submit" name="del" value="Sim" />
 		    <input class="btn btn-default" type="submit" name="del" value="Não" />
 		</div>

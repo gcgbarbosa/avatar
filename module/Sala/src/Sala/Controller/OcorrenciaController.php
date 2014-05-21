@@ -7,6 +7,8 @@ use Zend\View\Model\ViewModel;
 use Sala\Form\LocalForm;
 use Doctrine\ORM\EntityManager;
 use Sala\Entity\Local;
+use Sala\Form\OcorrenciaForm;
+use Sala\Entity\Ocorrencia;
 
 class OcorrenciaController extends AbstractActionController
 {
@@ -58,7 +60,7 @@ class OcorrenciaController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new OcorrenciaForm();
+        $form = new OcorrenciaForm($this->getEntityManager());
         $form->get('submit')->setAttribute('label', 'Add');
 
         $request = $this->getRequest();
@@ -70,7 +72,13 @@ class OcorrenciaController extends AbstractActionController
             $form->setData($request->getPost());
             
             if ($form->isValid()) { 
-                $ocorrencia->populate($form->getData()); 
+                $ocorrencia->populate($form->getData());
+
+                $reservaSala = $this->getEntityManager()->getRepository('Sala\Entity\ReservaSala')->findOneBy(array('idreservaSala' => $ocorrencia->getReservaSalaOcorrencia()));
+                $ocorrencia->setReservaSalaOcorrencia($reservaSala);
+
+                $funcionario = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findOneBy(array('idfuncionario' => $ocorrencia->getFuncionarioOcorrencia()));
+                $ocorrencia->setFuncionarioOcorrencia($funcionario);
                 
                 $this->getEntityManager()->persist($ocorrencia);
                 $this->getEntityManager()->flush();
@@ -93,7 +101,7 @@ class OcorrenciaController extends AbstractActionController
         
         $ocorrencia = $this->getEntityManager()->find('Sala\Entity\Ocorrencia', $id);
 
-        $form = new OcorrenciaForm();
+        $form = new OcorrenciaForm($this->getEntityManager());
         $form->setBindOnValidate(false);
         $form->bind($ocorrencia);
         $form->get('submit')->setAttribute('label', 'Edit');
@@ -106,6 +114,14 @@ class OcorrenciaController extends AbstractActionController
             
             if ($form->isValid()) {
                 $form->bindValues();
+
+                $reservaSala = $this->getEntityManager()->getRepository('Sala\Entity\ReservaSala')->findOneBy(array('idreservaSala' => $ocorrencia->getReservaSalaOcorrencia()));
+                $ocorrencia->setReservaSalaOcorrencia($reservaSala);
+
+                $funcionario = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findOneBy(array('idfuncionario' => $ocorrencia->getFuncionarioOcorrencia()));
+                $ocorrencia->setFuncionarioOcorrencia($funcionario);
+
+                $this->getEntityManager()->persist($ocorrencia);
                 $this->getEntityManager()->flush();
 
                 // Redirect to list of albums

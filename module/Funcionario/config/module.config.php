@@ -49,7 +49,8 @@ return array(
     // View setup for this module
     'view_manager' => array(
         'template_path_stack' => array(
-            'funcionario' => __DIR__ . '/../view',
+            'funcionario/funcionario/index' => __DIR__ . '/../view',
+            'funcionario/frequencia/index' => __DIR__ . '/../view'
         ),
     ),
 

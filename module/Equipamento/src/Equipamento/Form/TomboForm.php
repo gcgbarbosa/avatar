@@ -51,5 +51,15 @@ class TomboForm extends Form
                 ),
             ),
         ));
+
+        $this->add(array(
+            'name' => 'submit',
+            'attributes' => array(
+                'class' => 'btn btn-default',
+                'type'  => 'submit',
+                'value' => 'Salvar',
+                'id' => 'submitbutton',
+            ),
+        ));
     }
 }

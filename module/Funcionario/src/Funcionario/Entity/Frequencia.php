@@ -28,16 +28,16 @@ class Frequencia implements InputFilterAwareInterface
     private $idfrequencia;
 
     /**
-     * @var \DateTime
+     * @var \string
      *
-     * @ORM\Column(name="horarioEntrada", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="horarioEntrada", type="string", length=5, precision=0, scale=0, nullable=false, unique=false)
      */
     private $horarioentrada;
 
     /**
-     * @var \DateTime
+     * @var \string
      *
-     * @ORM\Column(name="horarioSaida", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="horarioSaida", type="string", length=5, precision=0, scale=0, nullable=false, unique=false)
      */
     private $horariosaida;
 
@@ -51,6 +51,12 @@ class Frequencia implements InputFilterAwareInterface
      */
     private $funcionariofuncionario;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dataFrequencia", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $dataFrequencia;
 
     /**
      * Get idfrequencia
@@ -65,7 +71,7 @@ class Frequencia implements InputFilterAwareInterface
     /**
      * Set horarioentrada
      *
-     * @param \DateTime $horarioentrada
+     * @param string $horarioentrada
      * @return Frequencia
      */
     public function setHorarioentrada($horarioentrada)
@@ -78,7 +84,7 @@ class Frequencia implements InputFilterAwareInterface
     /**
      * Get horarioentrada
      *
-     * @return \DateTime 
+     * @return string 
      */
     public function getHorarioentrada()
     {
@@ -88,7 +94,7 @@ class Frequencia implements InputFilterAwareInterface
     /**
      * Set horariosaida
      *
-     * @param \DateTime $horariosaida
+     * @param string $horariosaida
      * @return Frequencia
      */
     public function setHorariosaida($horariosaida)
@@ -101,7 +107,7 @@ class Frequencia implements InputFilterAwareInterface
     /**
      * Get horariosaida
      *
-     * @return \DateTime 
+     * @return string 
      */
     public function getHorariosaida()
     {
@@ -132,6 +138,29 @@ class Frequencia implements InputFilterAwareInterface
     }
 
     /**
+     * Set dataFrequencia
+     *
+     * @param \DateTime $dataFrequencia
+     * @return Frequencia
+     */
+    public function setDataFrequencia($dataFrequencia)
+    {
+        $this->dataFrequencia = $dataFrequencia;
+    
+        return $this;
+    }
+
+    /**
+     * Get dataFrequencia
+     *
+     * @return \DateTime 
+     */
+    public function getDataFrequencia()
+    {
+        return $this->dataFrequencia;
+    }
+
+    /**
      * Convert the object to an array.
      *
      * @return array
@@ -139,6 +168,7 @@ class Frequencia implements InputFilterAwareInterface
     public function getArrayCopy() 
     {
         $obj_vars = get_object_vars($this);
+        $obj_vars['dataFrequencia'] = $obj_vars['dataFrequencia']->format('d/m/Y');
         return $obj_vars;
     }
 
@@ -169,6 +199,68 @@ class Frequencia implements InputFilterAwareInterface
 
             $factory = new InputFactory();
 
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'horarioEntrada',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 5,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'horarioSaida',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 5,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'funcionariofuncionario',
+                'required' => true,
+                'filters'  => array(
+                    //array('name' => 'Int'),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'dataFrequencia',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'date',
+                        'options' => array(
+                            'locale' => 'pt_BR', 
+                            'format' => 'd/m/Y'),
+                        ),
+                    ),
+            )));
 
             $this->inputFilter = $inputFilter;        
         }

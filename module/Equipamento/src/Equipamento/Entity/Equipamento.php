@@ -29,7 +29,7 @@ class Equipamento implements InputFilterAwareInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="nTombo", type="string", length=15, precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="nTombo", type="string", length=7, precision=0, scale=0, nullable=false, unique=false)
      */
     private $ntombo;
 
@@ -71,23 +71,51 @@ class Equipamento implements InputFilterAwareInterface
     private $projetoprojeto;
 
     /**
-     * @ORM\OneToMany(targetEntity="Equipamento\Entity\Tombo", mappedBy="equipamentoequipamento", cascade={"persist"})
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="Equipamento\Entity\Tombo", mappedBy="tomboequipamento", cascade={"persist"})
      */
-    protected $tomboequipamento;
+    private $tombotombo;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->tomboequipamento = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tombotombo = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Get professordepartamento
+     * Add tombotombo
+     *
+     * @param \Equipamento\Entity\Tombo $tombotombo
+     * @return Equipamento
+     */
+    public function addTombotombo(\Equipamento\Entity\Tombo $tombotombo)
+    {
+        $this->tombotombo[] = $tombotombo;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tombotombo
+     *
+     * @param \Equipamento\Entity\Tombo $tombotombo
+     */
+    public function removeTombotombo(\Equipamento\Entity\Tombo $tombotombo)
+    {
+        $this->tombotombo->removeElement($tombotombo);
+    }
+
+    /**
+     * Get tombotombo
      *
      * @return string 
      */
-    public function getTomboequipamento()
+    public function getTombotombo()
     {
-        return $this->tomboequipamento;
+        return $this->tombotombo;
     }
 
     /**

@@ -6,6 +6,7 @@ use Zend\View\Model\ViewModel;
 use Equipamento\Form\EquipamentoForm;
 use Doctrine\ORM\EntityManager;
 use Equipamento\Entity\Equipamento;
+use Equipamento\Entity\Tombo;
 
 class EquipamentoController extends AbstractActionController
 {
@@ -42,7 +43,6 @@ class EquipamentoController extends AbstractActionController
         else  
             //$equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
            $equipamentos = $this->findEquipamentoByTombo($id);
-
         return new ViewModel(array(
             'equipamentos' => $equipamentos, 
         ));
@@ -58,15 +58,53 @@ class EquipamentoController extends AbstractActionController
 
         $equipamento = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
 
-        return new ViewModel(array(
+        $equipamentos = $equipamento->getTombotombo()->toArray();
+        $a_tombos = $this->getEntityManager()->getRepository('Equipamento\Entity\Tombo')->findAll();
+        foreach($a_tombos as $k=>$a_p){
+            foreach($equipamentos as $p){
+                if($a_p == $p)
+                    unset($a_tombos[$k]);
+            }
+        }
+
+        $request = $this->getRequest();
+        
+        if ($request->isPost()) {
+            $post = $request->getPost();
+
+            if(isset($post->tombo_a)){
+
+                $tombo = new Tombo();
+                $tombo->setNumeroTombo($post->tombo_a);
+                $tombo->setTomboequipamento($equipamento);
+                $equipamento->addTombotombo($tombo);
+                $this->getEntityManager()->persist($equipamento);
+                $this->getEntityManager()->flush();
+            }
+
+            if(isset($post->tombo_r)){
+                $tombo = $this->getEntityManager()->find('Equipamento\Entity\Tombo', $post->tombo_r);
+                $equipamento->removeTombotombo($tombo);
+                $this->getEntityManager()->remove($tombo);
+                $this->getEntityManager()->persist($equipamento);
+                $this->getEntityManager()->flush();
+            }
+            return $this->redirect()->toUrl("/equipamento/view/{$id}");    
+        }
+
+        return array(
+            'id' => $id,
             'equipamento' => $equipamento,
-        ));
+            'tombos' => $a_tombos,
+        );
     }
 
     public function findEquipamentoByTombo($tombo)
     {
         $query = $this->getEntityManager()->createQuery("SELECT u FROM
-        Equipamento\Entity\Equipamento u WHERE u.ntombo LIKE :tombo");
+        Equipamento\Entity\Equipamento u WHERE u.nTombo = :tombo");
+        $query = $this->getEntityManager()->createQuery("SELECT a FROM
+        Equipamento\Entity\Tombo a WHERE a.numeroTombo = :tombo");
         $query->setParameters(array('tombo' => $tombo));
         return $query->getResult();
     }
@@ -170,7 +208,12 @@ class EquipamentoController extends AbstractActionController
             if ($del == 'Sim') {
                 $id = (int) $request->getPost('id');
                 $equipamento = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
-                
+                $equipamentos = $equipamento->getTombotombo()->toArray();
+                foreach($equipamentos as $e) {
+                    $tombo = $this->getEntityManager()->find('Equipamento\Entity\Tombo', $e->getIdTombo());
+                    $equipamento->removeTombotombo($tombo);
+                    $this->getEntityManager()->remove($tombo);
+                }
                 if ($equipamento) {
                     $this->getEntityManager()->remove($equipamento);
                     $this->getEntityManager()->flush();

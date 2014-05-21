@@ -1,34 +1,33 @@
 <?php
-namespace Funcionario\Form;
+namespace Sala\Form;
 
 use Zend\Form\Form;
 
-class FrequenciaForm extends Form
+class OcorrenciaForm extends Form
 {
     public function __construct($em)
     {
-        parent::__construct('frequencia');
+        parent::__construct('ocorrencia');
         
         $this->setAttribute('method', 'post');
         $this->setAttribute('role', 'form');
         $this->setAttribute('class', 'form-horizontal');
         
         $this->add(array(
-            'name' => 'idfrequencia',
+            'name' => 'idOcorrencia',
             'attributes' => array(
                 'type'  => 'hidden',
             ),
         ));
         
         $this->add(array(
-            'name' => 'horarioentrada',
+            'name' => 'observacao',
             'attributes' => array(
-                'class' => 'form-control',
                 'type'  => 'text',
-                'id' => 'horarioentrada'
+                'class' => 'form-control',
             ),
             'options' => array(
-                'label' => 'Hora de Entrada: ',
+                'label' => 'Observação: ',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
@@ -36,23 +35,26 @@ class FrequenciaForm extends Form
         ));
         
         $this->add(array(
-            'name' => 'horariosaida',
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'reservaSalaOcorrencia',
             'attributes' => array(
                 'class' => 'form-control',
-                'type'  => 'text',
-                'id' => 'horariosaida'
             ),
             'options' => array(
-                'label' => 'Hora de Saída: ',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
+                'label'          => 'Reserva: ',
+                'object_manager' => $em,
+                'target_class'   => 'Sala\Entity\ReservaSala',
+                'property'       => 'idreservaSala',
+                'empty_option'   => '--- Reserva ---',
             ),
         ));
 
         $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
-            'name' => 'funcionariofuncionario',
+            'name' => 'funcionarioOcorrencia',
             'attributes' => array(
                 'class' => 'form-control',
             ),
@@ -64,25 +66,10 @@ class FrequenciaForm extends Form
                 'object_manager' => $em,
                 'target_class'   => 'Funcionario\Entity\Funcionario',
                 'property'       => 'nomefuncionario',
-                'empty_option'   => '--- Funcionário ---',
+                'empty_option'   => '--- Funcionario ---',
             ),
         ));
-
-        $this->add(array(
-            'name' => 'dataFrequencia',
-            'attributes' => array(
-                'type'  => 'Zend\Form\Element\DateTime',
-                'class' => 'form-control',
-                'id' => 'dataFrequencia'
-            ),
-            'options' => array(
-                'label' => 'Dia: ',
-                'label_attributes' => array(
-                    'class'  => 'col-lg-2 control-label'
-                ),
-            ),
-        ));
-
+        
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(

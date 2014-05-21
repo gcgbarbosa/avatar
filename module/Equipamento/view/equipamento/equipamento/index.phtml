@@ -3,7 +3,7 @@
     <?php
     // module/Album/view/album/album/index.phtml:
 
-    $title = 'Equipamento';
+    $title = 'Equipamentos';
     $this->headTitle($title);
     ?>
     <div class="panel-heading">
@@ -20,11 +20,7 @@
             </div><!-- /input-group -->
             </form>
             <a class="btn btn-success" href="<?php echo $this->url('equipamento', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar Equipamento</a>
-
-
         
-                
-
         <table class="table">
         <thead>
             <th>N° Tombo</th>
@@ -49,7 +45,11 @@
         </table>
     </div>
 </div>
-
+<script>
+jQuery(function($){
+   $("#input-buscar").mask("999.999");
+});
+</script>
 <script>
 jQuery(function($){
     $('#btn-buscar').click(function(){

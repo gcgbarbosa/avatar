@@ -175,7 +175,6 @@ class ProjetoController extends AbstractActionController
                     unset($a_professores[$k]);
             }
         }
-
         $alunos = $projeto->getAlunoaluno()->toArray();
         $a_alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
         foreach($a_alunos as $k=>$a_a){

@@ -130,6 +130,14 @@ return array(
 					'view'=> 'guest',
 				),
 
+				'Equipamento\Controller\Tombo' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+					'view'=> 'guest',
+				),
+
 				'Sala\Controller\Sala' => array(
 					'index'   => 'guest',
 					'add'	=> 'guest',

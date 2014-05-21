@@ -1,0 +1,37 @@
+<div class="row">
+    
+    <div class="col-md-7">
+		<div class="panel panel-primary">
+			<?php
+			// module/Album/view/album/album/delete.phtml:
+
+			$title = 'Ocorrência '. $ocorrencia->getIdOcorrencia();
+			$this->headTitle($title);
+			?>
+			<div class="panel-heading">
+					<h1><?php echo $this->escapeHtml($title); ?></h1>
+				</div>
+			<div class="panel-body">
+				<table class="table">
+			    	<tr>
+			    		<td><strong>Id</strong></td>
+			    		<td><?php echo $ocorrencia->getIdOcorrencia(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Observação</strong></td>
+			    		<td><?php echo $ocorrencia->getObservacao(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Sala</strong></td>
+			    		<td><?php echo $ocorrencia->getSalaOcorrencia()->getNome(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Observação</strong></td>
+			    		<td><?php echo $ocorrencia->getFuncionarioOcorrencia()->getNomefuncionario(); ?></td>
+			    	</tr>
+			    </table>
+			</div>
+		</div>
+	</div>
+
+</div>
