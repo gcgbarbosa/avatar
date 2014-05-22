@@ -169,6 +169,7 @@ class Frequencia implements InputFilterAwareInterface
     {
         $obj_vars = get_object_vars($this);
         $obj_vars['dataFrequencia'] = $obj_vars['dataFrequencia']->format('d/m/Y');
+        $obj_vars['funcionariofuncionario'] = $obj_vars['funcionariofuncionario']->getIdfuncionario();
         return $obj_vars;
     }
 

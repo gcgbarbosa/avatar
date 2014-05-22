@@ -112,6 +112,9 @@ return array(
 				'Funcionario\Controller\Frequencia' => array(
 					'index'   => 'guest',
 					'add'	=> 'guest',
+					'edit'  => 'guest',
+					'delete' => 'guest',
+					'view'  => 'guest',
 				),
 
 				'Equipamento\Controller\Equipamento' => array(
@@ -159,6 +162,7 @@ return array(
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
+					'view'=> 'guest',
 				),
 
 				'Sala\Controller\ReservaSala' => array(
@@ -166,6 +170,7 @@ return array(
 					'add'	=> 'guest',
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
+					'view'=> 'guest',
 				),
 
 				'Curso\Controller\Curso' => array(

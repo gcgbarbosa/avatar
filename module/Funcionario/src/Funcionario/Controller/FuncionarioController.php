@@ -68,7 +68,7 @@ class FuncionarioController extends AbstractActionController
             
             $form->setInputFilter($funcionario->getInputFilter());
             $form->setData($request->getPost());
-            
+            var_dump($form->isValid());exit;
             if ($form->isValid()) { 
                 $funcionario->populate($form->getData()); 
                 //SET DATA NASC

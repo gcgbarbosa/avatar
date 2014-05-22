@@ -21,8 +21,8 @@
         </thead>
         <?php foreach ($tipoequipamentos as $tipoequipamento) : ?>
         <tr>
-            <td><?php echo $this->escapeHtml($tipoequipamento->getNometipoequipamento());?></td>
-            <td><?php echo $this->escapeHtml($tipoequipamento->getDescricaotipoequipamento());?></td>
+            <td><?php echo substr($this->escapeHtml($tipoequipamento->getNometipoequipamento()), 0, 20);?></td>
+            <td><?php echo substr($this->escapeHtml($tipoequipamento->getDescricaotipoequipamento()), 0, 75);?></td>
             <td>
                 <a class="btn btn-info" href="<?php echo $this->url('tipoequipamento',
                     array('action'=>'edit', 'id' => $tipoequipamento->getIdtipoequipamento()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>

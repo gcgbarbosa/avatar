@@ -60,16 +60,17 @@ class FrequenciaController extends AbstractActionController
     {
         $form = new FrequenciaForm($this->getEntityManager());
         $form->get('submit')->setAttribute('label', 'Add');
-
         $request = $this->getRequest();
         
         if ($request->isPost()) {
+            
             $frequencia = new Frequencia();
             
             $form->setInputFilter($frequencia->getInputFilter());
-            $form->setData($request->getPost());
             
-            if ($form->isValid()) { 
+            $form->setData($request->getPost());
+            //var_dump($form->setData());exit;
+            if ($form->isValid()) {
                 $frequencia->populate($form->getData()); 
 
                 $funcionario = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findOneBy(array('idfuncionario' => $frequencia->getFuncionariofuncionario()));

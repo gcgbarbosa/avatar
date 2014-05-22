@@ -18,6 +18,10 @@
 			    		<td><?php echo $frequencia->getIdfrequencia(); ?></td>
 			    	</tr>
 			    	<tr>
+			    		<td><strong>Funcionário</strong></td>
+			    		<td><?php echo $frequencia->getFuncionariofuncionario()->getNomefuncionario(); ?></td>
+			    	</tr>
+			    	<tr>
 			    		<td><strong>Hora de Entrada</strong></td>
 			    		<td><?php echo $frequencia->getHorarioentrada(); ?></td>
 			    	</tr>
@@ -29,11 +33,7 @@
 			    		<td><strong>Dia</strong></td>
 			    		<td><?php echo $frequencia->getDataFrequencia()->format('d/m/Y'); ?></td>
 			    	</tr>
-			    	<tr>
-			    		<td><strong>Data de Nascimento</strong></td>
-			    		<td><?php echo $frequencia->getFuncionariofuncionario()->getNomefuncionario(); ?></td>
-			    	</tr>
-			  	</table>
+			    </table>
 			</div>
 		</div>
 	</div>
