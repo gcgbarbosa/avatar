@@ -219,6 +219,18 @@ class Professor extends \Professor\Entity\Professor implements \Doctrine\ORM\Pro
         return parent::getDepartamentodepartamento();
     }
 
+    public function setCursoProfessor(\Curso\Entity\Curso $cursoProfessor = NULL)
+    {
+        $this->__load();
+        return parent::setCursoProfessor($cursoProfessor);
+    }
+
+    public function getCursoProfessor()
+    {
+        $this->__load();
+        return parent::getCursoProfessor();
+    }
+
     public function getArrayCopy()
     {
         $this->__load();
@@ -247,7 +259,7 @@ class Professor extends \Professor\Entity\Professor implements \Doctrine\ORM\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idprofessor', 'matriculaprofessor', 'nomeprofessor', 'emailprofessor', 'telefoneprofessor', 'areadeatuacao', 'formacao', 'titulacao', 'classe', 'regimedetrabalho', 'tipovinculo', 'datanasc', 'professorprojeto', 'departamentodepartamento', 'professorCoordProjeto');
+        return array('__isInitialized__', 'idprofessor', 'matriculaprofessor', 'nomeprofessor', 'emailprofessor', 'telefoneprofessor', 'areadeatuacao', 'titulacao', 'classe', 'regimedetrabalho', 'tipovinculo', 'datanasc', 'cursoProfessor', 'professorprojeto', 'departamentodepartamento', 'professorCoordProjeto');
     }
 
     public function __clone()

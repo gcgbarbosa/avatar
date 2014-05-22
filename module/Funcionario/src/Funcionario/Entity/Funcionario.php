@@ -57,6 +57,49 @@ class Funcionario implements InputFilterAwareInterface
     private $datanasc;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dataAdmissao", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $dataAdmissao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="grauInstrucao", type="string", length=50, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $grauInstrucao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formacao", type="string", length=50, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $formacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="funcao", type="string", length=50, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $funcao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="horarioInicio", type="string", length=5, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $horarioInicio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="horarioFim", type="string", length=5, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $horarioFim;
+
+
+    /**
      * Get idfuncionario
      *
      * @return integer 
@@ -156,6 +199,30 @@ class Funcionario implements InputFilterAwareInterface
     {
         return $this->datanasc;
     }
+
+    /**
+     * Set dataAdmissao
+     *
+     * @param \DateTime $dataAdmissao
+     * @return Funcionario
+     */
+    public function setDataAdmissao($dataAdmissao)
+    {
+        $this->dataAdmissao = $dataAdmissao;
+    
+        return $this;
+    }
+
+    /**
+     * Get dataAdmissao
+     *
+     * @return \DateTime 
+     */
+    public function getDataAdmissao()
+    {
+        return $this->dataAdmissao;
+    }
+
     /**
      * Get projetoprojeto
      *
@@ -167,6 +234,121 @@ class Funcionario implements InputFilterAwareInterface
     }
 
     /**
+     * Set grauInstrucao
+     *
+     * @param string $grauInstrucao
+     * @return Funcionario
+     */
+    public function setGrauInstrucao($grauInstrucao)
+    {
+        $this->grauInstrucao = $grauInstrucao;
+    
+        return $this;
+    }
+
+    /**
+     * Get grauInstrucao
+     *
+     * @return string 
+     */
+    public function getGrauInstrucao()
+    {
+        return $this->grauInstrucao;
+    }
+
+    /**
+     * Set formacao
+     *
+     * @param string $formacao
+     * @return Funcionario
+     */
+    public function setFormacao($formacao)
+    {
+        $this->formacao = $formacao;
+    
+        return $this;
+    }
+
+    /**
+     * Get formacao
+     *
+     * @return string 
+     */
+    public function getFormacao()
+    {
+        return $this->formacao;
+    }
+
+    /**
+     * Set funcao
+     *
+     * @param string $funcao
+     * @return Funcionario
+     */
+    public function setFuncao($funcao)
+    {
+        $this->funcao = $funcao;
+    
+        return $this;
+    }
+
+    /**
+     * Get funcao
+     *
+     * @return string 
+     */
+    public function getFuncao()
+    {
+        return $this->funcao;
+    }
+
+    /**
+     * Set horarioInicio
+     *
+     * @param string $horarioInicio
+     * @return Funcionario
+     */
+    public function setHorarioInicio($horarioInicio)
+    {
+        $this->horarioInicio = $horarioInicio;
+    
+        return $this;
+    }
+
+    /**
+     * Get horarioInicio
+     *
+     * @return string 
+     */
+    public function getHorarioInicio()
+    {
+        return $this->horarioInicio;
+    }
+
+    /**
+     * Set horarioFim
+     *
+     * @param string $horarioFim
+     * @return Funcionario
+     */
+    public function setHorarioFim($horarioFim)
+    {
+        $this->horarioFim = $horarioFim;
+    
+        return $this;
+    }
+
+    /**
+     * Get horarioFim
+     *
+     * @return string 
+     */
+    public function getHorarioFim()
+    {
+        return $this->horarioFim;
+    }
+
+    /**
      * Convert the object to an array.
      *
      * @return array
@@ -175,6 +357,7 @@ class Funcionario implements InputFilterAwareInterface
     {
         $obj_vars = get_object_vars($this);
         $obj_vars['datanasc'] = $obj_vars['datanasc']->format('d/m/Y');
+        $obj_vars['dataAdmissao'] = $obj_vars['dataAdmissao']->format('d/m/Y');
         return $obj_vars;
     }
 
@@ -281,6 +464,117 @@ class Funcionario implements InputFilterAwareInterface
                     ),
             )));
 
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'dataAdmissao',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'date',
+                        'options' => array(
+                            'locale' => 'pt_BR', 
+                            'format' => 'd/m/Y'),
+                        ),
+                    ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'grauInstrucao',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 50,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'formacao',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 50,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'funcao',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 50,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'horarioInicio',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 5,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'horarioFim',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 5,
+                        ),
+                    ),
+                ),
+            )));
 
             $this->inputFilter = $inputFilter;        
         }

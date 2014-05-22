@@ -53,10 +53,10 @@ echo $this->form()->openTag($form);
 	</div>
 </div>
 <div class="form-group">
-	<?php echo $this->formLabel($form->get('formacao'))."\n" ?>
+	<?php echo $this->formLabel($form->get('cursoProfessor'))."\n" ?>
 	<div class="col-lg-10">
-		<?php echo $this->formText($form->get('formacao')) ?>
-		<?php echo $this->formElementErrors($form->get('formacao')) ?>
+		<?php echo $this->formSelect($form->get('cursoProfessor')) ?>
+		<?php echo $this->formElementErrors($form->get('cursoProfessor')) ?>
 	</div>
 </div>
 <div class="form-group">

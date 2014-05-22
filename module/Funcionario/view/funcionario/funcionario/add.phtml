@@ -45,6 +45,48 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<?php echo $this->formLabel($form->get('dataAdmissao'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('dataAdmissao')) ?>
+				<?php echo $this->formElementErrors($form->get('dataAdmissao')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('grauInstrucao'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('grauInstrucao')) ?>
+				<?php echo $this->formElementErrors($form->get('grauInstrucao')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('formacao'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('formacao')) ?>
+				<?php echo $this->formElementErrors($form->get('formacao')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('funcao'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('funcao')) ?>
+				<?php echo $this->formElementErrors($form->get('funcao')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('horarioInicio'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('horarioInicio')) ?>
+				<?php echo $this->formElementErrors($form->get('horarioInicio')) ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formLabel($form->get('horarioFim'))."\n" ?>
+			<div class="col-lg-10">
+				<?php echo $this->formText($form->get('horarioFim')) ?>
+				<?php echo $this->formElementErrors($form->get('horarioFim')) ?>
+			</div>
+		</div>
+		<div class="form-group">
 	    	<div class="col-lg-offset-2 col-lg-10">
 				<?php echo $this->formSubmit($form->get('submit')) ?>
 			</div>
@@ -56,5 +98,8 @@
 jQuery(function($){
    $("#datanasc").mask("99/99/9999");
    $("#telefonefuncionario").mask("(99) 9999-9999");
+   $("#dataAdmissao").mask("99/99/9999");
+   $("#horarioInicio").mask("99:99");
+   $("#horarioFim").mask("99:99");
 });
 </script>

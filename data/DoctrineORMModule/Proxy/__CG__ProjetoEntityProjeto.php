@@ -171,6 +171,18 @@ class Projeto extends \Projeto\Entity\Projeto implements \Doctrine\ORM\Proxy\Pro
         return parent::getProfessorcoordenador();
     }
 
+    public function setGrupoPesquisaProjeto(\Projeto\Entity\GrupoPesquisa $grupoPesquisaProjeto = NULL)
+    {
+        $this->__load();
+        return parent::setGrupoPesquisaProjeto($grupoPesquisaProjeto);
+    }
+
+    public function getGrupoPesquisaProjeto()
+    {
+        $this->__load();
+        return parent::getGrupoPesquisaProjeto();
+    }
+
     public function getArrayCopy()
     {
         $this->__load();
@@ -199,7 +211,7 @@ class Projeto extends \Projeto\Entity\Projeto implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idprojeto', 'titulo', 'objetivogeral', 'objetivoespec', 'resultadosesperados', 'finaciamento', 'fontefinaciamento', 'alunoaluno', 'professorprofessor', 'professorcoordenador');
+        return array('__isInitialized__', 'idprojeto', 'titulo', 'objetivogeral', 'objetivoespec', 'resultadosesperados', 'finaciamento', 'fontefinaciamento', 'alunoaluno', 'professorprofessor', 'professorcoordenador', 'grupoPesquisaProjeto');
     }
 
     public function __clone()

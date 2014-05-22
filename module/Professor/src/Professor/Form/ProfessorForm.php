@@ -111,16 +111,20 @@ class ProfessorForm extends Form
         ));
 
         $this->add(array(
-            'name' => 'formacao',
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'cursoProfessor',
             'attributes' => array(
-                'type'  => 'text',
                 'class' => 'form-control',
             ),
             'options' => array(
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
-                'label' => 'Formação: ',
+                'label'          => 'Curso: ',
+                'object_manager' => $em,
+                'target_class'   => 'Curso\Entity\Curso',
+                'property'       => 'nomeCurso',
+                'empty_option'   => '--- Curso ---',
             ),
         ));
 

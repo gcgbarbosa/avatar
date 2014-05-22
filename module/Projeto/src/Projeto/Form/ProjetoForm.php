@@ -19,6 +19,24 @@ class ProjetoForm extends Form
                 'type'  => 'hidden',
             ),
         ));
+
+        $this->add(array(
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'grupoPesquisaProjeto',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label'          => 'Grupo de Pesquisa: ',
+                'object_manager' => $name,
+                'target_class'   => 'Projeto\Entity\GrupoPesquisa',
+                'property'       => 'nomeGrupoPesquisa',
+                'empty_option'   => '--- Grupo de Pesquisa ---',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
         
         $this->add(array(
             'name' => 'titulo',

@@ -94,6 +94,16 @@ class Projeto implements InputFilterAwareInterface
     private $professorcoordenador;
 
     /**
+     * @var \Projeto\Entity\GrupoPesquisa
+     *
+     * @ORM\ManyToOne(targetEntity="Projeto\Entity\GrupoPesquisa")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="grupoPesquisaProjeto", referencedColumnName="idGrupoPesquisa", nullable=true)
+     * })
+     */
+    private $grupoPesquisaProjeto;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -340,6 +350,29 @@ class Projeto implements InputFilterAwareInterface
     }
 
     /**
+     * Set grupoPesquisaProjeto
+     *
+     * @param \Projeto\Entity\GrupoPesquisa $grupoPesquisaProjeto
+     * @return Projeto
+     */
+    public function setGrupoPesquisaProjeto(\Projeto\Entity\GrupoPesquisa $grupoPesquisaProjeto = null)
+    {
+        $this->grupoPesquisaProjeto = $grupoPesquisaProjeto;
+    
+        return $this;
+    }
+
+    /**
+     * Get grupoPesquisaProjeto
+     *
+     * @return \Projeto\Entity\GrupoPesquisa 
+     */
+    public function getGrupoPesquisaProjeto()
+    {
+        return $this->grupoPesquisaProjeto;
+    }
+
+    /**
      * Convert the object to an array.
      *
      * @return array
@@ -349,6 +382,7 @@ class Projeto implements InputFilterAwareInterface
         $obj_vars = get_object_vars($this);
         $obj_vars['finaciamento'] = $obj_vars['finaciamento'] == true ? "true" : "false";
         $obj_vars['professorcoordenador'] = $obj_vars['professorcoordenador']->getIdProfessor();
+        $obj_vars['grupoPesquisaProjeto'] = $obj_vars['grupoPesquisaProjeto']->getIdGrupoPesquisaProjeto();
         return $obj_vars;
     }
 

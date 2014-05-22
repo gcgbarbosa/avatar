@@ -63,11 +63,14 @@ class Professor implements InputFilterAwareInterface
     private $areadeatuacao;
 
     /**
-     * @var string
+     * @var \Curso\Entity\Curso
      *
-     * @ORM\Column(name="formacao", type="string", length=45, precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\ManyToOne(targetEntity="Curso\Entity\Curso")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cursoProfessor", referencedColumnName="idcurso", nullable=true)
+     * })
      */
-    private $formacao;
+    private $cursoProfessor;
 
     /**
      * @var string
@@ -143,6 +146,7 @@ class Professor implements InputFilterAwareInterface
     {
         $this->professorprojeto = new \Doctrine\Common\Collections\ArrayCollection();
         $this->professorCoordProjeto = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
     
     /**
@@ -474,6 +478,30 @@ class Professor implements InputFilterAwareInterface
     {
         return $this->departamentodepartamento;
     }
+
+    /**
+     * Set cursoProfessor
+     *
+     * @param \Curso\Entity\Curso $cursoProfessor
+     * @return Professor
+     */
+    public function setCursoProfessor(\Curso\Entity\Curso $cursoProfessor = null)
+    {
+        $this->cursoProfessor = $cursoProfessor;
+    
+        return $this;
+    }
+
+    /**
+     * Get cursoProfessor
+     *
+     * @return \Curso\Entity\Curso 
+     */
+    public function getCursoProfessor()
+    {
+        return $this->cursoProfessor;
+    }
+
     /**
      * Convert the object to an array.
      *
@@ -484,6 +512,7 @@ class Professor implements InputFilterAwareInterface
         $obj_vars = get_object_vars($this);
         $obj_vars['datanasc'] = $obj_vars['datanasc']->format('d/m/Y');
         $obj_vars['departamentodepartamento'] = $obj_vars['departamentodepartamento']->getIddepartamento();
+        $obj_vars['cursoProfessor'] = $obj_vars['cursoProfessor']->getIdCurso();
         return $obj_vars;
     }
 
@@ -613,21 +642,10 @@ class Professor implements InputFilterAwareInterface
             )));
 
             $inputFilter->add($factory->createInput(array(
-                'name'     => 'formacao',
+                'name'     => 'cursoProfessor',
                 'required' => true,
                 'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name'    => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 255,
-                        ),
-                    ),
+                    //array('name' => 'Int'),
                 ),
             )));
 

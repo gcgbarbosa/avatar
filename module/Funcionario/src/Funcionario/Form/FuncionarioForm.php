@@ -77,6 +77,96 @@ class FuncionarioForm extends Form
                 ),
             ),
         ));
+
+        $this->add(array(
+            'name' => 'dataAdmissao',
+            'attributes' => array(
+                'type'  => 'Zend\Form\Element\DateTime',
+                'class' => 'form-control',
+                'id' => 'dataAdmissao'
+            ),
+            'options' => array(
+                'label' => 'Data de Admissão: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'grauInstrucao',
+            'attributes' => array(
+                'class' => 'form-control',
+                'type'  => 'text',
+                'id' => 'grauInstrucao'
+            ),
+            'options' => array(
+                'label' => 'Grau de Instrução: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'formacao',
+            'attributes' => array(
+                'class' => 'form-control',
+                'type'  => 'text',
+                'id' => 'formacao'
+            ),
+            'options' => array(
+                'label' => 'Formação: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'funcao',
+            'attributes' => array(
+                'class' => 'form-control',
+                'type'  => 'text',
+                'id' => 'funcao'
+            ),
+            'options' => array(
+                'label' => 'Função: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'horarioInicio',
+            'attributes' => array(
+                'class' => 'form-control',
+                'type'  => 'text',
+                'id' => 'horarioInicio'
+            ),
+            'options' => array(
+                'label' => 'Horário de Entrada: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'horarioFim',
+            'attributes' => array(
+                'class' => 'form-control',
+                'type'  => 'text',
+                'id' => 'horarioFim'
+            ),
+            'options' => array(
+                'label' => 'Horário de Saída: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
         
         $this->add(array(
             'name' => 'submit',

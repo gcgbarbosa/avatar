@@ -80,6 +80,9 @@ class ProfessorController extends AbstractActionController
 
                 $departamento = $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findOneBy(array('iddepartamento' => $professor->getDepartamentodepartamento()));
                 $professor->setDepartamentodepartamento($departamento);
+
+                $curso = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findOneBy(array('idcurso' => $professor->getCursoProfessor()));
+                $professor->setCursoProfessor($curso);
                 //var_dump($album->getDepartamentodepartamento()->getIddepartamento());exit;
 
                 $this->getEntityManager()->persist($professor);
@@ -119,6 +122,9 @@ class ProfessorController extends AbstractActionController
                 
                 $departamento = $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findOneBy(array('iddepartamento' => $form->getData()->getDepartamentodepartamento()));
                 $form->getData()->setDepartamentodepartamento($departamento);
+
+                $curso = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findOneBy(array('idcurso' => $professor->getCursoProfessor()));
+                $professor->setCursoProfessor($curso);
                 //SET DATA NASC
                 $data = explode("/", $form->getData()->getDataNasc());
                 $data = $data['0']."-".$data['1']."-". $data['2'];

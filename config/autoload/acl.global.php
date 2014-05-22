@@ -101,6 +101,15 @@ return array(
 					'view'=> 'guest',
 				),
 
+				'Projeto\Controller\GrupoPesquisa' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+					'view'=> 'guest',
+				),
+
+
 				'Funcionario\Controller\Funcionario' => array(
 					'index'   => 'guest',
 					'add'	=> 'guest',

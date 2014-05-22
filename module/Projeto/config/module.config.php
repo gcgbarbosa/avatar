@@ -6,7 +6,8 @@ return array(
     // Controllers in this module
     'controllers' => array(
         'invokables' => array(
-            'Projeto\Controller\Projeto' => 'Projeto\Controller\ProjetoController'
+            'Projeto\Controller\Projeto' => 'Projeto\Controller\ProjetoController',
+            'Projeto\Controller\GrupoPesquisa' => 'Projeto\Controller\GrupoPesquisaController',
         ),
     ),
 
@@ -27,13 +28,28 @@ return array(
                     ),
                 ),
             ),
+            'grupopesquisa' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/grupo-pesquisa[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Projeto\Controller\GrupoPesquisa',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
         ),
     ),    
 
     // View setup for this module
     'view_manager' => array(
         'template_path_stack' => array(
-            'projeto' => __DIR__ . '/../view',
+            'projeto/projeto/index' => __DIR__ . '/../view',
+            'projeto/grupo-pesquisa/index' => __DIR__ . '/../view',
         ),
     ),
 

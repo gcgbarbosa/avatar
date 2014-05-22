@@ -29,6 +29,26 @@
 			    		<td><strong>Data de Nascimento</strong></td>
 			    		<td><?php echo $funcionario->getDatanasc()->format('d/m/Y'); ?></td>
 			    	</tr>
+			    	<tr>
+			    		<td><strong>Data de Admissão</strong></td>
+			    		<td><?php echo $funcionario->getDataAdmissao()->format('d/m/Y'); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Grau de Instrução</strong></td>
+			    		<td><?php echo $funcionario->getGrauInstrucao(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Formação</strong></td>
+			    		<td><?php echo $funcionario->getFormacao(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Função</strong></td>
+			    		<td><?php echo $funcionario->getFuncao(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Horário</strong></td>
+			    		<td><?php echo $funcionario->getHorarioInicio() . " às " . $funcionario->getHorarioFim(); ?></td>
+			    	</tr>
 			  	</table>
 			</div>
 		</div>

@@ -99,10 +99,82 @@ class Funcionario extends \Funcionario\Entity\Funcionario implements \Doctrine\O
         return parent::getDatanasc();
     }
 
+    public function setDataAdmissao($dataAdmissao)
+    {
+        $this->__load();
+        return parent::setDataAdmissao($dataAdmissao);
+    }
+
+    public function getDataAdmissao()
+    {
+        $this->__load();
+        return parent::getDataAdmissao();
+    }
+
     public function getProjetoprojeto()
     {
         $this->__load();
         return parent::getProjetoprojeto();
+    }
+
+    public function setGrauInstrucao($grauInstrucao)
+    {
+        $this->__load();
+        return parent::setGrauInstrucao($grauInstrucao);
+    }
+
+    public function getGrauInstrucao()
+    {
+        $this->__load();
+        return parent::getGrauInstrucao();
+    }
+
+    public function setFormacao($formacao)
+    {
+        $this->__load();
+        return parent::setFormacao($formacao);
+    }
+
+    public function getFormacao()
+    {
+        $this->__load();
+        return parent::getFormacao();
+    }
+
+    public function setFuncao($funcao)
+    {
+        $this->__load();
+        return parent::setFuncao($funcao);
+    }
+
+    public function getFuncao()
+    {
+        $this->__load();
+        return parent::getFuncao();
+    }
+
+    public function setHorarioInicio($horarioInicio)
+    {
+        $this->__load();
+        return parent::setHorarioInicio($horarioInicio);
+    }
+
+    public function getHorarioInicio()
+    {
+        $this->__load();
+        return parent::getHorarioInicio();
+    }
+
+    public function setHorarioFim($horarioFim)
+    {
+        $this->__load();
+        return parent::setHorarioFim($horarioFim);
+    }
+
+    public function getHorarioFim()
+    {
+        $this->__load();
+        return parent::getHorarioFim();
     }
 
     public function getArrayCopy()
@@ -133,7 +205,7 @@ class Funcionario extends \Funcionario\Entity\Funcionario implements \Doctrine\O
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idfuncionario', 'nomefuncionario', 'emailfuncionario', 'telefonefuncionario', 'datanasc');
+        return array('__isInitialized__', 'idfuncionario', 'nomefuncionario', 'emailfuncionario', 'telefonefuncionario', 'datanasc', 'dataAdmissao', 'grauInstrucao', 'formacao', 'funcao', 'horarioInicio', 'horarioFim');
     }
 
     public function __clone()

@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Grupos de Pesquisa';
+    $this->headTitle($title);
+    ?>
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <p>
+            <a class="btn btn-success" href="<?php echo $this->url('grupopesquisa', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar novo Grupo de Pesquisa</a>
+        </p>
+
+        <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Grupo</th>
+            <th>Áreas</th>
+            <th>&nbsp;</th>
+        </tr>
+        <?php foreach ($grupoPesquisas as $grupoPesquisa) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($grupoPesquisa->getIdGrupoPesquisa());?></td>
+            <td><?php echo $this->escapeHtml($grupoPesquisa->getNomeGrupoPesquisa());?></td>
+            <td><?php echo $this->escapeHtml($grupoPesquisa->getAreasGrupoPesquisa());?></td>
+            <td>
+                <a class="btn btn-info" href="<?php echo $this->url('grupopesquisa',
+                    array('action'=>'edit', 'id' => $grupoPesquisa->getIdGrupoPesquisa()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                <a class="btn btn-danger" href="<?php echo $this->url('grupopesquisa',
+                    array('action'=>'delete', 'id' => $grupoPesquisa->getIdGrupoPesquisa()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
+                <a class="btn btn-primary" href="<?php echo $this->url('grupopesquisa',
+                    array('action'=>'view', 'id' => $grupoPesquisa->getIdGrupoPesquisa()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </table>
+    </div>
+</div>

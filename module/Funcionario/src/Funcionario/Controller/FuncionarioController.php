@@ -75,6 +75,10 @@ class FuncionarioController extends AbstractActionController
                 $data = explode("/", $funcionario->getDataNasc());
                 $data = $data['0']."-".$data['1']."-". $data['2'];
                 $funcionario->setDatanasc(new \DateTime($data));
+
+                $data = explode("/", $funcionario->getDataAdmissao());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $funcionario->setDataAdmissao(new \DateTime($data));
                 //END SET DATA NASC
                 //SET BOLSISTA
                 
@@ -117,6 +121,10 @@ class FuncionarioController extends AbstractActionController
                 $data = explode("/", $form->getData()->getDataNasc());
                 $data = $data['0']."-".$data['1']."-". $data['2'];
                 $form->getData()->setDatanasc(new \DateTime($data));
+
+                $data = explode("/", $funcionario->getDataAdmissao());
+                $data = $data['0']."-".$data['1']."-". $data['2'];
+                $funcionario->setDataAdmissao(new \DateTime($data));
                 //END SET DATA NASC
                 $this->getEntityManager()->flush();
 
