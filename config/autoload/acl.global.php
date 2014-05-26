@@ -156,6 +156,7 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view'=> 'guest',
+					'print' => 'guest',
 				),
 
 				'Sala\Controller\Local' => array(

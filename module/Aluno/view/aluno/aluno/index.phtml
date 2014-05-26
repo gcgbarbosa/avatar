@@ -3,6 +3,7 @@
     // module/Album/view/album/album/index.phtml:
     $title = 'Alunos';
     $this->headTitle($title);
+
     ?>
     <div class="panel-heading">
         <h1><?php echo $this->escapeHtml($title); ?></h1>
@@ -10,6 +11,7 @@
     <div class="panel-body">
         <a class="btn btn-success" href="<?php echo $this->url('aluno', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar aluno</a>
         
+        <a class="btn btn-warning" href="#"><span class="glyphicon glyphicon-eye-open"></span> Gerar Relatório</a>
 
         <table class="table">
         <thead>
@@ -32,5 +34,6 @@
         </tr>
         <?php endforeach; ?>
         </table>
+        
     </div>
 </div>
