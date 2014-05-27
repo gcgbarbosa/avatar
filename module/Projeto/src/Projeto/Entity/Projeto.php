@@ -63,6 +63,13 @@ class Projeto implements InputFilterAwareInterface
     private $finaciamento;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="tipoPesquisa", type="boolean", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $tipoPesquisa;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="fonteFinaciamento", type="string", length=50, precision=0, scale=0, nullable=true, unique=false)
@@ -238,6 +245,29 @@ class Projeto implements InputFilterAwareInterface
     }
 
     /**
+     * Set tipoPesquisa
+     *
+     * @param boolean $tipoPesquisa
+     * @return Projeto
+     */
+    public function setTipoPesquisa($tipoPesquisa)
+    {
+        $this->tipoPesquisa = $tipoPesquisa;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipoPesquisa
+     *
+     * @return boolean 
+     */
+    public function getTipoPesquisa()
+    {
+        return $this->tipoPesquisa;
+    }
+
+    /**
      * Set fontefinaciamento
      *
      * @param string $fontefinaciamento
@@ -381,8 +411,9 @@ class Projeto implements InputFilterAwareInterface
     {
         $obj_vars = get_object_vars($this);
         $obj_vars['finaciamento'] = $obj_vars['finaciamento'] == true ? "true" : "false";
+        $obj_vars['tipoPesquisa'] = $obj_vars['tipoPesquisa'] == true ? "true" : "false";
         $obj_vars['professorcoordenador'] = $obj_vars['professorcoordenador']->getIdProfessor();
-        $obj_vars['grupoPesquisaProjeto'] = $obj_vars['grupoPesquisaProjeto']->getIdGrupoPesquisaProjeto();
+        $obj_vars['grupoPesquisaProjeto'] = $obj_vars['grupoPesquisaProjeto']->getIdGrupoPesquisa();
         return $obj_vars;
     }
 
@@ -515,6 +546,14 @@ class Projeto implements InputFilterAwareInterface
                     //array('name' => 'Int'),
                 ),
             )));   
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'tipoPesquisa',
+                'required' => true,
+                'filters'  => array(
+                    //array('name' => 'Int'),
+                ),
+            )));
 
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'professorcoordenador',

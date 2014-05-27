@@ -72,6 +72,13 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<?php echo $this->formLabel($form->get('tipoPesquisa'))."\n" ?>
+				<div class="col-lg-4">
+					<?php echo $this->formRadio($form->get('tipoPesquisa')) ?>
+					<?php echo $this->formElementErrors($form->get('tipoPesquisa')) ?>
+				</div>
+			</div>
+			<div class="form-group">
 				<?php echo $this->formLabel($form->get('fontefinaciamento'))."\n" ?>
 				<div class="col-lg-10">
 					<?php echo $this->formText($form->get('fontefinaciamento')) ?>

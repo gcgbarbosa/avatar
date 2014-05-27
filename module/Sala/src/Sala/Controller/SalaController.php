@@ -7,9 +7,11 @@ use Sala\Form\SalaForm;
 use Doctrine\ORM\EntityManager;
 use Sala\Entity\Sala;
 
-use Classe\PHPJasperXML;
+use Classe;
 
 use setting;
+
+use Zend\Pdf;
 
 class SalaController extends AbstractActionController
 {

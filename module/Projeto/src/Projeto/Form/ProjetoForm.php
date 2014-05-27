@@ -135,6 +135,28 @@ class ProjetoForm extends Form
         ));
 
         $this->add(array(
+            'type' => 'Zend\Form\Element\Radio',
+            'name' => 'tipoPesquisa',
+            'attributes' => array(
+                'type'  => 'text',
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label' => 'Tipo: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+                'value_options' => array(
+                    'true' => 'Pesquisa',
+                    'false' => 'Extensão',
+                ),
+            ),
+            'attributes' => array(
+                //'value' => '1' //set checked to '1'
+            )
+        ));
+
+        $this->add(array(
             'name' => 'fontefinaciamento',
             'attributes' => array(
                 'type'  => 'text',

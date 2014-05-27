@@ -71,6 +71,11 @@ class ProjetoController extends AbstractActionController
                     $projeto->setFinaciamento(true);
                 else if($projeto->getFinaciamento() == "false")
                     $projeto->setFinaciamento(false);
+
+                if($projeto->getTipoPesquisa() == "true")
+                    $projeto->setTipoPesquisa(true);
+                else if($projeto->getTipoPesquisa() == "false")
+                    $projeto->setTipoPesquisa(false);
                 //var_dump($professor);exit;
                 $this->getEntityManager()->persist($projeto);
                 $this->getEntityManager()->flush();
@@ -108,13 +113,18 @@ class ProjetoController extends AbstractActionController
                 $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $projeto->getProfessorcoordenador()));
                 $projeto->setProfessorcoordenador($professor);
 
-                $grupoPesquisa = $this->getEntityManager()->getRepository('Projeto\Entity\GrupoPesquisa')->findOneBy(array('idprofessor' => $projeto->getGrupoPesquisaProjeto()));
+                $grupoPesquisa = $this->getEntityManager()->getRepository('Projeto\Entity\GrupoPesquisa')->findOneBy(array('idGrupoPesquisa' => $projeto->getGrupoPesquisaProjeto()));
                 $projeto->setGrupoPesquisaProjeto($grupoPesquisa);
 
                 if($projeto->getFinaciamento() == "true")
                     $projeto->setFinaciamento(true);
                 else if($projeto->getFinaciamento() == "false")
                     $projeto->setFinaciamento(false);
+
+                if($projeto->getTipoPesquisa() == "true")
+                    $projeto->setTipoPesquisa(true);
+                else if($projeto->getTipoPesquisa() == "false")
+                    $projeto->setTipoPesquisa(false);
 
                 $this->getEntityManager()->persist($projeto);
                 
