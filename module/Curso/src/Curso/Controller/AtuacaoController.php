@@ -5,7 +5,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel; 
 use Curso\Form\AtuacaoForm;
 use Doctrine\ORM\EntityManager;
-use Curso\Entity\Curso;
+use Curso\Entity\Atuacao;
 
 class AtuacaoController extends AbstractActionController
 {
@@ -48,7 +48,7 @@ class AtuacaoController extends AbstractActionController
             return $this->redirect()->toRoute('atuacao');
         }
 
-        $curso = $this->getEntityManager()->find('Curso\Entity\Atuacao', $id);
+        $atuacao = $this->getEntityManager()->find('Curso\Entity\Atuacao', $id);
 
         return new ViewModel(array(
             'atuacao' => $atuacao,
@@ -57,7 +57,7 @@ class AtuacaoController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new AtuacaoForm($this->getEntityManager());
+        $form = new AtuacaoForm();
         $form->get('submit')->setAttribute('label', 'Add');
 
         $request = $this->getRequest();
@@ -65,7 +65,7 @@ class AtuacaoController extends AbstractActionController
         if ($request->isPost()) {
             $atuacao = new Atuacao();
             
-            $form->setInputFilter($curso->getInputFilter());
+            $form->setInputFilter($atuacao->getInputFilter());
             $form->setData($request->getPost());
             
             if ($form->isValid()) { 
@@ -93,7 +93,7 @@ class AtuacaoController extends AbstractActionController
         
         $atuacao = $this->getEntityManager()->find('Curso\Entity\Atuacao', $id);
 
-        $form = new AtuacaoForm($this->getEntityManager());
+        $form = new AtuacaoForm();
         $form->setBindOnValidate(false);
         $form->bind($atuacao);
         $form->get('submit')->setAttribute('label', 'Edit');

@@ -65,6 +65,9 @@ class GrupoPesquisaController extends AbstractActionController
                 $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $grupoPesquisa->getSalasala()));
                 $grupopesquisa->setSalasala($sala);
 
+                $atuacao = $this->getEntityManager()->getRepository('Curso\Entity\Atuacao')->findOneBy(array('idsala' => $grupoPesquisa->getSalasala()));
+                $grupopesquisa->setSalasala($sala);
+
                 $this->getEntityManager()->persist($grupoPesquisa);
                 $this->getEntityManager()->flush();
                 return $this->redirect()->toRoute('grupopesquisa'); 
@@ -156,7 +159,7 @@ class GrupoPesquisaController extends AbstractActionController
         $grupoPesquisa = $this->getEntityManager()->find('Projeto\Entity\GrupoPesquisa', $id);
 
         return new ViewModel(array(
-            'grupoPesquisa' => $grupoPesquisa,
+            'grupopesquisa' => $grupoPesquisa,
         ));
 
     }

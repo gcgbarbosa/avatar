@@ -85,12 +85,17 @@ class GrupoPesquisaForm extends Form
 
         $this->add(array(
             'name' => 'areasGrupoPesquisa',
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
             ),
             'options' => array(
                 'label' => 'Áreas: ',
+                'object_manager' => $name,
+                'target_class'   => 'Curso\Entity\Atuacao',
+                'property'       => 'nome',
+                'empty_option'   => '--- Escolha a Àrea de Atuacao ---',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),

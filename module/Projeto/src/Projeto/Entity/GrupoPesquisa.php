@@ -84,7 +84,7 @@ class GrupoPesquisa implements InputFilterAwareInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Aluno\Entity\Aluno", mappedBy="alunoprojeto")
+     * @ORM\ManyToMany(targetEntity="Curso\Entity\Atuacao", mappedBy="alunoprojeto")
      */
     private $areaarea;
     
@@ -229,6 +229,7 @@ class GrupoPesquisa implements InputFilterAwareInterface
         $obj_vars = get_object_vars($this);
          $obj_vars['pesquisadorresponsavel'] = $obj_vars['pesquisadorresponsavel']->getIdProfessor();
          $obj_vars['salasala'] = $obj_vars['salasala']->getIdsala();
+         $obj_vars['areaarea'] = $obj_vars['areaarea']->getIdAreaAtuacao();
         return $obj_vars;
     }
 

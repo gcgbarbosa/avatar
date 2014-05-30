@@ -5,7 +5,7 @@ use Zend\Form\Form;
 
 class AtuacaoForm extends Form
 {
-    public function __construct($em)
+    public function __construct($name = null)
     {
         parent::__construct('atuacao');
         

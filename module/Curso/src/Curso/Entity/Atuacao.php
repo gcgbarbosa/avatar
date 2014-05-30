@@ -138,6 +138,17 @@ class Atuacao implements InputFilterAwareInterface
         }
     }
 
+
+        /**
+     * Convert the object to an array.
+     *
+     * @return array
+     */
+    public function getArrayCopy() 
+    {
+        return get_object_vars($this);
+    }
+
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
         throw new \Exception("Not used!");
