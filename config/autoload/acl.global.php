@@ -190,7 +190,13 @@ return array(
 					'delete'=> 'guest',
 					'view'=> 'guest',
 				),
-
+				'Curso\Controller\Atuacao' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+					'view'=> 'guest',
+				),
 			)
         )
     )

@@ -11,7 +11,7 @@ use Zend\InputFilter\InputFilterInterface;
 /**
  * Atuacao
  *
- * @ORM\Table(name="area_atuacao")
+ * @ORM\Table(name="areaatuacao")
  * @ORM\Entity
  */
 class Atuacao implements InputFilterAwareInterface

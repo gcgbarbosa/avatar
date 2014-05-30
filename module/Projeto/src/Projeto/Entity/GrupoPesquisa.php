@@ -34,6 +34,22 @@ class GrupoPesquisa implements InputFilterAwareInterface
      */
     private $nomeGrupoPesquisa;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="objetivoGeralGrupoPesquisa", type="string", length=50, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $objetivoGeral;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="linhaPesquisaGrupoPesquisa", type="string", length=50, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $linhaPesquisa;
+
     /**
      * @var string
      *
@@ -41,6 +57,36 @@ class GrupoPesquisa implements InputFilterAwareInterface
      */
     private $areasGrupoPesquisa;
 
+
+    /**
+     * @var \Professor\Entity\Professor
+     *
+     * @ORM\ManyToOne(targetEntity="Professor\Entity\Professor")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name=" professor_idpesquisadorResp", referencedColumnName="idProfessor", nullable=true)
+     * })
+     */
+    private $pesquisadorresponsavel;
+
+
+
+    /**
+     * @var \Sala\Entity\Sala
+     *
+     * @ORM\ManyToOne(targetEntity="Sala\Entity\Sala")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sala_idsala", referencedColumnName="idsala", nullable=true)
+     * })
+     */
+    private $salasala;
+
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Aluno\Entity\Aluno", mappedBy="alunoprojeto")
+     */
+    private $areaarea;
     
     /**
      * Get idGrupoPesquisa
@@ -75,6 +121,34 @@ class GrupoPesquisa implements InputFilterAwareInterface
         return $this->nomeGrupoPesquisa;
     }
 
+
+    /**
+     * Set linhaPesquisa
+     *
+     * @param string $linhaPesquisa
+     * @return GrupoProjeto
+     */
+    public function setLinhapesquisa($linhaPesquisa)
+    {
+        $this->linhaPesquisa = $linhaPesquisa
+
+
+    ;
+    
+        return $this;
+    }
+
+    /**
+     * Get linhaPesquisa
+     *
+     * @return string 
+     */
+    public function getlinhaPesquisa()
+    {
+        return $this->linhaPesquisa;
+    }
+
+
     /**
      * Set areasGrupoPesquisa
      *
@@ -98,14 +172,63 @@ class GrupoPesquisa implements InputFilterAwareInterface
         return $this->areasGrupoPesquisa;
     }
 
+
+/**
+     * Set salasala
+     *
+     * @param \Sala\Entity\Sala $salasala
+     * @return GrupoProjeto
+     */
+    public function setSalasala(\Sala\Entity\Sala $salasala = null)
+    {
+        $this->salasala = $salasala;
+    
+        return $this;
+    }
+
+    /**
+     * Get salasala
+     *
+     * @return \Sala\Entity\Sala 
+     */
+    public function getSalasala()
+    {
+        return $this->salasala;
+    }
+
+
+/**
+     * Set pesquisadorresponsavel
+     *
+     * @param \Professor\Entity\Professor $pesquisadorresponsavel
+     * @return GrupoProjeto
+     */
+    public function setPesquisadorresponsavel(\Professor\Entity\Professor $pesquisadorresponsavel = null)
+    {
+        $this->pesquisadorresponsavel = $pesquisadorresponsavel;
+    
+        return $this;
+    }
+
+    /**
+     * Get pesquisadorresponsavel
+     *
+     * @return \Professor\Entity\Professor 
+     */
+    public function getPesquisadorresponsavel()
+    {
+        return $this->pesquisadorresponsavel;
+    }
     /**
      * Convert the object to an array.
      *
-     * @return array
+     * @return sala
      */
     public function getArrayCopy() 
     {
         $obj_vars = get_object_vars($this);
+         $obj_vars['pesquisadorresponsavel'] = $obj_vars['pesquisadorresponsavel']->getIdProfessor();
+         $obj_vars['salasala'] = $obj_vars['salasala']->getIdsala();
         return $obj_vars;
     }
 

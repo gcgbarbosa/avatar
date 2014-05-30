@@ -259,7 +259,7 @@ class Professor extends \Professor\Entity\Professor implements \Doctrine\ORM\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idprofessor', 'matriculaprofessor', 'nomeprofessor', 'emailprofessor', 'telefoneprofessor', 'areadeatuacao', 'titulacao', 'classe', 'regimedetrabalho', 'tipovinculo', 'datanasc', 'cursoProfessor', 'professorprojeto', 'departamentodepartamento', 'professorCoordProjeto');
+        return array('__isInitialized__', 'idprofessor', 'matriculaprofessor', 'nomeprofessor', 'emailprofessor', 'telefoneprofessor', 'areadeatuacao', 'titulacao', 'classe', 'regimedetrabalho', 'tipovinculo', 'datanasc', 'cursoProfessor', 'professorprojeto', 'departamentodepartamento', 'professorCoordProjeto', 'professorPesquisadorResponsavel');
     }
 
     public function __clone()

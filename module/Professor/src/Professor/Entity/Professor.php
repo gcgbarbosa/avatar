@@ -140,12 +140,19 @@ class Professor implements InputFilterAwareInterface
 
 
     /**
+     * @ORM\OneToMany(targetEntity="Projeto\Entity\GrupoPesquisa", mappedBy="professorcoordenador", cascade={"persist"})
+     */
+    protected $professorPesquisadorResponsavel;
+
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->professorprojeto = new \Doctrine\Common\Collections\ArrayCollection();
         $this->professorCoordProjeto = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->professorPesquisadorResponsavel = new \Doctrine\Common\Collections\ArrayCollection();
 
     }
     

@@ -121,7 +121,7 @@ class Sala extends \Sala\Entity\Sala implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idsala', 'nome', 'locallocal', 'salaequipamento');
+        return array('__isInitialized__', 'idsala', 'nome', 'locallocal', 'salaequipamento', 'salagrupopesquisa');
     }
 
     public function __clone()

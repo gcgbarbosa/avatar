@@ -33,7 +33,56 @@ class GrupoPesquisaForm extends Form
                 ),
             ),
         ));
-        
+
+        $this->add(array(
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'pesquisadorresponsavel',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label'          => 'Pesquisador Responsável: ',
+                'object_manager' => $name,
+                'target_class'   => 'Professor\Entity\Professor',
+                'property'       => 'nomeprofessor',
+                'empty_option'   => '--- Professor ---',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
+     
+       $this->add(array(
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'salasala',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+                'label'          => 'Sala: ',
+                'object_manager' => $name,
+                'target_class'   => 'Sala\Entity\Sala',
+                'property'       => 'nome',
+                'empty_option'   => '--- Escolha a Sala ---',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'linhaPesquisa',
+            'attributes' => array(
+                'type'  => 'text',
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label' => 'Linha de Pesquisa: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
+
         $this->add(array(
             'name' => 'areasGrupoPesquisa',
             'attributes' => array(
@@ -42,6 +91,19 @@ class GrupoPesquisaForm extends Form
             ),
             'options' => array(
                 'label' => 'Áreas: ',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
+        $this->add(array(
+            'name' => 'objetivoGeral',
+            'attributes' => array(
+                'type'  => 'text',
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label' => 'Objetivo Geral: ',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),

@@ -43,7 +43,7 @@ class GrupoPesquisaController extends AbstractActionController
 
     public function addAction()
     {
-        $form = new GrupoPesquisaForm();
+        $form = new GrupoPesquisaForm($this->getEntityManager());
         $form->get('submit')->setAttribute('label', 'Add');
 
         $request = $this->getRequest();
@@ -58,7 +58,13 @@ class GrupoPesquisaController extends AbstractActionController
             if ($form->isValid()) {
              
                 $grupoPesquisa->populate($form->getData());
-               
+                
+                $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $grupoPesquisa->getPesquisadorresponsavel()));
+                $grupoPesquisa->setPesquisadorresponsavel($professor);
+
+                $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $grupoPesquisa->getSalasala()));
+                $grupopesquisa->setSalasala($sala);
+
                 $this->getEntityManager()->persist($grupoPesquisa);
                 $this->getEntityManager()->flush();
                 return $this->redirect()->toRoute('grupopesquisa'); 

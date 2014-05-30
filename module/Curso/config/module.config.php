@@ -7,6 +7,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Curso\Controller\Curso' => 'Curso\Controller\CursoController',
+            'Curso\Controller\Atuacao' => 'Curso\Controller\AtuacaoController',
         ),
     ),
 
@@ -23,6 +24,20 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Curso\Controller\Curso',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'atuacao' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/atuacao[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Curso\Controller\Atuacao',
                         'action'     => 'index',
                     ),
                 ),
