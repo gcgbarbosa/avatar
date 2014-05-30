@@ -139,7 +139,7 @@ class GrupoPesquisa extends \Projeto\Entity\GrupoPesquisa implements \Doctrine\O
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idGrupoPesquisa', 'nomeGrupoPesquisa', 'objetivoGeral', 'linhaPesquisa', 'areasGrupoPesquisa', 'pesquisadorresponsavel', 'salasala');
+        return array('__isInitialized__', 'idGrupoPesquisa', 'nomeGrupoPesquisa', 'objetivoGeral', 'linhaPesquisa', 'areasGrupoPesquisa', 'pesquisadorresponsavel', 'salasala', 'areaarea');
     }
 
     public function __clone()
