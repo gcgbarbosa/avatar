@@ -63,6 +63,18 @@ class GrupoPesquisa extends \Projeto\Entity\GrupoPesquisa implements \Doctrine\O
         return parent::getNomeGrupoPesquisa();
     }
 
+    public function setObjetivoGeral($objetivoGeral)
+    {
+        $this->__load();
+        return parent::setObjetivoGeral($objetivoGeral);
+    }
+
+    public function getObjetivoGeral()
+    {
+        $this->__load();
+        return parent::getObjetivoGeral();
+    }
+
     public function setLinhapesquisa($linhaPesquisa)
     {
         $this->__load();
@@ -111,6 +123,36 @@ class GrupoPesquisa extends \Projeto\Entity\GrupoPesquisa implements \Doctrine\O
         return parent::getPesquisadorresponsavel();
     }
 
+    public function setCoordPesquisa(\Professor\Entity\Professor $coordPesquisa = NULL)
+    {
+        $this->__load();
+        return parent::setCoordPesquisa($coordPesquisa);
+    }
+
+    public function getCoordPesquisa()
+    {
+        $this->__load();
+        return parent::getCoordPesquisa();
+    }
+
+    public function addAreaarea(\Curso\Entity\Atuacao $areaarea)
+    {
+        $this->__load();
+        return parent::addAreaarea($areaarea);
+    }
+
+    public function removeAreaarea(\Curso\Entity\Atuacao $areaarea)
+    {
+        $this->__load();
+        return parent::removeAreaarea($areaarea);
+    }
+
+    public function getAreaarea()
+    {
+        $this->__load();
+        return parent::getAreaarea();
+    }
+
     public function getArrayCopy()
     {
         $this->__load();
@@ -139,7 +181,7 @@ class GrupoPesquisa extends \Projeto\Entity\GrupoPesquisa implements \Doctrine\O
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idGrupoPesquisa', 'nomeGrupoPesquisa', 'objetivoGeral', 'linhaPesquisa', 'areasGrupoPesquisa', 'pesquisadorresponsavel', 'salasala', 'areaarea');
+        return array('__isInitialized__', 'idGrupoPesquisa', 'nomeGrupoPesquisa', 'objetivoGeral', 'linhaPesquisa', 'pesquisadorresponsavel', 'coordPesquisa', 'salasala', 'areaarea');
     }
 
     public function __clone()

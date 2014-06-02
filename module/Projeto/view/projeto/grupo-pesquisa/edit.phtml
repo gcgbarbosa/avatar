@@ -30,10 +30,31 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<?php echo $this->formLabel($form->get('areasGrupoPesquisa'))."\n" ?>
+				<?php echo $this->formLabel($form->get('linhaPesquisa'))."\n"?>
 				<div class="col-lg-10">
-					<?php echo $this->formText($form->get('areasGrupoPesquisa')) ?>
-					<?php echo $this->formElementErrors($form->get('areasGrupoPesquisa')) ?>
+					<?php echo $this->formText($form->get('linhaPesquisa')) ?>
+					<?php echo $this->formElementErrors($form->get('linhaPesquisa')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('objetivoGeral'))."\n"?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('objetivoGeral')) ?>
+					<?php echo $this->formElementErrors($form->get('objetivoGeral')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('salasala'))."\n"?>
+				<div class="col-lg-10">
+					<?php echo $this->formSelect($form->get('salasala')) ?>
+					<?php echo $this->formElementErrors($form->get('salasala')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('pesquisadorresponsavel'))."\n"?>
+				<div class="col-lg-10">
+					<?php echo $this->formSelect($form->get('pesquisadorresponsavel')) ?>
+					<?php echo $this->formElementErrors($form->get('pesquisadorresponsavel')) ?>
 				</div>
 			</div>
 			<div class="form-group">

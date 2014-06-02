@@ -51,6 +51,24 @@ class GrupoPesquisaForm extends Form
                 ),
             ),
         ));
+
+        $this->add(array(
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'coordPesquisa',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label'          => 'Coordenador da Pesquisa: ',
+                'object_manager' => $name,
+                'target_class'   => 'Professor\Entity\Professor',
+                'property'       => 'nomeprofessor',
+                'empty_option'   => '--- coordPesquisa ---',
+                'label_attributes' => array(
+                    'class'  => 'col-lg-2 control-label'
+                ),
+            ),
+        ));
      
        $this->add(array(
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
@@ -69,6 +87,7 @@ class GrupoPesquisaForm extends Form
                 'empty_option'   => '--- Escolha a Sala ---',
             ),
         ));
+
         $this->add(array(
             'name' => 'linhaPesquisa',
             'attributes' => array(
@@ -83,24 +102,6 @@ class GrupoPesquisaForm extends Form
             ),
         ));
 
-        $this->add(array(
-            'name' => 'areasGrupoPesquisa',
-            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
-            'attributes' => array(
-                'type'  => 'text',
-                'class' => 'form-control',
-            ),
-            'options' => array(
-                'label' => 'Áreas: ',
-                'object_manager' => $name,
-                'target_class'   => 'Curso\Entity\Atuacao',
-                'property'       => 'nome',
-                'empty_option'   => '--- Escolha a Àrea de Atuacao ---',
-                'label_attributes' => array(
-                    'class'  => 'col-lg-2 control-label'
-                ),
-            ),
-        ));
         $this->add(array(
             'name' => 'objetivoGeral',
             'attributes' => array(

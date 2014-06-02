@@ -36,13 +36,13 @@ class Atuacao implements InputFilterAwareInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Projeto\Entity\GrupoPesquisa", inversedBy="atuacaoatuacao")
-     * @ORM\JoinTable(name="atuacao_has_pesquisa",
+     * @ORM\ManyToMany(targetEntity="Projeto\Entity\GrupoPesquisa", inversedBy="areaarea")
+     * @ORM\JoinTable(name="grupopesquisa_has_areaatuacao",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="atuacao_idAtuacao", referencedColumnName="idAreaAtuacao", nullable=true)
+     *     @ORM\JoinColumn(name="AreaAtuacao_idAreaAtuacao", referencedColumnName="idAreaAtuacao", nullable=true)
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="pesquisa_idGrupoPesquisa", referencedColumnName="idGrupoPesquisa", nullable=true)
+     *     @ORM\JoinColumn(name="grupoPesquisa_idGrupoPesquisa", referencedColumnName="idGrupoPesquisa", nullable=true)
      *   }
      * )
      */
@@ -59,24 +59,24 @@ class Atuacao implements InputFilterAwareInterface
     /**
      * Add atuacaoGrupoPesquisa
      *
-     * @param \Projeto\Entity\GrupoPesquisa $professorprojeto
+     * @param \Projeto\Entity\GrupoPesquisa $atuacaoGrupoPesquisa
      * @return Atuacao
      */
-    public function addAtuacaoGrupoPesquisa(\Projeto\Entity\GrupoPesquisa $professorprojeto)
+    public function addAtuacaoGrupoPesquisa(\Projeto\Entity\GrupoPesquisa $atuacaoGrupoPesquisa)
     {
-        $this->professorprojeto[] = $professorprojeto;
+        $this->atuacaoGrupoPesquisa[] = $atuacaoGrupoPesquisa;
     
         return $this;
     }
 
     /**
-     * Remove professorprojeto
+     * Remove atuacaoGrupoPesquisa
      *
-     * @param \Projeto\Entity\GrupoPesquisa $professorprojeto
+     * @param \Projeto\Entity\GrupoPesquisa $atuacaoGrupoPesquisa
      */
-    public function removeAtuacaoGrupoPesquisa(\Projeto\Entity\GrupoPesquisa $professorprojeto)
+    public function removeAtuacaoGrupoPesquisa(\Projeto\Entity\GrupoPesquisa $atuacaoGrupoPesquisa)
     {
-        $this->professorprojeto->removeElement($professorprojeto);
+        $this->atuacaoGrupoPesquisa->removeElement($atuacaoGrupoPesquisa);
     }
 
     /**

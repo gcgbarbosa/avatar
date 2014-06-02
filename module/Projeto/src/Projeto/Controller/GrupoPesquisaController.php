@@ -54,7 +54,7 @@ class GrupoPesquisaController extends AbstractActionController
 
             $form->setInputFilter($grupoPesquisa->getInputFilter());
             $form->setData($request->getPost());
-            
+            var_dump($form->isValid());
             if ($form->isValid()) {
              
                 $grupoPesquisa->populate($form->getData());
@@ -62,11 +62,12 @@ class GrupoPesquisaController extends AbstractActionController
                 $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $grupoPesquisa->getPesquisadorresponsavel()));
                 $grupoPesquisa->setPesquisadorresponsavel($professor);
 
-                $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $grupoPesquisa->getSalasala()));
-                $grupopesquisa->setSalasala($sala);
+                $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $grupoPesquisa->getCoordPesquisa()));
+                $grupoPesquisa->setCoordPesquisa($professor);
 
-                $atuacao = $this->getEntityManager()->getRepository('Curso\Entity\Atuacao')->findOneBy(array('idsala' => $grupoPesquisa->getSalasala()));
-                $grupopesquisa->setSalasala($sala);
+                $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $grupoPesquisa->getSalasala()));
+                $grupoPesquisa->setSalasala($sala);
+
 
                 $this->getEntityManager()->persist($grupoPesquisa);
                 $this->getEntityManager()->flush();
@@ -87,7 +88,7 @@ class GrupoPesquisaController extends AbstractActionController
         
         $grupoPesquisa = $this->getEntityManager()->find('Projeto\Entity\GrupoPesquisa', $id);
 
-        $form = new GrupoPesquisaForm();
+        $form = new GrupoPesquisaForm($this->getEntityManager());
         $form->setBindOnValidate(false);
         $form->bind($grupoPesquisa);
         $form->get('submit')->setAttribute('label', 'Edit');
@@ -97,7 +98,6 @@ class GrupoPesquisaController extends AbstractActionController
         if ($request->isPost()) {
             
             $form->setData($request->getPost());
-            
             if ($form->isValid()) {
                 $form->bindValues();
                 
@@ -121,7 +121,7 @@ class GrupoPesquisaController extends AbstractActionController
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('grupopesquisa');
+            return $this->redirect()->toRoute('grupoesquisa');
         }
 
         $request = $this->getRequest();
@@ -159,7 +159,7 @@ class GrupoPesquisaController extends AbstractActionController
         $grupoPesquisa = $this->getEntityManager()->find('Projeto\Entity\GrupoPesquisa', $id);
 
         return new ViewModel(array(
-            'grupopesquisa' => $grupoPesquisa,
+            'grupoPesquisa' => $grupoPesquisa,
         ));
 
     }

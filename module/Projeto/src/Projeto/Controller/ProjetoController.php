@@ -64,7 +64,7 @@ class ProjetoController extends AbstractActionController
                 $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $projeto->getProfessorcoordenador()));
                 $projeto->setProfessorcoordenador($professor);
 
-                $grupoPesquisa = $this->getEntityManager()->getRepository('Projeto\Entity\GrupoPesquisa')->findOneBy(array('idprofessor' => $projeto->getGrupoPesquisaProjeto()));
+                $grupoPesquisa = $this->getEntityManager()->getRepository('Projeto\Entity\GrupoPesquisa')->findOneBy(array('idGrupoPesquisa' => $projeto->getGrupoPesquisaProjeto()));
                 $projeto->setGrupoPesquisaProjeto($grupoPesquisa);
 
                 if($projeto->getFinaciamento() == "true")

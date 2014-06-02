@@ -50,12 +50,6 @@ class GrupoPesquisa implements InputFilterAwareInterface
      */
     private $linhaPesquisa;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="areasGrupoPesquisa", type="string", length=50, precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $areasGrupoPesquisa;
 
 
     /**
@@ -67,6 +61,17 @@ class GrupoPesquisa implements InputFilterAwareInterface
      * })
      */
     private $pesquisadorresponsavel;
+
+
+    /**
+     * @var \Professor\Entity\Professor
+     *
+     * @ORM\ManyToOne(targetEntity="Professor\Entity\Professor")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name=" coordPesquisa", referencedColumnName="idProfessor", nullable=true)
+     * })
+     */
+    private $coordPesquisa;
 
 
 
@@ -84,10 +89,18 @@ class GrupoPesquisa implements InputFilterAwareInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Curso\Entity\Atuacao", mappedBy="alunoprojeto")
+     * @ORM\ManyToMany(targetEntity="Curso\Entity\Atuacao", mappedBy="atuacaoGrupoPesquisa")
      */
     private $areaarea;
     
+
+
+
+
+        public function __construct()
+    {
+        $this->areaarea = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     /**
      * Get idGrupoPesquisa
      *
@@ -120,6 +133,34 @@ class GrupoPesquisa implements InputFilterAwareInterface
     {
         return $this->nomeGrupoPesquisa;
     }
+
+
+
+
+
+    /**
+     * Set objetivoGeral
+     *
+     * @param string $objetivoGeral
+     * @return GrupoProjeto
+     */
+    public function setObjetivoGeral($objetivoGeral)
+    {
+        $this->objetivoGeral = $objetivoGeral;
+    
+        return $this;
+    }
+
+    /**
+     * Get objetivoGeral
+     *
+     * @return string 
+     */
+    public function getObjetivoGeral()
+    {
+        return $this->objetivoGeral;
+    }
+
 
 
     /**
@@ -219,6 +260,70 @@ class GrupoPesquisa implements InputFilterAwareInterface
     {
         return $this->pesquisadorresponsavel;
     }
+
+
+
+    /**
+     * Set coordPesquisa
+     *
+     * @param \Professor\Entity\Professor $coordPesquisa
+     * @return GrupoProjeto
+     */
+    public function setCoordPesquisa(\Professor\Entity\Professor $coordPesquisa = null)
+    {
+        $this->coordPesquisa = $coordPesquisa;
+    
+        return $this;
+    }
+
+    /**
+     * Get coordPesquisa
+     *
+     * @return \Professor\Entity\Professor 
+     */
+    public function getCoordPesquisa()
+    {
+        return $this->coordPesquisa;
+    }
+
+
+
+/**
+     * Add areaarea
+     *
+     * @param \Curso\Entity\Professor $arearea
+     * @return Projeto
+     */
+    public function addAreaarea(\Curso\Entity\Atuacao $areaarea)
+    {
+        $this->areaarea[] = $areaarea;
+    
+        return $this;
+    }
+
+    /**
+     * Remove areaarea
+     *
+     * @param \Curso\Entity\Professor $arearea
+     */
+    public function removeAreaarea(\Curso\Entity\Atuacao $areaarea)
+    {
+        $this->areaarea->removeElement($arearea);
+    }
+
+    /**
+     * Get areaarea
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAreaarea()
+    {
+        return $this->areaarea;
+    }
+
+
+
+
     /**
      * Convert the object to an array.
      *
@@ -228,8 +333,8 @@ class GrupoPesquisa implements InputFilterAwareInterface
     {
         $obj_vars = get_object_vars($this);
          $obj_vars['pesquisadorresponsavel'] = $obj_vars['pesquisadorresponsavel']->getIdProfessor();
+         $obj_vars['coordPesquisa'] = $obj_vars['coordPesquisa']->getIdProfessor();
          $obj_vars['salasala'] = $obj_vars['salasala']->getIdsala();
-         $obj_vars['areaarea'] = $obj_vars['areaarea']->getIdAreaAtuacao();
         return $obj_vars;
     }
 
@@ -263,25 +368,6 @@ class GrupoPesquisa implements InputFilterAwareInterface
 
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'nomeGrupoPesquisa',
-                'required' => true,
-                'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name'    => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 50,
-                        ),
-                    ),
-                ),
-            )));
-
-             $inputFilter->add($factory->createInput(array(
-                'name'     => 'areasGrupoPesquisa',
                 'required' => true,
                 'filters'  => array(
                     array('name' => 'StripTags'),

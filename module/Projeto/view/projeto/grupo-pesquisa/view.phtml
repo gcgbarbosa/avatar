@@ -26,14 +26,27 @@
 			    		<td><?php echo $grupoPesquisa->getPesquisadorresponsavel()->getNomeprofessor(); ?></td>
 			    	</tr>
 			    	<tr>
-			    		<td><strong>Áreas</strong></td>
-			    		<td><?php echo $grupoPesquisa->getAreasGrupoPesquisa(); ?></td>
+			    		<td><strong>Coordenador  da Pesquisa</strong></td>
+			    		<td><?php echo $grupoPesquisa->getCoordPesquisa()->getNomeprofessor(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Sala</strong></td>
+			    		<td><?php echo $grupoPesquisa->getSalasala()->getNome(); ?></td>
+			    	</tr>
+
+			    	<tr>
+			    		<td><strong>Linha de Pesquisa</strong></td>
+			    		<td><?php echo $grupoPesquisa->getlinhaPesquisa(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Objetivo Geral</strong></td>
+			    		<td><?php echo $grupoPesquisa->getObjetivoGeral(); ?></td>
 			    	</tr>
 			    </table>
 			</div>
 		</div>
 		<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
-		<a class="btn btn-default" href="<?php echo $this->url('grupoPesquisa', array('action'=>'print'));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+		<a class="btn btn-default" href="<?php echo $this->url('grupopesquisa', array('action'=>'print'));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
 	</div>
 
 </div>
