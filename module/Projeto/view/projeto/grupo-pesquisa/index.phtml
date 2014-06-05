@@ -15,13 +15,13 @@
 
         <table class="table">
         <tr>
-            <th>Id</th>
+            <th>Nome</th>
             <th>Pesquisador Responsavel</th>
             <th>&nbsp;</th>
         </tr>
         <?php foreach ($grupoPesquisas as $grupoPesquisa) : ?>
         <tr>
-            <td><?php echo $this->escapeHtml($grupoPesquisa->getIdGrupoPesquisa());?></td>
+            <td><?php echo $this->escapeHtml($grupoPesquisa->getNomeGrupoPesquisa());?></td>
             <td>
                 <a class="btn btn-info" href="<?php echo $this->url('grupopesquisa',
                     array('action'=>'edit', 'id' => $grupoPesquisa->getIdGrupoPesquisa()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>

@@ -190,29 +190,6 @@ class GrupoPesquisa implements InputFilterAwareInterface
     }
 
 
-    /**
-     * Set areasGrupoPesquisa
-     *
-     * @param string $areasGrupoPesquisa
-     * @return GrupoProjeto
-     */
-    public function setAreasGrupoPesquisa($areasGrupoPesquisa)
-    {
-        $this->areasGrupoPesquisa = $areasGrupoPesquisa;
-    
-        return $this;
-    }
-
-    /**
-     * Get areasGrupoPesquisa
-     *
-     * @return string 
-     */
-    public function getAreasGrupoPesquisa()
-    {
-        return $this->areasGrupoPesquisa;
-    }
-
 
 /**
      * Set salasala
@@ -291,7 +268,7 @@ class GrupoPesquisa implements InputFilterAwareInterface
 /**
      * Add areaarea
      *
-     * @param \Curso\Entity\Professor $arearea
+     * @param \Curso\Entity\Atuacao $arearea
      * @return Projeto
      */
     public function addAreaarea(\Curso\Entity\Atuacao $areaarea)
@@ -304,7 +281,7 @@ class GrupoPesquisa implements InputFilterAwareInterface
     /**
      * Remove areaarea
      *
-     * @param \Curso\Entity\Professor $arearea
+     * @param \Curso\Entity\Atuacao $arearea
      */
     public function removeAreaarea(\Curso\Entity\Atuacao $areaarea)
     {
@@ -327,7 +304,7 @@ class GrupoPesquisa implements InputFilterAwareInterface
     /**
      * Convert the object to an array.
      *
-     * @return sala
+     * @return array
      */
     public function getArrayCopy() 
     {

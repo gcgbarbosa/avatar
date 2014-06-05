@@ -22,16 +22,12 @@
 			    		<td><?php echo $grupoPesquisa->getNomeGrupoPesquisa(); ?></td>
 			    	</tr>
 			    	<tr>
-			    		<td><strong>Pesquisador Responsavel</strong></td>
+			    		<td><strong>Pesquisador Responsável</strong></td>
 			    		<td><?php echo $grupoPesquisa->getPesquisadorresponsavel()->getNomeprofessor(); ?></td>
 			    	</tr>
 			    	<tr>
-			    		<td><strong>Coordenador  da Pesquisa</strong></td>
+			    		<td><strong>Coordenador da Pesquisa</strong></td>
 			    		<td><?php echo $grupoPesquisa->getCoordPesquisa()->getNomeprofessor(); ?></td>
-			    	</tr>
-			    	<tr>
-			    		<td><strong>Sala</strong></td>
-			    		<td><?php echo $grupoPesquisa->getSalasala()->getNome(); ?></td>
 			    	</tr>
 
 			    	<tr>
@@ -42,11 +38,72 @@
 			    		<td><strong>Objetivo Geral</strong></td>
 			    		<td><?php echo $grupoPesquisa->getObjetivoGeral(); ?></td>
 			    	</tr>
+			    	<tr>
+			    		<td><strong>Sala</strong></td>
+			    		<td><?php echo $grupoPesquisa->getSalasala()->getNome(); ?></td>
+			    	</tr>
 			    </table>
 			</div>
 		</div>
 		<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
 		<a class="btn btn-default" href="<?php echo $this->url('grupopesquisa', array('action'=>'print'));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
 	</div>
+	<div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Área de Atuação</h1>
+            </div>
+            <ul class="list-group">
+            	<?php
+            	$atuacoes_p = $grupoPesquisa->getAreaarea()->toArray();
+            	
+            	foreach($atuacoes_p as $p) : ?>
+					<li class="list-group-item">
+						<span class="glyphicon glyphicon-user"></span> 
+						<?php echo $p->getNomeAreaAtuacao() ?>
+						<button type="button" class="close" data-toggle="modal" href="#ratuacao<?php echo  $p->getIdAreaAtuacao()?>">&times;</button>
+					</li>
+				<?php endforeach ?>
+            	<li class="list-group-item"><a data-toggle="modal" href="#atuacoes" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Adicionar Área de Atuação</a></li>
+            </ul>
+            <!-- List group -->
+        </div>
+    </div>
+
+
+
+  <div class="modal fade" id="atuacoes" tabindex="-1" role="dialog" aria-labelledby="atuacoes-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/grupo-pesquisa/view/<?php echo $id?>" method="post" name="atuacao" class="form-horizontal" id="atuacao">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Adicionar Área de Atuação</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label class="col-lg-2 control-label" for="atuacao">Professor: </label>
+							<div class="col-lg-10">
+								<select name="atuacao_a" class="form-control" required aria-required="true">
+									<option>Selecione</option>
+									<?php foreach($atuacoes as $p) : ?>
+										<option value="<?php echo $p->getIdAreaAtuacao()?>"><?php echo $p->getNomeAreaAtuacao()?></option>
+									<?php endforeach?>
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Adicionar</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
 
 </div>

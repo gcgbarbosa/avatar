@@ -89,6 +89,13 @@ class Atuacao implements InputFilterAwareInterface
         return $this->atuacaoGrupoPesquisa;
     }
 
+
+    public function setAtuacaoGrupo(\Projeto\Entity\GrupoPesquisa $tomboequipamento = null)
+    {
+        $this->tomboequipamento = $tomboequipamento;
+    
+        return $this;
+    }
     /**
      * Get idAreaAtuacao
      *

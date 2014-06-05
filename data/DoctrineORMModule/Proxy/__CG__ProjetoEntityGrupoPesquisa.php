@@ -87,18 +87,6 @@ class GrupoPesquisa extends \Projeto\Entity\GrupoPesquisa implements \Doctrine\O
         return parent::getlinhaPesquisa();
     }
 
-    public function setAreasGrupoPesquisa($areasGrupoPesquisa)
-    {
-        $this->__load();
-        return parent::setAreasGrupoPesquisa($areasGrupoPesquisa);
-    }
-
-    public function getAreasGrupoPesquisa()
-    {
-        $this->__load();
-        return parent::getAreasGrupoPesquisa();
-    }
-
     public function setSalasala(\Sala\Entity\Sala $salasala = NULL)
     {
         $this->__load();

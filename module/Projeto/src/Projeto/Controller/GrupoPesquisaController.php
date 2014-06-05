@@ -101,6 +101,15 @@ class GrupoPesquisaController extends AbstractActionController
             if ($form->isValid()) {
                 $form->bindValues();
                 
+                $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $grupoPesquisa->getPesquisadorresponsavel()));
+                $grupoPesquisa->setPesquisadorresponsavel($professor);
+
+                $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $grupoPesquisa->getCoordPesquisa()));
+                $grupoPesquisa->setCoordPesquisa($professor);
+
+                $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $grupoPesquisa->getSalasala()));
+                $grupoPesquisa->setSalasala($sala);
+
                 $this->getEntityManager()->persist($grupoPesquisa);
                 
                 $this->getEntityManager()->flush();
@@ -121,7 +130,7 @@ class GrupoPesquisaController extends AbstractActionController
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            return $this->redirect()->toRoute('grupoesquisa');
+            return $this->redirect()->toRoute('grupopesquisa');
         }
 
         $request = $this->getRequest();
@@ -158,8 +167,40 @@ class GrupoPesquisaController extends AbstractActionController
 
         $grupoPesquisa = $this->getEntityManager()->find('Projeto\Entity\GrupoPesquisa', $id);
 
+
+        $atuacoes = $grupoPesquisa->getAreaarea()->toArray();
+        $a_atuacoes = $this->getEntityManager()->getRepository('Curso\Entity\Atuacao')->findAll();
+        foreach($a_atuacoes as $k=>$a_p){
+            foreach($atuacoes as $p){
+                if($a_p == $p)
+                    unset($a_atuacoes[$k]);
+            }
+        }
+
+        $request = $this->getRequest();
+        
+        if ($request->isPost()) {
+            $post = $request->getPost();
+            var_dump($post);exit;
+            if(isset($post->atuacao_a)){
+
+                $atuacao = $this->getEntityManager()->find('Curso\Entity\Atuacao', $post->atuacao_a);
+                $atuacao->addAreaarea($grupoPesquisa);
+                $this->getEntityManager()->persist($grupoPesquisa);
+                $this->getEntityManager()->flush();
+            }
+
+            if(isset($post->atuacao_r)){
+                $atuacao = $this->getEntityManager()->find('Curso\Entity\Atuacao', $post->atuacao_r);
+                $atuacao->removeAreaarea($grupoPesquisa);
+                $this->getEntityManager()->persist($atuacao);
+                $this->getEntityManager()->flush();
+            }
+            return $this->redirect()->toUrl("/grupopesquisa/view/{$id}");    
+        }
         return new ViewModel(array(
             'grupoPesquisa' => $grupoPesquisa,
+            'atuacoes' => $a_atuacoes,//$this->getEntityManager()->getRepository('Curso\Entity\Atuacao')->findAll(),
         ));
 
     }

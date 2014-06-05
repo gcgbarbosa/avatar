@@ -140,10 +140,15 @@ class Professor implements InputFilterAwareInterface
 
 
     /**
-     * @ORM\OneToMany(targetEntity="Projeto\Entity\GrupoPesquisa", mappedBy="professorcoordenador", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Projeto\Entity\GrupoPesquisa", mappedBy="pesquisadorresponsavel", cascade={"persist"})
      */
     protected $professorPesquisadorResponsavel;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Projeto\Entity\GrupoPesquisa", mappedBy="coordPesquisa", cascade={"persist"})
+     */
+    protected $professorCoordPesquisa;
 
     /**
      * Constructor
@@ -153,6 +158,8 @@ class Professor implements InputFilterAwareInterface
         $this->professorprojeto = new \Doctrine\Common\Collections\ArrayCollection();
         $this->professorCoordProjeto = new \Doctrine\Common\Collections\ArrayCollection();
         $this->professorPesquisadorResponsavel = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->professorCoordPesquisa = new \Doctrine\Common\Collections\ArrayCollection();
+
 
     }
     
@@ -189,6 +196,18 @@ class Professor implements InputFilterAwareInterface
     {
         return $this->professorCoordProjeto;
     }
+
+
+        /**
+     * Get professorPesquisadorResponsavel
+     *
+     * @return string 
+     */
+    public function getProfessorPesquisadorResponsavel()
+    {
+        return $this->professorPesquisadorResponsavel;
+    }
+    
     
     /**
      * Get matriculaprofessor

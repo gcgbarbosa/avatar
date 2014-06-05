@@ -111,6 +111,18 @@ class Projeto extends \Projeto\Entity\Projeto implements \Doctrine\ORM\Proxy\Pro
         return parent::getFinaciamento();
     }
 
+    public function setTipoPesquisa($tipoPesquisa)
+    {
+        $this->__load();
+        return parent::setTipoPesquisa($tipoPesquisa);
+    }
+
+    public function getTipoPesquisa()
+    {
+        $this->__load();
+        return parent::getTipoPesquisa();
+    }
+
     public function setFontefinaciamento($fontefinaciamento)
     {
         $this->__load();
@@ -211,7 +223,7 @@ class Projeto extends \Projeto\Entity\Projeto implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idprojeto', 'titulo', 'objetivogeral', 'objetivoespec', 'resultadosesperados', 'finaciamento', 'fontefinaciamento', 'alunoaluno', 'professorprofessor', 'professorcoordenador', 'grupoPesquisaProjeto');
+        return array('__isInitialized__', 'idprojeto', 'titulo', 'objetivogeral', 'objetivoespec', 'resultadosesperados', 'finaciamento', 'tipoPesquisa', 'fontefinaciamento', 'alunoaluno', 'professorprofessor', 'professorcoordenador', 'grupoPesquisaProjeto');
     }
 
     public function __clone()
