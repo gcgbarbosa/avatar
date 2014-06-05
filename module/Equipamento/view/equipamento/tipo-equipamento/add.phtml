@@ -11,7 +11,7 @@ $this->headTitle($title);
 <div class="panel-body">
 <?php
 $form = $this->form;
-$form->setAttribute('action', $this->url('tipoequipamento', array('action' => 'add')));
+$form->setAttribute('action', $this->url('tipoequipamento/default', array('action' => 'add')));
 $form->prepare();
 
 echo $this->form()->openTag($form);

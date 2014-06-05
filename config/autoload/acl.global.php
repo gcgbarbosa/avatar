@@ -74,7 +74,7 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view' => 'guest',
-					
+					'relatorio' => 'guest'
 					
 				),
 				'Professor\Controller\Professor' => array(

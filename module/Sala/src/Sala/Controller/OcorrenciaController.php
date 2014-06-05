@@ -9,6 +9,8 @@ use Doctrine\ORM\EntityManager;
 use Sala\Entity\Local;
 use Sala\Form\OcorrenciaForm;
 use Sala\Entity\Ocorrencia;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class OcorrenciaController extends AbstractActionController
 {
@@ -38,8 +40,16 @@ class OcorrenciaController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
+        /*return new ViewModel(array(
             'ocorrencias' => $this->getEntityManager()->getRepository('Sala\Entity\Ocorrencia')->findAll() 
+        ));*/
+        $ocorrencias = $this->getEntityManager()->getRepository('Sala\Entity\Ocorrencia')->findAll();
+        $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+        $paginator = new Paginator(new ArrayAdapter($ocorrencias));
+        $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+        return new ViewModel(array(
+            'data' => $paginator,
+            'page' => $page
         ));
     }
 

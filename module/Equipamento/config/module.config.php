@@ -18,7 +18,7 @@ return array(
             'equipamento' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/equipamento[/:action][/:id]',
+                    'route'    => '/equipamento',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -47,10 +47,12 @@ return array(
                         'options' => array(
                             'route' => '[/page/:page]',
                             'constraints' => array(
-                                'action' => 'index',
-                                'page' => '1',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+',
                             ),
                             'defaults' => array(
+                                'action' => 'index',
+                                'page' => '1'
                             ),
                         ),
                     ),
@@ -59,7 +61,7 @@ return array(
             'tipoequipamento' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/tipo-equipamento[/:action][/:id]',
+                    'route'    => '/tipo-equipamento',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -69,7 +71,35 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
-                
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/:action[/:id]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/page/:page]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+',
+                            ),
+                            'defaults' => array(
+                                'action' => 'index',
+                                'page' => '1'
+                            ),
+                        ),
+                    ),
+                ),
             ),
             'tombo' => array(
                 'type'    => 'segment',
@@ -92,7 +122,7 @@ return array(
     // View setup for this module
     'view_manager' => array(
         'template_path_stack' => array(
-            'equipamento' => __DIR__ . '/../view',
+            'equipamento/equipamento/index' => __DIR__ . '/../view',
         ),
     ),
 

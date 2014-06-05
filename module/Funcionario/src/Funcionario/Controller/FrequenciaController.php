@@ -7,6 +7,8 @@ use Zend\View\Model\ViewModel;
 use Funcionario\Form\FrequenciaForm;
 use Doctrine\ORM\EntityManager;
 use Funcionario\Entity\Frequencia;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class FrequenciaController extends AbstractActionController
 {
@@ -36,8 +38,17 @@ class FrequenciaController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
+        /*return new ViewModel(array(
             'frequencias' => $this->getEntityManager()->getRepository('Funcionario\Entity\Frequencia')->findAll() 
+        ));*/
+
+        $frequencias = $this->getEntityManager()->getRepository('Funcionario\Entity\Frequencia')->findAll();
+        $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+        $paginator = new Paginator(new ArrayAdapter($frequencias));
+        $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+        return new ViewModel(array(
+            'data' => $paginator,
+            'page' => $page
         ));
     }
 

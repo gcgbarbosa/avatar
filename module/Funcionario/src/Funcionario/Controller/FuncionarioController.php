@@ -7,6 +7,8 @@ use Zend\View\Model\ViewModel;
 use Funcionario\Form\FuncionarioForm;
 use Doctrine\ORM\EntityManager;
 use Funcionario\Entity\Funcionario;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class FuncionarioController extends AbstractActionController
 {
@@ -36,8 +38,16 @@ class FuncionarioController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
+        /*return new ViewModel(array(
             'funcionarios' => $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findAll() 
+        ));*/
+        $funcionarios = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findAll();
+        $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+        $paginator = new Paginator(new ArrayAdapter($funcionarios));
+        $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+        return new ViewModel(array(
+            'data' => $paginator,
+            'page' => $page
         ));
     }
 

@@ -7,6 +7,8 @@ use Zend\View\Model\ViewModel;
 use Sala\Form\LocalForm;
 use Doctrine\ORM\EntityManager;
 use Sala\Entity\Local;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class LocalController extends AbstractActionController
 {
@@ -36,8 +38,16 @@ class LocalController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
+        /*return new ViewModel(array(
             'locais' => $this->getEntityManager()->getRepository('Sala\Entity\Local')->findAll() 
+        ));*/
+        $locais = $this->getEntityManager()->getRepository('Sala\Entity\Local')->findAll();
+        $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+        $paginator = new Paginator(new ArrayAdapter($locais));
+        $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+        return new ViewModel(array(
+            'data' => $paginator,
+            'page' => $page
         ));
     }
 

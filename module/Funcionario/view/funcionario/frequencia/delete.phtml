@@ -10,11 +10,11 @@
 		</div>
 	<div class="panel-body">
 		<h2>Tem certeza que deseja deletar a frequência do dia 
-		    '<?php echo $this->escapeHtml($frequencia->getDataFrequencia()); ?>' do funcionário
+		    '<?php echo $this->escapeHtml($frequencia->getDataFrequencia()->format('d/m/Y')); ?>' do funcionário
 		    '<?php echo $this->escapeHtml($frequencia->getFuncionariofuncionario()->getNomefuncionario()); ?>'?
 		</h2>
 		<?php
-		$url = $this->url('frequencia', array(
+		$url = $this->url('frequencia/default', array(
 		    'action' => 'delete',
 		    'id'     => $this->id,
 		));

@@ -6,6 +6,8 @@ use Zend\View\Model\ViewModel;
 use Equipamento\Form\TipoEquipamentoForm;
 use Doctrine\ORM\EntityManager;
 use Equipamento\Entity\TipoEquipamento;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class TipoEquipamentoController extends AbstractActionController
 {
@@ -35,8 +37,17 @@ class TipoEquipamentoController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
+        /*return new ViewModel(array(
             'tipoequipamentos' => $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findAll() 
+        ));*/
+
+        $tipoequipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findAll();
+        $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+        $paginator = new Paginator(new ArrayAdapter($tipoequipamentos));
+        $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+        return new ViewModel(array(
+            'data' => $paginator,
+            'page' => $page
         ));
     }
 

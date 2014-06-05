@@ -9,9 +9,9 @@
         <h1><?php echo $this->escapeHtml($title); ?></h1>
     </div>
     <div class="panel-body">
-        <a class="btn btn-success" href="<?php echo $this->url('aluno', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar aluno</a>
+        <a class="btn btn-success" href="<?php echo $this->url('aluno/default', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar aluno</a>
         
-        <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+        <a class="btn btn-default" href="<?php echo $this->url('aluno/default', array('action'=>'relatorio'));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
 
         <table class="table">
         <thead>
@@ -19,21 +19,23 @@
             <th>Email</th>
             <th>&nbsp;</th>
         </thead>
-        <?php foreach ($alunos as $aluno) : ?>
+        <?php foreach ($this->data as $aluno) : ?>
         <tr>
             <td><?php echo $this->escapeHtml($aluno->getNomealuno());?></td>
             <td><?php echo $this->escapeHtml($aluno->getEmailaluno());?></td>
             <td>
-                <a class="btn btn-info" href="<?php echo $this->url('aluno',
+                <a class="btn btn-info" href="<?php echo $this->url('aluno/default',
                     array('action'=>'edit', 'id' => $aluno->getIdaluno()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-                <a class="btn btn-danger" href="<?php echo $this->url('aluno',
+                <a class="btn btn-danger" href="<?php echo $this->url('aluno/default',
                     array('action'=>'delete', 'id' => $aluno->getIdaluno()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
-                <a class="btn btn-primary" href="<?php echo $this->url('aluno',
+                <a class="btn btn-primary" href="<?php echo $this->url('aluno/default',
                     array('action'=>'view', 'id' => $aluno->getIdaluno()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
             </td>
         </tr>
         <?php endforeach; ?>
         </table>
-        
+        <center>
+            <?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator', array('route' => 'aluno/paginator')); ?>
+        </center>
     </div>
 </div>

@@ -19,7 +19,7 @@ return array(
             'sala' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/sala[/:action][/:id]',
+                    'route'    => '/sala',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -29,11 +29,40 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/:action[/:id]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/page/:page]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+',
+                            ),
+                            'defaults' => array(
+                                'action' => 'index',
+                                'page' => '1'
+                            ),
+                        ),
+                    ),
+                ),
             ),
             'local' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/local[/:action][/:id]',
+                    'route'    => '/local',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -43,11 +72,40 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/:action[/:id]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/page/:page]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+',
+                            ),
+                            'defaults' => array(
+                                'action' => 'index',
+                                'page' => '1'
+                            ),
+                        ),
+                    ),
+                ),
             ),
             'ocorrencia' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/ocorrencia[/:action][/:id]',
+                    'route'    => '/ocorrencia',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -57,11 +115,40 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/:action[/:id]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/page/:page]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+',
+                            ),
+                            'defaults' => array(
+                                'action' => 'index',
+                                'page' => '1'
+                            ),
+                        ),
+                    ),
+                ),
             ),
             'reservasala' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/reserva-sala[/:action][/:id]',
+                    'route'    => '/reserva-sala',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -69,6 +156,35 @@ return array(
                     'defaults' => array(
                         'controller' => 'Sala\Controller\ReservaSala',
                         'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/:action[/:id]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/page/:page]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+',
+                            ),
+                            'defaults' => array(
+                                'action' => 'index',
+                                'page' => '1'
+                            ),
+                        ),
                     ),
                 ),
             ),

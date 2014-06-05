@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Maio-2014 às 21:06
+-- Generation Time: 05-Jun-2014 às 22:56
 -- Versão do servidor: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -104,14 +104,15 @@ CREATE TABLE IF NOT EXISTS `areaatuacao` (
   `idAreaAtuacao` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nomeAreaAtuacao` varchar(50) NOT NULL,
   PRIMARY KEY (`idAreaAtuacao`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `areaatuacao`
 --
 
 INSERT INTO `areaatuacao` (`idAreaAtuacao`, `nomeAreaAtuacao`) VALUES
-(1, 'lol');
+(2, 'testeab'),
+(5, 'biologia');
 
 -- --------------------------------------------------------
 
@@ -317,21 +318,21 @@ CREATE TABLE IF NOT EXISTS `grupopesquisa_has_areaatuacao` (
 CREATE TABLE IF NOT EXISTS `grupo_pesquisa` (
   `idGrupoPesquisa` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nomeGrupoPesquisa` varchar(50) NOT NULL,
-  `areasGrupoPesquisa` varchar(50) NOT NULL,
   `objetivoGeralGrupoPesquisa` text NOT NULL,
   `sala_idsala` int(11) NOT NULL,
   `professor_idpesquisadorResp` int(11) NOT NULL,
-  `coordPesquisa` int(11) NOT NULL,
+  `coordPesquisa` int(11) DEFAULT NULL,
   `linhaPesquisaGrupoPesquisa` text NOT NULL,
   PRIMARY KEY (`idGrupoPesquisa`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Extraindo dados da tabela `grupo_pesquisa`
 --
 
-INSERT INTO `grupo_pesquisa` (`idGrupoPesquisa`, `nomeGrupoPesquisa`, `areasGrupoPesquisa`, `objetivoGeralGrupoPesquisa`, `sala_idsala`, `professor_idpesquisadorResp`, `coordPesquisa`, `linhaPesquisaGrupoPesquisa`) VALUES
-(1, 'Grupo de Pesquisa de Informática na Saúde', 'Informática, educação e saúde', '', 0, 0, 0, '');
+INSERT INTO `grupo_pesquisa` (`idGrupoPesquisa`, `nomeGrupoPesquisa`, `objetivoGeralGrupoPesquisa`, `sala_idsala`, `professor_idpesquisadorResp`, `coordPesquisa`, `linhaPesquisaGrupoPesquisa`) VALUES
+(1, 'Grupo de Pesquisa de Informática na Saúde', 'teste', 4, 7, 7, 'teste'),
+(2, 'teste', 'aaa', 6, 11, 10, 'asda');
 
 -- --------------------------------------------------------
 
@@ -512,7 +513,7 @@ CREATE TABLE IF NOT EXISTS `projeto` (
   KEY `grupoPesquisaProjeto` (`grupoPesquisaProjeto`),
   KEY `grupoPesquisaProjeto_2` (`grupoPesquisaProjeto`),
   KEY `grupoPesquisaProjeto_3` (`grupoPesquisaProjeto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `projeto`
@@ -524,7 +525,8 @@ INSERT INTO `projeto` (`idProjeto`, `titulo`, `objetivoGeral`, `professor_idCoor
 (3, 'MEC', '', 7, '', '', 1, 'MEC', 1, 0),
 (4, 'UESB', '', 7, '', '', 1, 'UESB', 1, 0),
 (5, 'ConvÃªnio SEED / EAD / UFRPE ', '', 7, '', '', 1, 'UFRPE', 1, 0),
-(6, 'GRUPO DE ESTUDOS EM DANÃ‡A E NOVAS TECNOLOGIAS: InvestigaÃ§Ã£o e exper', 'Realizar um experimento com utilizaÃ§Ã£o de novas tecnologias na Ã¡rea das artes cÃªnicas e como a memÃ³ria psicofÃ­sica influencia diretamente na composiÃ§Ã£o coreogrÃ¡fica, como resultado em processo da disciplina de EstÃ¡gio de Montagem I, bem como experimentar uma metodologia criativa visando o aprimoramento da tÃ©cnica de improvisaÃ§Ã£o da danÃ§arina.', 7, 'Adquirir um conhecimento mais amplo da relaÃ§Ã£o entre danÃ§a e tecnologia;  Compreender a relaÃ§Ã£o do corpo em diferentes espaÃ§os;  Experimentar a criaÃ§Ã£o a partir da intervenÃ§Ã£o de um aparelho de captaÃ§Ã£o e de projeÃ§Ã£o de imagem;  Investigar a improvisaÃ§Ã£o como mÃ©todo criador;  Testar novas formas de criaÃ§Ã£o cÃªnica colaborativa;  Estimular a criaÃ§Ã£o colaborativa  Promover uma relaÃ§Ã£o entre Ã¡reas distintas do conhecimento;', 'Para este experimento de estudo e pesquisa da relaÃ§Ã£o entre a danÃ§a e a utilizaÃ§Ã£o de realidade virtual mediada, esperamos formular um experimento cÃªnico de aproximadamente 15 minutos que tenha como princÃ­pio criativo a interferÃªncia tecnolÃ³gica na cena. Para isso o trabalho se desenvolverÃ¡ por 3 (trÃªs) meses. Nesse processo aplicaremos a metodologia de criaÃ§Ã£o colaborativa, termo criado por AntÃ´nio AraÃºjo em 1990 quando estudava o procedimento de seu grupo de teatro Teatro da Vertigem.  Ao passo que o trabalho se concretize, o G-Dante terÃ¡ passado por um estudo teÃ³rico/prÃ¡tico sobre corpo, espaÃ§o, improvisaÃ§Ã£o, relaÃ§Ã£o multilinguagem e inter/multi/transdisciplinaridade. TerÃ¡ adquirido um conhecimento mais refinado da utilizaÃ§Ã£o de captaÃ§Ã£o e projeÃ§Ã£o de imagem em tempo real, tÃ©cnicas de improvisaÃ§Ã£o cÃªnica bem como a relaÃ§Ã£o do corpo em diferentes ambientes: o virtual e o fÃ­sico.', 0, '', 1, 0);
+(6, 'GRUPO DE ESTUDOS EM DANÃ‡A E NOVAS TECNOLOGIAS: InvestigaÃ§Ã£o e exper', 'Realizar um experimento com utilizaÃ§Ã£o de novas tecnologias na Ã¡rea das artes cÃªnicas e como a memÃ³ria psicofÃ­sica influencia diretamente na composiÃ§Ã£o coreogrÃ¡fica, como resultado em processo da disciplina de EstÃ¡gio de Montagem I, bem como experimentar uma metodologia criativa visando o aprimoramento da tÃ©cnica de improvisaÃ§Ã£o da danÃ§arina.', 7, 'Adquirir um conhecimento mais amplo da relaÃ§Ã£o entre danÃ§a e tecnologia;  Compreender a relaÃ§Ã£o do corpo em diferentes espaÃ§os;  Experimentar a criaÃ§Ã£o a partir da intervenÃ§Ã£o de um aparelho de captaÃ§Ã£o e de projeÃ§Ã£o de imagem;  Investigar a improvisaÃ§Ã£o como mÃ©todo criador;  Testar novas formas de criaÃ§Ã£o cÃªnica colaborativa;  Estimular a criaÃ§Ã£o colaborativa  Promover uma relaÃ§Ã£o entre Ã¡reas distintas do conhecimento;', 'Para este experimento de estudo e pesquisa da relaÃ§Ã£o entre a danÃ§a e a utilizaÃ§Ã£o de realidade virtual mediada, esperamos formular um experimento cÃªnico de aproximadamente 15 minutos que tenha como princÃ­pio criativo a interferÃªncia tecnolÃ³gica na cena. Para isso o trabalho se desenvolverÃ¡ por 3 (trÃªs) meses. Nesse processo aplicaremos a metodologia de criaÃ§Ã£o colaborativa, termo criado por AntÃ´nio AraÃºjo em 1990 quando estudava o procedimento de seu grupo de teatro Teatro da Vertigem.  Ao passo que o trabalho se concretize, o G-Dante terÃ¡ passado por um estudo teÃ³rico/prÃ¡tico sobre corpo, espaÃ§o, improvisaÃ§Ã£o, relaÃ§Ã£o multilinguagem e inter/multi/transdisciplinaridade. TerÃ¡ adquirido um conhecimento mais refinado da utilizaÃ§Ã£o de captaÃ§Ã£o e projeÃ§Ã£o de imagem em tempo real, tÃ©cnicas de improvisaÃ§Ã£o cÃªnica bem como a relaÃ§Ã£o do corpo em diferentes ambientes: o virtual e o fÃ­sico.', 0, '', 1, 0),
+(7, 'asdad', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 2, 'rrrr', 'rrrr', 1, 'asdad', 2, 1);
 
 -- --------------------------------------------------------
 

@@ -10,7 +10,7 @@
 	<div class="panel-body">
 		<?php
 		$form = $this->form;
-		$form->setAttribute('action', $this->url('local', array('action' => 'add')));
+		$form->setAttribute('action', $this->url('local/default', array('action' => 'add')));
 		$form->prepare();
 
 		echo $this->form()->openTag($form);

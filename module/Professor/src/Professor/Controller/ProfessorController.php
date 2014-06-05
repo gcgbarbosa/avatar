@@ -7,6 +7,8 @@ use Zend\View\Model\ViewModel;
 use Professor\Form\ProfessorForm;
 use Doctrine\ORM\EntityManager;
 use Professor\Entity\Professor;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class ProfessorController extends AbstractActionController
 {
@@ -36,8 +38,16 @@ class ProfessorController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
+        /*return new ViewModel(array(
             'professores' => $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll() 
+        ));*/
+        $equipamentos = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+        $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+        $paginator = new Paginator(new ArrayAdapter($equipamentos));
+        $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+        return new ViewModel(array(
+            'data' => $paginator,
+            'page' => $page
         ));
     }
 

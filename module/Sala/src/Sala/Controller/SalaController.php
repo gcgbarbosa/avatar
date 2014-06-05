@@ -5,13 +5,9 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel; 
 use Sala\Form\SalaForm;
 use Doctrine\ORM\EntityManager;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 use Sala\Entity\Sala;
-
-use Classe;
-
-use setting;
-
-use Zend\Pdf;
 
 class SalaController extends AbstractActionController
 {
@@ -41,37 +37,22 @@ class SalaController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
+        /*return new ViewModel(array(
             'salas' => $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findAll() 
+        ));*/
+        $salas = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findAll();
+        $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+        $paginator = new Paginator(new ArrayAdapter($salas));
+        $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+        return new ViewModel(array(
+            'data' => $paginator,
+            'page' => $page
         ));
     }
 
     public function printAction()
     {
-        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        if (!$id) {
-            $salas = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findAll();
-
-            $xml = simplexml_load_file('C:\Users\Sadao\Documents\GitHub\relatorio\alunos\Alunos.jrxml'); //informe onde está seu arquivo jrxml
-            
-            $PHPJasperXML = new PHPJasperXML();
-
-            $PHPJasperXML->debugsql = false;
-
-            $PHPJasperXML->xml_dismantle($xml);
-
-            $PHPJasperXML->connect('localhost','root','','cpds');
-
-            $PHPJasperXML->transferDBtoArray('localhost','root','','cpds');
-
-            $PHPJasperXML->outpage("I");
-
-            return $this->redirect()->toRoute('sala');
-        }
-
-        else {
-            $sala = $this->getEntityManager()->find('Sala\Entity\Sala', $id);
-        }
+        
     }
 
     public function viewAction()

@@ -17,7 +17,7 @@ return array(
             'funcionario' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/funcionario[/:action][/:id]',
+                    'route'    => '/funcionario',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -27,11 +27,40 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/:action[/:id]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/page/:page]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+',
+                            ),
+                            'defaults' => array(
+                                'action' => 'index',
+                                'page' => '1'
+                            ),
+                        ),
+                    ),
+                ),
             ),
             'frequencia' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/frequencia[/:action][/:id]',
+                    'route'    => '/frequencia',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
@@ -39,6 +68,35 @@ return array(
                     'defaults' => array(
                         'controller' => 'Funcionario\Controller\Frequencia',
                         'action'     => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/:action[/:id]]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '\d+',
+                            ),
+                            'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'paginator' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '[/page/:page]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '\d+',
+                            ),
+                            'defaults' => array(
+                                'action' => 'index',
+                                'page' => '1'
+                            ),
+                        ),
                     ),
                 ),
             ),

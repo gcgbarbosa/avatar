@@ -48,18 +48,12 @@ class Sala implements InputFilterAwareInterface
      */
     protected $salaequipamento;
 
-        /**
-     * @ORM\OneToMany(targetEntity="Projeto\Entity\GrupoPesquisa", mappedBy="salasala", cascade={"persist"})
-     */
-    protected $salagrupopesquisa;
-
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->salaequipamento = new \Doctrine\Common\Collections\ArrayCollection();
-         $this->salagrupopesquisa = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

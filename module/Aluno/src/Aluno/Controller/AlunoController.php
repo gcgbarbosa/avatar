@@ -6,6 +6,8 @@ use Zend\View\Model\ViewModel;
 use Aluno\Form\AlunoForm;
 use Doctrine\ORM\EntityManager;
 use Aluno\Entity\Aluno;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class AlunoController extends AbstractActionController
 {
@@ -35,8 +37,33 @@ class AlunoController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
+        /*return new ViewModel(array(
             'alunos' => $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll() 
+        ));*/
+
+        $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
+        $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+        $paginator = new Paginator(new ArrayAdapter($alunos));
+        $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+        return new ViewModel(array(
+            'data' => $paginator,
+            'page' => $page
+        ));
+    }
+
+    public function relatorioAction()
+    {
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
+            return new ViewModel(array(
+                'alunos' => $alunos
+            ));
+        }
+        $aluno = $this->getEntityManager()->find('Aluno\Entity\Aluno', $id);
+        return new ViewModel(array(
+            'aluno' => $aluno
         ));
     }
 

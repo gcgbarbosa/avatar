@@ -7,6 +7,9 @@ use Equipamento\Form\EquipamentoForm;
 use Doctrine\ORM\EntityManager;
 use Equipamento\Entity\Equipamento;
 use Equipamento\Entity\Tombo;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
+use Doctrine\ORM\EntityRepository;
 
 class EquipamentoController extends AbstractActionController
 {
@@ -38,14 +41,26 @@ class EquipamentoController extends AbstractActionController
     {
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
-        if (!$id) 
+        if (!$id) { 
             $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
-        else  
+            $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+            $paginator = new Paginator(new ArrayAdapter($equipamentos));
+            $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+            return new ViewModel(array(
+                'data' => $paginator,
+                'page' => $page
+            ));
+        }
+        else {  
             //$equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
            $equipamentos = $this->findEquipamentoByTombo($id);
-        return new ViewModel(array(
-            'equipamentos' => $equipamentos, 
-        ));
+            return new ViewModel(array(
+                'equipamentos' => $equipamentos, 
+            ));
+        }
+
+        
+
     }
 
     public function viewAction()
@@ -100,15 +115,19 @@ class EquipamentoController extends AbstractActionController
     }
 
     public function findEquipamentoByTombo($tombo)
-    {
+    {/*
         $dql = "SELECT * FROM Equipamento\Entity\Equipamento 
                 WHERE idEquipamento = 
                 (SELECT id_equipamento FROM Equipamento\Entity\Tombo
                 WHERE numeroTombo = ?tombo)";
 
         $query = $this->getEntityManager()->createQuery($dql);
+*/
+        $myQuery = $this->createQueryBuilder('u')
+                   ->where('u.nTombo = :tombo')
+                   ->setParameter('tombo', $tombo)->getQuery()->getResult();
 
-        return $query->getResult();
+        return $myQuery;
     }
 
     public function addAction()

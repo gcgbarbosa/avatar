@@ -7,6 +7,8 @@ use Zend\View\Model\ViewModel;
 use Sala\Form\ReservaSalaForm;
 use Doctrine\ORM\EntityManager;
 use Sala\Entity\ReservaSala;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class ReservaSalaController extends AbstractActionController
 {
@@ -36,8 +38,17 @@ class ReservaSalaController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
+        /*return new ViewModel(array(
             'reservaSalas' => $this->getEntityManager()->getRepository('Sala\Entity\ReservaSala')->findAll() 
+        ));*/
+        
+        $reservaSalas = $this->getEntityManager()->getRepository('Sala\Entity\ReservaSala')->findAll();
+        $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+        $paginator = new Paginator(new ArrayAdapter($reservaSalas));
+        $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+        return new ViewModel(array(
+            'data' => $paginator,
+            'page' => $page
         ));
     }
 

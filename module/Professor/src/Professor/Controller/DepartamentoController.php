@@ -7,6 +7,8 @@ use Zend\View\Model\ViewModel;
 use Professor\Form\DepartamentoForm;
 use Doctrine\ORM\EntityManager;
 use Professor\Entity\Departamento;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class DepartamentoController extends AbstractActionController
 {
@@ -36,8 +38,16 @@ class DepartamentoController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
+        /*return new ViewModel(array(
             'departamentos' => $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findAll() 
+        ));*/
+        $equipamentos = $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findAll();
+        $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
+        $paginator = new Paginator(new ArrayAdapter($equipamentos));
+        $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
+        return new ViewModel(array(
+            'data' => $paginator,
+            'page' => $page
         ));
     }
 

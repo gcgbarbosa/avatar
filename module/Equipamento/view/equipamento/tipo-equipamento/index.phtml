@@ -10,7 +10,7 @@
     </div>
     <div class="panel-body">
         <p>
-            <a class="btn btn-success" href="<?php echo $this->url('tipoequipamento', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar Tipo de Equipamento</a>
+            <a class="btn btn-success" href="<?php echo $this->url('tipoequipamento/default', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar Tipo de Equipamento</a>
             <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
         </p>
 
@@ -20,20 +20,23 @@
             <th>Descrição</th>
             <th>&nbsp;</th>
         </thead>
-        <?php foreach ($tipoequipamentos as $tipoequipamento) : ?>
+        <?php foreach ($this->data as $tipoequipamento) : ?>
         <tr>
             <td><?php echo substr($this->escapeHtml($tipoequipamento->getNometipoequipamento()), 0, 20);?></td>
             <td><?php echo substr($this->escapeHtml($tipoequipamento->getDescricaotipoequipamento()), 0, 75);?></td>
             <td>
-                <a class="btn btn-info" href="<?php echo $this->url('tipoequipamento',
+                <a class="btn btn-info" href="<?php echo $this->url('tipoequipamento/default',
                     array('action'=>'edit', 'id' => $tipoequipamento->getIdtipoequipamento()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
 
-                <a class="btn btn-danger" href="<?php echo $this->url('tipoequipamento',
+                <a class="btn btn-danger" href="<?php echo $this->url('tipoequipamento/default',
                     array('action'=>'delete', 'id' => $tipoequipamento->getIdtipoequipamento()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
             </td>
         </tr>
         <?php endforeach; ?>
         </table>
+        <center>
+            <?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator', array('route' => 'equipamento/paginator')); ?>
+        </center>
     </div>
 </div>
 
