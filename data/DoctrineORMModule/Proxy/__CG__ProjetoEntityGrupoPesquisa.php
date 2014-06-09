@@ -63,16 +63,82 @@ class GrupoPesquisa extends \Projeto\Entity\GrupoPesquisa implements \Doctrine\O
         return parent::getNomeGrupoPesquisa();
     }
 
-    public function setAreasGrupoPesquisa($areasGrupoPesquisa)
+    public function setObjetivoGeral($objetivoGeral)
     {
         $this->__load();
-        return parent::setAreasGrupoPesquisa($areasGrupoPesquisa);
+        return parent::setObjetivoGeral($objetivoGeral);
     }
 
-    public function getAreasGrupoPesquisa()
+    public function getObjetivoGeral()
     {
         $this->__load();
-        return parent::getAreasGrupoPesquisa();
+        return parent::getObjetivoGeral();
+    }
+
+    public function setLinhapesquisa($linhaPesquisa)
+    {
+        $this->__load();
+        return parent::setLinhapesquisa($linhaPesquisa);
+    }
+
+    public function getlinhaPesquisa()
+    {
+        $this->__load();
+        return parent::getlinhaPesquisa();
+    }
+
+    public function setSalasala(\Sala\Entity\Sala $salasala = NULL)
+    {
+        $this->__load();
+        return parent::setSalasala($salasala);
+    }
+
+    public function getSalasala()
+    {
+        $this->__load();
+        return parent::getSalasala();
+    }
+
+    public function setPesquisadorresponsavel(\Professor\Entity\Professor $pesquisadorresponsavel = NULL)
+    {
+        $this->__load();
+        return parent::setPesquisadorresponsavel($pesquisadorresponsavel);
+    }
+
+    public function getPesquisadorresponsavel()
+    {
+        $this->__load();
+        return parent::getPesquisadorresponsavel();
+    }
+
+    public function setCoordPesquisa(\Professor\Entity\Professor $coordPesquisa = NULL)
+    {
+        $this->__load();
+        return parent::setCoordPesquisa($coordPesquisa);
+    }
+
+    public function getCoordPesquisa()
+    {
+        $this->__load();
+        return parent::getCoordPesquisa();
+    }
+
+    public function addAreaarea(\Curso\Entity\Atuacao $areaarea)
+    {
+        $this->__load();
+        return parent::addAreaarea($areaarea);
+    }
+
+    public function removeAreaarea(\Curso\Entity\Atuacao $areaarea)
+    {
+        $this->__load();
+        return parent::removeAreaarea($areaarea);
+    }
+
+    public function getAreaarea()
+    {
+        $this->__load();
+        return parent::getAreaarea();
     }
 
     public function getArrayCopy()
@@ -103,7 +169,7 @@ class GrupoPesquisa extends \Projeto\Entity\GrupoPesquisa implements \Doctrine\O
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'idGrupoPesquisa', 'nomeGrupoPesquisa', 'areasGrupoPesquisa');
+        return array('__isInitialized__', 'idGrupoPesquisa', 'nomeGrupoPesquisa', 'objetivoGeral', 'linhaPesquisa', 'pesquisadorresponsavel', 'coordPesquisa', 'salasala', 'areaarea');
     }
 
     public function __clone()

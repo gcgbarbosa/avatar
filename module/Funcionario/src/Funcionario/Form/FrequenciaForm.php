@@ -25,7 +25,7 @@ class FrequenciaForm extends Form
             'attributes' => array(
                 'class' => 'form-control',
                 'type'  => 'text',
-                'id' => 'horarioentrada'
+                //'id' => 'horarioentrada'
             ),
             'options' => array(
                 'label' => 'Hora de Entrada: ',
@@ -40,7 +40,7 @@ class FrequenciaForm extends Form
             'attributes' => array(
                 'class' => 'form-control',
                 'type'  => 'text',
-                'id' => 'horariosaida'
+              //  'id' => 'horariosaida'
             ),
             'options' => array(
                 'label' => 'Hora de Saída: ',
@@ -73,7 +73,7 @@ class FrequenciaForm extends Form
             'attributes' => array(
                 'type'  => 'Zend\Form\Element\DateTime',
                 'class' => 'form-control',
-                'id' => 'dataFrequencia'
+               // 'id' => 'dataFrequencia'
             ),
             'options' => array(
                 'label' => 'Dia: ',
