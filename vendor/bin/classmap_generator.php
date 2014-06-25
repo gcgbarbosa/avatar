@@ -1,5 +1,7 @@
-XSym
-0057
-24a4a2582fe989a80b1770f2b51d1172
-../zendframework/zendframework/bin/classmap_generator.php
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+#!/usr/bin/env sh
+SRC_DIR="`pwd`"
+cd "`dirname "$0"`"
+cd "../zendframework/zendframework/bin"
+BIN_TARGET="`pwd`/classmap_generator.php"
+cd "$SRC_DIR"
+"$BIN_TARGET" "$@"

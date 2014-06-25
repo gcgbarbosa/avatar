@@ -1,5 +1,7 @@
-XSym
-0028
-6ad9c04ba34037260849b181387a137a
-../doctrine/orm/bin/doctrine
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+#!/usr/bin/env sh
+SRC_DIR="`pwd`"
+cd "`dirname "$0"`"
+cd "../doctrine/orm/bin"
+BIN_TARGET="`pwd`/doctrine"
+cd "$SRC_DIR"
+"$BIN_TARGET" "$@"

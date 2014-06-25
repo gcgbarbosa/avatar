@@ -11,6 +11,8 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.2.*",
         "zendframework/zend-developer-tools": "dev-master",
-        "doctrine/doctrine-orm-module": "0.7.*"
+        "doctrine/doctrine-orm-module": "0.7.*",
+        "rwoverdijk/assetmanager": "*",
+        "kriswallsmith/assetic": "1.1.*@dev"
     }
 }

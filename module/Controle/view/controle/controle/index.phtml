@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Controles';
+    $this->headTitle($title);
+
+    ?>
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <a class="btn btn-success" href="<?php echo $this->url('controle/default', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar Controle</a>
+        
+        <a class="btn btn-default" href="<?php echo $this->url('controle/default', array('action'=>'relatorio'));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+
+        <table class="table table-striped">
+        <thead>
+            <th>Aluno</th>
+            <th>Curso</th>
+            <th>Sala</th>
+            <th>Responsável</th>
+            <th>&nbsp;</th>
+        </thead>
+        <?php foreach ($this->data as $controle) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($controle->getAlunoControle()->getNomealuno());?></td>
+            <td><?php echo $this->escapeHtml($controle->getCursoControle()->getNomeCurso());?></td>
+            <td><?php echo $this->escapeHtml($controle->getSalaControle()->getNome());?></td>
+            <td><?php echo $this->escapeHtml($controle->getResponsavelControle()->getNomeprofessor());?></td>
+            <td>
+                <a class="btn btn-info" href="<?php echo $this->url('controle/default',
+                    array('action'=>'edit', 'id' => $controle->getIdControle()));?>"><span class="glyphicon glyphicon-edit"></span> Marcar Saída</a>
+                <a class="btn btn-danger" href="<?php echo $this->url('controle/default',
+                    array('action'=>'delete', 'id' => $controle->getIdControle()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
+                <a class="btn btn-primary" href="<?php echo $this->url('controle/default',
+                    array('action'=>'view', 'id' => $controle->getIdControle()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </table>
+        <center>
+            <?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator', array('route' => 'controle/paginator')); ?>
+        </center>
+    </div>
+</div>

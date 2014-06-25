@@ -1,5 +1,7 @@
-XSym
-0060
-9b42a0c6da89f799efa48cce2100ac3b
-../zendframework/zendframework/bin/templatemap_generator.php
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+#!/usr/bin/env sh
+SRC_DIR="`pwd`"
+cd "`dirname "$0"`"
+cd "../zendframework/zendframework/bin"
+BIN_TARGET="`pwd`/templatemap_generator.php"
+cd "$SRC_DIR"
+"$BIN_TARGET" "$@"

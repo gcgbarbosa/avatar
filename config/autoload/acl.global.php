@@ -197,6 +197,22 @@ return array(
 					'delete'=> 'guest',
 					'view'=> 'guest',
 				),
+				'Visitante\Controller\Visitante' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+					'view'=> 'guest',
+					'relatorio' => 'guest',
+				),
+				'Controle\Controller\Controle' => array(
+					'index'   => 'guest',
+					'add'	=> 'guest',
+					'edit'  => 'guest',	
+					'delete'=> 'guest',
+					'view'=> 'guest',
+					'relatorio' => 'guest',
+				),
 			)
         )
     )

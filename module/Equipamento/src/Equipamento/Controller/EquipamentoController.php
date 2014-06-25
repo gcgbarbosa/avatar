@@ -51,16 +51,11 @@ class EquipamentoController extends AbstractActionController
                 'page' => $page
             ));
         }
-        else {  
-            //$equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
-           $equipamentos = $this->findEquipamentoByTombo($id);
-            return new ViewModel(array(
-                'equipamentos' => $equipamentos, 
-            ));
-        }
-
+        $equipamentos = $this->findEquipamentoByTombo($id);
+        return new ViewModel(array(
+            'equipamentos' => $equipamentos, 
+        ));
         
-
     }
 
     public function viewAction()
@@ -115,19 +110,11 @@ class EquipamentoController extends AbstractActionController
     }
 
     public function findEquipamentoByTombo($tombo)
-    {/*
-        $dql = "SELECT * FROM Equipamento\Entity\Equipamento 
-                WHERE idEquipamento = 
-                (SELECT id_equipamento FROM Equipamento\Entity\Tombo
-                WHERE numeroTombo = ?tombo)";
-
-        $query = $this->getEntityManager()->createQuery($dql);
-*/
-        $myQuery = $this->createQueryBuilder('u')
-                   ->where('u.nTombo = :tombo')
-                   ->setParameter('tombo', $tombo)->getQuery()->getResult();
-
-        return $myQuery;
+    {
+        $query = $this->getEntityManager()->createQuery("SELECT u FROM
+        Equipamento\Entity\Equipamento u WHERE u.ntombo = :tombo");
+        $query->setParameters(array('tombo' => $tombo));
+        return $query->getResult();
     }
 
     public function addAction()

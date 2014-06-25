@@ -81,6 +81,12 @@ return array(
             ),
         ),
     ),
-
+    'asset_manager' => array( 
+        'resolver_configs' => array( 
+            'paths' => array( 
+                'aluno' => __DIR__ . '/../public', 
+            ), 
+        ), 
+    ),
 );
 
