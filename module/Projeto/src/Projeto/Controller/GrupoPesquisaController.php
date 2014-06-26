@@ -167,41 +167,43 @@ class GrupoPesquisaController extends AbstractActionController
 
         $grupoPesquisa = $this->getEntityManager()->find('Projeto\Entity\GrupoPesquisa', $id);
 
-
         $atuacoes = $grupoPesquisa->getAreaarea()->toArray();
         $a_atuacoes = $this->getEntityManager()->getRepository('Curso\Entity\Atuacao')->findAll();
-        foreach($a_atuacoes as $k=>$a_p){
-            foreach($atuacoes as $p){
-                if($a_p == $p)
+        foreach($a_atuacoes as $k=>$a_a){
+            foreach($atuacoes as $a){
+                if($a_a == $a)
                     unset($a_atuacoes[$k]);
             }
         }
 
         $request = $this->getRequest();
-        
-        if ($request->isPost()) {
+       if ($request->isPost()) {
             $post = $request->getPost();
-            var_dump($post);exit;
-            if(isset($post->atuacao_a)){
 
+           // var_dump($post);exit;
+
+
+
+            if(isset($post->atuacao_a)){
                 $atuacao = $this->getEntityManager()->find('Curso\Entity\Atuacao', $post->atuacao_a);
-                $atuacao->addAreaarea($grupoPesquisa);
-                $this->getEntityManager()->persist($grupoPesquisa);
+                $atuacao->addAtuacaoGrupoPesquisa($grupoPesquisa);
+                $this->getEntityManager()->persist($atuacao);
                 $this->getEntityManager()->flush();
             }
 
             if(isset($post->atuacao_r)){
                 $atuacao = $this->getEntityManager()->find('Curso\Entity\Atuacao', $post->atuacao_r);
-                $atuacao->removeAreaarea($grupoPesquisa);
+                $atuacao->removeAtuacaoGrupoPesquisa($grupoPesquisa);
                 $this->getEntityManager()->persist($atuacao);
                 $this->getEntityManager()->flush();
             }
-            return $this->redirect()->toUrl("/grupopesquisa/view/{$id}");    
+            return $this->redirect()->toUrl("/grupo-pesquisa/view/{$id}");    
         }
-        return new ViewModel(array(
+        return array(
+            'id' => $id,
             'grupoPesquisa' => $grupoPesquisa,
             'atuacoes' => $a_atuacoes,//$this->getEntityManager()->getRepository('Curso\Entity\Atuacao')->findAll(),
-        ));
+        );
 
     }
 }

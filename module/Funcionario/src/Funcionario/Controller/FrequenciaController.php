@@ -80,10 +80,9 @@ class FrequenciaController extends AbstractActionController
             $form->setInputFilter($frequencia->getInputFilter());
             
             $form->setData($request->getPost());
-            //var_dump($form->setData());exit;
             if ($form->isValid()) {
                 $frequencia->populate($form->getData()); 
-
+                var_dump($frequencia);exit;
                 $funcionario = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findOneBy(array('idfuncionario' => $frequencia->getFuncionariofuncionario()));
                 $frequencia->setFuncionariofuncionario($funcionario);
 
@@ -92,7 +91,7 @@ class FrequenciaController extends AbstractActionController
                 $data = $data['0']."-".$data['1']."-". $data['2'];
                 $frequencia->setDataFrequencia(new \DateTime($data));
                 //END SET DATA 
-                
+               
                 $this->getEntityManager()->persist($frequencia);
                 $this->getEntityManager()->flush();
 
