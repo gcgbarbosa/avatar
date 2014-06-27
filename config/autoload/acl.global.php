@@ -9,7 +9,7 @@ return array(
         'resources' => array(
             'allow' => array(
 				'CsnUser\Controller\Registration' => array(
-					'index'	=> 'guest',
+					'index'	=> 'member',
 					'changePassword' => 'member',
 					'editProfile' => 'member',
 					'changeEmail' => 'member',
@@ -74,8 +74,8 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view' => 'guest',
-					'relatorio' => 'guest'
-					
+					'relatorio' => 'guest',
+					'relatorioindividual' => 'guest',
 				),
 				'Professor\Controller\Professor' => array(
 					'index'   => 'guest',

@@ -38,39 +38,33 @@ class RegistrationController extends AbstractActionController
     public function indexAction()
     {
 		
-            $entityManager = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
-			if (!$user = $this->identity()) {
-				$user = new User;
+        $entityManager = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+		$user = new User;
 				//1)  A lot of work to manualy change the form add fields etc. Better use a form class
 	//-		$form = $this->getRegistrationForm($entityManager, $user);
 
 				// 2) Better use a form class
-				$form = new RegistrationForm();
-				$form->get('submit')->setValue('Sign up');
-				$form->setHydrator(new DoctrineHydrator($entityManager,'CsnUser\Entity\User'));		
-
-				$form->bind($user);		
-				$request = $this->getRequest();
-				if ($request->isPost()) {
-						$form->setInputFilter(new RegistrationFilter($this->getServiceLocator()));
-						$form->setData($request->getPost());
-						 if ($form->isValid()) {
-								$this->prepareData($user);
+		$form = new RegistrationForm();
+		$form->get('submit')->setValue('Sign up');
+		$form->setHydrator(new DoctrineHydrator($entityManager,'CsnUser\Entity\User'));		
+		$form->bind($user);		
+		$request = $this->getRequest();
+		if ($request->isPost()) {
+			$form->setInputFilter(new RegistrationFilter($this->getServiceLocator()));
+			$form->setData($request->getPost());
+			if ($form->isValid()) {
+				$this->prepareData($user);
 								
-								$this->flashMessenger()->addMessage($user->getEmail());
-								$entityManager->persist($user);
-								$entityManager->flush();			
-								$this->sendConfirmationEmail($user);	
-								return $this->redirect()->toRoute('registration-success');					
-						}			 
-				}
-				return new ViewModel(array('form' => $form, 'navMenu' => $this->getOptions()->getNavMenu()));
+				//$this->flashMessenger()->addMessage($user->getEmail());
+				$entityManager->persist($user);
+				$entityManager->flush();			
+				$this->sendConfirmationEmail($user);	
+				return $this->redirect()->toRoute('registration-success');					
+			}			 
 		}
-		else
-		{
-			return $this->redirect()->toRoute($this->getOptions()->getLoginRedirectRoute());
-		}
-    }
+		return new ViewModel(array('form' => $form, 'navMenu' => $this->getOptions()->getNavMenu()));
+	}
+
 	public function changeEmailAction()
 	{
 		$entityManager = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');

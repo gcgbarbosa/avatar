@@ -44,6 +44,6 @@
 			</div>
 		</div>
 		<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
-		<a class="btn btn-default" href="#"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+		<a class="btn btn-default" href="<?php echo $this->url('aluno/default', array('action'=>'relatorioindividual', 'id' => $aluno->getIdaluno()));?>"><span class="glyphicon glyphicon-list-alt"></span> Relatório</a>
 	</div>
 </div>

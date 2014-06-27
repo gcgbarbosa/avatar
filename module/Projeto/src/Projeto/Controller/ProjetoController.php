@@ -205,8 +205,6 @@ class ProjetoController extends AbstractActionController
         if ($request->isPost()) {
             $post = $request->getPost();
 
-            var_dump($post);exit;
-
             if(isset($post->professor_a)){
                 $professor = $this->getEntityManager()->find('Professor\Entity\Professor', $post->professor_a);
                 $professor->addProjetoprojeto($projeto);
