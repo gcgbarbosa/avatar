@@ -1,0 +1,30 @@
+<div class="panel panel-danger">
+	<?php
+	// module/Album/view/album/album/delete.phtml:
+
+	$title = 'Deletar departamento';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+			<h1><?php echo $this->escapeHtml($title); ?></h1>
+		</div>
+	<div class="panel-body">
+		<h2>Tem certeza que deseja deletar o departamento 
+		    '<?php echo $this->escapeHtml($departamento->getnomedepartamento()); ?>' matricula
+		    '<?php echo $this->escapeHtml($departamento->getdescricaodepartamento()); ?>'?
+		</h2>
+		<?php
+		$url = $this->url('departamento/default', array(
+		    'action' => 'delete',
+		    'id'     => $this->id,
+		));
+		?>
+		<form action="<?php echo $url; ?>" method="post">
+		<div>
+		    <input type="hidden" name="id" value="<?php echo (int) $departamento->getIddepartamento(); ?>" />
+		    <input class="btn btn-default" type="submit" name="del" value="Sim" />
+		    <input class="btn btn-default" type="submit" name="del" value="Não" />
+		</div>
+		</form>
+	</div>
+</div>

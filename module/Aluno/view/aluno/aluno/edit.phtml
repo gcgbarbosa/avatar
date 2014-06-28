@@ -1,0 +1,87 @@
+<div class="panel panel-info">
+	<?php
+	// module/Album/view/album/album/edit.phtml:
+	$title = 'Editar aluno';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+		<h1><?php echo $this->escapeHtml($title); ?></h1>
+	</div>
+	<div class="panel-body">
+		<?php
+		$form = $this->form;
+		$form->setAttribute('action', $this->url(
+		    'aluno/default',
+		    array(
+		        'action' => 'edit',
+		        'id'     => $this->id,
+		    )
+		));
+		$form->prepare();
+
+		echo $this->form()->openTag($form);
+		?>
+			<?php echo $this->formHidden($form->get('idaluno')) ?>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('nomealuno'))."\n"?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('nomealuno')) ?>
+					<?php echo $this->formElementErrors($form->get('nomealuno')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('emailaluno'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('emailaluno')) ?>
+					<?php echo $this->formElementErrors($form->get('emailaluno')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('telefonealuno'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('telefonealuno')) ?>
+					<?php echo $this->formElementErrors($form->get('telefonealuno')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('matriculaaluno'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('matriculaaluno')) ?>
+					<?php echo $this->formElementErrors($form->get('matriculaaluno')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('cursoAluno'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formSelect($form->get('cursoAluno')) ?>
+					<?php echo $this->formElementErrors($form->get('cursoAluno')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('bolsista'))."\n" ?>
+				<div class="col-lg-4">
+					<?php echo $this->formRadio($form->get('bolsista')) ?>
+					<?php echo $this->formElementErrors($form->get('bolsista')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+				<?php echo $this->formLabel($form->get('datanasc'))."\n" ?>
+				<div class="col-lg-10">
+					<?php echo $this->formText($form->get('datanasc')) ?>
+					<?php echo $this->formElementErrors($form->get('datanasc')) ?>
+				</div>
+			</div>
+			<div class="form-group">
+		    	<div class="col-lg-offset-2 col-lg-10">
+					<?php echo $this->formSubmit($form->get('submit')) ?>
+				</div>
+			</div>
+		<?php echo $this->form()->closeTag(); ?>
+	</div>
+</div>
+<script>
+jQuery(function($){
+   $("#datanasc").mask("99/99/9999");
+   $("#telefonealuno").mask("(99) 9999-9999");
+});
+</script>

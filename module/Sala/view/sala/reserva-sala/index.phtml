@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Reservas';
+    $this->headTitle($title);
+    ?>
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <p>
+            <a class="btn btn-success" href="<?php echo $this->url('reservasala/default', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar nova Reserva de Sala</a>
+            <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+        </p>
+
+        <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Sala</th>
+            <th>Início</th>
+            <th>Fim</th>
+            <th>Dia</th>
+            <th>Professor</th>
+            <th>&nbsp;</th>
+        </tr>
+        <?php foreach ($this->data as $reservaSala) : ?>
+        <tr>
+            <th><?php echo $this->escapeHtml($reservaSala->getIdReservaSala());?></th>
+            <td><?php echo $this->escapeHtml($reservaSala->getSalaReserva()->getNome());?></td>
+            <td><?php echo $this->escapeHtml($reservaSala->getDataInicio());?></td>
+            <td><?php echo $this->escapeHtml($reservaSala->getDataFim());?></td>
+            <td><?php echo $this->escapeHtml($reservaSala->getDataReserva()->format('d/m/Y'));?></td>
+            <td><?php echo $this->escapeHtml($reservaSala->getProfessorReserva()->getNomeprofessor());?></td>
+            <td>
+                 <a class="btn btn-info" href="<?php echo $this->url('reservasala/default',
+                    array('action'=>'edit', 'id' => $reservaSala->getIdReservaSala()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                <a class="btn btn-danger" href="<?php echo $this->url('reservasala/default',
+                    array('action'=>'delete', 'id' => $reservaSala->getIdReservaSala()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
+                <a class="btn btn-primary" href="<?php echo $this->url('reservasala/default',
+                    array('action'=>'view', 'id' => $reservaSala->getIdReservaSala()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </table>
+        <center>
+            <?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator', array('route' => 'sala/paginator')); ?>
+        </center>
+    </div>
+</div>
+

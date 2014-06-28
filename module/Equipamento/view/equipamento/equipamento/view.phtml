@@ -1,0 +1,123 @@
+<div class="row">
+    
+    <div class="col-md-7">
+		<div class="panel panel-primary">
+			<?php
+			// module/Album/view/album/album/delete.phtml:
+
+			$title = 'Equipamento '. $equipamento->getNtombo();
+			$this->headTitle($title);
+			?>
+			<div class="panel-heading">
+					<h1><?php echo $this->escapeHtml($title); ?></h1>
+				</div>
+			<div class="panel-body">
+				<table class="table">
+			    	<tr>
+			    		<td><strong>N° Tombo</strong></td>
+			    		<td><?php echo $equipamento->getNtombo(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Observação</strong></td>
+			    		<td><?php echo $equipamento->getObservacao(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Tipo De Equipamento</strong></td>
+			    		<td><?php echo $equipamento->getTipoequipamentotipoequipamento()->getNometipoequipamento(); ?>
+			    			<td>
+			    	</tr>
+			 		<tr>
+			    		<td><strong>Sala</strong></td>
+			    		<td><?php echo $equipamento->getSalasala()->getNome(); ?></td>
+			    	</tr>
+			 		<tr>
+			    		<td><strong>Projeto</strong></td>
+			    		<td><?php echo $equipamento->getProjetoprojeto()->getTitulo(); ?></td>
+			    	</tr>
+			  	</table>
+			</div>
+		</div>
+		<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+		<a class="btn btn-default" href="<?php echo $this->url('sala', array('action'=>'print'));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+	</div>
+	
+	<div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Tombos</h1>
+            </div>
+            <ul class="list-group">
+            	<?php
+            	$tombos_t = $equipamento->getTombotombo()->toArray();
+            	//var_dump($tombos_t);exit;
+            	foreach($tombos_t as $t) : ?>
+					<li class="list-group-item">
+						<span class="glyphicon glyphicon-user"></span> 
+						<?php echo $t->getNumeroTombo() ?>
+						<button type="button" class="close" data-toggle="modal" href="#rtombo<?php echo $t->getIdTombo()?>">&times;</button>
+					</li>
+				<?php endforeach ?>
+            	<li class="list-group-item"><a data-toggle="modal" href="#tombos" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Adicionar Tombo</a></li>
+            </ul>
+            <!-- List group -->
+        </div>
+    </div>
+
+    <div class="modal fade" id="tombos" tabindex="-1" role="dialog" aria-labelledby="professores-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/equipamento/view/<?php echo $id?>" method="post" name="tombo" class="form-horizontal" id="tombo">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Adicionar Tombo</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label class="col-lg-2 control-label" for="professor">Tombo: </label>
+							<div class="col-lg-10">
+								<div class="input-group">
+ 									<input type="text" id="idTombo" name="tombo_a" class="form-control" placeholder="Número do Tombo">
+								</div>
+
+								<!--<select name="professor_a" class="form-control" required aria-required="true">
+									<option>Selecione</option>
+									<?php foreach($professores as $p) : ?>
+										<option value="<?php echo $p->getIdprofessor()?>"><?php echo $p->getNomeprofessor()?></option>
+									<?php endforeach?>
+								</select>-->
+							</div>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Adicionar</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<?php foreach($tombos_t as $t) : ?>
+	<!-- Modal -->
+	<div class="modal fade" id="rtombo<?php echo $t->getIdTombo()?>" tabindex="-1" role="dialog" aria-labelledby="alunos-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/equipamento/view/<?php echo $id?>" method="post" name="tombo" class="form-horizontal" id="tombo">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Remover o tombo '<?php echo $t->getNumeroTombo();?>' do equipamento '<?php echo $equipamento->getIdequipamento()?>'?</h4>
+					</div>
+					<div class="modal-body">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary">Sim</button>
+					</div>
+					<input type="hidden" name="tombo_r" value="<?php echo $t->getIdTombo();?>"></input>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<?php endforeach ?>
+
+</div>

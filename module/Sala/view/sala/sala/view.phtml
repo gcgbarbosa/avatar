@@ -1,0 +1,56 @@
+<div class="row">
+    
+    <div class="col-md-7">
+		<div class="panel panel-primary">
+			<?php
+			// module/Album/view/album/album/delete.phtml:
+
+			$title = 'Sala '. $sala->getNome();
+			$this->headTitle($title);
+			?>
+			<div class="panel-heading">
+					<h1><?php echo $this->escapeHtml($title); ?></h1>
+				</div>
+			<div class="panel-body">
+				<table class="table">
+			    	<tr>
+			    		<td><strong>Id</strong></td>
+			    		<td><?php echo $sala->getIdsala(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Nome</strong></td>
+			    		<td><?php echo $sala->getNome(); ?></td>
+			    	</tr>
+			    </table>
+			</div>
+		</div>
+		<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+		<a class="btn btn-default" href="#"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+	</div>
+
+	<div class="col-md-5">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Equipamentos desta Sala</h1>
+            </div>
+            <ul class="list-group">
+            	<?php
+            	$equipamentos = $sala->getSalaequipamento()->toArray();    //deixei igual para rodar.        	
+            	if(!$equipamentos)
+            		echo "<li class=\"list-group-item\">Nenhum equipamento</li>";
+            	foreach($equipamentos as $p) : ?>
+					<li class="list-group-item">
+						<tr>
+							<span class="glyphicon glyphicon-briefcase"></span> 
+							<td>Tipo <?php echo $p->getTipoequipamentotipoequipamento()->getNometipoequipamento() ?></td> -
+							<td>Tombo <?php echo $p->getNtombo() ?></td>
+						</tr>
+					</li>
+				<?php endforeach ?>
+            </ul>
+            <!-- List group -->
+        </div>
+
+    </div>
+
+</div>

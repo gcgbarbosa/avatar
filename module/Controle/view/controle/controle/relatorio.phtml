@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Relatório Geral de Alunos';
+    
+    $this->headTitle($title);
+
+    ?>
+
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+        <thead>
+            <th>Aluno</th>
+            <th>Curso</th>
+            <th>Sala</th>
+            <th>Responsável</th>
+            <th>Objetivo</th>
+            <th>Presente</th>
+            <th>Entrada</th>
+            <th>Saída</th>
+            <th>&nbsp;</th>
+        </thead>
+        <?php foreach ($controles as $controle) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($controle->getAlunoControle()->getNomealuno());?></td>
+            <td><?php echo $this->escapeHtml($controle->getCursoControle()->getNomeCurso());?></td>
+            <td><?php echo $this->escapeHtml($controle->getSalaControle()->getNome());?></td>
+            <td><?php echo $this->escapeHtml($controle->getResponsavelControle()->getNomeprofessor());?></td>
+            <td><?php echo $this->escapeHtml($controle->getObjetivoControle());?></td>
+            <td><?php echo $this->escapeHtml($controle->getStatusControle()) ? 'Sim' : 'Não'; ?></td>
+            <td><?php echo $this->escapeHtml($controle->getDataEntradaControle()->format('d/m/Y H:i:s'));?></td>
+            <td><?php echo $this->escapeHtml($controle->getDataSaidaControle()->format('d/m/Y H:i:s'));?></td>
+        </tr>
+        <?php endforeach; ?>
+        </table>
+        <a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+        <center><a class="btn btn-default" href="javascript:self.print()" ><span class="glyphicon glyphicon-print"></span> Imprimir</a></center>
+    </div>
+
+</div>

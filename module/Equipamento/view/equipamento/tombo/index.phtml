@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Tombos';
+    $this->headTitle($title);
+    ?>
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <p>
+            <a class="btn btn-success" href="<?php echo $this->url('tombo', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar novo Tombo</a>
+        </p>
+
+        <table class="table">
+        <tr>
+            <th>Tombo</th>
+            <th>&nbsp;</th>
+        </tr>
+        <?php foreach ($tombos as $tombo) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($tombo->getNumeroTombo());?></td>
+            <td>
+                 <a class="btn btn-info" href="<?php echo $this->url('tombo',
+                    array('action'=>'edit', 'id' => $tombo->getIdTombo()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                <a class="btn btn-danger" href="<?php echo $this->url('tombo',
+                    array('action'=>'delete', 'id' => $tombo->getIdTombo()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
+                <a class="btn btn-primary" href="<?php echo $this->url('tombo',
+                    array('action'=>'view', 'id' => $tombo->getIdTombo()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </table>
+    </div>
+</div>
+

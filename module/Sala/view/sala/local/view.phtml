@@ -1,0 +1,52 @@
+<div class="row">
+    
+    <div class="col-md-7">
+		<div class="panel panel-primary">
+			<?php
+			// module/Album/view/album/album/delete.phtml:
+
+			$title = 'Local '. $local->getNomelocal();
+			$this->headTitle($title);
+			?>
+			<div class="panel-heading">
+					<h1><?php echo $this->escapeHtml($title); ?></h1>
+				</div>
+			<div class="panel-body">
+				<table class="table">
+			    	<tr>
+			    		<td><strong>Id</strong></td>
+			    		<td><?php echo $local->getIdlocal(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Nome</strong></td>
+			    		<td><?php echo $local->getNomelocal(); ?></td>
+			    	</tr>
+			    </table>
+			</div>
+		</div>
+		<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+		<a class="btn btn-default" href="<?php echo $this->url('sala', array('action'=>'print'));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+	</div>
+
+	<div class="col-md-5">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Salas deste Local</h1>
+            </div>
+            <ul class="list-group">
+            	<?php
+            	$salas = $local->getSalasala()->toArray();    //deixei igual para rodar.        	
+            	if(!$salas)
+            		echo "<li class=\"list-group-item\">Nenhuma sala</li>";
+
+            	foreach($salas as $p) : ?>
+					<li class="list-group-item">
+						<span class="glyphicon glyphicon-briefcase"></span> 
+						<?php echo $p->getNome() ?>
+					</li>
+				<?php endforeach ?>
+            </ul>
+            <!-- List group -->
+        </div>
+    </div>
+</div>

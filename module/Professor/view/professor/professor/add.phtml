@@ -1,0 +1,120 @@
+<div class="panel panel-success">
+<?php
+// module/Album/view/album/album/add.phtml:
+
+$title = 'Adicionar novo professor';
+$this->headTitle($title);
+?>
+<div class="panel-heading">
+	<h1><?php echo $this->escapeHtml($title); ?></h1>
+</div>
+<div class="panel-body">
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('professor/default', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('matriculaprofessor'))."\n"?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('matriculaprofessor')) ?>
+		<?php echo $this->formElementErrors($form->get('matriculaprofessor')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('nomeprofessor'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('nomeprofessor')) ?>
+		<?php echo $this->formElementErrors($form->get('nomeprofessor')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('emailprofessor'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('emailprofessor')) ?>
+		<?php echo $this->formElementErrors($form->get('emailprofessor')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('telefoneprofessor'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('telefoneprofessor')) ?>
+		<?php echo $this->formElementErrors($form->get('telefoneprofessor')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('areadeatuacao'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('areadeatuacao')) ?>
+		<?php echo $this->formElementErrors($form->get('areadeatuacao')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('cursoProfessor'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formSelect($form->get('cursoProfessor')) ?>
+		<?php echo $this->formElementErrors($form->get('cursoProfessor')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('titulacao'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('titulacao')) ?>
+		<?php echo $this->formElementErrors($form->get('titulacao')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('classe'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('classe')) ?>
+		<?php echo $this->formElementErrors($form->get('classe')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('regimedetrabalho'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('regimedetrabalho')) ?>
+		<?php echo $this->formElementErrors($form->get('regimedetrabalho')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('tipovinculo'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('tipovinculo')) ?>
+		<?php echo $this->formElementErrors($form->get('tipovinculo')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('datanasc'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formText($form->get('datanasc')) ?>
+		<?php echo $this->formElementErrors($form->get('datanasc')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<?php echo $this->formLabel($form->get('departamentodepartamento'))."\n" ?>
+	<div class="col-lg-10">
+		<?php echo $this->formSelect($form->get('departamentodepartamento')) ?>
+		<?php echo $this->formElementErrors($form->get('departamentodepartamento')) ?>
+	</div>
+</div>
+<div class="form-group">
+	<div class="col-lg-offset-2 col-lg-10">
+		<?php echo $this->formSubmit($form->get('submit')) ?>
+	</div>
+</div>
+
+<?php echo $this->form()->closeTag(); ?>
+
+</div>
+</div>
+</div>
+<script>
+jQuery(function($){
+   $("#datanasc").mask("99/99/9999");
+   $("#telefoneprofessor").mask("(99) 9999-9999");
+});
+</script>

@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Funcionários';
+    $this->headTitle($title);
+    ?>
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <p>
+            <a class="btn btn-success" href="<?php echo $this->url('funcionario/default', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar funcionário</a>
+            <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+        </p>
+
+        <table class="table">
+        <thead>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>&nbsp;</th>
+        </thead>
+        <?php foreach ($this->data as $funcionario) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($funcionario->getNomefuncionario());?></td>
+            <td><?php echo $this->escapeHtml($funcionario->getEmailfuncionario());?></td>
+            <td>
+                <a class="btn btn-info" href="<?php echo $this->url('funcionario/default',
+                    array('action'=>'edit', 'id' => $funcionario->getIdfuncionario()));?>"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                <a class="btn btn-danger" href="<?php echo $this->url('funcionario/default',
+                    array('action'=>'delete', 'id' => $funcionario->getIdfuncionario()));?>"><span class="glyphicon glyphicon-remove"></span> Deletar</a>
+                <a class="btn btn-primary" href="<?php echo $this->url('funcionario/default',
+                    array('action'=>'view', 'id' => $funcionario->getIdfuncionario()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </table>
+        <center>
+            <?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator', array('route' => 'funcionario/paginator')); ?>
+        </center>
+    </div>
+</div>

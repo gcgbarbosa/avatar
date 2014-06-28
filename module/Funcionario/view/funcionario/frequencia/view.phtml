@@ -1,0 +1,43 @@
+<div class="row">
+    
+    <div class="col-md-7">
+		<div class="panel panel-primary">
+			<?php
+			// module/Album/view/album/album/delete.phtml:
+
+			$title = 'Frequência '. $frequencia->getFuncionariofuncionario()->getNomefuncionario();
+			$this->headTitle($title);
+			?>
+			<div class="panel-heading">
+					<h1><?php echo $this->escapeHtml($title); ?></h1>
+				</div>
+			<div class="panel-body">
+				<table class="table">
+					<tr>
+			    		<td><strong>Id</strong></td>
+			    		<td><?php echo $frequencia->getIdfrequencia(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Funcionário</strong></td>
+			    		<td><?php echo $frequencia->getFuncionariofuncionario()->getNomefuncionario(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Hora de Entrada</strong></td>
+			    		<td><?php echo $frequencia->getHorarioentrada(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Hora de Saída</strong></td>
+			    		<td><?php echo $frequencia->getHorariosaida(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Dia</strong></td>
+			    		<td><?php echo $frequencia->getDataFrequencia()->format('d/m/Y'); ?></td>
+			    	</tr>
+			    </table>
+			</div>
+		</div>
+		<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+		<a class="btn btn-default" href="<?php echo $this->url('sala', array('action'=>'print'));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+	</div>
+</div>
+

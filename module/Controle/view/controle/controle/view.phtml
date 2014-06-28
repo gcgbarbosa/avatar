@@ -1,0 +1,57 @@
+<div class="row">
+    
+    <div class="col-md-7">
+		<div class="panel panel-primary">
+			<?php
+			
+			$title = 'Controle '. $controle->getIdControle();
+			$this->headTitle($title);
+			?>
+			<div class="panel-heading">
+					<h1><?php echo $this->escapeHtml($title); ?></h1>
+				</div>
+			<div class="panel-body">
+				<table class="table">
+			    	<tr>
+			    		<td><strong>Id</strong></td>
+			    		<td><?php echo $controle->getIdControle(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Aluno</strong></td>
+			    		<td><?php echo $controle->getAlunoControle()->getNomealuno(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Curso</strong></td>
+			    		<td><?php echo $controle->getCursoControle()->getNomeCurso(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Sala</strong></td>
+			    		<td><?php echo $controle->getSalaControle()->getNome(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Responsável</strong></td>
+			    		<td><?php echo $controle->getResponsavelControle()->getNomeprofessor(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Hora de Entrada</strong></td>
+			    		<td><?php echo $controle->getDataEntradaControle()->format('Y-m-d H:i:s'); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Hora de Saída</strong></td>
+			    		<td><?php echo $controle->getDataSaidaControle()->format('Y-m-d H:i:s'); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Objetivo</strong></td>
+			    		<td><?php echo $controle->getObjetivoControle(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Ativo</strong></td>
+			    		<td><?php echo $controle->getStatusControle() ? 'Sim' : 'Não'; ?></td>
+			    	</tr>
+			  	</table>
+			</div>
+		</div>
+		<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+		<a class="btn btn-default" href="#"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+	</div>
+</div>

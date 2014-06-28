@@ -1,0 +1,55 @@
+<div class="row">
+    
+    <div class="col-md-7">
+		<div class="panel panel-primary">
+			<?php
+			// module/Album/view/album/album/delete.phtml:
+
+			$title = 'Reserva da Sala '. $reservaSala->getSalaReserva()->getNome();
+			$this->headTitle($title);
+			?>
+			<div class="panel-heading">
+					<h1><?php echo $this->escapeHtml($title); ?></h1>
+				</div>
+			<div class="panel-body">
+				<table class="table">
+			    	<tr>
+			    		<td><strong>Id</strong></td>
+			    		<td><?php echo $reservaSala->getIdReservaSala(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Objetivo</strong></td>
+			    		<td><?php echo $reservaSala->getObjetivo(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Hora do Início</strong></td>
+			    		<td><?php echo $reservaSala->getDataInicio(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Hora do Fim</strong></td>
+			    		<td><?php echo $reservaSala->getDataFim(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Dia</strong></td>
+			    		<td><?php echo $reservaSala->getDataReserva()->format('d/m/Y'); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Sala</strong></td>
+			    		<td><?php echo $reservaSala->getSalaReserva()->getNome(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Funcionário</strong></td>
+			    		<td><?php echo $reservaSala->getFuncionarioReserva()->getNomefuncionario(); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Professor</strong></td>
+			    		<td><?php echo $reservaSala->getProfessorReserva()->getNomeprofessor(); ?></td>
+			    	</tr>
+			    </table>
+			</div>
+		</div>
+		<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+		<a class="btn btn-default" href="<?php echo $this->url('sala', array('action'=>'print'));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+	</div>
+
+</div>

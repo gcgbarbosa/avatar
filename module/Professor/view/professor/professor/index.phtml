@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+	<?php
+	// module/Album/view/album/album/index.phtml:
+
+	$title = 'Professores';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+	    <h1><?php echo $this->escapeHtml($title); ?></h1>
+	</div>
+	<div class="panel-body">
+		<p>
+		    <a class="btn btn-success" href="<?php echo $this->url('professor/default', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar Professor</a>
+		    <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+		</p>
+
+		<table class="table">
+		<thead>
+		    <th>Nome</th>
+		    <th>Curso</th>
+		    <th>&nbsp;</th>
+		</thead>
+		<?php foreach ($this->data as $professor) : ?>
+		<tr>
+		    <td><?php echo $this->escapeHtml($professor->getNomeProfessor());?></td>
+		    <td><?php echo $this->escapeHtml($professor->getCursoProfessor()->getNomeCurso());?></td>
+		    <td>
+		        <a class="btn btn-info" href="<?php echo $this->url('professor/default',
+		            array('action'=>'edit', 'id' => $professor->getIdProfessor()));?>"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+
+		        <a class="btn btn-danger" href="<?php echo $this->url('professor/default',
+		            array('action'=>'delete', 'id' => $professor->getIdProfessor()));?>"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+		        <a class="btn btn-primary" href="<?php echo $this->url('professor/default',
+                    array('action'=>'view', 'id' => $professor->getIdprofessor()));?>"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
+		    </td>
+		</tr>
+		<?php endforeach; ?>
+		</table>
+		<center>
+            <?php echo $this->paginationControl($this->data, 'Sliding', 'partials/paginator', array('route' => 'professor/paginator')); ?>
+        </center>
+	</div>
+</div>
