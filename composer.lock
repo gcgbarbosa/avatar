@@ -646,16 +646,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "0363a5548d9263f979f9ca149decb9cfc66419ab"
+                "reference": "8a13376d42b5ea467727ffe730aa0e14ca3c5e29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/0363a5548d9263f979f9ca149decb9cfc66419ab",
-                "reference": "0363a5548d9263f979f9ca149decb9cfc66419ab",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/8a13376d42b5ea467727ffe730aa0e14ca3c5e29",
+                "reference": "8a13376d42b5ea467727ffe730aa0e14ca3c5e29",
                 "shasum": ""
             },
             "require": {
@@ -718,7 +718,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-02-08 16:35:09"
+            "time": "2014-06-10 11:49:08"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -965,12 +965,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/ZendDeveloperTools.git",
-                "reference": "8907edf3a03ae0ac761b43e33b3629ac1b6c3cf3"
+                "reference": "da8a8b232b1b43a43c899f9acf4472ef006b8827"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/ZendDeveloperTools/zipball/8907edf3a03ae0ac761b43e33b3629ac1b6c3cf3",
-                "reference": "8907edf3a03ae0ac761b43e33b3629ac1b6c3cf3",
+                "url": "https://api.github.com/repos/zendframework/ZendDeveloperTools/zipball/da8a8b232b1b43a43c899f9acf4472ef006b8827",
+                "reference": "da8a8b232b1b43a43c899f9acf4472ef006b8827",
                 "shasum": ""
             },
             "require": {
@@ -1018,7 +1018,7 @@
                 "module",
                 "zf2"
             ],
-            "time": "2014-05-06 03:29:18"
+            "time": "2014-06-18 08:28:36"
         },
         {
             "name": "zendframework/zendframework",

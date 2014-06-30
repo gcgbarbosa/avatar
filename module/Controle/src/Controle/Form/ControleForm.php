@@ -25,6 +25,7 @@ class ControleForm extends Form
             'name' => 'alunoControle',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'alunoControle',
             ),
             'options' => array(
                 'label_attributes' => array(
@@ -43,6 +44,7 @@ class ControleForm extends Form
             'name' => 'cursoControle',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'cursoControle',
             ),
             'options' => array(
                 'label_attributes' => array(
@@ -61,6 +63,7 @@ class ControleForm extends Form
             'name' => 'salaControle',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'salaControle',
             ),
             'options' => array(
                 'label_attributes' => array(
@@ -79,6 +82,7 @@ class ControleForm extends Form
             'name' => 'responsavelControle',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'responsavelControle',
             ),
             'options' => array(
                 'label_attributes' => array(
@@ -97,6 +101,7 @@ class ControleForm extends Form
             'attributes' => array(
                 'type'  => 'text',
                 'class' => 'form-control',
+                'id' => 'objetivoControle',
             ),
             'options' => array(
                 'label' => 'Objetivo: ',

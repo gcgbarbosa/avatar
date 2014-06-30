@@ -1,0 +1,30 @@
+<div class="panel panel-info">
+	<?php
+	// module/Album/view/album/album/delete.phtml:
+
+	$title = 'Marcar Saída';
+	$this->headTitle($title);
+	?>
+	<div class="panel-heading">
+			<h1><?php echo $this->escapeHtml($title); ?></h1>
+		</div>
+	<div class="panel-body">
+		<h2>Tem certeza que deseja marcar saída do aluno
+		    '<?php echo $this->escapeHtml($controle->getAlunoControle()->getNomealuno()); ?>' do dia
+		    '<?php echo $this->escapeHtml($controle->getDataEntradaControle()->format('d/m/Y')); ?>'?
+		</h2>
+		<?php
+		$url = $this->url('controle/default', array(
+		    'action' => 'saida',
+		    'id'     => $this->id,
+		));
+		?>
+		<form action="<?php echo $url; ?>" method="post">
+		<div>
+		    <input type="hidden" name="id" value="<?php echo (int) $controle->getIdControle(); ?>" />
+		    <input class="btn btn-default" type="submit" name="del" value="Sim" />
+		    <input class="btn btn-default" type="submit" name="del" value="Não" />
+		</div>
+		</form>
+	</div>
+</div>

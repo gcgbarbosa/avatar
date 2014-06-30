@@ -33,7 +33,7 @@
             <td><?php echo $this->escapeHtml($controle->getDataEntradaControle()->format('d/m/Y H:i:s'));?></td>
             <td>
                 <a class="btn btn-xs btn-info" href="<?php echo $this->url('controle/default',
-                    array('action'=>'edit', 'id' => $controle->getIdControle()));?>"><span class="glyphicon glyphicon-edit"></span> </a>
+                    array('action'=>'saida', 'id' => $controle->getIdControle()));?>"><span class="glyphicon glyphicon-edit"></span> </a>
                 <a class="btn btn-xs btn-danger" href="<?php echo $this->url('controle/default',
                     array('action'=>'delete', 'id' => $controle->getIdControle()));?>"><span class="glyphicon glyphicon-remove"></span> </a>
                 <a class="btn btn-xs btn-primary" href="<?php echo $this->url('controle/default',

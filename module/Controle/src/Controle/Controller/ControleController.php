@@ -185,6 +185,56 @@ class ControleController extends AbstractActionController
         ));
     }
 
+    public function saidaAction() {
+
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('controle');
+        }
+
+        $request = $this->getRequest();
+        
+        if ($request->isPost()) {
+            $del = $request->getPost('del', 'Não');
+            
+            if ($del == 'Sim') {
+                $id = (int) $request->getPost('id');
+                $controle = $this->getEntityManager()->find('Controle\Entity\Controle', $id);
+                
+                if ($controle) {
+                    $aluno = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findOneBy(array('idaluno' => $controle->getAlunoControle()));
+                    $controle->setAlunoControle($aluno);
+        
+                    $curso = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findOneBy(array('idcurso' => $controle->getCursoControle()));
+                    $controle->setCursoControle($curso);
+
+                    $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $controle->getSalaControle()));
+                    $controle->setSalaControle($sala);
+
+                    $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $controle->getResponsavelControle()));
+                    $controle->setResponsavelControle($professor);
+
+                    $controle->setDataSaidaControle(new \DateTime(date('Y-m-d H:i:s')));
+                    
+                    $controle->setStatusControle(false);
+                    
+                    $this->getEntityManager()->persist($controle);
+                    $this->getEntityManager()->flush();
+                    
+                    return $this->redirect()->toRoute('controle');
+                }
+            }
+
+            return $this->redirect()->toRoute('controle');
+        }
+
+        return array(
+            'id' => $id,
+            'controle' => $this->getEntityManager()->find('Controle\Entity\Controle', $id)
+        );
+    }
+
 
     public function deleteAction()
     {
