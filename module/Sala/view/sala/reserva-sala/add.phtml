@@ -77,7 +77,11 @@
 jQuery(function($){
    $("#dataInicio").mask("99:99");
    $("#dataFim").mask("99:99");
-   $("#dataReserva").mask("99/99/9999");
+});
+</script>
+<script>
+$(function() {
+    $( "#dataFrequencia" ).datepicker({dateFormat: 'dd/mm/yy'});
 });
 </script>
 

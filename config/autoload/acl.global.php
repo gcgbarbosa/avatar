@@ -216,6 +216,9 @@ return array(
 					'relatorio' => 'guest',
 					'saida' => 'guest',
 				),
+				'Busca\Controller\Busca' => array(
+					'index'   => 'guest',
+				),
 			)
         )
     )
