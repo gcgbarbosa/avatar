@@ -185,4 +185,20 @@ class ProfessorController extends AbstractActionController
             'professor' => $this->getEntityManager()->find('Professor\Entity\Professor', $id)
         );
     }
+
+        public function relatorioAction()
+    {
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+            return new ViewModel(array(
+                'professores' => $professores
+            ));
+        }
+        $professor = $this->getEntityManager()->find('Professor\Entity\Professor', $id);
+        return new ViewModel(array(
+            'professor' => $professor
+        ));
+    }
 }
