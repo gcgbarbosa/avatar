@@ -8,3 +8,4 @@ data/DoctrineORMModule/Proxy/__CG__ProfessorEntityDepartamento.php
 data/DoctrineORMModule/Proxy/__CG__CursoEntityCurso.php
 data/DoctrineORMModule/Proxy/__CG__ProfessorEntityProfessor.php
 data/DoctrineORMModule/Proxy/__CG__ProjetoEntityGrupoPesquisa.php
+data/DoctrineORMModule/**/*

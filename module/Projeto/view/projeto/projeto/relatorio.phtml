@@ -1,0 +1,47 @@
+<link href="/css/bootstrap.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap-theme.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/style.css" print="screen" rel="stylesheet" type="text/css">
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Relatório Geral de Projetos';
+    
+    $this->headTitle($title);
+
+    ?>
+
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+        <thead>
+            <th>Título</th>
+            <th>Grupo de Pesquisa</th>
+            <th>Coordenador</th>
+            <th>Finaciamento</th>
+            <th>&nbsp;</th>
+        </thead>
+        <?php foreach ($projetos as $projeto) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($projeto->getTitulo());?></td>
+            <td><?php echo $this->escapeHtml($projeto->getGrupoPesquisaProjeto()->getNomeGrupoPesquisa());?></td>
+            <td><?php echo $this->escapeHtml($projeto->getProfessorcoordenador()->getNomeprofessor());?></td>
+            <td><?php echo $this->escapeHtml($projeto->getFinaciamento()) ? 'Sim' : 'Não';?></td>
+        </tr>
+        <?php endforeach; ?>
+        </table>
+        
+    </div>
+
+</div>
+<style media="print">
+    .btn-default {
+        display: none;    
+    }
+    .btn {
+        display: none;
+    }
+</style>
+<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+<center><a class="btn btn-default" href="javascript:self.print()" ><span class="glyphicon glyphicon-print"></span> Imprimir</a></center>
