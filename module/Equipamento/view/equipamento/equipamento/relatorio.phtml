@@ -18,14 +18,16 @@
         <thead>
             <th>N° Tombo</th>
             <th>Tipo</th>
-            <th>Curso</th>
+            <th>Sala</th>
+            <th>Projeto</th>
             <th>&nbsp;</th>
         </thead>
         <?php foreach ($equipamentos as $equipamento) : ?>
         <tr>
             <td><?php echo $this->escapeHtml($equipamento->getNtombo());?></td>
             <td><?php echo $this->escapeHtml($equipamento->getTipoequipamentotipoequipamento()->getNometipoequipamento());?></td>
-            <td><?php echo $this->escapeHtml($equipamento->getCursoProfessor()->getNomeCurso());?></td>
+            <td><?php echo $this->escapeHtml($equipamento->getSalasala()->getNome());?></td>
+            <td><?php echo $this->escapeHtml($equipamento->getProjetoprojeto()->getTitulo());?></td>
         </tr>
         <?php endforeach; ?>
         </table>

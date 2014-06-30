@@ -58,6 +58,22 @@ class EquipamentoController extends AbstractActionController
         
     }
 
+public function relatorioAction()
+    {
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
+            return new ViewModel(array(
+                'equipamentos' => $equipamentos
+            ));
+        }
+        $equipamento = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
+        return new ViewModel(array(
+            'equipamento' => $equipamento
+        ));
+    }
+
     public function viewAction()
     {
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
