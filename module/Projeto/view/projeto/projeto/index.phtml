@@ -10,12 +10,12 @@
     <div class="panel-body">
         <p>
             <a class="btn btn-success" href="<?php echo $this->url('projeto', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar novo Projeto</a>
-            <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+        <a class="btn btn-default" href="<?php echo $this->url('projeto', array('action'=>'relatorio'));?>"><span class="glyphicon glyphicon-list-alt"></span> Relatório</a>
         </p>
 
         <table class="table">
         <tr>
-            <th>Nome</th>
+            <th>Título</th>
             <th>Grupo de Pesquisa</th>
             <th>&nbsp;</th>
         </tr>

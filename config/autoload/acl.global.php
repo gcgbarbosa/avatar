@@ -100,6 +100,7 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view'=> 'guest',
+					'relatorio' => 'guest',
 				),
 
 				'Projeto\Controller\GrupoPesquisa' => array(
@@ -108,6 +109,7 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view'=> 'guest',
+					'relatorio' => 'guest',
 				),
 
 
@@ -125,6 +127,7 @@ return array(
 					'edit'  => 'guest',
 					'delete' => 'guest',
 					'view'  => 'guest',
+					'relatorio' => 'guest',
 				),
 
 				'Equipamento\Controller\Equipamento' => array(
