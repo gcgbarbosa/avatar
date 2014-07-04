@@ -62,15 +62,97 @@ class ControleController extends AbstractActionController
     {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
-        if (!$id) {
-            $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findAll();
+        $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findAll();
+        $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
+        $cursos = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findAll();
+        $salas = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findAll();
+        $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+
+        $request = $this->getRequest();
+        
+        if ($request->isPost()) {
+            $post = $request->getPost();
+            //$data = explode("/", $post->data);
+            //$data = $data['2']."-".$data['1']."-". $data['0'];
+            if ($post->selectaluno != '-1' || $post->selectsala != '-1' || $post->selectcurso != '-1' || $post->selectresponsavel != '-1' || $post->data != "") {
+                if ($post->selectaluno != '-1') {
+                    $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $post->selectaluno));
+                    if ($post->selectcurso != '-1') {
+                        $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $post->selectaluno, 'cursoControle' => $post->selectcurso));
+                        if ($post->selectsala != '-1') {
+                            $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $post->selectaluno, 'cursoControle' => $post->selectcurso, 'salaControle' => $post->selectsala));
+                            if ($post->selectresponsavel != '-1') {
+                                $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $post->selectaluno, 'cursoControle' => $post->selectcurso, 'salaControle' => $post->selectsala, 'responsavelControle' => $post->selectresponsavel));
+                            }
+                        }
+                        else {
+                            if ($post->selectresponsavel != '-1') {
+                                $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $post->selectaluno, 'cursoControle' => $post->selectcurso, 'responsavelControle' => $post->selectresponsavel));
+                            }   
+                        }
+                    }
+                    else {
+                        if ($post->selectsala != '-1') {
+                            $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $post->selectaluno, 'salaControle' => $post->selectsala));
+                            if ($post->selectresponsavel != '-1') {
+                                $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $post->selectaluno, 'salaControle' => $post->selectsala, 'responsavelControle' => $post->selectresponsavel));
+                            }
+                        }
+                        else {
+                            if ($post->selectresponsavel != '-1') {
+                                $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $post->selectaluno, 'responsavelControle' => $post->selectresponsavel));
+                            }   
+                        }
+                    }
+                }
+                else {
+                    if ($post->selectcurso != '-1') {
+                        $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('cursoControle' => $post->selectcurso));
+                        if ($post->selectsala != '-1') {
+                            $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('cursoControle' => $post->selectcurso, 'salaControle' => $post->selectsala));
+                            if ($post->selectresponsavel != '-1') {
+                                $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('cursoControle' => $post->selectcurso, 'salaControle' => $post->selectsala, 'responsavelControle' => $post->selectresponsavel));
+                            }
+                        }
+                        else {
+                            if ($post->selectresponsavel != '-1') {
+                                $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('cursoControle' => $post->selectcurso, 'responsavelControle' => $post->selectresponsavel));
+                            }   
+                        }
+                    }
+                    else {
+                        if ($post->selectsala != '-1') {
+                            $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('salaControle' => $post->selectsala));
+                            if ($post->selectresponsavel != '-1') {
+                                $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('salaControle' => $post->selectsala, 'responsavelControle' => $post->selectresponsavel));
+                            }
+                        }
+                        else {
+                            if ($post->selectresponsavel != '-1') {
+                                $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('responsavelControle' => $post->selectresponsavel));
+                            }   
+                        }
+                    }
+                }
+            }
+            else { 
+                $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findAll();
+            }
             return new ViewModel(array(
-                'controles' => $controles
+                'controles' => $controles,
+                'alunos' => $alunos,
+                'cursos' => $cursos,
+                'salas' => $salas,
+                'professores' => $professores
             ));
         }
-        $controle = $this->getEntityManager()->find('Controle\Entity\Controle', $id);
+
         return new ViewModel(array(
-            'controle' => $controle
+            'controles' => $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findAll(),
+            'alunos' => $alunos,
+            'cursos' => $cursos,
+            'salas' => $salas,
+            'professores' => $professores
         ));
     }
 

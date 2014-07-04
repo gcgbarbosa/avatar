@@ -11,33 +11,121 @@
         <h1><?php echo $this->escapeHtml($title); ?></h1>
     </div>
     <div class="panel-body">
-        <table class="table">
-        <thead>
-            <th>Aluno</th>
-            <th>Curso</th>
-            <th>Sala</th>
-            <th>Responsável</th>
-            <th>Objetivo</th>
-            <th>Presente</th>
-            <th>Entrada</th>
-            <th>Saída</th>
-            <th>&nbsp;</th>
-        </thead>
-        <?php foreach ($controles as $controle) : ?>
-        <tr>
-            <td><?php echo $this->escapeHtml($controle->getAlunoControle()->getNomealuno());?></td>
-            <td><?php echo $this->escapeHtml($controle->getCursoControle()->getNomeCurso());?></td>
-            <td><?php echo $this->escapeHtml($controle->getSalaControle()->getNome());?></td>
-            <td><?php echo $this->escapeHtml($controle->getResponsavelControle()->getNomeprofessor());?></td>
-            <td><?php echo $this->escapeHtml($controle->getObjetivoControle());?></td>
-            <td><?php echo $this->escapeHtml($controle->getStatusControle()) ? 'Sim' : 'Não'; ?></td>
-            <td><?php echo $this->escapeHtml($controle->getDataEntradaControle()->format('d/m/Y H:i:s'));?></td>
-            <td><?php echo $this->escapeHtml($controle->getDataSaidaControle()->format('d/m/Y H:i:s'));?></td>
-        </tr>
-        <?php endforeach; ?>
-        </table>
-        <a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
-        <center><a class="btn btn-default" href="javascript:self.print()" ><span class="glyphicon glyphicon-print"></span> Imprimir</a></center>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="/controle/relatorio" method="post" name="filtro" class="form-horizontal">
+                        <fieldset>
+                            <legend>Filtro</legend>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" for="selectbasic">Aluno</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectaluno" class="form-control">
+                                        <option value="-1">Todos os Alunos</option>
+                                        <?php foreach($alunos as $a) : ?>
+                                            <option value="<?php echo $a->getIdaluno()?>"><?php echo $a->getNomealuno()?></option>
+                                        <?php endforeach?>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label" for="selectbasic">Curso</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectcurso" class="form-control">
+                                        <option value="-1">Todos os Cursos</option>
+                                        <?php foreach($cursos as $c) : ?>
+                                            <option value="<?php echo $c->getIdcurso()?>"><?php echo $c->getNomeCurso()?></option>
+                                        <?php endforeach?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" for="selectbasic">Sala</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectsala" class="form-control">
+                                        <option value="-1">Todas as Salas</option>
+                                        <?php foreach($salas as $s) : ?>
+                                            <option value="<?php echo $s->getIdsala()?>"><?php echo $s->getNome()?></option>
+                                        <?php endforeach?>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label" for="selectbasic">Responsável</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectresponsavel" class="form-control">
+                                        <option value="-1">Todos os Responsáveis</option>
+                                        <?php foreach($professores as $p) : ?>
+                                            <option value="<?php echo $p->getIdprofessor()?>"><?php echo $p->getNomeprofessor()?></option>
+                                        <?php endforeach?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" for="textinput">Objetivo</label>  
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectobjetivo" class="form-control">
+                                        <option value="-1">Todos os Objetivos</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label" for="textinput">Data</label>  
+                                <div class="col-md-4">
+                                    <input id="data" name="data" class="form-control input-md" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-10 control-label" for="singlebutton"></label>
+                                <div class="col-md-1">
+                                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Filtrar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <table class="table">
+                    <thead>
+                        <th>Aluno</th>
+                        <th>Curso</th>
+                        <th>Sala</th>
+                        <th>Responsável</th>
+                        <th>Objetivo</th>
+                        <th>Presente</th>
+                        <th>Entrada</th>
+                        <th>Saída</th>
+                        <th>&nbsp;</th>
+                    </thead>
+                    <?php foreach ($controles as $controle) : ?>
+                    <tr>
+                        <td><?php echo $this->escapeHtml($controle->getAlunoControle()->getNomealuno());?></td>
+                        <td><?php echo $this->escapeHtml($controle->getCursoControle()->getNomeCurso());?></td>
+                        <td><?php echo $this->escapeHtml($controle->getSalaControle()->getNome());?></td>
+                        <td><?php echo $this->escapeHtml($controle->getResponsavelControle()->getNomeprofessor());?></td>
+                        <td><?php echo $this->escapeHtml($controle->getObjetivoControle());?></td>
+                        <td><?php echo $this->escapeHtml($controle->getStatusControle()) ? 'Sim' : 'Não'; ?></td>
+                        <td><?php echo $this->escapeHtml($controle->getDataEntradaControle()->format('d/m/Y H:i:s'));?></td>
+                        <td><?php echo $this->escapeHtml($controle->getDataSaidaControle()->format('d/m/Y H:i:s'));?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+        </div>
     </div>
 
 </div>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script>
+$(function() {
+    $( "#data" ).datepicker({dateFormat: 'dd/mm/yy'});
+});
+</script>
+<style media="print">
+    .btn-default {
+        display: none;    
+    }
+    .btn {
+        display: none;
+    }
+</style>
+<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+<center><a class="btn btn-default" href="javascript:self.print()" ><span class="glyphicon glyphicon-print"></span> Imprimir</a></center>
