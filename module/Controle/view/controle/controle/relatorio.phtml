@@ -23,8 +23,12 @@
                                     <select id="selectbasic" name="selectaluno" class="form-control">
                                         <option value="-1">Todos os Alunos</option>
                                         <?php foreach($alunos as $a) : ?>
-                                            <option value="<?php echo $a->getIdaluno()?>"><?php echo $a->getNomealuno()?></option>
-                                        <?php endforeach?>
+                                            <?php if ($_POST['selectaluno'] == $a->getIdaluno()) : ?>
+                                                <option value="<?php echo $a->getIdaluno()?>" selected="selected"><?php echo $a->getNomealuno()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $a->getIdaluno()?>"><?php echo $a->getNomealuno()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <label class="col-md-2 control-label" for="selectbasic">Curso</label>
@@ -32,8 +36,12 @@
                                     <select id="selectbasic" name="selectcurso" class="form-control">
                                         <option value="-1">Todos os Cursos</option>
                                         <?php foreach($cursos as $c) : ?>
-                                            <option value="<?php echo $c->getIdcurso()?>"><?php echo $c->getNomeCurso()?></option>
-                                        <?php endforeach?>
+                                            <?php if ($_POST['selectcurso'] == $c->getIdcurso()) : ?>
+                                                <option value="<?php echo $c->getIdcurso()?>" selected="selected"><?php echo $c->getNomeCurso()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $c->getIdcurso()?>"><?php echo $c->getNomeCurso()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
@@ -43,17 +51,26 @@
                                     <select id="selectbasic" name="selectsala" class="form-control">
                                         <option value="-1">Todas as Salas</option>
                                         <?php foreach($salas as $s) : ?>
-                                            <option value="<?php echo $s->getIdsala()?>"><?php echo $s->getNome()?></option>
-                                        <?php endforeach?>
+                                            <?php if ($_POST['selectsala'] == $s->getIdsala()) : ?>
+                                                <option value="<?php echo $s->getIdsala()?>" selected="selected"><?php echo $s->getNome()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $s->getIdsala()?>"><?php echo $s->getNome()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <label class="col-md-2 control-label" for="selectbasic">Responsável</label>
                                 <div class="col-md-4">
                                     <select id="selectbasic" name="selectresponsavel" class="form-control">
                                         <option value="-1">Todos os Responsáveis</option>
+                                        
                                         <?php foreach($professores as $p) : ?>
-                                            <option value="<?php echo $p->getIdprofessor()?>"><?php echo $p->getNomeprofessor()?></option>
-                                        <?php endforeach?>
+                                            <?php if ($_POST['selectresponsavel'] == $p->getIdprofessor()) : ?>
+                                                <option value="<?php echo $p->getIdprofessor()?>" selected="selected"><?php echo $p->getNomeprofessor()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $p->getIdprofessor()?>"><?php echo $p->getNomeprofessor()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach;?>
                                     </select>
                                 </div>
                             </div>
