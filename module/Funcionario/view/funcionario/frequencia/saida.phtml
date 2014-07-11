@@ -1,21 +1,21 @@
-<div class="panel panel-danger">
+<div class="panel panel-info">
 	<?php
 	// module/Album/view/album/album/delete.phtml:
 
-	$title = 'Deletar Frequência';
+	$title = 'Marcar Saída';
 	$this->headTitle($title);
 	?>
 	<div class="panel-heading">
 			<h1><?php echo $this->escapeHtml($title); ?></h1>
 		</div>
 	<div class="panel-body">
-		<h2>Tem certeza que deseja deletar a frequência do dia 
-		    '<?php echo $this->escapeHtml($frequencia->getHorarioentrada()->format('d/m/Y')); ?>' do funcionário
-		    '<?php echo $this->escapeHtml($frequencia->getFuncionariofuncionario()->getNomefuncionario()); ?>'?
+		<h2>Tem certeza que deseja marcar saída do funcionário
+		    '<?php echo $this->escapeHtml($frequencia->getFuncionariofuncionario()->getNomefuncionario()); ?>' do dia
+		    '<?php echo $this->escapeHtml($frequencia->getHorarioentrada()->format('d/m/Y')); ?>'?
 		</h2>
 		<?php
 		$url = $this->url('frequencia/default', array(
-		    'action' => 'delete',
+		    'action' => 'saida',
 		    'id'     => $this->id,
 		));
 		?>

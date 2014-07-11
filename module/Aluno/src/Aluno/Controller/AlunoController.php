@@ -37,10 +37,6 @@ class AlunoController extends AbstractActionController
 
     public function indexAction()
     {
-        /*return new ViewModel(array(
-            'alunos' => $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll() 
-        ));*/
-
         $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
         $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
         $paginator = new Paginator(new ArrayAdapter($alunos));
@@ -101,6 +97,16 @@ class AlunoController extends AbstractActionController
             if ($form->isValid()) {
                 $aluno->populate($form->getData());
 
+                $jaTemEsteAluno = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findBy(array('matriculaaluno' => $aluno->getMatriculaaluno()));
+
+                if ($jaTemEsteAluno) {
+                    $mensagem = 'Aluno já cadastrado.';
+                    return array(
+                        'form' => $form,
+                        'mensagem' => $mensagem,
+                    );
+                }
+                
                 $curso = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findOneBy(array('idcurso' => $aluno->getCursoAluno()));
                 $aluno->setCursoAluno($curso);
     

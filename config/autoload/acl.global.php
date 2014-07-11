@@ -128,6 +128,7 @@ return array(
 					'delete' => 'guest',
 					'view'  => 'guest',
 					'relatorio' => 'guest',
+					'saida' => 'guest',
 				),
 
 				'Equipamento\Controller\Equipamento' => array(

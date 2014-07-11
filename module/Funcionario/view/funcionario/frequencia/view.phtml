@@ -23,15 +23,15 @@
 			    	</tr>
 			    	<tr>
 			    		<td><strong>Hora de Entrada</strong></td>
-			    		<td><?php echo $frequencia->getHorarioentrada(); ?></td>
+			    		<td><?php echo $frequencia->getHorarioentrada()->format('d/m/Y'); ?></td>
+			    	</tr>
+			    	<tr>
+			    		<td><strong>Hora de Entrada</strong></td>
+			    		<td><?php echo $frequencia->getHorarioentrada()->format('H:i:s'); ?></td>
 			    	</tr>
 			    	<tr>
 			    		<td><strong>Hora de Saída</strong></td>
-			    		<td><?php echo $frequencia->getHorariosaida(); ?></td>
-			    	</tr>
-			    	<tr>
-			    		<td><strong>Dia</strong></td>
-			    		<td><?php echo $frequencia->getDataFrequencia()->format('d/m/Y'); ?></td>
+			    		<td><?php echo $frequencia->getHorariosaida()->format('H:i:s'); ?></td>
 			    	</tr>
 			    </table>
 			</div>

@@ -52,8 +52,8 @@
 <script>
 jQuery(function($){
     $('#btn-buscar').click(function(){
-        id = $('#input-buscar').val();
-        url = '/equipamento';
+        var id = $('#input-buscar').val();
+        var url = '/equipamento';
         if(id != '' && !isNaN(id) ){
             url += '/' + id;
         }

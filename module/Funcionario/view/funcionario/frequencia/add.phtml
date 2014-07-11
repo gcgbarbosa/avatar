@@ -8,8 +8,13 @@
 		<h1><?php echo $this->escapeHtml($title); ?></h1>
 	</div>
 	<div class="panel-body">
-		<?php
-		$form = $this->form;
+		<?php if (isset($mensagem)) : ?>
+    		<div class="alert alert-warning">
+    			<?php echo $mensagem ?>
+    			<button type="button" class="close" data-dismiss="alert">×</button>
+    		</div>
+    	<?php endif;
+    	$form = $this->form;
 		$form->setAttribute('action', $this->url('frequencia/default', array('action' => 'add')));
 		$form->prepare();
 
@@ -17,31 +22,10 @@
 		?>
 		<?php echo $this->formHidden($form->get('idfrequencia')) ?>
 		<div class="form-group">
-			<?php echo $this->formLabel($form->get('horarioentrada'))."\n"?>
-			<div class="col-lg-10">
-				<?php echo $this->formText($form->get('horarioentrada')) ?>
-				<?php echo $this->formElementErrors($form->get('horarioentrada')) ?>
-			</div>
-		</div>
-		<div class="form-group">
-			<?php echo $this->formLabel($form->get('horariosaida'))."\n" ?>
-			<div class="col-lg-10">
-				<?php echo $this->formText($form->get('horariosaida')) ?>
-				<?php echo $this->formElementErrors($form->get('horariosaida')) ?>
-			</div>
-		</div>
-		<div class="form-group">
 			<?php echo $this->formLabel($form->get('funcionariofuncionario'))."\n" ?>
 			<div class="col-lg-10">
 				<?php echo $this->formSelect($form->get('funcionariofuncionario')) ?>
 				<?php echo $this->formElementErrors($form->get('funcionariofuncionario')) ?>
-			</div>
-		</div>
-		<div class="form-group">
-			<?php echo $this->formLabel($form->get('dataFrequencia'))."\n" ?>
-			<div class="col-lg-10">
-				<?php echo $this->formText($form->get('dataFrequencia')) ?>
-				<?php echo $this->formElementErrors($form->get('dataFrequencia')) ?>
 			</div>
 		</div>
 		<div class="form-group">

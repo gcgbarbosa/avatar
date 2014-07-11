@@ -72,8 +72,6 @@ class ControleController extends AbstractActionController
         
         if ($request->isPost()) {
             $post = $request->getPost();
-            //$data = explode("/", $post->data);
-            //$data = $data['2']."-".$data['1']."-". $data['0'];
             if ($post->selectaluno != '-1' || $post->selectsala != '-1' || $post->selectcurso != '-1' || $post->selectresponsavel != '-1' || $post->data != "") {
                 if ($post->selectaluno != '-1') {
                     $data['alunoControle'] = $post->selectaluno;
@@ -86,6 +84,11 @@ class ControleController extends AbstractActionController
                 }
                 if ($post->selectresponsavel != '-1') {
                     $data['responsavelControle'] = $post->selectresponsavel;
+                }
+                if ($post->data != '') {
+                    $date = explode("/", $post->data);
+                    $date = $date['2']."-".$date['1']."-". $date['0'];
+                    $data['dataEntradaControle'] = new \DateTime($date);
                 }
                 $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy($data);
             }
@@ -130,6 +133,18 @@ class ControleController extends AbstractActionController
                 $aluno = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findOneBy(array('idaluno' => $controle->getAlunoControle()));
                 $controle->setAlunoControle($aluno);
     
+                $presentes = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('statusControle' => true));
+
+                foreach ($presentes as $presente) {
+                    if ($presente->getAlunoControle() == $controle->getAlunoControle()) {
+                        $mensagem = 'Aluno já está presente';
+                        return array(
+                            'form' => $form,
+                            'mensagem' => $mensagem,
+                        );
+                    }
+                }
+
                 $curso = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findOneBy(array('idcurso' => $controle->getCursoControle()));
                 $controle->setCursoControle($curso);
 
@@ -140,7 +155,7 @@ class ControleController extends AbstractActionController
                 $controle->setResponsavelControle($professor);
 
                 $controle->setDataEntradaControle(new \DateTime(date('Y-m-d H:i:s')));
-                $controle->setDataSaidaControle(new \DateTime(date('Y-m-d H:i:s')));
+                $controle->setDataSaidaControle(NULL);
                 
                 $controle->setStatusControle(true);
                 

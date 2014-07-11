@@ -38,7 +38,7 @@
 			    	</tr>
 			    	<tr>
 			    		<td><strong>Hora de Saída</strong></td>
-			    		<td><?php echo $controle->getDataSaidaControle()->format('Y-m-d H:i:s'); ?></td>
+			    		<td><?php echo $controle->getDataSaidaControle() == NULL ? '-' : $controle->getDataSaidaControle()->format('H:i:s');?></td>
 			    	</tr>
 			    	<tr>
 			    		<td><strong>Objetivo</strong></td>

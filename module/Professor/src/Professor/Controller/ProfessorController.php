@@ -82,6 +82,16 @@ class ProfessorController extends AbstractActionController
             if ($form->isValid()) { 
                 $professor->populate($form->getData()); 
                 
+                $jaTemEsteProfessor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findBy(array('matriculaprofessor' => $professor->getMatriculaprofessor()));
+
+                if ($jaTemEsteProfessor) {
+                    $mensagem = 'Professor já cadastrado.';
+                    return array(
+                        'form' => $form,
+                        'mensagem' => $mensagem,
+                    );
+                }
+
                 //SET DATA NASC
                 $data = explode("/", $professor->getDataNasc());
                 $data = $data['0']."-".$data['1']."-". $data['2'];

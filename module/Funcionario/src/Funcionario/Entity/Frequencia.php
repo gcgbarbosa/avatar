@@ -30,14 +30,14 @@ class Frequencia implements InputFilterAwareInterface
     /**
      * @var \string
      *
-     * @ORM\Column(name="horarioEntrada", type="string", length=5, precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="horarioEntrada", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $horarioentrada;
 
     /**
      * @var \string
      *
-     * @ORM\Column(name="horarioSaida", type="string", length=5, precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="horarioSaida", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $horariosaida;
 
@@ -52,11 +52,11 @@ class Frequencia implements InputFilterAwareInterface
     private $funcionariofuncionario;
 
     /**
-     * @var \DateTime
+     * @var boolean
      *
-     * @ORM\Column(name="dataFrequencia", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="statusFrequencia", type="boolean", precision=0, scale=0, nullable=false, unique=false)
      */
-    private $dataFrequencia;
+    private $statusFrequencia;
 
     /**
      * Get idfrequencia
@@ -71,7 +71,7 @@ class Frequencia implements InputFilterAwareInterface
     /**
      * Set horarioentrada
      *
-     * @param string $horarioentrada
+     * @param \DateTime $horarioentrada
      * @return Frequencia
      */
     public function setHorarioentrada($horarioentrada)
@@ -84,7 +84,7 @@ class Frequencia implements InputFilterAwareInterface
     /**
      * Get horarioentrada
      *
-     * @return string 
+     * @return \DateTime 
      */
     public function getHorarioentrada()
     {
@@ -94,7 +94,7 @@ class Frequencia implements InputFilterAwareInterface
     /**
      * Set horariosaida
      *
-     * @param string $horariosaida
+     * @param \DateTime $horariosaida
      * @return Frequencia
      */
     public function setHorariosaida($horariosaida)
@@ -107,7 +107,7 @@ class Frequencia implements InputFilterAwareInterface
     /**
      * Get horariosaida
      *
-     * @return string 
+     * @return \DateTime 
      */
     public function getHorariosaida()
     {
@@ -138,26 +138,26 @@ class Frequencia implements InputFilterAwareInterface
     }
 
     /**
-     * Set dataFrequencia
+     * Set statusFrequencia
      *
-     * @param \DateTime $dataFrequencia
-     * @return Frequencia
+     * @param boolean $statusFrequencia
+     * @return Controle
      */
-    public function setDataFrequencia($dataFrequencia)
+    public function setStatusFrequencia($statusFrequencia)
     {
-        $this->dataFrequencia = $dataFrequencia;
+        $this->statusFrequencia = $statusFrequencia;
     
         return $this;
     }
 
     /**
-     * Get dataFrequencia
+     * Get statusFrequencia
      *
-     * @return \DateTime 
+     * @return boolean 
      */
-    public function getDataFrequencia()
+    public function getStatusFrequencia()
     {
-        return $this->dataFrequencia;
+        return $this->statusFrequencia;
     }
 
     /**
@@ -168,8 +168,10 @@ class Frequencia implements InputFilterAwareInterface
     public function getArrayCopy() 
     {
         $obj_vars = get_object_vars($this);
-        $obj_vars['dataFrequencia'] = $obj_vars['dataFrequencia']->format('d/m/Y');
+        $obj_vars['horarioentrada'] = $obj_vars['horarioentrada']->format('d/m/Y H:i:s');
+        $obj_vars['horariosaida'] = $obj_vars['horariosaida']->format('d/m/Y H:i:s');
         $obj_vars['funcionariofuncionario'] = $obj_vars['funcionariofuncionario']->getIdfuncionario();
+        $obj_vars['statusFrequencia'] = $obj_vars['statusFrequencia'] == true ? "true" : "false";
         return $obj_vars;
     }
 
@@ -201,66 +203,11 @@ class Frequencia implements InputFilterAwareInterface
             $factory = new InputFactory();
 
             $inputFilter->add($factory->createInput(array(
-                'name'     => 'horarioEntrada',
-                'required' => true,
-                'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name'    => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 5,
-                        ),
-                    ),
-                ),
-            )));
-
-            $inputFilter->add($factory->createInput(array(
-                'name'     => 'horarioSaida',
-                'required' => true,
-                'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name'    => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 5,
-                        ),
-                    ),
-                ),
-            )));
-
-            $inputFilter->add($factory->createInput(array(
                 'name'     => 'funcionariofuncionario',
                 'required' => true,
                 'filters'  => array(
                     //array('name' => 'Int'),
                 ),
-            )));
-
-            $inputFilter->add($factory->createInput(array(
-                'name'     => 'dataFrequencia',
-                'required' => true,
-                'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name' => 'date',
-                        'options' => array(
-                            'locale' => 'pt_BR', 
-                            'format' => 'd/m/Y'),
-                        ),
-                    ),
             )));
 
             $this->inputFilter = $inputFilter;        

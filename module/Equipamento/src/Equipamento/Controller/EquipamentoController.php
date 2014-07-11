@@ -51,7 +51,7 @@ class EquipamentoController extends AbstractActionController
                 'page' => $page
             ));
         }
-        $equipamentos = $this->findEquipamentoByTombo($id);
+        $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy(array('nTombo' => $id));
         return new ViewModel(array(
             'equipamentos' => $equipamentos, 
         ));
@@ -149,6 +149,19 @@ public function relatorioAction()
             if ($form->isValid()) { 
                 $equipamento->populate($form->getData()); 
                 
+                $jaTemEsteTombo = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy(array('ntombo' => $equipamento->getTombotombo()));
+
+                if (!isset($jaTemEsteTombo))
+                    $jaTemEsteTombo = $this->getEntityManager()->getRepository('Equipamento\Entity\Tombo')->findBy(array('numeroTombo' => $equipamento->getTombotombo()));
+
+                if ($jaTemEsteTombo) {
+                    $mensagem = 'Equipamento já cadastrado';
+                    return array(
+                        'form' => $form,
+                        'mensagem' => $mensagem,
+                    );
+                }
+            
                 $tipoequipamento = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findOneBy(array('idtipoequipamento' => $equipamento->getTipoequipamentotipoequipamento()));
                 $equipamento->setTipoequipamentotipoequipamento($tipoequipamento);
 
