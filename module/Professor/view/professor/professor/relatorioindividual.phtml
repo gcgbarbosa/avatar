@@ -1,0 +1,147 @@
+<link href="/css/bootstrap.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap-theme.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/style.css" print="screen" rel="stylesheet" type="text/css">
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Relatório Individual do Professor: ' . $professor->getNomeprofessor();
+    
+    $this->headTitle($title);
+
+    ?>
+
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <center><strong>Perfil</strong></center>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                    <tr>
+                        <td><strong>Nome</strong></td>
+                        <td><?php echo $professor->getNomeprofessor(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>E-mail</strong></td>
+                        <td><?php echo $professor->getEmailprofessor(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Telefone</strong></td>
+                        <td><?php echo $professor->getTelefoneprofessor(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Matrícula</strong></td>
+                        <td><?php echo $professor->getMatriculaaluno(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Curso</strong></td>
+                        <td><?php echo $professor->getCursoProfessor()->getNomeCurso(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Área de Atuação</strong></td>
+                        <td><?php echo $professor->getAreadeatuacao();  ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Titulação</strong></td>
+                        <td><?php echo $professor->getTitulacao();  ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Classe</strong></td>
+                        <td><?php echo $professor->getClasse(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Regime de Trabalho</strong></td>
+                        <td><?php echo $professor->getRegimedetrabalho(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tipo de Vínculo</strong></td>
+                        <td><?php echo $professor->getTipovinculo(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data de Nascimento</strong></td>
+                        <td><?php echo $professor->getDatanasc()->format('d/m/Y'); ?></td>
+                    </tr>
+                </table>
+                </div>
+                <div class="panel-footer">
+                </div>
+                <!-- List group -->
+            </div>
+        </div>
+        <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <center><strong>Projetos que Participa</strong></center>
+            </div>
+            <div class="panel-body">
+                <?php foreach($projetos as $projeto): ?>
+                    <ul class="list-group">
+                        <li class="list-group-item"><?php echo "<strong>Título: </strong> " . $projeto->getTitulo(); ?></li>
+                        <li class="list-group-item"><?php echo "<strong>Coordenador: </strong> " . $projeto->getProfessorcoordenador()->getNomeprofessor(); ?></li>
+                    </ul>
+                <?php endforeach; ?>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+        <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <center><strong>Frequência</strong></center>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <th>Data</th>
+                        <th>Sala</th>
+                        <th>Responsável</th>
+                        <th>Objetivo</th>
+                        <th>Hora Entrada</th>
+                        <th>Hora Saída</th>
+                        <th>&nbsp;</th>
+                    </thead>
+                    <?php foreach($controle as $control): ?>
+                        <tr>
+                            <td><?php echo $control->getDataEntradaControle()->format('d/m/Y'); ?></td>
+                            <td><?php echo $control->getSalaControle()->getNome(); ?></td>
+                            <td><?php echo $control->getResponsavelControle()->getNomeprofessor(); ?></td>
+                            <td><?php echo $control->getObjetivoControle(); ?></td>
+                            <td><?php echo $control->getDataEntradaControle()->format('H:i:s'); ?></td>
+                            <td><?php echo $control->getDataSaidaControle()->format('H:i:s'); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+            <div class="panel-footer">
+            </div>
+            <!-- List group -->
+        </div>
+    </div>
+
+    </div>
+
+    </div>
+
+</div>
+<style media="print">
+    .btn-default {
+        display: none;    
+    }
+    .btn {
+        display: none;
+    }
+</style>
+<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+<center><a class="btn btn-default" href="javascript:self.print()" ><span class="glyphicon glyphicon-print"></span> Imprimir</a></center>
+<div class="row">
+    
+
+
+    
+
+    
+</div>
