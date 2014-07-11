@@ -51,7 +51,7 @@ class EquipamentoController extends AbstractActionController
                 'page' => $page
             ));
         }
-        $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy(array('nTombo' => $id));
+        $equipamentos = $this->findEquipamentoByTombo($id);
         return new ViewModel(array(
             'equipamentos' => $equipamentos, 
         ));
@@ -128,8 +128,8 @@ public function relatorioAction()
     public function findEquipamentoByTombo($tombo)
     {
         $query = $this->getEntityManager()->createQuery("SELECT u FROM
-        Equipamento\Entity\Equipamento u WHERE u.ntombo = :tombo");
-        $query->setParameters(array('tombo' => $tombo));
+            Equipamento\Entity\Equipamento u WHERE u.ntombo LIKE :tombo");
+        $query->setParameters(array('tombo' => '%' . $tombo . '%'));
         return $query->getResult();
     }
 
@@ -149,8 +149,13 @@ public function relatorioAction()
             if ($form->isValid()) { 
                 $equipamento->populate($form->getData()); 
                 
+                $query = $this->getEntityManager()->createQuery("SELECT u FROM
+                    Equipamento\Entity\Equipamento u WHERE u.ntombo LIKE :tombo");
+                $query->setParameters(array('tombo' => '%3.4%'));
+                var_dump($query->getResult());exit;
+                
                 $jaTemEsteTombo = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy(array('ntombo' => $equipamento->getTombotombo()));
-
+                var_dump($jaTemEsteTombo);exit;
                 if (!isset($jaTemEsteTombo))
                     $jaTemEsteTombo = $this->getEntityManager()->getRepository('Equipamento\Entity\Tombo')->findBy(array('numeroTombo' => $equipamento->getTombotombo()));
 
