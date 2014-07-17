@@ -95,7 +95,7 @@
                             <td><?php echo $control->getResponsavelControle()->getNomeprofessor(); ?></td>
                             <td><?php echo $control->getObjetivoControle(); ?></td>
                             <td><?php echo $control->getDataEntradaControle()->format('H:i:s'); ?></td>
-                            <td><?php echo $control->getDataSaidaControle()->format('H:i:s'); ?></td>
+                            <td><?php echo $control->getDataSaidaControle()  == NULL ? '-' : $control->getDataSaidaControle()->format('H:i:s');?></td>
                         </tr>
                     <?php endforeach; ?>
                 </table>

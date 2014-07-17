@@ -110,16 +110,16 @@
                         <th>&nbsp;</th>
                     </thead>
                     <?php foreach ($controles as $controle) : ?>
-                    <tr>
-                        <td><?php echo $this->escapeHtml($controle->getAlunoControle()->getNomealuno());?></td>
-                        <td><?php echo $this->escapeHtml($controle->getCursoControle()->getNomeCurso());?></td>
-                        <td><?php echo $this->escapeHtml($controle->getSalaControle()->getNome());?></td>
-                        <td><?php echo $this->escapeHtml($controle->getResponsavelControle()->getNomeprofessor());?></td>
-                        <td><?php echo $this->escapeHtml($controle->getObjetivoControle());?></td>
-                        <td><?php echo $this->escapeHtml($controle->getStatusControle()) ? 'Sim' : 'Não'; ?></td>
-                        <td><?php echo $this->escapeHtml($controle->getDataEntradaControle()->format('d/m/Y H:i:s'));?></td>
-                        <td><?php echo $this->escapeHtml($controle->getDataSaidaControle() == NULL ? '-' : $controle->getDataSaidaControle()->format('H:i:s'));?></td>
-                    </tr>
+                        <tr>
+                            <td><?php echo $this->escapeHtml($controle->getAlunoControle()->getNomealuno());?></td>
+                            <td><?php echo $this->escapeHtml($controle->getCursoControle()->getNomeCurso());?></td>
+                            <td><?php echo $this->escapeHtml($controle->getSalaControle()->getNome());?></td>
+                            <td><?php echo $this->escapeHtml($controle->getResponsavelControle()->getNomeprofessor());?></td>
+                            <td><?php echo $this->escapeHtml($controle->getObjetivoControle());?></td>
+                            <td><?php echo $this->escapeHtml($controle->getStatusControle()) ? 'Sim' : 'Não'; ?></td>
+                            <td><?php echo $this->escapeHtml($controle->getDataEntradaControle()->format('d/m/Y H:i:s'));?></td>
+                            <td><?php echo $this->escapeHtml($controle->getDataSaidaControle() == NULL ? '-' : $controle->getDataSaidaControle()->format('H:i:s'));?></td>
+                        </tr>
                     <?php endforeach; ?>
                 </table>
             </div>

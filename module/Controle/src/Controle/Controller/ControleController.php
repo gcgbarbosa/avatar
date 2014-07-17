@@ -85,12 +85,30 @@ class ControleController extends AbstractActionController
                 if ($post->selectresponsavel != '-1') {
                     $data['responsavelControle'] = $post->selectresponsavel;
                 }
+                if (isset($data)) {
+                    $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy($data);
+                }
                 if ($post->data != '') {
                     $date = explode("/", $post->data);
                     $date = $date['2']."-".$date['1']."-". $date['0'];
-                    $data['dataEntradaControle'] = new \DateTime($date);
+                    $query = $this->getEntityManager()->createQuery("SELECT u FROM
+                        Controle\Entity\Controle u WHERE u.dataEntradaControle LIKE :data");
+                    $query->setParameters(array('data' => '%' . $date . '%'));
+                    $dados = $query->getResult();
+                    foreach ($dados as $dado) {
+                        foreach ($controles as $key => $control) {
+                            if ($control->getIdControle() == $dado->getIdControle()) {
+                                $cont[] = $dado;
+                            }
+                        }
+                    }
+                    if (isset($cont)) {
+                        $controles = $cont;
+                    }
+                    else {
+                        $controles = new Controle();
+                    }
                 }
-                $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy($data);
             }
             else { 
                 $controles = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findAll();

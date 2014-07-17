@@ -151,7 +151,7 @@ public function relatorioAction()
                 
                 $query = $this->getEntityManager()->createQuery("SELECT u FROM
                     Equipamento\Entity\Equipamento u WHERE u.ntombo LIKE :tombo");
-                $query->setParameters(array('tombo' => '%3.4%'));
+                $query->setParameters(array('tombo' => '%' .  . '%'));
                 var_dump($query->getResult());exit;
                 
                 $jaTemEsteTombo = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy(array('ntombo' => $equipamento->getTombotombo()));
