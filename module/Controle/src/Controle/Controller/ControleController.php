@@ -72,7 +72,7 @@ class ControleController extends AbstractActionController
         
         if ($request->isPost()) {
             $post = $request->getPost();
-            if ($post->selectaluno != '-1' || $post->selectsala != '-1' || $post->selectcurso != '-1' || $post->selectresponsavel != '-1' || $post->data != "") {
+            if ($post->selectaluno != '-1' || $post->selectsala != '-1' || $post->selectcurso != '-1' || $post->selectresponsavel != '-1' || $post->data != "" || $post->objetivo != "") {
                 if ($post->selectaluno != '-1') {
                     $data['alunoControle'] = $post->selectaluno;
                 }
@@ -106,7 +106,26 @@ class ControleController extends AbstractActionController
                         $controles = $cont;
                     }
                     else {
-                        $controles = new Controle();
+                        $controles = array();
+                    }
+                }
+                if ($post->objetivo != '') {
+                    $query = $this->getEntityManager()->createQuery("SELECT u FROM
+                        Controle\Entity\Controle u WHERE u.objetivoControle LIKE :objetivo");
+                    $query->setParameters(array('objetivo' => '%' . $post->objetivo . '%'));
+                    $dados = $query->getResult();
+                    foreach ($dados as $dado) {
+                        foreach ($controles as $key => $control) {
+                            if ($control->getIdControle() == $dado->getIdControle()) {
+                                $cont[] = $dado;
+                            }
+                        }
+                    }
+                    if (isset($cont)) {
+                        $controles = $cont;
+                    }
+                    else {
+                        $controles = array();
                     }
                 }
             }
