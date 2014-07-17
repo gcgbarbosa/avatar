@@ -87,7 +87,7 @@
                $proj =  $professor->getProfessorCoordProjeto()->toArray(); 
                 foreach($proj as $projeto): ?>
                     <ul class="list-group">
-                        <li class="list-group-item"><?php echo "<strong>Título: </strong> " . $projeto->getTitulo(); ?></li>
+                        <li class="list-group-item"><?php echo $projeto->getTitulo(); ?></li>
                     </ul>
                 <?php endforeach; ?>
             </div>

@@ -102,6 +102,7 @@ return array(
 					'delete'=> 'guest',
 					'view'=> 'guest',
 					'relatorio' => 'guest',
+					'relatorioindividual' => 'guest',
 				),
 
 				'Projeto\Controller\GrupoPesquisa' => array(
