@@ -60,7 +60,7 @@ class ProfessorController extends AbstractActionController
             return $this->redirect()->toRoute('professor', array('action'=>'index'));
         }
         $professor = $this->getEntityManager()->find('Professor\Entity\Professor', $id);
-        $projetos = $professor->getProjetoprojeto();
+        $projetos = $professor->getProjetoprojeto()->toArray();
     //    $controle = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $id));
         return new ViewModel(array(
             'professor' => $professor,

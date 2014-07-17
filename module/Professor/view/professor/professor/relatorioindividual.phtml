@@ -26,6 +26,10 @@
                         <td><?php echo $professor->getNomeprofessor(); ?></td>
                     </tr>
                     <tr>
+                        <td><strong>Matrícula</strong></td>
+                        <td><?php echo $professor->getMatriculaprofessor(); ?></td>
+                    </tr>
+                    <tr>
                         <td><strong>E-mail</strong></td>
                         <td><?php echo $professor->getEmailprofessor(); ?></td>
                     </tr>
@@ -33,10 +37,7 @@
                         <td><strong>Telefone</strong></td>
                         <td><?php echo $professor->getTelefoneprofessor(); ?></td>
                     </tr>
-                    <tr>
-                        <td><strong>Matrícula</strong></td>
-                        <td><?php echo $professor->getMatriculaaluno(); ?></td>
-                    </tr>
+
                     <tr>
                         <td><strong>Curso</strong></td>
                         <td><?php echo $professor->getCursoProfessor()->getNomeCurso(); ?></td>
@@ -72,6 +73,30 @@
                 <!-- List group -->
             </div>
         </div>
+
+
+   <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <center><strong>Projetos que Coordena</strong></center>
+            </div>
+
+            <div class="panel-body">
+                <?php 
+                //var_dump(projetos); exit;
+               $proj =  $professor->getProfessorCoordProjeto()->toArray(); 
+                foreach($proj as $projeto): ?>
+                    <ul class="list-group">
+                        <li class="list-group-item"><?php echo "<strong>Título: </strong> " . $projeto->getTitulo(); ?></li>
+                    </ul>
+                <?php endforeach; ?>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+
+
+
         <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -88,39 +113,9 @@
             <div class="panel-footer">
             </div>
         </div>
-        <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <center><strong>Frequência</strong></center>
-            </div>
-            <div class="panel-body">
-                <table class="table">
-                    <thead>
-                        <th>Data</th>
-                        <th>Sala</th>
-                        <th>Responsável</th>
-                        <th>Objetivo</th>
-                        <th>Hora Entrada</th>
-                        <th>Hora Saída</th>
-                        <th>&nbsp;</th>
-                    </thead>
-                    <?php foreach($controle as $control): ?>
-                        <tr>
-                            <td><?php echo $control->getDataEntradaControle()->format('d/m/Y'); ?></td>
-                            <td><?php echo $control->getSalaControle()->getNome(); ?></td>
-                            <td><?php echo $control->getResponsavelControle()->getNomeprofessor(); ?></td>
-                            <td><?php echo $control->getObjetivoControle(); ?></td>
-                            <td><?php echo $control->getDataEntradaControle()->format('H:i:s'); ?></td>
-                            <td><?php echo $control->getDataSaidaControle()->format('H:i:s'); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </table>
-            </div>
-            <div class="panel-footer">
-            </div>
-            <!-- List group -->
-        </div>
-    </div>
+
+
+
 
     </div>
 
