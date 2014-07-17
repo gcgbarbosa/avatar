@@ -75,11 +75,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-1 control-label" for="textinput">Objetivo</label>  
+                                 <label class="col-md-1 control-label" for="textinput">Objetivo</label>  
                                 <div class="col-md-4">
-                                    <select id="selectbasic" name="selectobjetivo" class="form-control">
-                                        <option value="-1">Todos os Objetivos</option>
-                                    </select>
+                                    <?php if (isset($_POST['objetivo'])): ?>
+                                        <input id="objetivo" name="objetivo" value="<?php echo $_POST['objetivo'] ?>" class="form-control input-md" type="text">
+                                    <?php else: ?>
+                                        <input id="objetivo" name="objetivo" class="form-control input-md" type="text">
+                                    <?php endif; ?>
                                 </div>
                                 <label class="col-md-2 control-label" for="textinput">Data</label>  
                                 <div class="col-md-4">
