@@ -1,0 +1,69 @@
+<link href="/css/bootstrap.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap-theme.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/style.css" print="screen" rel="stylesheet" type="text/css">
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Relatório Individual do Curso: ' . $curso->getNomeCurso();
+    
+    $this->headTitle($title);
+
+    ?>
+
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <center><strong>Dados</strong></center>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                    <tr>
+                        <td><strong>Curso</strong></td>
+                        <td><?php echo $curso->getNomeCurso(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Departamento</strong></td>
+                        <td><?php echo $curso->getDepartamentoCurso()->getNomedepartamento(); ?></td>
+                    </tr>
+                </table>
+                </div>
+                <div class="panel-footer">
+                </div>
+                <!-- List group -->
+            </div>
+        </div>
+        <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <center><strong>Alunos deste curso</strong></center>
+            </div>
+            <div class="panel-body">
+                <?php 
+                $alunos = $curso->getCursocurso()->toArray();
+                foreach($alunos as $a): ?>
+                    <ul class="list-group">
+                        <li class="list-group-item"><?php echo $a->getNomealuno(); ?></li>
+                    </ul>
+                <?php endforeach; ?>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div>
+<style media="print">
+    .btn-default {
+        display: none;    
+    }
+    .btn {
+        display: none;
+    }
+</style>
+<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+<center><a class="btn btn-default" href="javascript:self.print()" ><span class="glyphicon glyphicon-print"></span> Imprimir</a></center>
