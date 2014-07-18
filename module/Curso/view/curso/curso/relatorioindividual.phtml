@@ -44,6 +44,8 @@
             <div class="panel-body">
                 <?php 
                 $alunos = $curso->getCursocurso()->toArray();
+                if(!$alunos)
+                    echo "<li class=\"list-group-item\">Vazio</li>";
                 foreach($alunos as $a): ?>
                     <ul class="list-group">
                         <li class="list-group-item"><?php echo $a->getNomealuno(); ?></li>

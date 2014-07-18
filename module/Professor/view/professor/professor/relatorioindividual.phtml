@@ -85,6 +85,8 @@
                 <?php 
                 //var_dump(projetos); exit;
                $proj =  $professor->getProfessorCoordProjeto()->toArray(); 
+                if(!$proj)
+                    echo "<li class=\"list-group-item\">Nenhum</li>";
                 foreach($proj as $projeto): ?>
                     <ul class="list-group">
                         <li class="list-group-item"><?php echo $projeto->getTitulo(); ?></li>
@@ -94,15 +96,15 @@
             <div class="panel-footer">
             </div>
         </div>
-
-
-
-        <div class="col-md-12">
+    <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <center><strong>Projetos que Participa</strong></center>
             </div>
             <div class="panel-body">
+                <?php
+                if(!$projetos)
+                    echo "<li class=\"list-group-item\">Nenhum</li>";  ?>
                 <?php foreach($projetos as $projeto): ?>
                     <ul class="list-group">
                         <li class="list-group-item"><?php echo "<strong>Título: </strong> " . $projeto->getTitulo(); ?></li>
@@ -113,12 +115,7 @@
             <div class="panel-footer">
             </div>
         </div>
-
-
-
-
     </div>
-
     </div>
 
 </div>

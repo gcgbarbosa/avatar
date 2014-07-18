@@ -148,6 +148,7 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view'=> 'guest',
+					'relatorio' => 'guest',
 				),
 
 				'Equipamento\Controller\Tombo' => array(
