@@ -53,13 +53,39 @@ class AlunoController extends AbstractActionController
         
         if (!$id) {
             $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
+            $cursos = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findAll();
+            $request = $this->getRequest();
+        
+            if ($request->isPost()) {
+                $post = $request->getPost();
+                if ($post->selectcurso != '-1' || $post->radiobolsista != '-1') {
+                    if ($post->selectcurso != '-1') {
+                        $data['cursoAluno'] = $post->selectcurso;
+                    }
+                    if ($post->radiobolsista != '-1') {
+                        if ($post->radiobolsista == '0') 
+                            $data['bolsista'] = true;
+                        if ($post->radiobolsista == '1')
+                            $data['bolsista'] = false;
+                    }
+                    if (isset($data)) {
+                        $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findBy($data);
+                    }
+                }
+                return new ViewModel(array(
+                    'alunos' => $alunos,
+                    'cursos' => $cursos,
+                ));
+            }
             return new ViewModel(array(
-                'alunos' => $alunos
+                'alunos' => $alunos,
+                'cursos' => $cursos
             ));
         }
         $aluno = $this->getEntityManager()->find('Aluno\Entity\Aluno', $id);
         return new ViewModel(array(
-            'aluno' => $aluno
+            'aluno' => $aluno,
+            'cursos' => $cursos
         ));
     }
 

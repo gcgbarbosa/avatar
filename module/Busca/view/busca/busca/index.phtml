@@ -10,5 +10,31 @@
 		    	</div><!-- /input-group -->
 		  	</div><!-- /.col-lg-6 -->
 		</form>
-	</div><!-- /.row -->
+	</div>
+	<div class="panel-body">
+        <table class="table">
+        <thead>
+            <th>Resultados da busca por: '<?php echo $termo; ?>'</th>
+            <th>&nbsp;</th>
+        </thead>
+        <?php foreach ($alunos as $aluno) : ?>
+        <tr>
+            <tr><h3><a href="/aluno/view/<?php echo $this->escapeHtml($aluno->getIdaluno());?>">/aluno/view/<?php echo $this->escapeHtml($aluno->getIdaluno());?></h3></a></tr>
+            <tr>Nome: <?php echo $aluno->getNomealuno() ?>; Curso: <?php echo $aluno->getCursoAluno()->getNomeCurso(); ?></tr>
+        </tr>
+        <?php endforeach; ?>
+        <?php foreach ($visitantes as $visitante) : ?>
+        <tr>
+            <td><h1><a href="/visitante/view/<?php echo $this->escapeHtml($visitante->getIdVisitante());?>"><?php echo $visitante->getNomeVisitante(); ?></a></h1></td>
+        </tr>
+        <?php endforeach; ?>
+        <?php foreach ($controles as $controle) : ?>
+        <tr>
+            <td><a href="/controle/view/<?php echo $this->escapeHtml($controle->getIdControle());?>">/controle/view/<?php echo $controle->getIdControle(); ?></a></td>
+        </tr>
+        <?php endforeach; ?>
+        </table>
+        <a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+        <center><a class="btn btn-default" href="javascript:self.print()" ><span class="glyphicon glyphicon-print"></span> Imprimir</a></center>
+    </div>
 </div>

@@ -14,22 +14,68 @@
         <h1><?php echo $this->escapeHtml($title); ?></h1>
     </div>
     <div class="panel-body">
-        <table class="table">
-        <thead>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Curso</th>
-            <th>&nbsp;</th>
-        </thead>
-        <?php foreach ($alunos as $aluno) : ?>
-        <tr>
-            <td><?php echo $this->escapeHtml($aluno->getNomealuno());?></td>
-            <td><?php echo $this->escapeHtml($aluno->getEmailaluno());?></td>
-            <td><?php echo $this->escapeHtml($aluno->getCursoAluno()->getNomeCurso());?></td>
-        </tr>
-        <?php endforeach; ?>
-        </table>
-        
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="/aluno/relatorio" method="post" name="filtro" class="form-horizontal">
+                        <fieldset>
+                            <legend>Filtro</legend>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" for="selectbasic">Curso</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectcurso" class="form-control">
+                                        <option value="-1">Todos os Cursos</option>
+                                        <?php foreach($cursos as $c) : ?>
+                                            <?php if ($_POST['selectcurso'] == $c->getIdcurso()) : ?>
+                                                <option value="<?php echo $c->getIdcurso()?>" selected="selected"><?php echo $c->getNomeCurso()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $c->getIdcurso()?>"><?php echo $c->getNomeCurso()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label" for="radios">Bolsista</label>
+                                <div class="col-md-4">
+                                    <label class="radio inline" for="radios-0">
+                                    <input name="radiobolsista" id="radios-0" value="0" <?php if (isset($_POST['radiobolsista']) && $_POST['radiobolsista'] == '0') { echo 'checked="checked"'; } ?> type="radio">
+                                        Sim
+                                    </label>
+                                    <label class="radio inline" for="radios-1">
+                                    <input name="radiobolsista" id="radios-1" value="1" <?php if (isset($_POST['radiobolsista']) && $_POST['radiobolsista'] == '1') { echo 'checked="checked"'; } ?> type="radio">
+                                        Não
+                                    </label>
+                                    <label class="radio inline" for="radios-2">
+                                    <input name="radiobolsista" id="radios-2" value="-1" <?php if (isset($_POST['radiobolsista']) && $_POST['radiobolsista'] == '-1') { echo 'checked="checked"'; } ?> type="radio">
+                                        Todos
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-10 control-label" for="singlebutton"></label>
+                                <div class="col-md-1">
+                                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Filtrar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <table class="table">
+            <thead>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Curso</th>
+                <th>&nbsp;</th>
+            </thead>
+            <?php foreach ($alunos as $aluno) : ?>
+            <tr>
+                <td><?php echo $this->escapeHtml($aluno->getNomealuno());?></td>
+                <td><?php echo $this->escapeHtml($aluno->getEmailaluno());?></td>
+                <td><?php echo $this->escapeHtml($aluno->getCursoAluno()->getNomeCurso());?></td>
+            </tr>
+            <?php endforeach; ?>
+            </table>
+        </div>
     </div>
 
 </div>

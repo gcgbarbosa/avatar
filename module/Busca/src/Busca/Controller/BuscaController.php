@@ -36,6 +36,25 @@ class BuscaController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
+            $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+            if (!$id) {
+
+            }
+            $alunos = $this->buscarAluno($id);
+            $visitantes = $this->buscarVisitante($id);
+            $controles = $this->buscarControle($id);
+            if (empty($alunos))
+                $alunos = array();
+            if (empty($visitantes))
+                $visitantes = array();
+            if (empty($controles))
+                $controles = array();
+            return new ViewModel(array(
+                'termo' => $post->busca,
+                'alunos' => $alunos,
+                'visitantes' => $visitantes,
+                'controles' => $controles,
+            ));
         ));
     }
 
