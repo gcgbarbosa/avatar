@@ -78,17 +78,17 @@
                                  <label class="col-md-1 control-label" for="textinput">Objetivo</label>  
                                 <div class="col-md-4">
                                     <?php if (isset($_POST['objetivo'])): ?>
-                                        <input id="objetivo" name="objetivo" value="<?php echo $_POST['objetivo'] ?>" class="form-control input-md" type="text">
+                                        <input id="objetivo" name="objetivo" placeholder="Todos os objetivos" value="<?php echo $_POST['objetivo'] ?>" class="form-control input-md" type="text">
                                     <?php else: ?>
-                                        <input id="objetivo" name="objetivo" class="form-control input-md" type="text">
+                                        <input id="objetivo" name="objetivo" placeholder="Todos os objetivos" class="form-control input-md" type="text">
                                     <?php endif; ?>
                                 </div>
                                 <label class="col-md-2 control-label" for="textinput">Data</label>  
                                 <div class="col-md-4">
                                     <?php if (isset($_POST['data'])): ?>
-                                        <input id="data" name="data" value="<?php echo $_POST['data'] ?>" class="form-control input-md" type="text">
+                                        <input id="data" name="data" placeholder="Todas as datas" value="<?php echo $_POST['data'] ?>" class="form-control input-md" type="text">
                                     <?php else: ?>
-                                        <input id="data" name="data" class="form-control input-md" type="text">
+                                        <input id="data" name="data" placeholder="Todas as datas" class="form-control input-md" type="text">
                                     <?php endif; ?>
                                 </div>
                             </div>

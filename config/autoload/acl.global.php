@@ -222,6 +222,7 @@ return array(
 				),
 				'Busca\Controller\Busca' => array(
 					'index'   => 'guest',
+					'busca' => 'guest',
 				),
 			)
         )

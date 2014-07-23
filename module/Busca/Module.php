@@ -1,8 +1,6 @@
 <?php
-namespace Visitante;
+namespace Busca;
 
-use Visitante\Model\Visitante;
-use Visitante\Model\VisitanteTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
