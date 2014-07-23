@@ -91,15 +91,46 @@ class ProjetoController extends AbstractActionController
     {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
-        if (!$id) {
-            $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findAll();
+        $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findAll();
+        $gruposPesquisa = $this->getEntityManager()->getRepository('Projeto\Entity\GrupoPesquisa')->findAll();
+        $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+
+        $request = $this->getRequest();
+        
+        if ($request->isPost()) {
+            $post = $request->getPost();
+            if ($post->selectGrupoPesquisa != '-1' || $post->selectCoordenador != '-1' || $post->radiofinanciamento != '-1') {
+                if ($post->selectGrupoPesquisa != '-1') {
+                    $data['grupoPesquisaProjeto'] = $post->selectGrupoPesquisa;
+                }
+                if ($post->selectCoordenador != '-1') {
+                    $data['professorcoordenador'] = $post->selectCoordenador;
+                }
+                if ($post->radiofinanciamento != '-1') {
+                    if ($post->radiofinanciamento == '0')
+                        $data['finaciamento'] = true;
+                    if ($post->radiofinanciamento == '1')
+                        $data['finaciamento'] = false;
+                }
+                if (isset($data)) {
+                    $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findBy($data);
+                }
+            }
+            else { 
+                $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findAll();
+            }
             return new ViewModel(array(
-                'projetos' => $projetos
+                'projetos' => $projetos,
+                'gruposPesquisa' => $gruposPesquisa,
+                'professores' => $professores
             ));
         }
+
         $projeto = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
         return new ViewModel(array(
-            'projeto' => $projeto
+            'projetos' => $projetos,
+            'gruposPesquisa' => $gruposPesquisa,
+            'professores' => $professores
         ));
     }
 

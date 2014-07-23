@@ -14,24 +14,83 @@
         <h1><?php echo $this->escapeHtml($title); ?></h1>
     </div>
     <div class="panel-body">
-        <table class="table">
-        <thead>
-            <th>Título</th>
-            <th>Grupo de Pesquisa</th>
-            <th>Coordenador</th>
-            <th>Finaciamento</th>
-            <th>&nbsp;</th>
-        </thead>
-        <?php foreach ($projetos as $projeto) : ?>
-        <tr>
-            <td><?php echo $this->escapeHtml($projeto->getTitulo());?></td>
-            <td><?php echo $this->escapeHtml($projeto->getGrupoPesquisaProjeto()->getNomeGrupoPesquisa());?></td>
-            <td><?php echo $this->escapeHtml($projeto->getProfessorcoordenador()->getNomeprofessor());?></td>
-            <td><?php echo $this->escapeHtml($projeto->getFinaciamento()) ? 'Sim' : 'Não';?></td>
-        </tr>
-        <?php endforeach; ?>
-        </table>
-        
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="/projeto/relatorio" method="post" name="filtro" class="form-horizontal">
+                        <fieldset>
+                            <legend>Filtro</legend>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="selectbasic">Grupos de Pesquisa</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectGrupoPesquisa" class="form-control">
+                                        <option value="-1">Todos os Grupos de Pesquisa</option>
+                                        <?php foreach($gruposPesquisa as $g) : ?>
+                                            <?php if ($_POST['selectGrupoPesquisa'] == $g->getIdGrupoPesquisa()) : ?>
+                                                <option value="<?php echo $g->getIdGrupoPesquisa()?>" selected="selected"><?php echo $g->getNomeGrupoPesquisa()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $g->getIdGrupoPesquisa()?>"><?php echo $g->getNomeGrupoPesquisa()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label" for="radios">Financiamento</label>
+                                <div class="col-md-4">
+                                    <label class="radio inline" for="radios-0">
+                                    <input name="radiofinanciamento" id="radios-0" value="0" <?php if (isset($_POST['radiofinanciamento']) && $_POST['radiofinanciamento'] == '0') { echo 'checked="checked"'; } ?> type="radio">
+                                        Sim
+                                    </label>
+                                    <label class="radio inline" for="radios-1">
+                                    <input name="radiofinanciamento" id="radios-1" value="1" <?php if (isset($_POST['radiofinanciamento']) && $_POST['radiofinanciamento'] == '1') { echo 'checked="checked"'; } ?> type="radio">
+                                        Não
+                                    </label>
+                                    <label class="radio inline" for="radios-2">
+                                    <input name="radiofinanciamento" id="radios-2" value="-1" <?php if (isset($_POST['radiofinanciamento']) && $_POST['radiofinanciamento'] == '-1') { echo 'checked="checked"'; } ?> type="radio">
+                                        Todos
+                                    </label>
+                                </div>
+                                <label class="col-md-2 control-label" for="selectbasic">Coordenador</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectCoordenador" class="form-control">
+                                        <option value="-1">Todos os Coordenadores</option>
+                                        <?php foreach($professores as $p) : ?>
+                                            <?php if ($_POST['selectCoordenador'] == $p->getIdprofessor()) : ?>
+                                                <option value="<?php echo $p->getIdprofessor()?>" selected="selected"><?php echo $p->getNomeprofessor()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $p->getIdprofessor()?>"><?php echo $p->getNomeprofessor()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-10 control-label" for="singlebutton"></label>
+                                <div class="col-md-1">
+                                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Filtrar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <th>Título</th>
+                    <th>Grupo de Pesquisa</th>
+                    <th>Coordenador</th>
+                    <th>Finaciamento</th>
+                    <th>&nbsp;</th>
+                </thead>
+                <?php foreach ($projetos as $projeto) : ?>
+                <tr>
+                    <td><?php echo $this->escapeHtml($projeto->getTitulo());?></td>
+                    <td><?php echo $this->escapeHtml($projeto->getGrupoPesquisaProjeto()->getNomeGrupoPesquisa());?></td>
+                    <td><?php echo $this->escapeHtml($projeto->getProfessorcoordenador()->getNomeprofessor());?></td>
+                    <td><?php echo $this->escapeHtml($projeto->getFinaciamento()) ? 'Sim' : 'Não';?></td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
     </div>
 
 </div>
