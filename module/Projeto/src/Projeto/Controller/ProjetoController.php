@@ -104,6 +104,25 @@ class ProjetoController extends AbstractActionController
     }
 
 
+        public function relatorioindividualAction()
+    {
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('projeto', array('action'=>'index'));
+        }
+        $projeto = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
+        //$projetos = $professor->getProjetoprojeto()->toArray();
+    //    $controle = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $id));
+        return new ViewModel(array(
+            'projeto' => $projeto,
+           // 'projetos' => $projetos,
+           // 'controle' => $controle,
+        ));
+    }
+
+
+
     public function editAction()
     {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');

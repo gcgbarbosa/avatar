@@ -84,6 +84,7 @@ return array(
 					'delete'=> 'guest',
 					'view'=> 'guest',
 					'relatorio' => 'guest',
+					'relatorioindividual' => 'guest',
 				),
 
 				'Professor\Controller\Departamento' => array(
@@ -101,6 +102,7 @@ return array(
 					'delete'=> 'guest',
 					'view'=> 'guest',
 					'relatorio' => 'guest',
+					'relatorioindividual' => 'guest',
 				),
 
 				'Projeto\Controller\GrupoPesquisa' => array(
@@ -146,6 +148,7 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view'=> 'guest',
+					'relatorio' => 'guest',
 				),
 
 				'Equipamento\Controller\Tombo' => array(
@@ -195,6 +198,8 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view'=> 'guest',
+					'relatorio' => 'guest',
+					'relatorioindividual' => 'guest'
 				),
 				'Curso\Controller\Atuacao' => array(
 					'index'   => 'guest',

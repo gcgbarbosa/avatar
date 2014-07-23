@@ -14,10 +14,6 @@
 			<div class="panel-body">
 				<table class="table">
 			    	<tr>
-			    		<td><strong>Id</strong></td>
-			    		<td><?php echo $curso->getIdcurso(); ?></td>
-			    	</tr>
-			    	<tr>
 			    		<td><strong>Curso</strong></td>
 			    		<td><?php echo $curso->getNomeCurso(); ?></td>
 			    	</tr>
@@ -29,7 +25,7 @@
 			</div>
 		</div>
 		<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
-		<a class="btn btn-default" href="<?php echo $this->url('sala', array('action'=>'print'));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+		<a class="btn btn-default" href="<?php echo $this->url('curso', array('action'=>'relatorioindividual', 'id' => $curso->getIdcurso()));?>"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
 	</div>
 
 	<div class="col-md-5">

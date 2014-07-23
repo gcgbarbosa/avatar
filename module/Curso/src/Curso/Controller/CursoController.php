@@ -55,6 +55,38 @@ class CursoController extends AbstractActionController
         ));
     }
 
+    public function relatorioindividualAction()
+    {
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('curso', array('action'=>'index'));
+        }
+        $curso = $this->getEntityManager()->find('Curso\Entity\Curso', $id);
+    
+        return new ViewModel(array(
+           'curso' => $curso,
+        ));
+    }
+
+    public function relatorioAction()
+    {
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            $cursos = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findAll();
+            return new ViewModel(array(
+                'cursos' => $cursos
+            ));
+        }
+        $aluno = $this->getEntityManager()->find('Curso\Entity\Curso', $id);
+        return new ViewModel(array(
+            'curso' => $curso
+        ));
+    }
+
+
+
     public function addAction()
     {
         $form = new CursoForm($this->getEntityManager());
