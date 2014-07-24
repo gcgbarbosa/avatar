@@ -62,15 +62,44 @@ public function relatorioAction()
     {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
-        if (!$id) {
-            $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
+        $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
+        $tiposEquipamento = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findAll();
+        $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findAll();
+        $salas = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findAll();
+
+        $request = $this->getRequest();
+        
+        if ($request->isPost()) {
+            $post = $request->getPost();
+            if ($post->selecttiposequipamento != '-1' || $post->selectprojeto != '-1' || $post->selectsala != '-1') {
+                if ($post->selecttiposequipamento != '-1') {
+                    $data['tipoequipamentotipoequipamento'] = $post->selecttiposequipamento;
+                }
+                if ($post->selectprojeto != '-1') {
+                    $data['projetoprojeto'] = $post->selectprojeto;
+                }
+                if ($post->selectsala != '-1') {
+                    $data['salasala'] = $post->selectsala;
+                }
+                if (isset($data)) {
+                    $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy($data);
+                }
+            }
+            else { 
+                $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
+            }
             return new ViewModel(array(
-                'equipamentos' => $equipamentos
+                'equipamentos' => $equipamentos,
+                'tiposEquipamento' => $tiposEquipamento,
+                'projetos' => $projetos,
+                'salas' => $salas,
             ));
         }
-        $equipamento = $this->getEntityManager()->find('Equipamento\Entity\Equipamento', $id);
         return new ViewModel(array(
-            'equipamento' => $equipamento
+            'equipamentos' => $equipamentos,
+            'tiposEquipamento' => $tiposEquipamento,
+            'projetos' => $projetos,
+            'salas' => $salas,
         ));
     }
 
@@ -148,16 +177,9 @@ public function relatorioAction()
             
             if ($form->isValid()) { 
                 $equipamento->populate($form->getData()); 
-                
-                $query = $this->getEntityManager()->createQuery("SELECT u FROM
-                    Equipamento\Entity\Equipamento u WHERE u.ntombo LIKE :tombo");
-                $query->setParameters(array('tombo' => '%' .  . '%'));
-                var_dump($query->getResult());exit;
-                
-                $jaTemEsteTombo = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy(array('ntombo' => $equipamento->getTombotombo()));
-                var_dump($jaTemEsteTombo);exit;
-                if (!isset($jaTemEsteTombo))
-                    $jaTemEsteTombo = $this->getEntityManager()->getRepository('Equipamento\Entity\Tombo')->findBy(array('numeroTombo' => $equipamento->getTombotombo()));
+                $jaTemEsteTombo = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy(array('ntombo' => $equipamento->getNtombo()));
+                if (empty($jaTemEsteTombo))
+                    $jaTemEsteTombo = $this->getEntityManager()->getRepository('Equipamento\Entity\Tombo')->findBy(array('numeroTombo' => $equipamento->getNtombo()));
 
                 if ($jaTemEsteTombo) {
                     $mensagem = 'Equipamento já cadastrado';

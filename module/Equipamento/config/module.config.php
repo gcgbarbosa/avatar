@@ -42,17 +42,6 @@ return array(
                             ),
                         ),
                     ),
-                    'busca' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '[/:busca]',
-                            'constraints' => array(
-                                'busca' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
                     'paginator' => array(
                         'type' => 'Segment',
                         'options' => array(

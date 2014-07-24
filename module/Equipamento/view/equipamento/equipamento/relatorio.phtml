@@ -14,24 +14,84 @@
         <h1><?php echo $this->escapeHtml($title); ?></h1>
     </div>
     <div class="panel-body">
-        <table class="table">
-        <thead>
-            <th>N° Tombo</th>
-            <th>Tipo</th>
-            <th>Sala</th>
-            <th>Projeto</th>
-            <th>&nbsp;</th>
-        </thead>
-        <?php foreach ($equipamentos as $equipamento) : ?>
-        <tr>
-            <td><?php echo $this->escapeHtml($equipamento->getNtombo());?></td>
-            <td><?php echo $this->escapeHtml($equipamento->getTipoequipamentotipoequipamento()->getNometipoequipamento());?></td>
-            <td><?php echo $this->escapeHtml($equipamento->getSalasala()->getNome());?></td>
-            <td><?php echo $this->escapeHtml($equipamento->getProjetoprojeto()->getTitulo());?></td>
-        </tr>
-        <?php endforeach; ?>
-        </table>
-        
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="/equipamento/relatorio" method="post" name="filtro" class="form-horizontal">
+                        <fieldset>
+                            <legend>Filtro</legend>
+                            <div class="form-group">
+                                
+                                <label class="col-md-1 control-label" for="selectbasic">Projeto</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectprojeto" class="form-control">
+                                        <option value="-1">Todos os Projetos</option>
+                                        <?php foreach($projetos as $p) : ?>
+                                            <?php if ($_POST['selectprojeto'] == $p->getIdprojeto()) : ?>
+                                                <option value="<?php echo $p->getIdprojeto()?>" selected="selected"><?php echo $p->getTitulo()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $p->getIdprojeto()?>"><?php echo $p->getTitulo()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label" for="selectbasic">Sala</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectsala" class="form-control">
+                                        <option value="-1">Todas as Salas</option>
+                                        <?php foreach($salas as $s) : ?>
+                                            <?php if ($_POST['selectsala'] == $s->getIdsala()) : ?>
+                                                <option value="<?php echo $s->getIdsala()?>" selected="selected"><?php echo $s->getNome()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $s->getIdsala()?>"><?php echo $s->getNome()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" for="selectbasic">Tipos de Equipamento</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selecttiposequipamento" class="form-control">
+                                        <option value="-1">Todos os Tipos de Equipamento</option>
+                                        <?php foreach($tiposEquipamento as $t) : ?>
+                                            <?php if ($_POST['selecttiposequipamento'] == $t->getIdtipoequipamento()) : ?>
+                                                <option value="<?php echo $t->getIdtipoequipamento()?>" selected="selected"><?php echo $t->getNometipoequipamento()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $t->getIdtipoequipamento()?>"><?php echo $t->getNometipoequipamento()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-10 control-label" for="singlebutton"></label>
+                                <div class="col-md-1">
+                                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Filtrar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <table class="table">
+            <thead>
+                <th>N° Tombo</th>
+                <th>Tipo</th>
+                <th>Sala</th>
+                <th>Projeto</th>
+                <th>&nbsp;</th>
+            </thead>
+            <?php foreach ($equipamentos as $equipamento) : ?>
+            <tr>
+                <td><?php echo $this->escapeHtml($equipamento->getNtombo());?></td>
+                <td><?php echo $this->escapeHtml($equipamento->getTipoequipamentotipoequipamento()->getNometipoequipamento());?></td>
+                <td><?php echo $this->escapeHtml($equipamento->getSalasala()->getNome());?></td>
+                <td><?php echo $this->escapeHtml($equipamento->getProjetoprojeto()->getTitulo());?></td>
+            </tr>
+            <?php endforeach; ?>
+            </table>
+        </div>
     </div>
 
 </div>

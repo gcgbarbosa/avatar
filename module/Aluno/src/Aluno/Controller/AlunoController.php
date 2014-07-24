@@ -123,6 +123,8 @@ class AlunoController extends AbstractActionController
             if ($form->isValid()) {
                 $aluno->populate($form->getData());
 
+                var_dump($aluno->getMatriculaaluno());exit;
+
                 $jaTemEsteAluno = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findBy(array('matriculaaluno' => $aluno->getMatriculaaluno()));
 
                 if ($jaTemEsteAluno) {
