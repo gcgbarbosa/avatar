@@ -13,7 +13,38 @@
     <div class="panel-heading">
         <h1><?php echo $this->escapeHtml($title); ?></h1>
     </div>
-    <div class="panel-body">
+
+    <div class="panel-body"> <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="/professor/relatorio" method="post" name="filtro" class="form-horizontal">
+                        <fieldset>
+                            <legend>Filtro</legend>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" for="selectbasic">Curso</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectcurso" class="form-control">
+                                        <option value="-1">Todos os Cursos</option>
+                                        <?php foreach($cursos as $c) : ?>
+                                            <?php if ($_POST['selectcurso'] == $c->getIdcurso()) : ?>
+                                                <option value="<?php echo $c->getIdcurso()?>" selected="selected"><?php echo $c->getNomeCurso()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $c->getIdcurso()?>"><?php echo $c->getNomeCurso()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-10 control-label" for="singlebutton"></label>
+                                <div class="col-md-1">
+                                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Filtrar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         <table class="table">
         <thead>
             <th>Nome</th>

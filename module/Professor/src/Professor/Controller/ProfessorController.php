@@ -220,13 +220,30 @@ class ProfessorController extends AbstractActionController
         
         if (!$id) {
             $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+            $cursos = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findAll();
+            $request = $this->getRequest();
+            if ($request->isPost()) {
+                $post = $request->getPost();
+                if ($post->selectcurso != '-1') {
+                    $data['cursoProfessor'] = $post->selectcurso;
+                }
+                if (isset($data)) {
+                    $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findBy($data);
+                }
+                return new ViewModel(array(
+                    'professores' => $professores,
+                    'cursos' => $cursos,
+                ));
+            }
             return new ViewModel(array(
-                'professores' => $professores
+                'professores' => $professores,
+                'cursos' => $cursos,
             ));
         }
         $professor = $this->getEntityManager()->find('Professor\Entity\Professor', $id);
         return new ViewModel(array(
-            'professor' => $professor
+            'professor' => $professor,
+            'cursos' => $cursos,
         ));
     }
 }
