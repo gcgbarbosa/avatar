@@ -41,39 +41,6 @@ class GrupoPesquisaController extends AbstractActionController
         ));
     }
 
-    public function relatorioAction()
-    {
-        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
-        
-        $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findAll();
-        $gruposPesquisa = $this->getEntityManager()->getRepository('Projeto\Entity\GrupoPesquisa')->findAll();
-        
-        $request = $this->getRequest();
-        
-        $projeto = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
-        return new ViewModel(array(
-            'projetos' => $projetos,
-            'gruposPesquisa' => $gruposPesquisa
-        ));
-    }
-
-     public function relatorioindividualAction()
-    {
-        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
-        
-        if (!$id) {
-            return $this->redirect()->toRoute('projeto', array('action'=>'index'));
-        }
-        $gruposPesquisa = $this->getEntityManager()->find('Projeto\Entity\GrupoPesquisa', $id);
-        //$projetos = $professor->getProjetoprojeto()->toArray();
-    //    $controle = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $id));
-        return new ViewModel(array(
-             'gruposPesquisa' => $gruposPesquisa,
-           // 'projetos' => $projetos,
-           // 'controle' => $controle,
-        ));
-    }
-
     public function addAction()
     {
         $form = new GrupoPesquisaForm($this->getEntityManager());
