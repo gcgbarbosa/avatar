@@ -53,8 +53,49 @@ class OcorrenciaController extends AbstractActionController
         ));
     }
 
-    public function viewAction()
-    {
+
+    public function relatorioAction(){
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        if(!$id){
+            $ocorrencias = $this->getEntityManager()->getRepository('Sala\Entity\Ocorrencia')->findAll();
+            $funcionarios = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findAll();
+            $salas = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findAll();
+            $em = $this->getEntityManager();
+            $qb = $em->createQueryBuilder();
+            //$qb = $em->createQuery('SELECT u.id FROM CmsUser u');
+            //$ids = $query->getResult();
+            //var_dump($ids);exit();
+            $request = $this->getRequest();
+            if ($request->isPost()) {
+                $post = $request->getPost();
+
+                if ($post->selectfuncio != '-1' || $post->selectsala != '-1' ) {
+                    if ($post->selectfuncio != '-1') {
+                        $data['funcionarioOcorrencia'] = $post->selectfuncio;
+                    }
+                    if ($post->selectsala != '-1') {
+                        $data['reservaSalaOcorrencia'] = $post->selectsala;
+                    }
+                    if (isset($data)) {
+                        $ocorrencias = $this->getEntityManager()->getRepository('Sala\Entity\Ocorrencia')->findBy($data);
+                    }
+                }
+                return new ViewModel(array(
+                    'ocorrencias' => $ocorrencias,
+                    'funcionarios' => $funcionarios,
+                    'salas' => $salas,
+                ));
+        }
+        $ocorrencia = $this->getEntityManager()->find('Sala\Entity\Ocorrencia', $id);
+        return new ViewModel(array(
+            'ocorrencias' => $ocorrencias,
+            'funcionarios' => $funcionarios,
+            'salas' => $salas,
+        ));
+        }
+    }
+
+    public function viewAction(){
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
