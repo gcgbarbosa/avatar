@@ -51,6 +51,17 @@ class TipoEquipamentoController extends AbstractActionController
         ));
     }
 
+
+    public function relatorioAction()
+    {
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        $tiposEquipamento = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findAll();
+        $request = $this->getRequest();
+        return new ViewModel(array(
+            'tiposEquipamento' => $tiposEquipamento,
+        ));
+    }
+
     public function addAction()
     {
         $form = new TipoEquipamentoForm();
