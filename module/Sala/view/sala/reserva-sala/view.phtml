@@ -23,11 +23,11 @@
 			    	</tr>
 			    	<tr>
 			    		<td><strong>Hora do Início</strong></td>
-			    		<td><?php echo $reservaSala->getDataInicio(); ?></td>
+			    		<td><?php echo $reservaSala->getDataInicio()->format('H:i:s'); ?></td>
 			    	</tr>
 			    	<tr>
 			    		<td><strong>Hora do Fim</strong></td>
-			    		<td><?php echo $reservaSala->getDataFim(); ?></td>
+			    		<td><?php echo $reservaSala->getDataFim()->format('H:i:s'); ?></td>
 			    	</tr>
 			    	<tr>
 			    		<td><strong>Dia</strong></td>

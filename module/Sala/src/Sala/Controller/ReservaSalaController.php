@@ -67,6 +67,12 @@ class ReservaSalaController extends AbstractActionController
         ));
     }
 
+    function transformarData($time) {
+        $hora = strtotime($time);
+        $hora = new \DateTime(date('H:i:s', $hora));
+        return $hora;
+    }
+
     public function addAction()
     {
         $form = new ReservaSalaForm($this->getEntityManager());
@@ -83,6 +89,32 @@ class ReservaSalaController extends AbstractActionController
             if ($form->isValid()) { 
                 $reservaSala->populate($form->getData());
 
+                $reservaSala->setDataInicio($this->transformarData($reservaSala->getDataInicio()));
+                $reservaSala->setDataFim($this->transformarData($reservaSala->getDataFim()));
+
+                $data = explode("/", $reservaSala->getDataReserva());
+                $data = $data['2']."-".$data['1']."-". $data['0'];
+                
+                $query = $this->getEntityManager()->createQuery("SELECT u FROM
+                        Sala\Entity\ReservaSala u WHERE u.dataReserva LIKE :data");
+                $query->setParameters(array('data' => '%' . $data . '%'));
+                $dados = $query->getResult();
+
+                foreach ($dados as $dado) {
+                    $hora1 = date('H', strtotime($dado->getDataInicio()->format('H:i:s')));
+                    $hora2 = date('H', strtotime($dado->getDataFim()->format('H:i:s')));
+                    $hora3 = date('H', strtotime($reservaSala->getDataInicio()->format('H:i:s')));
+                    if ($hora3 >= $hora1 && $hora3 < $hora2) {
+                        $mensagem = 'Horário já ocupado.';
+                        return array(
+                            'form' => $form,
+                            'mensagem' => $mensagem,
+                        );
+                    }
+                }
+
+                $reservaSala->setDataReserva(new \DateTime($data));
+
                 $sala = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findOneBy(array('idsala' => $reservaSala->getSalaReserva()));
                 $reservaSala->setSalaReserva($sala);
 
@@ -91,12 +123,6 @@ class ReservaSalaController extends AbstractActionController
 
                 $professor = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findOneBy(array('idprofessor' => $reservaSala->getProfessorReserva()));
                 $reservaSala->setProfessorReserva($professor);
-
-                //SET DATA 
-                $data = explode("/", $reservaSala->getDataReserva());
-                $data = $data['0']."-".$data['1']."-". $data['2'];
-                $reservaSala->setDataReserva(new \DateTime($data));
-                //END SET DATA 
                 
                 $this->getEntityManager()->persist($reservaSala);
                 $this->getEntityManager()->flush();

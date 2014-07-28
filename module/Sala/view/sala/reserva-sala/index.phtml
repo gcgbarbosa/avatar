@@ -27,8 +27,8 @@
         <tr>
             <th><?php echo $this->escapeHtml($reservaSala->getIdReservaSala());?></th>
             <td><?php echo $this->escapeHtml($reservaSala->getSalaReserva()->getNome());?></td>
-            <td><?php echo $this->escapeHtml($reservaSala->getDataInicio());?></td>
-            <td><?php echo $this->escapeHtml($reservaSala->getDataFim());?></td>
+            <td><?php echo $this->escapeHtml($reservaSala->getDataInicio()->format('H:i:s'));?></td>
+            <td><?php echo $this->escapeHtml($reservaSala->getDataFim()->format('H:i:s'));?></td>
             <td><?php echo $this->escapeHtml($reservaSala->getDataReserva()->format('d/m/Y'));?></td>
             <td><?php echo $this->escapeHtml($reservaSala->getProfessorReserva()->getNomeprofessor());?></td>
             <td>

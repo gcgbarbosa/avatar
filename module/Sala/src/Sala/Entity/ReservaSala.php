@@ -36,14 +36,14 @@ class ReservaSala implements InputFilterAwareInterface
     /**
      * @var \string
      *
-     * @ORM\Column(name="dataInicio", type="string", length=5, precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="dataInicio", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $dataInicio;
 
     /**
      * @var \string
      *
-     * @ORM\Column(name="dataFim", type="string", length=5, precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="dataFim", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $dataFim;
 
@@ -264,6 +264,8 @@ class ReservaSala implements InputFilterAwareInterface
     {
         $obj_vars = get_object_vars($this);
         $obj_vars['dataReserva'] = $obj_vars['dataReserva']->format('d/m/Y');
+        $obj_vars['dataInicio'] = $obj_vars['dataInicio']->format('H:i:s');
+        $obj_vars['dataFim'] = $obj_vars['dataFim']->format('H:i:s');
         $obj_vars['salaReserva'] = $obj_vars['salaReserva']->getIdsala();
         $obj_vars['funcionarioReserva'] = $obj_vars['funcionarioReserva']->getIdfuncionario();
         $obj_vars['professorReserva'] = $obj_vars['professorReserva']->getIdprofessor();
@@ -327,14 +329,12 @@ class ReservaSala implements InputFilterAwareInterface
                 ),
                 'validators' => array(
                     array(
-                        'name'    => 'StringLength',
+                        'name' => 'date',
                         'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 5,
+                            'locale' => 'pt_BR', 
+                            'format' => 'H:i:s'),
                         ),
                     ),
-                ),
             )));
 
             $inputFilter->add($factory->createInput(array(
@@ -346,14 +346,12 @@ class ReservaSala implements InputFilterAwareInterface
                 ),
                 'validators' => array(
                     array(
-                        'name'    => 'StringLength',
+                        'name' => 'date',
                         'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 5,
+                            'locale' => 'pt_BR', 
+                            'format' => 'H:i:s'),
                         ),
                     ),
-                ),
             )));
 
             $inputFilter->add($factory->createInput(array(

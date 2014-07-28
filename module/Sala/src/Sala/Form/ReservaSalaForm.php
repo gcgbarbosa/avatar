@@ -37,8 +37,8 @@ class ReservaSalaForm extends Form
         $this->add(array(
             'name' => 'dataInicio',
             'attributes' => array(
+                'type'  => 'Zend\Form\Element\DateTime',
                 'class' => 'form-control',
-                'type'  => 'text',
                 'id' => 'dataInicio'
             ),
             'options' => array(
@@ -52,12 +52,12 @@ class ReservaSalaForm extends Form
         $this->add(array(
             'name' => 'dataFim',
             'attributes' => array(
+                'type'  => 'Zend\Form\Element\DateTime',
                 'class' => 'form-control',
-                'type'  => 'text',
                 'id' => 'dataFim'
             ),
             'options' => array(
-                'label' => 'Hora do Final: ',
+                'label' => 'Hora do Fim: ',
                 'label_attributes' => array(
                     'class'  => 'col-lg-2 control-label'
                 ),
