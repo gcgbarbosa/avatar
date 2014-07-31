@@ -206,4 +206,20 @@ class GrupoPesquisaController extends AbstractActionController
         );
 
     }
+
+    public function relatorioAction()
+    {
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            $grupos = $this->getEntityManager()->getRepository('Projeto\Entity\GrupoPesquisa')->findAll();
+            return new ViewModel(array(
+                'grupos' => $grupos
+            ));
+        }
+        $grupos = $this->getEntityManager()->find('Projeto\Entity\GrupoPesquisa', $id);
+        return new ViewModel(array(
+            'grupos' => $grupos
+        ));
+    }
 }

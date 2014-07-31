@@ -190,6 +190,7 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view'=> 'guest',
+					'relatorio' => 'guest'
 				),
 
 				'Curso\Controller\Curso' => array(

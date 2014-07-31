@@ -41,7 +41,6 @@ class ReservaSalaController extends AbstractActionController
         /*return new ViewModel(array(
             'reservaSalas' => $this->getEntityManager()->getRepository('Sala\Entity\ReservaSala')->findAll() 
         ));*/
-        
         $reservaSalas = $this->getEntityManager()->getRepository('Sala\Entity\ReservaSala')->findAll();
         $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
         $paginator = new Paginator(new ArrayAdapter($reservaSalas));
@@ -217,5 +216,91 @@ class ReservaSalaController extends AbstractActionController
             'id' => $id,
             'reservaSala' => $this->getEntityManager()->find('Sala\Entity\ReservaSala', $id)
         );
+    }
+
+    public function relatorioAction()
+    {
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        
+        $reservasSala = $this->getEntityManager()->getRepository('Sala\Entity\ReservaSala')->findAll();
+        $funcionarios = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findAll();
+        $salas = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findAll();
+        $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+
+        $request = $this->getRequest();
+        
+        if ($request->isPost()) {
+            $post = $request->getPost();
+            if ($post->selectfuncionario != '-1' || $post->selectsala != '-1' || $post->selectprofessor != '-1' || $post->data != "" || $post->objetivo != "") {
+                if ($post->selectfuncionario != '-1') {
+                    $data['funcionarioReserva'] = $post->selectfuncionario;
+                }
+                if ($post->selectsala != '-1') {
+                    $data['salaReserva'] = $post->selectsala;
+                }
+                if ($post->selectprofessor != '-1') {
+                    $data['professorReserva'] = $post->selectprofessor;
+                }
+                if (isset($data)) {
+                    $reservasSala = $this->getEntityManager()->getRepository('Sala\Entity\ReservaSala')->findBy($data);
+                }
+                if ($post->data != '') {
+                    $date = explode("/", $post->data);
+                    $date = $date['2']."-".$date['1']."-". $date['0'];
+                    $query = $this->getEntityManager()->createQuery("SELECT u FROM
+                        Sala\Entity\ReservaSala u WHERE u.dataReserva LIKE :data");
+                    $query->setParameters(array('data' => '%' . $date . '%'));
+                    $dados = $query->getResult();
+                    foreach ($dados as $dado) {
+                        foreach ($reservasSala as $key => $reserva) {
+                            if ($reserva->getIdReservaSala() == $dado->getIdReservaSala()) {
+                                $cont[] = $dado;
+                            }
+                        }
+                    }
+                    if (isset($cont)) {
+                        $reservasSala = $cont;
+                    }
+                    else {
+                        $reservasSala = array();
+                    }
+                }
+                if ($post->objetivo != '') {
+                    $query = $this->getEntityManager()->createQuery("SELECT u FROM
+                        Sala\Entity\ReservaSala u WHERE u.objetivo LIKE :objetivo");
+                    $query->setParameters(array('objetivo' => '%' . $post->objetivo . '%'));
+                    $dados = $query->getResult();
+                    foreach ($dados as $dado) {
+                        foreach ($reservasSala as $key => $reserva) {
+                            if ($reserva->getIdReservaSala() == $dado->getIdReservaSala()) {
+                                $cont[] = $dado;
+                            }
+                        }
+                    }
+                    if (isset($cont)) {
+                        $reservasSala = $cont;
+                    }
+                    else {
+                        $reservasSala = array();
+                    }
+                }
+            }
+            else { 
+                $reservasSala = $this->getEntityManager()->getRepository('Sala\Entity\ReservaSala')->findAll();
+            }
+            return new ViewModel(array(
+                'reservasSala' => $reservasSala,
+                'funcionarios' => $funcionarios,
+                'salas' => $salas,
+                'professores' => $professores
+            ));
+        }
+
+        return new ViewModel(array(
+            'reservasSala' => $this->getEntityManager()->getRepository('Sala\Entity\ReservaSala')->findAll(),
+                'funcionarios' => $funcionarios,
+                'salas' => $salas,
+                'professores' => $professores
+        ));
     }
 }
