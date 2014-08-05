@@ -1,0 +1,63 @@
+<link href="/css/bootstrap.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap-theme.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/style.css" print="screen" rel="stylesheet" type="text/css">
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Relatório Individual de Funcionário: ' . $funcionario->getNomefuncionario();
+    
+    $this->headTitle($title);
+
+    ?>
+
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <center><strong>Dados</strong></center>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                    <tr>
+                        <td><strong>Nome</strong></td>
+                        <td><?php echo $funcionario->getNomefuncionario(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>E-mail</strong></td>
+                        <td><?php echo $funcionario->getEmailfuncionario(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Telefone</strong></td>
+                        <td><?php echo $funcionario->getTelefonefuncionario(); ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Formação</strong></td>
+                        <td><?php echo $funcionario->getFormacao(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grau de Instrução</strong></td>
+                        <td><?php echo $funcionario->getGrauInstrucao();  ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Função</strong></td>
+                        <td><?php echo $funcionario->getFuncao(); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data de Nascimento</strong></td>
+                        <td><?php echo $funcionario->getDatanasc()->format('d/m/Y'); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data de Admissão</strong></td>
+                        <td><?php echo $funcionario->getDataAdmissao()->format('d/m/Y'); ?></td>
+                    </tr>
+                </table>
+                </div>
+                <div class="panel-footer">
+                </div>
+                <!-- List group -->
+            </div>
+        </div>

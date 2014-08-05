@@ -66,6 +66,25 @@ class FuncionarioController extends AbstractActionController
         ));
     }
 
+
+    public function relatorioindividualAction()
+    {
+        $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
+        
+        if (!$id) {
+            return $this->redirect()->toRoute('funcionario', array('action'=>'index'));
+        }
+        $funcionario = $this->getEntityManager()->find('Funcionario\Entity\Funcionario', $id);
+        //$projetos = $professor->getProjetoprojeto()->toArray();
+    //    $controle = $this->getEntityManager()->getRepository('Controle\Entity\Controle')->findBy(array('alunoControle' => $id));
+        return new ViewModel(array(
+            'funcionario' => $funcionario,
+          //  'projetos' => $projetos,
+           // 'controle' => $controle,
+        ));
+    }
+
+
     public function addAction()
     {
         $form = new FuncionarioForm();

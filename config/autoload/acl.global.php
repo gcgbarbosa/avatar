@@ -122,6 +122,7 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view'=> 'guest',
+					'relatorioindividual' => 'guest',
 				),
 
 				'Funcionario\Controller\Frequencia' => array(
