@@ -1,0 +1,92 @@
+<link href="/css/bootstrap.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap-theme.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/style.css" print="screen" rel="stylesheet" type="text/css">
+<div class="panel panel-default">
+    <?php
+    // module/Album/view/album/album/index.phtml:
+    $title = 'Relatório Geral de Ocorrências';
+    
+    $this->headTitle($title);
+
+    ?>
+
+    <div class="panel-heading">
+        <h1><?php echo $this->escapeHtml($title); ?></h1>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="/ocorrencia/relatorio" method="post" name="filtro" class="form-horizontal">
+                        <fieldset>
+                            <legend>Filtro</legend>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label" for="selectbasic">Sala</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic" name="selectsala" class="form-control">
+                                        <option value="-1">Todas as Salas</option>
+                                        <?php foreach($salas as $c) : ?>
+                                            <?php if ($_POST['selectsala'] == $c->getIdsala()) : ?>
+                                                <option value="<?php echo $c->getIdsala()?>" selected="selected"><?php echo $c->getNome()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $c->getIdsala()?>"><?php echo $c->getNome()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label" for="radios">Funcionários</label>
+                                  <div class="col-md-4">
+                                    <select id="selectbasic" name="selectfuncio" class="form-control">
+                                        <option value="-1">Todos os Funcionários</option>
+                                        <?php foreach($funcionarios as $c) : ?>
+                                            <?php if ($_POST['selectfuncio'] == $c->getIdfuncionario()) : ?>
+                                                <option value="<?php echo $c->getIdfuncionario()?>" selected="selected"><?php echo $c->getNomefuncionario()?></option>
+                                            <?php else: ?>
+                                                <option value="<?php echo $c->getIdfuncionario()?>"><?php echo $c->getNomefuncionario()?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-10 control-label" for="singlebutton"></label>
+                                <div class="col-md-1">
+                                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Filtrar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        <table class="table">
+        <thead>
+            <th>Funcionário</th>
+            <th>Sala</th>
+            <th>Observação</th>
+            <th>&nbsp;</th>
+        </thead>
+        <?php foreach ($ocorrencias as $ocorrencia) : ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($ocorrencia->getFuncionarioOcorrencia()->getNomefuncionario());?></td>
+            <td><?php echo $this->escapeHtml($ocorrencia->getReservaSalaOcorrencia()->getSalaReserva()->getNome());?></td>
+
+
+            <td><?php echo $this->escapeHtml($ocorrencia->getObservacao());?></td>
+
+        </tr>
+        <?php endforeach; ?>
+        </table>
+        
+    </div>
+
+</div>
+<style media="print">
+    .btn-default {
+        display: none;    
+    }
+    .btn {
+        display: none;
+    }
+</style>
+<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+<center><a class="btn btn-default" href="javascript:self.print()" ><span class="glyphicon glyphicon-print"></span> Imprimir</a></center>

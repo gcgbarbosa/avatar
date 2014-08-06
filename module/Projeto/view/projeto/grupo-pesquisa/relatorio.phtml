@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+<link href="/css/bootstrap.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/bootstrap-theme.min.css" print="screen" rel="stylesheet" type="text/css">
+<link href="/css/style.css" print="screen" rel="stylesheet" type="text/css">
+>>>>>>> b44b9879e655c2282e01d2b15cdd54354df4a85e
 <div class="panel panel-default">
     <?php
     // module/Album/view/album/album/index.phtml:
@@ -11,6 +17,7 @@
         <h1><?php echo $this->escapeHtml($title); ?></h1>
     </div>
     <div class="panel-body">
+<<<<<<< HEAD
         <table class="table">
         <thead>
             <th>Nome</th>
@@ -31,3 +38,33 @@
     </div>
 
 </div>
+=======
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <th>Nome </th>
+                    <th>Pesquisador Responsável </th>
+                    <th>&nbsp;</th>
+                </thead>
+                <?php foreach ($gruposPesquisa as $grupo) : ?>
+                <tr>
+                    <td><?php echo $this->escapeHtml($grupo->getNomeGrupoPesquisa());?></td>
+                    <td><?php echo $this->escapeHtml($grupo->getPesquisadorresponsavel()->getNomeprofessor());?></td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+
+</div>
+<style media="print">
+    .btn-default {
+        display: none;    
+    }
+    .btn {
+        display: none;
+    }
+</style>
+<a class="btn btn-default" href="javascript:history.go(-1)"><span class="glyphicon glyphicon-backward"></span> Voltar</a>
+<center><a class="btn btn-default" href="javascript:self.print()" ><span class="glyphicon glyphicon-print"></span> Imprimir</a></center>
+>>>>>>> b44b9879e655c2282e01d2b15cdd54354df4a85e

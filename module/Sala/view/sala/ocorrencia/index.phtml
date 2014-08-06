@@ -10,7 +10,7 @@
     <div class="panel-body">
         <p>
             <a class="btn btn-success" href="<?php echo $this->url('ocorrencia/default', array('action'=>'add'));?>"><span class="glyphicon glyphicon-plus"></span> Adicionar nova Ocorrência</a>
-            <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-list-alt"></span> Gerar Relatório</a>
+          <a class="btn btn-default" href="<?php echo $this->url('ocorrencia/default', array('action'=>'relatorio'));?>"><span class="glyphicon glyphicon-list-alt"></span> Relatório</a>
         </p>
 
         <table class="table">
@@ -25,7 +25,8 @@
         <tr>
             <th><?php echo $this->escapeHtml($ocorrencia->getIdOcorrencia());?></th>
             <td><?php echo $this->escapeHtml($ocorrencia->getReservaSalaOcorrencia()->getSalaReserva()->getNome());?></td>
-            <td><?php echo $this->escapeHtml($ocorrencia->getObservacao());?></td>
+            <td><?php echo substr($this->escapeHtml($ocorrencia->getObservacao()), 0, 60);?></td>
+
             <td><?php echo $this->escapeHtml($ocorrencia->getFuncionarioOcorrencia()->getNomefuncionario());?></td>
             <td>
                  <a class="btn btn-info" href="<?php echo $this->url('ocorrencia/default',

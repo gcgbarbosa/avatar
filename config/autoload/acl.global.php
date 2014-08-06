@@ -112,6 +112,7 @@ return array(
 					'delete'=> 'guest',
 					'view'=> 'guest',
 					'relatorio' => 'guest',
+					'relatorioindividual' => 'guest',
 				),
 
 
@@ -182,6 +183,7 @@ return array(
 					'edit'  => 'guest',	
 					'delete'=> 'guest',
 					'view'=> 'guest',
+					'relatorio' => 'guest',
 				),
 
 				'Sala\Controller\ReservaSala' => array(
