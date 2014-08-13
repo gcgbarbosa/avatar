@@ -41,7 +41,7 @@ class DepartamentoController extends AbstractActionController
         /*return new ViewModel(array(
             'departamentos' => $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findAll() 
         ));*/
-        $equipamentos = $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findAll();
+        $equipamentos = $this->getEntityManager()->getRepository('Professor\Entity\Departamento')->findBy(array(),array('nomedepartamento' => 'ASC'));
         $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
         $paginator = new Paginator(new ArrayAdapter($equipamentos));
         $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);

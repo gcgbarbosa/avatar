@@ -42,7 +42,7 @@ class EquipamentoController extends AbstractActionController
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) { 
-            $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
+            $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy(array(),array('ntombo' => 'ASC'));
             $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
             $paginator = new Paginator(new ArrayAdapter($equipamentos));
             $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
@@ -62,7 +62,7 @@ public function relatorioAction()
     {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
-        $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
+        $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy(array(),array('ntombo' => 'ASC'));
         $tiposEquipamento = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findAll();
         $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findAll();
         $salas = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findAll();
@@ -82,11 +82,11 @@ public function relatorioAction()
                     $data['salasala'] = $post->selectsala;
                 }
                 if (isset($data)) {
-                    $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy($data);
+                    $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy($data,array('ntombo' => 'ASC'));
                 }
             }
             else { 
-                $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findAll();
+                $equipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\Equipamento')->findBy(array(),array('ntombo' => 'ASC'));
             }
             return new ViewModel(array(
                 'equipamentos' => $equipamentos,

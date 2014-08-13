@@ -37,7 +37,7 @@ class ProjetoController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'projetos' => $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findAll() 
+            'projetos' => $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findBy(array(),array('titulo' => 'ASC')) 
         ));
     }
 
@@ -91,7 +91,7 @@ class ProjetoController extends AbstractActionController
     {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
-        $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findAll();
+        $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findBy(array(),array('titulo' => 'ASC'));
         $gruposPesquisa = $this->getEntityManager()->getRepository('Projeto\Entity\GrupoPesquisa')->findAll();
         $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
 
@@ -113,7 +113,7 @@ class ProjetoController extends AbstractActionController
                         $data['finaciamento'] = false;
                 }
                 if (isset($data)) {
-                    $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findBy($data);
+                    $projetos = $this->getEntityManager()->getRepository('Projeto\Entity\Projeto')->findBy($data,array('titulo' => 'ASC'));
                 }
             }
             else { 
@@ -252,7 +252,7 @@ class ProjetoController extends AbstractActionController
         $projeto = $this->getEntityManager()->find('Projeto\Entity\Projeto', $id);
 
         $professores = $projeto->getProfessorprofessor()->toArray();
-        $a_professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+        $a_professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findBy(array(),array('nomeprofessor' => 'ASC'));
         foreach($a_professores as $k=>$a_p){
             foreach($professores as $p){
                 if($a_p == $p)
@@ -260,7 +260,7 @@ class ProjetoController extends AbstractActionController
             }
         }
         $alunos = $projeto->getAlunoaluno()->toArray();
-        $a_alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
+        $a_alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findBy(array(),array('nomealuno' => 'ASC'));
         foreach($a_alunos as $k=>$a_a){
             foreach($alunos as $a){
                 if($a_a == $a)

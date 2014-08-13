@@ -40,7 +40,7 @@ class SalaController extends AbstractActionController
         /*return new ViewModel(array(
             'salas' => $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findAll() 
         ));*/
-        $salas = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findAll();
+        $salas = $this->getEntityManager()->getRepository('Sala\Entity\Sala')->findBy(array(),array('nome' => 'ASC'));
         $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
         $paginator = new Paginator(new ArrayAdapter($salas));
         $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);

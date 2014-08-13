@@ -37,7 +37,7 @@ class VisitanteController extends AbstractActionController
 
     public function indexAction()
     {
-        $visitantes = $this->getEntityManager()->getRepository('Visitante\Entity\Visitante')->findAll();
+        $visitantes = $this->getEntityManager()->getRepository('Visitante\Entity\Visitante')->findBy(array(),array('nomeVisitante' => 'ASC'));
         $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
         $paginator = new Paginator(new ArrayAdapter($visitantes));
         $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
@@ -52,7 +52,7 @@ class VisitanteController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            $visitantes = $this->getEntityManager()->getRepository('Visitante\Entity\Visitante')->findAll();
+            $visitantes = $this->getEntityManager()->getRepository('Visitante\Entity\Visitante')->findBy(array(),array('nomeVisitante' => 'ASC'));
             return new ViewModel(array(
                 'visitantes' => $visitantes
             ));

@@ -41,7 +41,7 @@ class FuncionarioController extends AbstractActionController
         /*return new ViewModel(array(
             'funcionarios' => $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findAll() 
         ));*/
-        $funcionarios = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findAll();
+        $funcionarios = $this->getEntityManager()->getRepository('Funcionario\Entity\Funcionario')->findBy(array(),array('nomefuncionario' => 'ASC'));
         $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
         $paginator = new Paginator(new ArrayAdapter($funcionarios));
         $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);

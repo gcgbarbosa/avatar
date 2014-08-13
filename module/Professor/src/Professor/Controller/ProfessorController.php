@@ -41,9 +41,10 @@ class ProfessorController extends AbstractActionController
         /*return new ViewModel(array(
             'professores' => $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll() 
         ));*/
-        $equipamentos = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+        //$professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+        $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findBy(array(),array('nomeprofessor' => 'ASC'));
         $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
-        $paginator = new Paginator(new ArrayAdapter($equipamentos));
+        $paginator = new Paginator(new ArrayAdapter($professores));
         $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
         return new ViewModel(array(
             'data' => $paginator,
@@ -219,7 +220,7 @@ class ProfessorController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findAll();
+            $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findBy(array(),array('nomeprofessor' => 'ASC'));
             $cursos = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findAll();
             $request = $this->getRequest();
             if ($request->isPost()) {
@@ -228,7 +229,7 @@ class ProfessorController extends AbstractActionController
                     $data['cursoProfessor'] = $post->selectcurso;
                 }
                 if (isset($data)) {
-                    $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findBy($data);
+                    $professores = $this->getEntityManager()->getRepository('Professor\Entity\Professor')->findBy($data,array('nomeprofessor' => 'ASC'));
                 }
                 return new ViewModel(array(
                     'professores' => $professores,

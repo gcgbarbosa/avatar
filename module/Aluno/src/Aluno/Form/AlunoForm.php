@@ -92,6 +92,14 @@ class AlunoForm extends Form
                 'target_class'   => 'Curso\Entity\Curso',
                 'property'       => 'nomeCurso',
                 'empty_option'   => '--- Curso ---',
+                /*
+                'is_method'      => true,
+                'find_method'    => array(
+                     'name'   => 'findBy',
+                     'params' => array(
+                        'orderBy'  => array('nomeCurso' => 'ASC'),
+                     ),
+                ),*/
             ),
         ));
 

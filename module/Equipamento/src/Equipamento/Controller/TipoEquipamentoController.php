@@ -41,7 +41,7 @@ class TipoEquipamentoController extends AbstractActionController
             'tipoequipamentos' => $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findAll() 
         ));*/
 
-        $tipoequipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findAll();
+        $tipoequipamentos = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findBy(array(),array('nometipoequipamento' => 'ASC'));
         $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
         $paginator = new Paginator(new ArrayAdapter($tipoequipamentos));
         $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
@@ -55,7 +55,7 @@ class TipoEquipamentoController extends AbstractActionController
     public function relatorioAction()
     {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
-        $tiposEquipamento = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findAll();
+        $tiposEquipamento = $this->getEntityManager()->getRepository('Equipamento\Entity\TipoEquipamento')->findBy(array(),array('nometipoequipamento' => 'ASC'));
         $request = $this->getRequest();
         return new ViewModel(array(
             'tiposEquipamento' => $tiposEquipamento,

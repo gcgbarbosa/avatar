@@ -41,7 +41,7 @@ class LocalController extends AbstractActionController
         /*return new ViewModel(array(
             'locais' => $this->getEntityManager()->getRepository('Sala\Entity\Local')->findAll() 
         ));*/
-        $locais = $this->getEntityManager()->getRepository('Sala\Entity\Local')->findAll();
+        $locais = $this->getEntityManager()->getRepository('Sala\Entity\Local')->findBy(array(),array('nomelocal' => 'ASC'));
         $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
         $paginator = new Paginator(new ArrayAdapter($locais));
         $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);

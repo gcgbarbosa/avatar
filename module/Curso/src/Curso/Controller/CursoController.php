@@ -36,7 +36,7 @@ class CursoController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'cursos' => $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findAll() 
+            'cursos' => $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findBy(array(),array('nomeCurso' => 'ASC'))
         ));
     }
 
@@ -74,7 +74,7 @@ class CursoController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            $cursos = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findAll();
+            $cursos = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findBy(array(),array('nomeCurso' => 'ASC'));
             return new ViewModel(array(
                 'cursos' => $cursos
             ));

@@ -37,7 +37,7 @@ class AlunoController extends AbstractActionController
 
     public function indexAction()
     {
-        $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
+        $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findBy(array(),array('nomealuno' => 'ASC'));
         $page = (int) $this->getEvent()->getRouteMatch()->getParam('page');
         $paginator = new Paginator(new ArrayAdapter($alunos));
         $paginator->setCurrentPageNumber($page)->setDefaultItemCountPerPage(8);
@@ -52,7 +52,8 @@ class AlunoController extends AbstractActionController
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         
         if (!$id) {
-            $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
+            $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findBy(array(),array('nomealuno' => 'ASC'));
+            //$alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findAll();
             $cursos = $this->getEntityManager()->getRepository('Curso\Entity\Curso')->findAll();
             $request = $this->getRequest();
         
@@ -69,7 +70,7 @@ class AlunoController extends AbstractActionController
                             $data['bolsista'] = false;
                     }
                     if (isset($data)) {
-                        $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findBy($data);
+                        $alunos = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findBy($data,array('nomealuno' => 'ASC'));
                     }
                 }
                 return new ViewModel(array(
@@ -123,7 +124,7 @@ class AlunoController extends AbstractActionController
             if ($form->isValid()) {
                 $aluno->populate($form->getData());
 
-                var_dump($aluno->getMatriculaaluno());exit;
+                //var_dump($aluno->getMatriculaaluno());exit;
 
                 $jaTemEsteAluno = $this->getEntityManager()->getRepository('Aluno\Entity\Aluno')->findBy(array('matriculaaluno' => $aluno->getMatriculaaluno()));
 
