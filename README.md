@@ -8,4 +8,5 @@ Este sóftware foi desenvolvido com o objetivo de gerenciar Centro de Pesquisa e
 Uso
 ------------
 Redirecione o seu servidor PHP para acesso a pasta `public`
+
     php -S /path/to/public
